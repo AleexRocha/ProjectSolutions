@@ -4,38 +4,24 @@ package Model;
  *
  * @author guilherme.rsvieira
  */
-public class Produtos_Serviços {
+public class Produto {
 
     private int codProd;
-    private String nome;
+    private String nomeProd;
     private String descricao;
-    private String tipo;
-    private String Filial;
-    private float qtdEstoque;
-    private float qtdVendida;
-    private int valorUnidade;
+    private String filial;
+    private int qtdEstoque;
+    private double valorUnidade;
 
-    public Produtos_Serviços(int codProd, String nome, String descricao, String tipo, String Filial, float qtdEstoque, float qtdVendida, int valorUnidade) {
+    public Produto(int codProd, String nomeProd, String descricao, String filial, int qtdEstoque, double valorUnidade) {
         this.codProd = codProd;
-        this.nome = nome;
+        this.nomeProd = nomeProd;
         this.descricao = descricao;
-        this.tipo = tipo;
-        this.Filial = Filial;
+        this.filial = filial;
         this.qtdEstoque = qtdEstoque;
-        this.qtdVendida = qtdVendida;
         this.valorUnidade = valorUnidade;
     }
 
-    
-    public float getQtdVendida() {
-        return qtdVendida;
-    }
-
-    public void setQtdVendida(float qtdVendida) {
-        this.qtdVendida = qtdVendida;
-    }
-
-    
     public int getCodProd() {
         return codProd;
     }
@@ -44,14 +30,15 @@ public class Produtos_Serviços {
         this.codProd = codProd;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeProd() {
+        return nomeProd;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeProd(String nomeProd) {
+        this.nomeProd = nomeProd;
     }
 
+  
     public String getDescricao() {
         return descricao;
     }
@@ -60,35 +47,32 @@ public class Produtos_Serviços {
         this.descricao = descricao;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public String getFilial() {
-        return Filial;
+        return filial;
     }
 
-    public void setFilial(String Filial) {
-        this.Filial = Filial;
+    public void setFilial(String filial) {
+        this.filial = filial;
     }
 
-    public float getQtdEstoque() {
+    public int getQtdEstoque() {
         return qtdEstoque;
     }
 
-    public void setQtdEstoque(float qtdEstoque) {
+    public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
 
-    public int getValorUnidade() {
+    public double getValorUnidade() {
         return valorUnidade;
     }
 
-    public void setValorUnidade(int valorUnidade) {
+    public void setValorUnidade(double valorUnidade) {
         this.valorUnidade = valorUnidade;
     }
+
+
+  
+
+        
 }
