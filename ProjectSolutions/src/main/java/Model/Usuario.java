@@ -4,7 +4,7 @@ package Model;
  *
  * @author guilherme.rsvieira
  */
- public class ModelUsuario {
+ public class Usuario {
 
     private int codUser;
     private String nome;
@@ -13,7 +13,7 @@ package Model;
     private String filial;
     private String setor;
 
-    public ModelUsuario(int codUser, String nome, String email, String senha, String filial, String setor) {
+    public Usuario(int codUser, String nome, String email, String senha, String filial, String setor) {
         this.codUser = codUser;
         this.nome = nome;
         this.email = email;
