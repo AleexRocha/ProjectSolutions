@@ -1,4 +1,3 @@
-
 package Model;
 
 /**
@@ -6,42 +5,41 @@ package Model;
  * @author guilherme.rsvieira
  */
 public class Serviço {
-    
-    private int codServ;
-    private String nomeServ;
-    private String dscServ;
+
+    private int codigo;
+    private String nome;
+    private String descricao;
     private String filial;
 
-    public Serviço(int codServ, String nomeServ, String dscServ, String filial) {
-        this.codServ = codServ;
-        this.nomeServ = nomeServ;
-        this.dscServ = dscServ;
+    public Serviço(int codigo, String nome, String descricao, String filial) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.descricao = descricao;
         this.filial = filial;
     }
-    
-    
-    public int getCodServ() {
-        return codServ;
+
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodServ(int codServ) {
-        this.codServ = codServ;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public String getNomeServ() {
-        return nomeServ;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeServ(String nomeServ) {
-        this.nomeServ = nomeServ;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getDscServ() {
-        return dscServ;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDscServ(String dscServ) {
-        this.dscServ = dscServ;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getFilial() {
@@ -51,5 +49,5 @@ public class Serviço {
     public void setFilial(String filial) {
         this.filial = filial;
     }
-    
+
 }

@@ -4,10 +4,10 @@ package Model;
  *
  * @author guilherme.rsvieira
  */
-public class Filiais {
+public class Filial {
 
-    private int codFilial;
-    private String logaDouro;
+    private int codigo;
+    private String logradouro;
     private int numero;
     private int cep;
     private String bairro;
@@ -15,13 +15,9 @@ public class Filiais {
     private String cidade;
     private int telefone;
 
-    public int getCodFilial() {
-        return codFilial;
-    }
-
-    public Filiais(int codFilial, String logaDouro, int numero, int cep, String bairro, String estado, String cidade, int telefone) {
-        this.codFilial = codFilial;
-        this.logaDouro = logaDouro;
+    public Filial(int codigo, String logradouro, int numero, int cep, String bairro, String estado, String cidade, int telefone) {
+        this.codigo = codigo;
+        this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;
         this.bairro = bairro;
@@ -30,16 +26,20 @@ public class Filiais {
         this.telefone = telefone;
     }
 
-    public void setCodFilial(int codFilial) {
-        this.codFilial = codFilial;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public String getLogaDouro() {
-        return logaDouro;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public void setLogaDouro(String logaDouro) {
-        this.logaDouro = logaDouro;
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public int getNumero() {
@@ -89,7 +89,5 @@ public class Filiais {
     public void setTelefone(int telefone) {
         this.telefone = telefone;
     }
-
-
 
 }

@@ -6,39 +6,38 @@ package Model;
  */
 public class Produto {
 
-    private int codProd;
-    private String nomeProd;
+    private int codigo;
+    private String nome;
     private String descricao;
     private String filial;
-    private int qtdEstoque;
-    private double valorUnidade;
+    private int quantidadeEstoque;
+    private int valorUnitario;
 
-    public Produto(int codProd, String nomeProd, String descricao, String filial, int qtdEstoque, double valorUnidade) {
-        this.codProd = codProd;
-        this.nomeProd = nomeProd;
+    public Produto(int codigo, String nome, String descricao, String filial, int quantidadeEstoque, int valorUnitario) {
+        this.codigo = codigo;
+        this.nome = nome;
         this.descricao = descricao;
         this.filial = filial;
-        this.qtdEstoque = qtdEstoque;
-        this.valorUnidade = valorUnidade;
+        this.quantidadeEstoque = quantidadeEstoque;
+        this.valorUnitario = valorUnitario;
     }
 
-    public int getCodProd() {
-        return codProd;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodProd(int codProd) {
-        this.codProd = codProd;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public String getNomeProd() {
-        return nomeProd;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeProd(String nomeProd) {
-        this.nomeProd = nomeProd;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-  
     public String getDescricao() {
         return descricao;
     }
@@ -55,24 +54,20 @@ public class Produto {
         this.filial = filial;
     }
 
-    public int getQtdEstoque() {
-        return qtdEstoque;
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
     }
 
-    public void setQtdEstoque(int qtdEstoque) {
-        this.qtdEstoque = qtdEstoque;
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public double getValorUnidade() {
-        return valorUnidade;
+    public int getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setValorUnidade(double valorUnidade) {
-        this.valorUnidade = valorUnidade;
+    public void setValorUnitario(int valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
-
-  
-
-        
 }

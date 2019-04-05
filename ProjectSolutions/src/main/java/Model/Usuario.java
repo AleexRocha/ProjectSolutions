@@ -4,58 +4,32 @@ package Model;
  *
  * @author guilherme.rsvieira
  */
- public class Usuario {
+public class Usuario {
 
-    private int codUser;
+    private int codigo;
     private String nome;
     private String email;
     private String senha;
     private String filial;
     private String setor;
 
-    public Usuario(int codUser, String nome, String email, String senha, String filial, String setor) {
-        this.codUser = codUser;
+    public Usuario(int codigo, String nome, String email, String senha, String filial, String setor) {
+        this.codigo = codigo;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.filial = filial;
         this.setor = setor;
     }
-     
-    
-    public String getSetor() {
-        return setor;
+
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setSetor(String setor) {
-        this.setor = setor;
-    }
-    
-    public String getFilial() {
-        return filial;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public void setFilial(String filial) {
-        this.filial = filial;
-    }
-
-    public int getCodUser() {
-        return codUser;
-    }
-
-    public void setCodUser(int codUser) {
-        this.codUser = codUser;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    
-   
     public String getNome() {
         return nome;
     }
@@ -72,9 +46,28 @@ package Model;
         this.email = email;
     }
 
-    
+    public String getSenha() {
+        return senha;
+    }
 
-   
-    
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getFilial() {
+        return filial;
+    }
+
+    public void setFilial(String filial) {
+        this.filial = filial;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
+    }
 
 }

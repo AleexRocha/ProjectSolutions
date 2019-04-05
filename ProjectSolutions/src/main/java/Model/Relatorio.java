@@ -14,7 +14,6 @@ public class Relatorio {
         this.filial = filial;
     }
 
-    
     public String getDataVenda() {
         return dataVenda;
     }
@@ -30,5 +29,5 @@ public class Relatorio {
     public void setFilial(String filial) {
         this.filial = filial;
     }
-    
+
 }

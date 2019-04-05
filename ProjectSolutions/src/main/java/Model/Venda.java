@@ -6,59 +6,58 @@ package Model;
  */
 public class Venda {
 
-    private String nomeProd;
-    private int codProd;
-    private int qtdVenda;
-    private int idFunc;
-    private int codFilial;
+    private String nomeProduto;
+    private int codigoProduto;
+    private int quantidadeVenda;
+    private int idFuncionario;
+    private int codigoFilial;
 
-    public Venda(String nomeProd, int codProd, int qtdVenda, int idFunc, int codFilial) {
-        this.nomeProd = nomeProd;
-        this.codProd = codProd;
-        this.qtdVenda = qtdVenda;
-        this.idFunc = idFunc;
-        this.codFilial = codFilial;
+    public Venda(String nomeProduto, int codigoProduto, int quantidadeVenda, int idFuncionario, int codigoFilial) {
+        this.nomeProduto = nomeProduto;
+        this.codigoProduto = codigoProduto;
+        this.quantidadeVenda = quantidadeVenda;
+        this.idFuncionario = idFuncionario;
+        this.codigoFilial = codigoFilial;
     }
 
-    
-    public String getNomeProd() {
-        return nomeProd;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setNomeProd(String nomeProd) {
-        this.nomeProd = nomeProd;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
-    public int getCodProd() {
-        return codProd;
+    public int getCodigoProduto() {
+        return codigoProduto;
     }
 
-    public void setCodProd(int codProd) {
-        this.codProd = codProd;
+    public void setCodigoProduto(int codigoProduto) {
+        this.codigoProduto = codigoProduto;
     }
 
-    public int getQtdVenda() {
-        return qtdVenda;
+    public int getQuantidadeVenda() {
+        return quantidadeVenda;
     }
 
-    public void setQtdVenda(int qtdVenda) {
-        this.qtdVenda = qtdVenda;
+    public void setQuantidadeVenda(int quantidadeVenda) {
+        this.quantidadeVenda = quantidadeVenda;
     }
 
-    public int getIdFunc() {
-        return idFunc;
+    public int getIdFuncionario() {
+        return idFuncionario;
     }
 
-    public void setIdFunc(int idFunc) {
-        this.idFunc = idFunc;
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
-    public int getCodFilial() {
-        return codFilial;
+    public int getCodigoFilial() {
+        return codigoFilial;
     }
 
-    public void setCodFilial(int codFilial) {
-        this.codFilial = codFilial;
+    public void setCodigoFilial(int codigoFilial) {
+        this.codigoFilial = codigoFilial;
     }
-    
+
 }
