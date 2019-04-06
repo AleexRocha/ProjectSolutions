@@ -10,15 +10,14 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private String filial;
+    private int codigoFilial;
     private String setor;
 
-    public Usuario(int codigo, String nome, String email, String senha, String filial, String setor) {
-        this.codigo = codigo;
+    public Usuario(String nome, String email, String senha, int codigoFilial, String setor) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.filial = filial;
+        this.codigoFilial = codigoFilial;
         this.setor = setor;
     }
 
@@ -54,12 +53,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getFilial() {
-        return filial;
+    public int getCodigoFilial() {
+        return codigoFilial;
     }
 
-    public void setFilial(String filial) {
-        this.filial = filial;
+    public void setCodigoFilial(int codigoFilial) {
+        this.codigoFilial = codigoFilial;
     }
 
     public String getSetor() {

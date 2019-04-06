@@ -9,13 +9,12 @@ public class Serviço {
     private int codigo;
     private String nome;
     private String descricao;
-    private String filial;
+    private int codigoFilial;
 
-    public Serviço(int codigo, String nome, String descricao, String filial) {
-        this.codigo = codigo;
+    public Serviço(String nome, String descricao, int codigoFilial) {
         this.nome = nome;
         this.descricao = descricao;
-        this.filial = filial;
+        this.codigoFilial = codigoFilial;
     }
 
     public int getCodigo() {
@@ -42,12 +41,12 @@ public class Serviço {
         this.descricao = descricao;
     }
 
-    public String getFilial() {
-        return filial;
+    public int getCodigoFilial() {
+        return codigoFilial;
     }
 
-    public void setFilial(String filial) {
-        this.filial = filial;
+    public void setCodigoFilial(int codigoFilial) {
+        this.codigoFilial = codigoFilial;
     }
 
 }

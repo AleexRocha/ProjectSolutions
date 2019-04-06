@@ -9,15 +9,14 @@ public class Produto {
     private int codigo;
     private String nome;
     private String descricao;
-    private String filial;
+    private int codigoFilial;
     private int quantidadeEstoque;
     private int valorUnitario;
 
-    public Produto(int codigo, String nome, String descricao, String filial, int quantidadeEstoque, int valorUnitario) {
-        this.codigo = codigo;
+    public Produto(String nome, String descricao, int codigoFilial, int quantidadeEstoque, int valorUnitario) {
         this.nome = nome;
         this.descricao = descricao;
-        this.filial = filial;
+        this.codigoFilial = codigoFilial;
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
     }
@@ -46,12 +45,12 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public String getFilial() {
-        return filial;
+    public int getCodigoFilial() {
+        return codigoFilial;
     }
 
-    public void setFilial(String filial) {
-        this.filial = filial;
+    public void setCodigoFilial(int codigoFilial) {
+        this.codigoFilial = codigoFilial;
     }
 
     public int getQuantidadeEstoque() {

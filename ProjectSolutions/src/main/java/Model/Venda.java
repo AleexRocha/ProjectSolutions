@@ -6,18 +6,29 @@ package Model;
  */
 public class Venda {
 
+    private int codigo;
     private String nomeProduto;
     private int codigoProduto;
     private int quantidadeVenda;
     private int idFuncionario;
     private int codigoFilial;
+    private int cpfCliente;
 
-    public Venda(String nomeProduto, int codigoProduto, int quantidadeVenda, int idFuncionario, int codigoFilial) {
+    public Venda(String nomeProduto, int codigoProduto, int quantidadeVenda, int idFuncionario, int codigoFilial, int cpfCliente) {
         this.nomeProduto = nomeProduto;
         this.codigoProduto = codigoProduto;
         this.quantidadeVenda = quantidadeVenda;
         this.idFuncionario = idFuncionario;
         this.codigoFilial = codigoFilial;
+        this.cpfCliente = cpfCliente;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNomeProduto() {
@@ -60,4 +71,13 @@ public class Venda {
         this.codigoFilial = codigoFilial;
     }
 
+    public int getCpfCliente() {
+        return cpfCliente;
+    }
+
+    public void setCpfCliente(int cpfCliente) {
+        this.cpfCliente = cpfCliente;
+    }
+
+    
 }

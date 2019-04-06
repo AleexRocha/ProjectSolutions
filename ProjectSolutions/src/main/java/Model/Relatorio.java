@@ -7,11 +7,17 @@ package Model;
 public class Relatorio {
 
     private String dataVenda;
-    private String filial;
+    private int codigoFilial;
+    private String nomeProduto;
+    private int codigoProduto;
+    private int QuantidadeProduto;
 
-    public Relatorio(String dataVenda, String filial) {
+    public Relatorio(String dataVenda, int codigoFilial, String nomeProduto, int codigoProduto, int QuantidadeProduto) {
         this.dataVenda = dataVenda;
-        this.filial = filial;
+        this.codigoFilial = codigoFilial;
+        this.nomeProduto = nomeProduto;
+        this.codigoProduto = codigoProduto;
+        this.QuantidadeProduto = QuantidadeProduto;
     }
 
     public String getDataVenda() {
@@ -22,12 +28,36 @@ public class Relatorio {
         this.dataVenda = dataVenda;
     }
 
-    public String getFilial() {
-        return filial;
+    public int getCodigoFilial() {
+        return codigoFilial;
     }
 
-    public void setFilial(String filial) {
-        this.filial = filial;
+    public void setCodigoFilial(int codigoFilial) {
+        this.codigoFilial = codigoFilial;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public int getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(int codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
+
+    public int getQuantidadeProduto() {
+        return QuantidadeProduto;
+    }
+
+    public void setQuantidadeProduto(int QuantidadeProduto) {
+        this.QuantidadeProduto = QuantidadeProduto;
     }
 
 }
