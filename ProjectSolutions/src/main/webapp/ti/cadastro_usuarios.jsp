@@ -12,45 +12,51 @@
         <title>Cadastro de Usuários</title>
     </head>
     <body>
-        <img src="img.jpg">
+       <img src="assets/img/logo.png">
         <hr>
-        <h1>Floricultura</h1>
-        <a href="link1.html">link1</a>
-        <a href="link2.html">link2</a>
-        <a href="link3.html">link3</a>
-        <a href="link4.html">link4</a>
+        <h2>Floricultura</h2>
+        <a href="./produtos/listagem_produtos.jsp">Produtos</a>
+        <a href="listagem_filiais.jsp">Filiais</a>
+        <a href="./venda/relatorio.jsp">Relatorio</a>
+        <a href="./venda/cadastro_vendas.jsp">Vendas</a>
         <hr>
         <br>
-        <button type="button">Cadastrar novo</button>
-        <button type="button">Excluir Selecionado(s)</button>
         <br>
-        <br>
-        <table border="1" cellspacing="0" cellpadding="3">
-            <tr>
-                <td><input type="radio"></td>
-                <td>Codigo</td>
-                <td>Nome</td>
-                <td>Descricao</td>
-                <td>Tipo</td>
-                <td>Filial</td>
-                <td>Estoque</td>
-                <td>Valor unidade</td>
-                <td>Acoes</td>
-            </tr>
-            <tr>
-                <td><input type="radio"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button type="button"><img src="lapis.jpg">
-                        <button type="button"><img src="lapis.jpg">
-                        </button>
-                    </button></td>
-            </tr>
-        </table>
+        <form>
+            <fieldset>
+                Codigo Usuario:<br> 
+                <input type="number" 
+                       name="Codigo Usuario">
+                <br>
+                Nome:<br>
+                <input type="text" 
+                       name="Nome">
+                <br>
+                Email:<br>
+                <input type="email" 
+                       name="Email">
+                <br>
+                Senha:<br>
+                <input type="password" 
+                       name="Senha">
+                <br>
+                Confirmar senha:<br>
+                <input type="password" 
+                       name="Confirmar senha">
+                <br>
+                <br>
+                <label for = "Filial:" > Filial: </label>
+                <select name = "Filial">
+                    <option value = "selecionar">Selecionar</option>
+                </select> 
+                <label for = "Setor:" > Setor: </label>
+                <select name = "Setor">
+                    <option value = "selecionar">Selecionar</option>
+                </select> 
+            </fieldset>
+            <br>
+            <input type="submit" value="Salvar">
+            <button type="button">Cancelar!</button>
+        </form>
     </body>
 </html>

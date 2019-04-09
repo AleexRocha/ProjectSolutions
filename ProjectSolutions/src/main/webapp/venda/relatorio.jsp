@@ -12,13 +12,13 @@
         <title>Relatório</title>
     </head>
     <body>
-        <img src="img.jpg">
+        <img src="assets/img/logo.png">
         <hr>
         <h1>Floricultura</h1>
-        <a href="link1.html">link1</a>
-        <a href="link2.html">link2</a>
-        <a href="link3.html">link3</a>
-        <a href="link4.html">link4</a>
+        <a href="./produtos/listagem_produtos.jsp">Produtos</a>
+        <a href="./ti/listagem_filiais.jsp">Filiais</a>
+        <a href="./ti/listagem_usuarios.jsp">Usuarios</a>
+        <a href="cadastro_vendas.jsp">Vendas</a>
         <hr>
         <br>
         <label>

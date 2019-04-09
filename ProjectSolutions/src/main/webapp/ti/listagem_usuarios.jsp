@@ -12,16 +12,16 @@
         <title>Usuários</title>
     </head>
     <body>
-       	<img src="img.jpg">
+        <img src="assets/img/logo.png">
         <hr>
         <h1>Floricultura</h1>
-        <a href="link1.html">link1</a>
-        <a href="link2.html">link2</a>
-        <a href="link3.html">link3</a>
-        <a href="link4.html">link4</a>
+        <a href="./produtos/listagem_produtos.jsp">Produtos</a>
+        <a href="listagem_filiais.jsp">Filiais</a>
+        <a href="./venda/relatorio.jsp">Relatorio</a>
+        <a href="./venda/cadastro_vendas.jsp">Vendas</a>
         <hr>
         <br>
-        <button type="button">Cadastrar novo</button>
+        <a href="cadastro_usuarios.jsp">Cadastrar Usuario</a>
         <button type="button">Excluir Selecionado(s)</button>
         <br>
         <br>
