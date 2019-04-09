@@ -4,14 +4,14 @@ package Model;
  *
  * @author guilherme.rsvieira
  */
-public class Serviço {
+public class Servico {
 
     private int codigo;
     private String nome;
     private String descricao;
     private int codigoFilial;
 
-    public Serviço(String nome, String descricao, int codigoFilial) {
+    public Servico(String nome, String descricao, int codigoFilial) {
         this.nome = nome;
         this.descricao = descricao;
         this.codigoFilial = codigoFilial;

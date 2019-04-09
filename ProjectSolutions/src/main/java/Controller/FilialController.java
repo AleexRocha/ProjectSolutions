@@ -19,7 +19,7 @@ public class FilialController {
      * @param fEstado - String
      * @param fCidade - String
      * @param fTelefone - int
-     * @return 
+     * @return
      */
     public static boolean salvarFiial(String fLogradouro, int fNumero, int fCep, String fBairro, String fEstado, String fCidade, int fTelefone) {
         Filial f = new Filial(fLogradouro, fNumero, fCep, fBairro, fEstado, fCidade, fTelefone);
@@ -28,7 +28,7 @@ public class FilialController {
 
     /**
      * @param fCodigo - int
-     * @return 
+     * @return
      *
      */
     public static boolean excluirFilial(int fCodigo) {
@@ -45,7 +45,7 @@ public class FilialController {
      * @param fEstado - String
      * @param fCidade - String
      * @param fTelefone - int
-     * @return 
+     * @return
      */
     public static boolean atualizarFilial(int fCodigo, String fLogradouro, int fNumero, int fCep, String fBairro, String fEstado, String fCidade, int fTelefone) {
         Filial f = new Filial(fLogradouro, fNumero, fCep, fBairro, fEstado, fCidade, fTelefone);

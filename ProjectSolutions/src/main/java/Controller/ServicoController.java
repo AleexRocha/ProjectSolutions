@@ -1,14 +1,14 @@
 package Controller;
 
-import DAO.ServiçoDAO;
-import Model.Serviço;
+import DAO.ServicoDAO;
+import Model.Servico;
 import java.util.ArrayList;
 
 /**
  *
  * @author daniel
  */
-public class ServiçoController {
+public class ServicoController {
 
     /**
      *
@@ -18,8 +18,8 @@ public class ServiçoController {
      * @return
      */
     public static boolean salvarServiço(String sNome, String sDescricao, int sCodigoFilial) {
-        Serviço s = new Serviço(sNome, sDescricao, sCodigoFilial);
-        return ServiçoDAO.salvarServiço(s);
+        Servico s = new Servico(sNome, sDescricao, sCodigoFilial);
+        return ServicoDAO.salvarServiço(s);
     }
 
     /**
@@ -28,7 +28,7 @@ public class ServiçoController {
      *
      */
     public static boolean excluirServiço(int sCodigo) {
-        return ServiçoDAO.excluirServiço(sCodigo);
+        return ServicoDAO.excluirServiço(sCodigo);
     }
 
     /**
@@ -40,13 +40,13 @@ public class ServiçoController {
      * @return
      */
     public static boolean atualizarServiço(int sCodigo, String sNome, String sDescricao, int sCodigoFilial) {
-        Serviço s = new Serviço(sNome, sDescricao, sCodigoFilial);
+        Servico s = new Servico(sNome, sDescricao, sCodigoFilial);
         s.setCodigo(sCodigo);
-        return ServiçoDAO.salvarServiço(s);
+        return ServicoDAO.salvarServiço(s);
     }
 
     public static ArrayList<String[]> getServiço() {
-        ArrayList<Serviço> serviços = ServiçoDAO.getServiços();
+        ArrayList<Servico> serviços = ServicoDAO.getServiços();
         ArrayList<String[]> listaServiços = new ArrayList<>();
 
         for (int i = 0; i < serviços.size(); i++) {
