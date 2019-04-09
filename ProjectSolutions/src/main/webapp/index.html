@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <a href="produtos/cadastro_produtos.jsp"> Cadastro Produtos</a>
-        <a href="ti/cadastro_filiais.jsp"> Cadastro Filiais</a>
-        <a href="ti/cadastro_usuarios.jsp"> Cadastro Usuarios</a>
-        <a href="venda/cadastro_vendas.jsp"> Cadastro Vendas</a>
-        <a href="produtos/listagem_produtos.jsp">Listagem produtos</a>
-        <a href="ti/listagem_filiais.jsp">Listagem Filiais</a>
-        <a href="ti/listagem_usuarios.jsp">Listagem Usuarios</a>
-        <a href="venda/relatorio.jsp"> Relatorio </a>
-    </body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Floricultura Tades</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form>
+                    <div class="text-center mb-4">
+                        <h1 class="h3 mb-3 font-weight-normal">
+                            <span class="sr-only">Floricultura TADES</span>
+                            <img src="assets/img/logo.png">
+                        </h1>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">E-mail</label>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Digite seu e-mail" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Senha</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Digite sua senha" required>
+                    </div>
+                    <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
+                    <a class="btn btn-lg btn-light btn-block" href="venda/cadastro_vendas.jsp"> Sign in </a>
+                    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</body>
 </html>
