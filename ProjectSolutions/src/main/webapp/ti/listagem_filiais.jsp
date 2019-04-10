@@ -12,6 +12,7 @@ Author     : nicolas.hgyoshioka
         <title>Filiais</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
@@ -41,11 +42,17 @@ Author     : nicolas.hgyoshioka
                     </ul>
                 </div>
             </nav>
-            <h2 class="h2 text-center">Filiais</h2>
+            <h2 class="h2 text-center subtitulo">Filiais</h2>
         </header>
         <div class="container">
-            <a class="btn btn-light" href="cadastro_filiais.jsp">Cadastrar filial</a>
-            <a class="btn btn-light" href="">Excluir Selecionado(s)</a>
+            <a class="btn btn-light" href="cadastro_filiais.jsp">
+                <i class="far fa-building"></i>
+                Cadastrar filial
+            </a>
+            <a class="btn btn-danger" href="">
+                <i class="far fa-trash-alt"></i>
+                Excluir Selecionado(s)
+            </a>
             <br>
             <br>
             <table class="table table-striped">
@@ -83,26 +90,6 @@ Author     : nicolas.hgyoshioka
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td><input type="radio"></td>
-                        <td>0000</td>
-                        <td>Rua Felipe Stevaux</td>
-                        <td>8000</td>
-                        <td>01000-999</td>
-                        <td>Jd. Angela</td>
-                        <td>São Paulo</td>
-                        <td>SP</td>
-                        <td>(11)0419-4015</td>
-                        <td class="btn-group">
-                            <button type="button" class="btn btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-
                 </tbody>
             </table>
         </div>

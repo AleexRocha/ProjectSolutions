@@ -12,6 +12,8 @@ Author     : nicolas.hgyoshioka
         <title>Vendas</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
         <header>
@@ -40,7 +42,7 @@ Author     : nicolas.hgyoshioka
                     </ul>
                 </div>
             </nav>
-            <h2 class="h2 text-center">Cadastrar uma venda</h2>
+            <h2 class="h2 text-center subtitulo">Cadastrar uma venda</h2>
         </header>
         <div class="container">
             <div class="row">
@@ -49,25 +51,31 @@ Author     : nicolas.hgyoshioka
                     <form>
                         <div class="form-group">
                             <label for="codigoProduto">Codigo do produto:</label>
-                            <input type="number" class="form-control" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">
+                            <input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">
 
                             <label for="nomeProduto">Nome do produto:</label>
-                            <input type="text" class="form-control" id="nomeProduto" placeholder="Nome do produto" name="nomeProduto">
+                            <input type="text" class="form-control inputForm" id="nomeProduto" placeholder="Nome do produto" name="nomeProduto">
 
                             <label for="idFuncionario">ID do Funcionario:</label>
-                            <input type="number" class="form-control" id="idFuncionario" placeholder="ID do funcionario" name="idFuncionario">
+                            <input type="number" class="form-control inputForm" id="idFuncionario" placeholder="ID do funcionario" name="idFuncionario">
 
                             <label for="cpfCliente">CPF do Cliente:</label>
-                            <input type="number" class="form-control" id="cpfCliente" placeholder="CPF do cliente" name="cpfCliente">
+                            <input type="number" class="form-control inputForm" id="cpfCliente" placeholder="CPF do cliente" name="cpfCliente">
 
                             <label for="codigoFilial">Codigo da filial:</label>
-                            <input type="number" class="form-control" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">
+                            <input type="number" class="form-control inputForm" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">
 
                             <label for="quantidade">Quantidade vendida:</label>
-                            <input type="number" class="form-control" id="quantidade" placeholder="Quantidade" name="quantidade">
+                            <input type="number" class="form-control inputForm" id="quantidade" placeholder="Quantidade" name="quantidade">
                         </div>
-                        <button type="submit" class="btn btn-light btn-block">Salvar</button>
-                        <button type="submit" class="btn btn-light btn-block">Cancelar</button>                    
+                        <button type="submit" class="btn btn-light btn-block">
+                            <i class="far fa-save"></i>
+                            Salvar venda
+                        </button>
+                        <button type="submit" class="btn btn-light btn-block">
+                            <i class="fas fa-ban"></i>
+                            Cancelar
+                        </button>                    
                     </form>
                 </div>
                 <div class="col-md-3"></div>

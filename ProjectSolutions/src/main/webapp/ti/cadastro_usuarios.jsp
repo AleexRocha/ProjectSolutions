@@ -11,7 +11,9 @@ Author     : nicolas.hgyoshioka
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Usuários</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
         <header>
@@ -40,7 +42,7 @@ Author     : nicolas.hgyoshioka
                     </ul>
                 </div>
             </nav>
-            <h2 class="h2 text-center">Cadastrar Usuário</h2>
+            <h2 class="h2 text-center subtitulo">Cadastrar Usuário</h2>
         </header>
         <div class="container">
             <div class="row">
@@ -49,22 +51,22 @@ Author     : nicolas.hgyoshioka
                     <form>
                         <div class="form-group">
                             <label for="codigoUsuario">Código:</label>
-                            <input type="number" class="form-control" id="codigoUsuario" placeholder="Código do usuário" name="codigoUsuario">
+                            <input type="number" class="form-control inputForm" id="codigoUsuario" placeholder="Código do usuário" name="codigoUsuario">
 
                             <label for="nome">Nome:</label>
-                            <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome">
+                            <input type="text" class="form-control inputForm" id="nome" placeholder="Nome" name="nome">
 
                             <label for="email">E-mail:</label>
-                            <input type="emaiç" class="form-control" id="email" placeholder="E-mail" name="email">
+                            <input type="emaiç" class="form-control inputForm" id="email" placeholder="E-mail" name="email">
 
                             <label for="senha">Senha:</label>
-                            <input type="text" class="form-control" id="senha" placeholder="Senha" name="senha">
+                            <input type="text" class="form-control inputForm" id="senha" placeholder="Senha" name="senha">
 
                             <label for="confirmarSenha">Confirmar senha:</label>
-                            <input type="text" class="form-control" id="confirmarSenha" placeholder="Confirmar senha" name="confirmarSenha">
+                            <input type="text" class="form-control inputForm" id="confirmarSenha" placeholder="Confirmar senha" name="confirmarSenha">
 
                             <label for="setor" >Setor:</label>
-                            <select class="custom-select" id="setor">
+                            <select class="custom-select inputForm" id="setor">
                                 <option value="venda">Venda</option>
                                 <option value="backoffice">Back Office</option>
                                 <option value="ti">TI</option>
@@ -74,14 +76,20 @@ Author     : nicolas.hgyoshioka
                             </select>
 
                             <label for="tipo" >Filial:</label>
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select inputForm" id="tipo">
                                 <option value="1">Filial 1</option>
                                 <option value="1">Filial 2</option>
                                 <option value="1">Filial 3</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-light btn-block">Salvar</button>
-                        <button type="submit" class="btn btn-light btn-block">Cancelar</button> 
+                        <button type="submit" class="btn btn-light btn-block">
+                            <i class="far fa-save"></i>
+                            Salvar
+                        </button>
+                        <button type="submit" class="btn btn-light btn-block">
+                            <i class="fas fa-ban"></i>
+                            Cancelar
+                        </button> 
                     </form>
                 </div>
                 <div class="col-md-3"></div>

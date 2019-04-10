@@ -12,6 +12,8 @@ Author     : nicolas.hgyoshioka
         <title>Relatório</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
         <header>
@@ -40,13 +42,13 @@ Author     : nicolas.hgyoshioka
                     </ul>
                 </div>
             </nav>
-            <h2 class="h2 text-center">Relatório</h2>
+            <h2 class="h2 text-center subtitulo">Relatório</h2>
         </header>
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     <label for="filial" >Filial:</label>
-                    <select class="custom-select" id="filial">
+                    <select class="custom-select inputForm" id="filial">
                         <option value="1">Filial 1</option>
                         <option value="1">Filial 2</option>
                         <option value="1">Filial 3</option>
@@ -56,17 +58,23 @@ Author     : nicolas.hgyoshioka
                     <div class="form-row">
                         <div class="col">
                             <label for="dataDe">De:</label>
-                            <input type="date" class="form-control" id="data" name="dataDe">
+                            <input type="date" class="form-control inputForm" id="data" name="dataDe">
                         </div>
                         <div class="col">
                             <label for="dataAte">Ate:</label>
-                            <input type="date" class="form-control" id="data" name="dataAte">
+                            <input type="date" class="form-control inputForm" id="data" name="dataAte">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-light">Gerar relatorio</button>
-                    <button class="btn btn-light">Exportar para excel</button>
+                    <button class="btn btn-light">
+                        <i class="far fa-file-alt"></i>
+                        Gerar relatorio
+                    </button>
+                    <button class="btn btn-success">
+                        <i class="far fa-file-excel"></i>
+                        Exportar
+                    </button>
                 </div>
                 <div class="col-md-12">
                     <hr>

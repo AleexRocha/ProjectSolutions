@@ -11,7 +11,9 @@ Author     : nicolas.hgyoshioka
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Filiais</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
         <header>
@@ -40,7 +42,7 @@ Author     : nicolas.hgyoshioka
                     </ul>
                 </div>
             </nav>
-            <h2 class="h2 text-center">Cadastrar Filial</h2>
+            <h2 class="h2 text-center subtitulo">Cadastrar Filial</h2>
         </header>
         <div class="container">
             <div class="row">
@@ -49,31 +51,37 @@ Author     : nicolas.hgyoshioka
                     <form>
                         <div class="form-group">
                             <label for="codigoFilial">Código:</label>
-                            <input type="number" class="form-control" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">
+                            <input type="number" class="form-control inputForm" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">
 
                             <label for="logradouro">Logradouro:</label>
-                            <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" name="logradouro">
+                            <input type="text" class="form-control inputForm" id="logradouro" placeholder="Logradouro" name="logradouro">
 
                             <label for="numero">Número:</label>
-                            <input type="number" class="form-control" id="numero" placeholder="Número" name="numero">
+                            <input type="number" class="form-control inputForm" id="numero" placeholder="Número" name="numero">
 
                             <label for="cep">CEP:</label>
-                            <input type="number" class="form-control" id="cep" placeholder="CEP" name="cep">
+                            <input type="number" class="form-control inputForm" id="cep" placeholder="CEP" name="cep">
 
                             <label for="bairro">Bairro:</label>
-                            <input type="text" class="form-control" id="bairro" placeholder="Bairro" name="bairro">
+                            <input type="text" class="form-control inputForm" id="bairro" placeholder="Bairro" name="bairro">
 
                             <label for="cidade">Cidade:</label>
-                            <input type="texte" class="form-control" id="cidade" placeholder="Cidade" name="cidade">
+                            <input type="texte" class="form-control inputForm" id="cidade" placeholder="Cidade" name="cidade">
 
                             <label for="estado">Estado:</label>
-                            <input type="text" class="form-control" id="estado" placeholder="Estado" name="estado">
+                            <input type="text" class="form-control inputForm" id="estado" placeholder="Estado" name="estado">
 
                             <label for="telefone">Telefone:</label>
-                            <input type="number" class="form-control" id="telefone" placeholder="Telefone" name="telefone">
+                            <input type="number" class="form-control inputForm" id="telefone" placeholder="Telefone" name="telefone">
                         </div>
-                        <button type="submit" class="btn btn-light btn-block">Salvar</button>
-                        <button type="submit" class="btn btn-light btn-block">Cancelar</button> 
+                        <button type="submit" class="btn btn-light btn-block">
+                            <i class="far fa-save"></i>
+                            Salvar
+                        </button>
+                        <button type="submit" class="btn btn-light btn-block">
+                            <i class="fas fa-ban"></i>
+                            Cancelar
+                        </button> 
                     </form>
                 </div>
                 <div class="col-md-3"></div>

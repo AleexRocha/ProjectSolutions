@@ -12,6 +12,7 @@
         <title>Produtos</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
@@ -41,11 +42,17 @@
                     </ul>
                 </div>
             </nav>
-            <h2 class="h2 text-center">Produtos</h2>
+            <h2 class="h2 text-center subtitulo">Produtos</h2>
         </header>
         <div class="container">
-            <a class="btn btn-light" href="cadastro_produtos.jsp">Cadastrar Produto</a>
-            <a class="btn btn-light" href="">Excluir Selecionado(s)</a>
+            <a class="btn btn-light" href="cadastro_produtos.jsp">
+                <i class="fas fa-box"></i>
+                Cadastrar Produto
+            </a>
+            <a class="btn btn-danger" href="">
+                <i class="far fa-trash-alt"></i>
+                Excluir Selecionado(s)
+            </a>
             <br>
             <br>
             <table class="table table-striped">
