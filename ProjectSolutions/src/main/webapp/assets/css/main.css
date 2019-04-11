@@ -6,12 +6,12 @@ table{
 }
 
 .inputForm:focus{
-	box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
-	border: rgb(219, 92, 1);
+    box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
+    border: rgb(219, 92, 1);
 }
 
 .subtitulo{
-	color: rgb(219, 92, 1);
+    color: rgb(219, 92, 1);
 }
 
 .btn-light{
@@ -36,4 +36,7 @@ table{
 .btn-danger:hover{
     border-color: #ac2925;
     background: #c12e2a;
+}
+.btn-relatorio{
+    margin-top: 30px;
 }

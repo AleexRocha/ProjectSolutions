@@ -58,15 +58,15 @@ Author     : nicolas.hgyoshioka
                     <div class="form-row">
                         <div class="col">
                             <label for="dataDe">De:</label>
-                            <input type="date" class="form-control inputForm" id="data" name="dataDe">
+                            <input type="date" class="form-control inputForm" id="dataDe" name="dataDe">
                         </div>
                         <div class="col">
                             <label for="dataAte">Ate:</label>
-                            <input type="date" class="form-control inputForm" id="data" name="dataAte">
+                            <input type="date" class="form-control inputForm" id="dataAte" name="dataAte">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 btn-relatorio">
                     <button class="btn btn-light">
                         <i class="far fa-file-alt"></i>
                         Gerar relatorio
