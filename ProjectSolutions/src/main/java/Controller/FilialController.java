@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.FilialDAO;
 import Model.Filial;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,7 @@ public class FilialController {
      * @param fTelefone - int
      * @return
      */
-    public static boolean salvarFiial(String fLogradouro, int fNumero, int fCep, String fBairro, String fEstado, String fCidade, int fTelefone) {
+    public static boolean salvarFiial(String fLogradouro, int fNumero, String fCep, String fBairro, String fEstado, String fCidade, String fTelefone) throws SQLException {
         Filial f = new Filial(fLogradouro, fNumero, fCep, fBairro, fEstado, fCidade, fTelefone);
         return FilialDAO.salvarFilial(f);
     }
@@ -31,7 +32,7 @@ public class FilialController {
      * @return
      *
      */
-    public static boolean excluirFilial(int fCodigo) {
+    public static boolean excluirFilial(int fCodigo) throws SQLException {
         return FilialDAO.excluirFilial(fCodigo);
     }
 
@@ -47,13 +48,13 @@ public class FilialController {
      * @param fTelefone - int
      * @return
      */
-    public static boolean atualizarFilial(int fCodigo, String fLogradouro, int fNumero, int fCep, String fBairro, String fEstado, String fCidade, int fTelefone) {
+    public static boolean atualizarFilial(int fCodigo, String fLogradouro, int fNumero, String fCep, String fBairro, String fEstado, String fCidade, String fTelefone) throws SQLException {
         Filial f = new Filial(fLogradouro, fNumero, fCep, fBairro, fEstado, fCidade, fTelefone);
         f.setCodigo(fCodigo);
         return FilialDAO.atualizarFilial(f);
     }
 
-    public static ArrayList<String[]> getFilial() {
+    public static ArrayList<String[]> getFilial() throws SQLException {
         ArrayList<Filial> filiais = FilialDAO.getFiliais();
         ArrayList<String[]> listaFiliais = new ArrayList<>();
 
@@ -63,11 +64,11 @@ public class FilialController {
                         String.valueOf(filiais.get(i).getCodigo()),
                         filiais.get(i).getLogradouro(),
                         String.valueOf(filiais.get(i).getNumero()),
-                        String.valueOf(filiais.get(i).getCep()),
+                        filiais.get(i).getCep(),
                         filiais.get(i).getBairro(),
                         filiais.get(i).getEstado(),
                         filiais.get(i).getCidade(),
-                        String.valueOf(filiais.get(i).getTelefone()),});
+                        filiais.get(i).getTelefone(),});
         }
         return listaFiliais;
     }

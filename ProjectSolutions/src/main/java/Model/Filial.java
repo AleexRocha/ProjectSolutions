@@ -9,13 +9,13 @@ public class Filial {
     private int codigo;
     private String logradouro;
     private int numero;
-    private int cep;
+    private String cep;
     private String bairro;
     private String estado;
     private String cidade;
-    private int telefone;
+    private String telefone;
 
-    public Filial(String logradouro, int numero, int cep, String bairro, String estado, String cidade, int telefone) {
+    public Filial(String logradouro, int numero, String cep, String bairro, String estado, String cidade, String telefone) {
         this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;
@@ -49,11 +49,11 @@ public class Filial {
         this.numero = numero;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -81,11 +81,11 @@ public class Filial {
         this.cidade = cidade;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

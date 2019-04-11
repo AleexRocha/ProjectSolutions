@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.ProdutoDAO;
 import Model.Produto;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ public class ProdutoController {
      * @param pValorUnitario - int
      * @return
      */
-    public static boolean salvarProduto(String pNome, String pDescricao, int pCodigoFilial, int pQuantidadeEstoque, int pValorUnitario) {
+    public static boolean salvarProduto(String pNome, String pDescricao, int pCodigoFilial, int pQuantidadeEstoque, double pValorUnitario) throws SQLException {
         Produto p = new Produto(pNome, pDescricao, pCodigoFilial, pQuantidadeEstoque, pValorUnitario);
         return ProdutoDAO.salvarProduto(p);
     }
@@ -29,7 +30,7 @@ public class ProdutoController {
      * @return
      *
      */
-    public static boolean excluirProduto(int pCodigo) {
+    public static boolean excluirProduto(int pCodigo) throws SQLException {
         return ProdutoDAO.excluirProduto(pCodigo);
     }
 
@@ -43,13 +44,13 @@ public class ProdutoController {
      * @param pValorUnitario - int
      * @return
      */
-    public static boolean atualizarProduto(int pCodigo, String pNome, String pDescricao, int pCodigoFilial, int pQuantidadeEstoque, int pValorUnitario) {
+    public static boolean atualizarProduto(int pCodigo, String pNome, String pDescricao, int pCodigoFilial, int pQuantidadeEstoque, double pValorUnitario) throws SQLException {
         Produto p = new Produto(pNome, pDescricao, pCodigoFilial, pQuantidadeEstoque, pValorUnitario);
         p.setCodigo(pCodigo);
         return ProdutoDAO.salvarProduto(p);
     }
 
-    public static ArrayList<String[]> getProduto() {
+    public static ArrayList<String[]> getProduto() throws SQLException {
         ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
         ArrayList<String[]> listaProdutos = new ArrayList<>();
 

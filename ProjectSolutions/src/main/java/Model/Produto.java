@@ -11,9 +11,9 @@ public class Produto {
     private String descricao;
     private int codigoFilial;
     private int quantidadeEstoque;
-    private int valorUnitario;
+    private double valorUnitario;
 
-    public Produto(String nome, String descricao, int codigoFilial, int quantidadeEstoque, int valorUnitario) {
+    public Produto(String nome, String descricao, int codigoFilial, int quantidadeEstoque, double valorUnitario) {
         this.nome = nome;
         this.descricao = descricao;
         this.codigoFilial = codigoFilial;
@@ -61,11 +61,11 @@ public class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public int getValorUnitario() {
+    public double getValorUnitario() {
         return valorUnitario;
     }
 
-    public void setValorUnitario(int valorUnitario) {
+    public void setValorUnitario (double valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
 

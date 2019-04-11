@@ -12,15 +12,17 @@ public class Venda {
     private int quantidadeVenda;
     private int idFuncionario;
     private int codigoFilial;
-    private int cpfCliente;
+    private String cpfCliente;
+    private String dataVenda;
 
-    public Venda(String nomeProduto, int codigoProduto, int quantidadeVenda, int idFuncionario, int codigoFilial, int cpfCliente) {
+    public Venda(String nomeProduto, int codigoProduto, int quantidadeVenda, int idFuncionario, int codigoFilial, String cpfCliente, String dataVenda) {
         this.nomeProduto = nomeProduto;
         this.codigoProduto = codigoProduto;
         this.quantidadeVenda = quantidadeVenda;
         this.idFuncionario = idFuncionario;
         this.codigoFilial = codigoFilial;
         this.cpfCliente = cpfCliente;
+        this.dataVenda = dataVenda;
     }
 
     public int getCodigo() {
@@ -71,13 +73,19 @@ public class Venda {
         this.codigoFilial = codigoFilial;
     }
 
-    public int getCpfCliente() {
+    public String getCpfCliente() {
         return cpfCliente;
     }
 
-    public void setCpfCliente(int cpfCliente) {
+    public void setCpfCliente(String cpfCliente) {
         this.cpfCliente = cpfCliente;
     }
 
-    
+    public String getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(String dataVenda) {
+        this.dataVenda = dataVenda;
+    }
 }

@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ public class UsuarioController {
      * @param uSetor - String
      * @return
      */
-    public static boolean salvarUsuario(String uNome, String uEmail, String uSenha, int uCodigoFilial, String uSetor) {
+    public static boolean salvarUsuario(String uNome, String uEmail, String uSenha, int uCodigoFilial, int uSetor) throws SQLException {
         Usuario u = new Usuario(uNome, uEmail, uSenha, uCodigoFilial, uSetor);
         return UsuarioDAO.salvarUsuario(u);
     }
@@ -29,7 +30,7 @@ public class UsuarioController {
      * @return
      *
      */
-    public static boolean excluirUsuario(int uCodigo) {
+    public static boolean excluirUsuario(int uCodigo) throws SQLException {
         return UsuarioDAO.excluirUsuario(uCodigo);
     }
 
@@ -43,13 +44,13 @@ public class UsuarioController {
      * @param uSetor - String
      * @return
      */
-    public static boolean atualizarUsuario(int uCodigo, String uNome, String uEmail, String uSenha, int uCodigoFilial, String uSetor) {
+    public static boolean atualizarUsuario(int uCodigo, String uNome, String uEmail, String uSenha, int uCodigoFilial, int uSetor) throws SQLException {
         Usuario u = new Usuario(uNome, uEmail, uSenha, uCodigoFilial, uSetor);
         u.setCodigo(uCodigo);
-        return UsuarioDAO.salvarUsuario(u);
+        return UsuarioDAO.alterarUsuario(u);
     }
 
-    public static ArrayList<String[]> getUsuario() {
+    public static ArrayList<String[]> getUsuario() throws SQLException {
         ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
         ArrayList<String[]> listaUsuarios = new ArrayList<>();
 
@@ -61,7 +62,7 @@ public class UsuarioController {
                         usuarios.get(i).getEmail(),
                         usuarios.get(i).getSenha(),
                         String.valueOf(usuarios.get(i).getCodigoFilial()),
-                        usuarios.get(i).getSetor(),});
+                        String.valueOf(usuarios.get(i).getSetor()),});
         }
         return listaUsuarios;
     }

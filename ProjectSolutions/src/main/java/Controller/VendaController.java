@@ -2,6 +2,7 @@ package Controller;
 
 import DAO.VendaDAO;
 import Model.Venda;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -18,10 +19,11 @@ public class VendaController {
      * @param vIdFuncionario - int
      * @param vCodigoFilial - int
      * @param vCpfCliente - int
+     * @param vDataVenda - String
      * @return
      */
-    public static boolean salvarVenda(String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, int vCpfCliente) {
-        Venda v = new Venda(vNomeProduto, vCodigoProduto, vQuantidadeVenda, vIdFuncionario, vCodigoFilial, vCpfCliente);
+    public static boolean salvarVenda(String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, String vCpfCliente, String vDataVenda) throws SQLException {
+        Venda v = new Venda(vNomeProduto, vCodigoProduto, vQuantidadeVenda, vIdFuncionario, vCodigoFilial, vCpfCliente, vDataVenda);
         return VendaDAO.salvarVenda(v);
     }
 
@@ -42,11 +44,12 @@ public class VendaController {
      * @param vQuantidadeVenda - int
      * @param vIdFuncionario - int
      * @param vCodigoFilial - int
-     * @param vCpfCliente - int
+     * @param vCpfCliente - String
+     * @param vDataVBenda - String
      * @return
      */
-    public static boolean atualizarVenda(int vCodigo, String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, int vCpfCliente) {
-        Venda v = new Venda(vNomeProduto, vCodigoProduto, vQuantidadeVenda, vIdFuncionario, vCodigoFilial, vCpfCliente);
+    public static boolean atualizarVenda(int vCodigo, String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, String vCpfCliente, String vDataVenda) throws SQLException {
+        Venda v = new Venda(vNomeProduto, vCodigoProduto, vQuantidadeVenda, vIdFuncionario, vCodigoFilial, vCpfCliente, vDataVenda);
         v.setCodigo(vCodigo);
         return VendaDAO.salvarVenda(v);
     }
@@ -64,7 +67,8 @@ public class VendaController {
                         String.valueOf(vendas.get(i).getQuantidadeVenda()),
                         String.valueOf(vendas.get(i).getIdFuncionario()),
                         String.valueOf(vendas.get(i).getCodigoFilial()),
-                        String.valueOf(vendas.get(i).getCpfCliente()),});
+                        vendas.get(i).getCpfCliente(),
+                        vendas.get(i).getDataVenda()});
         }
         return listaVendas;
     }
