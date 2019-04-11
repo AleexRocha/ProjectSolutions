@@ -9,16 +9,21 @@ public class Produto {
     private int codigo;
     private String nome;
     private String descricao;
-    private int codigoFilial;
     private int quantidadeEstoque;
     private double valorUnitario;
+    private String tipo;
+    private int codigoFilial;
 
-    public Produto(String nome, String descricao, int codigoFilial, int quantidadeEstoque, double valorUnitario) {
+    public Produto() {
+    }
+
+    public Produto(String nome, String descricao, int quantidadeEstoque, double valorUnitario, String tipo, int codigoFilial) {
         this.nome = nome;
         this.descricao = descricao;
-        this.codigoFilial = codigoFilial;
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
+        this.tipo = tipo;
+        this.codigoFilial = codigoFilial;
     }
 
     public int getCodigo() {
@@ -45,14 +50,6 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public int getCodigoFilial() {
-        return codigoFilial;
-    }
-
-    public void setCodigoFilial(int codigoFilial) {
-        this.codigoFilial = codigoFilial;
-    }
-
     public int getQuantidadeEstoque() {
         return quantidadeEstoque;
     }
@@ -65,8 +62,25 @@ public class Produto {
         return valorUnitario;
     }
 
-    public void setValorUnitario (double valorUnitario) {
+    public void setValorUnitario(double valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getCodigoFilial() {
+        return codigoFilial;
+    }
+
+    public void setCodigoFilial(int codigoFilial) {
+        this.codigoFilial = codigoFilial;
+    }
+
+    
 }

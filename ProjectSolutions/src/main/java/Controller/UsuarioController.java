@@ -12,25 +12,24 @@ import java.util.ArrayList;
 public class UsuarioController {
 
     /**
-     *
      * @param uNome - String
      * @param uEmail - String
      * @param uSenha - String
-     * @param uCodigoFilial - int
-     * @param uSetor - String
-     * @return
+     * @param uSetor - int
+     * * @param uCodigoFilial - int
+     * @return boolean de sucesso ou error
      */
-    public static boolean salvarUsuario(String uNome, String uEmail, String uSenha, int uCodigoFilial, int uSetor) throws SQLException {
-        Usuario u = new Usuario(uNome, uEmail, uSenha, uCodigoFilial, uSetor);
+    public static boolean salvarUsuario(String uNome, String uEmail, String uSenha, int uSetor, int uCodigoFilial) {
+        Usuario u = new Usuario(uNome, uEmail, uSenha, uSetor, uCodigoFilial);
         return UsuarioDAO.salvarUsuario(u);
     }
 
     /**
      * @param uCodigo - int
-     * @return
+     * @return boolean de sucesso ou error
      *
      */
-    public static boolean excluirUsuario(int uCodigo) throws SQLException {
+    public static boolean excluirUsuario(int uCodigo) {
         return UsuarioDAO.excluirUsuario(uCodigo);
     }
 
@@ -40,11 +39,11 @@ public class UsuarioController {
      * @param uNome - String
      * @param uEmail - String
      * @param uSenha - String
-     * @param uCodigoFilial - int
-     * @param uSetor - String
-     * @return
+     * @param uSetor - int
+     * * @param uCodigoFilial - int
+     * @return boolean de sucesso ou error
      */
-    public static boolean atualizarUsuario(int uCodigo, String uNome, String uEmail, String uSenha, int uCodigoFilial, int uSetor) throws SQLException {
+    public static boolean atualizarUsuario(int uCodigo, String uNome, String uEmail, String uSenha, int uSetor, int uCodigoFilial) {
         Usuario u = new Usuario(uNome, uEmail, uSenha, uCodigoFilial, uSetor);
         u.setCodigo(uCodigo);
         return UsuarioDAO.alterarUsuario(u);
@@ -61,8 +60,9 @@ public class UsuarioController {
                         usuarios.get(i).getNome(),
                         usuarios.get(i).getEmail(),
                         usuarios.get(i).getSenha(),
-                        String.valueOf(usuarios.get(i).getCodigoFilial()),
-                        String.valueOf(usuarios.get(i).getSetor()),});
+                        String.valueOf(usuarios.get(i).getSetor()),
+                        String.valueOf(usuarios.get(i).getCodigoFilial())
+                    });
         }
         return listaUsuarios;
     }

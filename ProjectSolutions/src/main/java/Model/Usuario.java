@@ -10,15 +10,19 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private int codigoFilial;
     private int setor;
+    private int codigoFilial;
 
-    public Usuario(String nome, String email, String senha, int codigoFilial, int setor) {
+    public Usuario() {
+    }
+
+    public Usuario(int codigo, String nome, String email, String senha, int setor, int codigoFilial) {
+        this.codigo = codigo;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.codigoFilial = codigoFilial;
         this.setor = setor;
+        this.codigoFilial = codigoFilial;
     }
 
     public int getCodigo() {
@@ -53,6 +57,14 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public int getSetor() {
+        return setor;
+    }
+
+    public void setSetor(int setor) {
+        this.setor = setor;
+    }
+
     public int getCodigoFilial() {
         return codigoFilial;
     }
@@ -61,12 +73,6 @@ public class Usuario {
         this.codigoFilial = codigoFilial;
     }
 
-    public int getSetor() {
-        return setor;
-    }
-
-    public void setSetor(int setor) {
-        this.setor = setor;
-    }
+    
 
 }

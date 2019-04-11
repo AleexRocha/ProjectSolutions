@@ -29,7 +29,7 @@ public class VendaController {
 
     /**
      * @param vCodigo - int
-     * @return
+     * @return boolean de sucesso ou error
      *
      */
     public static boolean excluirVenda(int vCodigo) {
@@ -46,7 +46,7 @@ public class VendaController {
      * @param vCodigoFilial - int
      * @param vCpfCliente - String
      * @param vDataVBenda - String
-     * @return
+     * @return boolean de sucesso ou error
      */
     public static boolean atualizarVenda(int vCodigo, String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, String vCpfCliente, String vDataVenda) throws SQLException {
         Venda v = new Venda(vNomeProduto, vCodigoProduto, vQuantidadeVenda, vIdFuncionario, vCodigoFilial, vCpfCliente, vDataVenda);
@@ -68,7 +68,8 @@ public class VendaController {
                         String.valueOf(vendas.get(i).getIdFuncionario()),
                         String.valueOf(vendas.get(i).getCodigoFilial()),
                         vendas.get(i).getCpfCliente(),
-                        vendas.get(i).getDataVenda()});
+                        vendas.get(i).getDataVenda()
+                    });
         }
         return listaVendas;
     }

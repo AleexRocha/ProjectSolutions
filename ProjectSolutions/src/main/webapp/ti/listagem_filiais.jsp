@@ -21,23 +21,23 @@ Author     : nicolas.hgyoshioka
                 <span class="sr-only">Floricultura TADES</span>
                 <img src="../assets/img/logo.png">
             </h1>
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="../venda/cadastro_vendas.jsp">Vendas</a>
+                            <a class="nav-link nav-text" href="../venda/cadastro_vendas.jsp">Vendas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../produtos/listagem_produtos.jsp">Produtos</a>
+                            <a class="nav-link nav-text" href="../produtos/listagem_produtos.jsp">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="listagem_usuarios.jsp">Usuarios</a>
+                            <a class="nav-link nav-text" href="listagem_usuarios.jsp">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../venda/relatorio.jsp">Relatorio</a>
+                            <a class="nav-link nav-text" href="../venda/relatorio.jsp">Relatorio</a>
                         </li>
                     </ul>
                 </div>

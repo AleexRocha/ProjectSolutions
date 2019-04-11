@@ -15,24 +15,23 @@ public class FilialController {
      *
      * @param fLogradouro - String
      * @param fNumero - int
-     * @param fCep - int
+     * @param fCep - String
      * @param fBairro - String
-     * @param fEstado - String
      * @param fCidade - String
-     * @param fTelefone - int
-     * @return
+     * @param fEstado - String
+     * @param fTelefone - String
+     * @return boolean de sucesso ou error
      */
-    public static boolean salvarFiial(String fLogradouro, int fNumero, String fCep, String fBairro, String fEstado, String fCidade, String fTelefone) throws SQLException {
-        Filial f = new Filial(fLogradouro, fNumero, fCep, fBairro, fEstado, fCidade, fTelefone);
+    public static boolean salvarFiial(String fLogradouro, int fNumero, String fCep, String fBairro, String fCidade, String fEstado, String fTelefone) {
+        Filial f = new Filial(fLogradouro, fNumero, fCep, fBairro, fCidade, fEstado, fTelefone);
         return FilialDAO.salvarFilial(f);
     }
 
     /**
      * @param fCodigo - int
-     * @return
-     *
+     * @return boolean de sucesso ou error
      */
-    public static boolean excluirFilial(int fCodigo) throws SQLException {
+    public static boolean excluirFilial(int fCodigo) {
         return FilialDAO.excluirFilial(fCodigo);
     }
 
@@ -46,10 +45,10 @@ public class FilialController {
      * @param fEstado - String
      * @param fCidade - String
      * @param fTelefone - int
-     * @return
+     * @return boolean de sucesso ou error
      */
-    public static boolean atualizarFilial(int fCodigo, String fLogradouro, int fNumero, String fCep, String fBairro, String fEstado, String fCidade, String fTelefone) throws SQLException {
-        Filial f = new Filial(fLogradouro, fNumero, fCep, fBairro, fEstado, fCidade, fTelefone);
+    public static boolean atualizarFilial(int fCodigo, String fLogradouro, int fNumero, String fCep, String fBairro, String fCidade, String fEstado, String fTelefone) throws SQLException {
+        Filial f = new Filial(fLogradouro, fNumero, fCep, fBairro, fCidade, fEstado, fTelefone);
         f.setCodigo(fCodigo);
         return FilialDAO.atualizarFilial(f);
     }
@@ -66,9 +65,10 @@ public class FilialController {
                         String.valueOf(filiais.get(i).getNumero()),
                         filiais.get(i).getCep(),
                         filiais.get(i).getBairro(),
-                        filiais.get(i).getEstado(),
                         filiais.get(i).getCidade(),
-                        filiais.get(i).getTelefone(),});
+                        filiais.get(i).getEstado(),
+                        filiais.get(i).getTelefone()
+                    });
         }
         return listaFiliais;
     }

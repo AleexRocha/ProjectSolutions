@@ -20,6 +20,8 @@ table{
 }
 .btn-light:hover{
     background: #f8f9fa;
+    box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
+    border: rgb(219, 92, 1);
 }
 .btn-success{
     background: linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
@@ -28,6 +30,7 @@ table{
 .btn-success:hover{
     border-color: #398439;
     background: #419641;
+    box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
 }
 .btn-danger{
     background: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
@@ -35,12 +38,17 @@ table{
 }
 .btn-danger:hover{
     border-color: #ac2925;
-    background: #c12e2a;
+    /*background: #c12e2a;*/
+    background: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
+    box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
 }
 .btn-relatorio{
     margin-top: 30px;
 }
 
 .nav-item .nav-link.nav-text{
-    color: rgb(219, 92, 1);
+    color: rgb(0, 0, 0);
+}
+.nav-item .nav-link.nav-text:hover{
+    border-bottom: 1px solid black;
 }

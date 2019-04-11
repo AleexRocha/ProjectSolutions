@@ -9,21 +9,7 @@ import java.util.ArrayList;
  * @author daniel
  */
 public class RelatorioController {
-    /*
-    /**
-    *
-    * @param rDataVenda - String
-    * @param rCodigoFilial - int
-    * @param rNomeProduto - String
-    * @param rCodigoProduto - int
-    * @param rQuantidadeProduto - int
-    * @return
-    *
-    public static boolean salvarRelatorio(String rDataVenda, int rCodigoFilial, String rNomeProduto, int rCodigoProduto, int rQuantidadeProduto) {
-        Relatorio r = new Relatorio(rDataVenda, rCodigoFilial, rNomeProduto, rCodigoProduto, rQuantidadeProduto);
-        return RelatorioDAO.salvarRelatorio(r);
-    }*/
-    
+
     public static ArrayList<String[]> getRelatorio() {
         ArrayList<Relatorio> relatorios = RelatorioDAO.getRelatorios();
         ArrayList<String[]> listaRelatorios = new ArrayList<>();
@@ -31,11 +17,16 @@ public class RelatorioController {
         for (int i = 0; i < relatorios.size(); i++) {
             listaRelatorios.add(
                     new String[]{
-                        relatorios.get(i).getDataVenda(),
-                        String.valueOf(relatorios.get(i).getCodigoFilial()),
-                        relatorios.get(i).getNomeProduto(),
+                        String.valueOf(relatorios.get(i).getCodigoVenda()),
                         String.valueOf(relatorios.get(i).getCodigoProduto()),
-                        String.valueOf(relatorios.get(i).getQuantidadeProduto()),});
+                        relatorios.get(i).getNomeProduto(),
+                        String.valueOf(relatorios.get(i).getQuantidadeProduto()),
+                        String.valueOf(relatorios.get(i).getValor()),
+                        String.valueOf(relatorios.get(i).getIdFilial()),
+                        relatorios.get(i).getNomeFilial(),
+                        String.valueOf(relatorios.get(i).getIdFuncionario()),
+                        relatorios.get(i).getDataVenda()
+                    });
         }
         return listaRelatorios;
     }

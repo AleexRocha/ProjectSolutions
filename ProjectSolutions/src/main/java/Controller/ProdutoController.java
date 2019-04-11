@@ -15,22 +15,22 @@ public class ProdutoController {
      *
      * @param pNome - String
      * @param pDescricao - String
-     * @param pCodigoFilial - int
      * @param pQuantidadeEstoque - int
      * @param pValorUnitario - int
-     * @return
+     * @param pTipo - String
+     * @param pCodigoFilial - int
+     * @return boolean de sucesso ou error
      */
-    public static boolean salvarProduto(String pNome, String pDescricao, int pCodigoFilial, int pQuantidadeEstoque, double pValorUnitario) throws SQLException {
-        Produto p = new Produto(pNome, pDescricao, pCodigoFilial, pQuantidadeEstoque, pValorUnitario);
+    public static boolean salvarProduto(String pNome, String pDescricao, int pQuantidadeEstoque, double pValorUnitario, String pTipo, int pCodigoFilial) {
+        Produto p = new Produto(pNome, pDescricao, pQuantidadeEstoque, pValorUnitario, pTipo, pCodigoFilial);
         return ProdutoDAO.salvarProduto(p);
     }
 
     /**
      * @param pCodigo - int
-     * @return
-     *
+     * @return boolean de sucesso ou error
      */
-    public static boolean excluirProduto(int pCodigo) throws SQLException {
+    public static boolean excluirProduto(int pCodigo) {
         return ProdutoDAO.excluirProduto(pCodigo);
     }
 
@@ -39,18 +39,19 @@ public class ProdutoController {
      * @param pCodigo - int
      * @param pNome - String
      * @param pDescricao - String
-     * @param pCodigoFilial - int
      * @param pQuantidadeEstoque - int
      * @param pValorUnitario - int
-     * @return
+     * @param pTipo - String
+     * @param pCodigoFilial - int
+     * @return boolean de sucesso ou error
      */
-    public static boolean atualizarProduto(int pCodigo, String pNome, String pDescricao, int pCodigoFilial, int pQuantidadeEstoque, double pValorUnitario) throws SQLException {
-        Produto p = new Produto(pNome, pDescricao, pCodigoFilial, pQuantidadeEstoque, pValorUnitario);
+    public static boolean atualizarProduto(int pCodigo, String pNome, String pDescricao, int pQuantidadeEstoque, double pValorUnitario, String pTipo, int pCodigoFilial) {
+        Produto p = new Produto(pNome, pDescricao, pQuantidadeEstoque, pValorUnitario, pTipo, pCodigoFilial);
         p.setCodigo(pCodigo);
         return ProdutoDAO.salvarProduto(p);
     }
 
-    public static ArrayList<String[]> getProduto() throws SQLException {
+    public static ArrayList<String[]> getProduto() {
         ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
         ArrayList<String[]> listaProdutos = new ArrayList<>();
 
@@ -60,9 +61,11 @@ public class ProdutoController {
                         String.valueOf(produtos.get(i).getCodigo()),
                         produtos.get(i).getNome(),
                         produtos.get(i).getDescricao(),
-                        String.valueOf(produtos.get(i).getCodigoFilial()),
                         String.valueOf(produtos.get(i).getQuantidadeEstoque()),
-                        String.valueOf(produtos.get(i).getValorUnitario()),});
+                        String.valueOf(produtos.get(i).getValorUnitario()),
+                        produtos.get(i).getTipo(),
+                        String.valueOf(produtos.get(i).getCodigoFilial())
+                    });
         }
         return listaProdutos;
     }

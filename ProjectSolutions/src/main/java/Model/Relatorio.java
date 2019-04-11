@@ -6,42 +6,37 @@ package Model;
  */
 public class Relatorio {
 
-    private String dataVenda;
-    private int codigoFilial;
-    private String nomeProduto;
+    private int codigoVenda;
     private int codigoProduto;
-    private int QuantidadeProduto;
+    private String nomeProduto;
+    private int quantidadeProduto;
+    private double valor;
+    private int idFilial;
+    private String nomeFilial;
+    private int idFuncionario;
+    private String dataVenda;
 
-    public Relatorio(String dataVenda, int codigoFilial, String nomeProduto, int codigoProduto, int QuantidadeProduto) {
-        this.dataVenda = dataVenda;
-        this.codigoFilial = codigoFilial;
-        this.nomeProduto = nomeProduto;
+    public Relatorio() {
+    }
+
+    public Relatorio(int codigoVenda, int codigoProduto, String nomeProduto, int quantidadeProduto, double valor, int idFilial, String nomeFilial, int idFuncionario, String dataVenda) {
+        this.codigoVenda = codigoVenda;
         this.codigoProduto = codigoProduto;
-        this.QuantidadeProduto = QuantidadeProduto;
-    }
-
-    public String getDataVenda() {
-        return dataVenda;
-    }
-
-    public void setDataVenda(String dataVenda) {
+        this.nomeProduto = nomeProduto;
+        this.quantidadeProduto = quantidadeProduto;
+        this.valor = valor;
+        this.idFilial = idFilial;
+        this.nomeFilial = nomeFilial;
+        this.idFuncionario = idFuncionario;
         this.dataVenda = dataVenda;
     }
 
-    public int getCodigoFilial() {
-        return codigoFilial;
+    public int getCodigoVenda() {
+        return codigoVenda;
     }
 
-    public void setCodigoFilial(int codigoFilial) {
-        this.codigoFilial = codigoFilial;
-    }
-
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
-
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public void setCodigoVenda(int codigoVenda) {
+        this.codigoVenda = codigoVenda;
     }
 
     public int getCodigoProduto() {
@@ -52,12 +47,60 @@ public class Relatorio {
         this.codigoProduto = codigoProduto;
     }
 
-    public int getQuantidadeProduto() {
-        return QuantidadeProduto;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setQuantidadeProduto(int QuantidadeProduto) {
-        this.QuantidadeProduto = QuantidadeProduto;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public int getQuantidadeProduto() {
+        return quantidadeProduto;
+    }
+
+    public void setQuantidadeProduto(int quantidadeProduto) {
+        this.quantidadeProduto = quantidadeProduto;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public int getIdFilial() {
+        return idFilial;
+    }
+
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
+    }
+
+    public String getNomeFilial() {
+        return nomeFilial;
+    }
+
+    public void setNomeFilial(String nomeFilial) {
+        this.nomeFilial = nomeFilial;
+    }
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
+
+    public String getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(String dataVenda) {
+        this.dataVenda = dataVenda;
     }
 
 }

@@ -21,26 +21,21 @@ Author     : nicolas.hgyoshioka
                 <span class="sr-only">Floricultura TADES</span>
                 <img src="../assets/img/logo.png">
             </h1>
-            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4 ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="nav justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link nav-text" href="../produtos/listagem_produtos.jsp">Produtos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-text" href="../ti/listagem_filiais.jsp">Filiais</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-text" href="../ti/listagem_usuarios.jsp">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-text" href="relatorio.jsp">Relatorio</a>
-                        </li>
-                    </ul>
-                </div>
+            <nav class="navbar navbar-expand-md navbar-light bg-warning">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link nav-text" href="../produtos/listagem_produtos.jsp">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-text" href="../ti/listagem_filiais.jsp">Filiais</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-text" href="../ti/listagem_usuarios.jsp">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-text" href="relatorio.jsp">Relatorio</a>
+                    </li>
+                </ul>
             </nav>
             <h2 class="h2 text-center subtitulo">Cadastrar uma venda</h2>
         </header>
