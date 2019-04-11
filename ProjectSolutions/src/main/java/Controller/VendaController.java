@@ -22,7 +22,7 @@ public class VendaController {
      * @param vDataVenda - String
      * @return
      */
-    public static boolean salvarVenda(String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, String vCpfCliente, String vDataVenda) throws SQLException {
+    public static boolean salvarVenda(String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, String vCpfCliente, String vDataVenda) {
         Venda v = new Venda(vNomeProduto, vCodigoProduto, vQuantidadeVenda, vIdFuncionario, vCodigoFilial, vCpfCliente, vDataVenda);
         return VendaDAO.salvarVenda(v);
     }
@@ -48,7 +48,7 @@ public class VendaController {
      * @param vDataVBenda - String
      * @return boolean de sucesso ou error
      */
-    public static boolean atualizarVenda(int vCodigo, String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, String vCpfCliente, String vDataVenda) throws SQLException {
+    public static boolean atualizarVenda(int vCodigo, String vNomeProduto, int vCodigoProduto, int vQuantidadeVenda, int vIdFuncionario, int vCodigoFilial, String vCpfCliente, String vDataVenda) {
         Venda v = new Venda(vNomeProduto, vCodigoProduto, vQuantidadeVenda, vIdFuncionario, vCodigoFilial, vCpfCliente, vDataVenda);
         v.setCodigo(vCodigo);
         return VendaDAO.salvarVenda(v);
