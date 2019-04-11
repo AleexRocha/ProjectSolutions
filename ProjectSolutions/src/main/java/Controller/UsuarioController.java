@@ -19,8 +19,8 @@ public class UsuarioController {
      * * @param uCodigoFilial - int
      * @return boolean de sucesso ou error
      */
-    public static boolean salvarUsuario(String uNome, String uEmail, String uSenha, int uSetor, int uCodigoFilial) {
-        Usuario u = new Usuario(uNome, uEmail, uSenha, uSetor, uCodigoFilial);
+    public static boolean salvarUsuario(String uNome, String uEmail, String uSenha, int uCodigoFilial, int uSetor) {
+        Usuario u = new Usuario(uNome, uEmail, uSenha, uCodigoFilial, uSetor);
         return UsuarioDAO.salvarUsuario(u);
     }
 

@@ -10,13 +10,21 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private int setor;
     private int codigoFilial;
+    private int setor;
 
     public Usuario() {
     }
 
-    public Usuario(int codigo, String nome, String email, String senha, int setor, int codigoFilial) {
+    public Usuario(String nome, String email, String senha, int codigoFilial, int setor) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.setor = setor;
+        this.codigoFilial = codigoFilial;
+    }
+
+    public Usuario(int codigo, String nome, String email, String senha, int codigoFilial, int setor) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
@@ -24,6 +32,7 @@ public class Usuario {
         this.setor = setor;
         this.codigoFilial = codigoFilial;
     }
+
 
     public int getCodigo() {
         return codigo;

@@ -21,39 +21,39 @@ public class RelatorioDAO {
 
     private static Database db = new Database();
 
-    /*public static boolean salvarRelatorio(Relatorio r) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
-    public static ArrayList<Relatorio> getRelatorios() throws SQLException {
-        /* ArrayList<Filial> filiais = new ArrayList<>();
+    public static ArrayList<Relatorio> getRelatorios() {
+        ArrayList<Relatorio> getRelatorio = new ArrayList<>();
         Connection conn = db.obterConexao();
-        PreparedStatement query = conn.prepareStatement("SELECT * FROM"
-        + " TBL_FILIAL;");
-        
         try {
-        ResultSet rs = query.executeQuery();
-        
-        if (rs != null) {
-        while (rs.next()) {
-        filiais.add(new Filial(
-        rs.getString(1),
-        rs.getInt(2),
-        rs.getString(3),
-        rs.getString(4),
-        rs.getString(5),
-        rs.getString(6),
-        rs.getString(7)
-        ));
-        
-        }
-        }
-        
+            PreparedStatement query = conn.prepareStatement("SELECT TBL_VENDA.ID_VENDA, TBL_VENDA.NOME_PRODUTO, TBL_VENDA.ID_PRODUTO, "
+                    + " TBL_VENDA.QTD_ITENS, TBL_VENDA.ID_USUARIO, TBL_VENDA.ID_FILIAL, TBL_VENDA.CPF_CLIENTE, TBL_VENDA.DATA_VENDA "
+                    + " FROM TBL_VENDA"
+                    + " INNER JOIN TBL_FILIAL ON TBL_VENDA.ID_FILIAL = TBL_FILIAL.ID_FILIAL "
+                    + " WHERE TBL_VENDA.DATA_VENDA >= ? AND TBL_VENDA.DATA_VENDA <= ? "
+                    + " ORDER BY TBL_VENDA.DATA_VENDA AND TBL_VENDA.ID_FILIAL;");
+
+            /*
+            query.setString(1, ??);
+            query.setString(2, ???);*/
+            //Ver de onde sera tirado o conteudo da clausula where
+            ResultSet rs = query.executeQuery();
+
+            getRelatorio.add(new Relatorio(
+                    rs.getInt(0),
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getInt(3),
+                    rs.getDouble(4),
+                    rs.getInt(5),
+                    rs.getString(6),
+                    rs.getInt(7),
+                    rs.getString(8)
+            ));
         } catch (SQLException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
-        
-        return filiais;*/
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.       
+
+        return getRelatorio;
     }
 
 }

@@ -21,8 +21,8 @@ public class ProdutoController {
      * @param pCodigoFilial - int
      * @return boolean de sucesso ou error
      */
-    public static boolean salvarProduto(String pNome, String pDescricao, int pQuantidadeEstoque, double pValorUnitario, String pTipo, int pCodigoFilial) {
-        Produto p = new Produto(pNome, pDescricao, pQuantidadeEstoque, pValorUnitario, pTipo, pCodigoFilial);
+    public static boolean salvarProduto(String pNome, String pDescricao, String pTipo, int pCodigoFilial, int pQuantidadeEstoque, double pValorUnitario) {
+        Produto p = new Produto(pNome, pDescricao, pTipo, pCodigoFilial, pQuantidadeEstoque, pValorUnitario);
         return ProdutoDAO.salvarProduto(p);
     }
 
@@ -45,8 +45,8 @@ public class ProdutoController {
      * @param pCodigoFilial - int
      * @return boolean de sucesso ou error
      */
-    public static boolean atualizarProduto(int pCodigo, String pNome, String pDescricao, int pQuantidadeEstoque, double pValorUnitario, String pTipo, int pCodigoFilial) {
-        Produto p = new Produto(pNome, pDescricao, pQuantidadeEstoque, pValorUnitario, pTipo, pCodigoFilial);
+    public static boolean atualizarProduto(int pCodigo, String pNome, String pDescricao, String pTipo, int pCodigoFilial, int pQuantidadeEstoque, double pValorUnitario) {
+        Produto p = new Produto(pNome, pDescricao, pTipo, pCodigoFilial, pQuantidadeEstoque, pValorUnitario);
         p.setCodigo(pCodigo);
         return ProdutoDAO.salvarProduto(p);
     }

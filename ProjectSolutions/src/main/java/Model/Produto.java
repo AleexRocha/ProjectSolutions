@@ -9,15 +9,15 @@ public class Produto {
     private int codigo;
     private String nome;
     private String descricao;
+    private String tipo;
+    private int codigoFilial; 
     private int quantidadeEstoque;
     private double valorUnitario;
-    private String tipo;
-    private int codigoFilial;
-
+    
     public Produto() {
     }
 
-    public Produto(String nome, String descricao, int quantidadeEstoque, double valorUnitario, String tipo, int codigoFilial) {
+    public Produto(String nome, String descricao, String tipo, int codigoFilialint, int quantidadeEstoque, double valorUnitario) {
         this.nome = nome;
         this.descricao = descricao;
         this.quantidadeEstoque = quantidadeEstoque;
