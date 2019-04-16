@@ -41,36 +41,40 @@ Author     : nicolas.hgyoshioka
         </header>
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <label for="filial" >Filial:</label>
-                    <select class="custom-select inputForm" id="filial">
-                        <option value="1">Filial 1</option>
-                        <option value="1">Filial 2</option>
-                        <option value="1">Filial 3</option>
-                    </select>
-                </div>
-                <div class="col-md-5">
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="dataDe">De:</label>
-                            <input type="date" class="form-control inputForm" id="dataDe" name="dataDe">
-                        </div>
-                        <div class="col">
-                            <label for="dataAte">Ate:</label>
-                            <input type="date" class="form-control inputForm" id="dataAte" name="dataAte">
+                <form action="relatorio">
+                    <div class="col-md-3">
+                        <label for="filial" >Filial:</label>
+                        <select class="custom-select inputForm" id="filial" name="filial">
+                            <option value="1">Filial 1</option>
+                            <option value="1">Filial 2</option>
+                            <option value="1">Filial 3</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="dataDe">De:</label>
+                                <input type="date" class="form-control inputForm" id="dataDe" name="dataDe">
+                            </div>
+                            <div class="col">
+                                <label for="dataAte">Ate:</label>
+                                <input type="date" class="form-control inputForm" id="dataAte" name="dataAte">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 btn-relatorio">
-                    <button class="btn btn-light">
-                        <i class="far fa-file-alt"></i>
-                        Gerar relatorio
-                    </button>
-                    <button class="btn btn-success">
-                        <i class="far fa-file-excel"></i>
-                        Exportar
-                    </button>
-                </div>
+                    <div class="col-md-4 btn-relatorio">
+                        <button class="btn btn-light">
+                            <i class="far fa-file-alt"></i>
+                            Gerar relatorio
+                        </button>
+                        <button class="btn btn-success">
+                            <i class="far fa-file-excel"></i>
+                            Exportar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <hr>
                     <table class="table table-striped">
