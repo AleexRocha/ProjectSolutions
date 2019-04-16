@@ -43,7 +43,7 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <form>
+                    <form action="cdfilial" method="post">
                         <div class="form-group">
                             <label for="codigoFilial">Código:</label>
                             <input type="number" class="form-control inputForm" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">

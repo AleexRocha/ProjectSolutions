@@ -27,7 +27,7 @@ public class Database {
         usuario = "root";
         senha = "";
         nomeDB = "TADES_BCD";
-        url = "jdbc:mysql://localhost:3306/" + nomeDB;
+        url = "jdbc:mysql://127.0.0.1:3306/" + nomeDB;
     }
 
     public String getDriver() {
@@ -55,14 +55,16 @@ public class Database {
     }    
 
     public Connection obterConexao() {
+        Database db = new Database();
         try {
             Class.forName(getDriver());
             conexao = DriverManager.getConnection(
-                    getUrl(),
-                    getUsuario(),
-                    getSenha()
+                    db.getUrl(),
+                    db.getUsuario(),
+                    db.getSenha()
             );
         } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
 
         return conexao;

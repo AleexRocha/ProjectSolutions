@@ -8,6 +8,8 @@ package Controller;
 import DAO.FilialDAO;
 import Model.Filial;
 import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +20,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.psilva103
  */
-@WebServlet(name = "ProdutoServlet", urlPatterns = {"/ti/cadastro_filial"})
+@WebServlet(name = "FilialServlet", urlPatterns = {"/ti/cdfilial"})
 public class FilialServlet extends HttpServlet {
 
-    private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response) {
+    private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException{
+        
         String fLogradouro = request.getParameter("logradouro");
         String fNumero = String.valueOf(request.getParameter("numero"));
         String fCep = request.getParameter("cep");
@@ -29,14 +33,11 @@ public class FilialServlet extends HttpServlet {
         String fCidade = request.getParameter("cidade");
         String fEstado = request.getParameter("estado");
         String fTelefone = request.getParameter("telefone");
-
         
-        Filial filial = new Filial(fLogradouro, Integer.parseInt(fNumero), fCep, fBairro, fCidade, fEstado, fTelefone); 
+        
+        Filial filial = new Filial(fLogradouro, Integer.parseInt(fNumero), fCep, fBairro, fCidade, fEstado, fTelefone);
         boolean httpOK = FilialDAO.salvarFilial(filial);
-        
-        if (httpOK) {
-           
-        }
+
     }
 
     @Override

@@ -22,7 +22,8 @@ public class FilialDAO {
 
     public static boolean salvarFilial(Filial f) {
         Connection conn = db.obterConexao();
-        try {
+       
+        try {      
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
                     + " TBL_FILIAL VALUES (?, ?, ?, ?, ?, ?, ?);");
 
