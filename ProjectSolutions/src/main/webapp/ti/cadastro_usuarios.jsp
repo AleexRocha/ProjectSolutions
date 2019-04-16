@@ -43,7 +43,7 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <form>
+                    <form action="cadastro_usuario" method="post">
                         <div class="form-group">
                             <label for="codigoUsuario">Código:</label>
                             <input type="number" class="form-control inputForm" id="codigoUsuario" placeholder="Código do usuário" name="codigoUsuario">
@@ -52,7 +52,7 @@ Author     : nicolas.hgyoshioka
                             <input type="text" class="form-control inputForm" id="nome" placeholder="Nome" name="nome">
 
                             <label for="email">E-mail:</label>
-                            <input type="emaiç" class="form-control inputForm" id="email" placeholder="E-mail" name="email">
+                            <input type="email" class="form-control inputForm" id="email" placeholder="E-mail" name="email">
 
                             <label for="senha">Senha:</label>
                             <input type="text" class="form-control inputForm" id="senha" placeholder="Senha" name="senha">
@@ -61,7 +61,7 @@ Author     : nicolas.hgyoshioka
                             <input type="text" class="form-control inputForm" id="confirmarSenha" placeholder="Confirmar senha" name="confirmarSenha">
 
                             <label for="setor" >Setor:</label>
-                            <select class="custom-select inputForm" id="setor">
+                            <select class="custom-select inputForm" id="setor" name="setor">
                                 <option value="venda">Venda</option>
                                 <option value="backoffice">Back Office</option>
                                 <option value="ti">TI</option>
@@ -71,7 +71,7 @@ Author     : nicolas.hgyoshioka
                             </select>
 
                             <label for="tipo" >Filial:</label>
-                            <select class="custom-select inputForm" id="tipo">
+                            <select class="custom-select inputForm" id="tipo" name="filial">
                                 <option value="1">Filial 1</option>
                                 <option value="1">Filial 2</option>
                                 <option value="1">Filial 3</option>
