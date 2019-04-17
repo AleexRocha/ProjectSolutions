@@ -7,6 +7,7 @@ package DAO;
 
 import Model.Filial;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,12 +22,20 @@ public class FilialDAO {
     private static Database db = new Database();
 
     public static boolean salvarFilial(Filial f) {
-        Connection conn = db.obterConexao();
-        
-        try {      
-            PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " TBL_FILIAL VALUES (?, ?, ?, ?, ?, ?, ?);");
+        try {
+            String driver = "com.mysql.jdbc.Driver";
+            String usuario = "root";
+            String senha = "";
+            String nomeDB = "TADES_BCD";
+            String url = "jdbc:mysql://127.0.0.1:3306/" + nomeDB;
+            Class.forName(driver);
+            Connection conn = DriverManager.getConnection(url, usuario, senha);
 
+            //Connection conn = db.obterConexao();
+            PreparedStatement query = conn.prepareStatement("INSERT INTO"
+                    + " tbl_filial ( logradouro, numero, cep, bairro, cidade, estado, telefone)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?);");
+            
             query.setString(1, f.getLogradouro());
             query.setInt(2, f.getNumero());
             query.setString(3, f.getCep());
@@ -34,11 +43,13 @@ public class FilialDAO {
             query.setString(5, f.getCidade());
             query.setString(6, f.getEstado());
             query.setString(7, f.getTelefone());
-
-            int rs = query.executeUpdate();
-
-        } catch (SQLException e) {
+            
+            query.executeUpdate();
+            conn.close();
+            
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+            System.out.println(e);
             return false;
         }
 

@@ -8,6 +8,8 @@ package Controller;
 import DAO.FilialDAO;
 import Model.Filial;
 import java.io.IOException;
+import static java.lang.System.out;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.psilva103
  */
-@WebServlet(name = "FilialServlet", urlPatterns = {"/ti/cdfilial"})
+@WebServlet(name = "FilialServlet", urlPatterns = {"/ti/listagem_filiais"})
 public class FilialServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response) 
@@ -32,9 +34,16 @@ public class FilialServlet extends HttpServlet {
         String fEstado = request.getParameter("estado");
         String fTelefone = request.getParameter("telefone");
         
-        
         Filial filial = new Filial(fLogradouro, Integer.parseInt(fNumero), fCep, fBairro, fCidade, fEstado, fTelefone);
         boolean httpOK = FilialDAO.salvarFilial(filial);
+        
+        if (httpOK) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+            dispatcher.forward(request, response);
+        }else{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
+            dispatcher.forward(request, response);
+        }
 
     }
 
