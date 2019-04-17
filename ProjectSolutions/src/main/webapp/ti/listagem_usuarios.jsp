@@ -66,12 +66,12 @@ Author     : nicolas.hgyoshioka
                 <tbody>
                     <tr>
                         <td><input type="radio"></td>
-                        <td>0001</td>
-                        <td>SENAC Santo Amaro</td>
-                        <td>teste_teste@email.com</td>
-                        <td>1234</td>
-                        <td>São Paulo - SP</td>
-                        <td>TI</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td class="btn-group">
                             <button type="button" class="btn btn-success">
                                 <i class="fas fa-pen"></i>

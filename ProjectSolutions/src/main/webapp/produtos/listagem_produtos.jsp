@@ -67,13 +67,13 @@
                 <tbody>
                     <tr>
                         <td><input type="radio"></td>
-                        <td>0001</td>
-                        <td>Produto para teste</td>
-                        <td>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </td>
-                        <td>Produto</td>
-                        <td>São Paulo - SP</td>
-                        <td>2000</td>
-                        <td>R$ 25,00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td class="btn-group">
                             <button type="button" class="btn btn-success">
                                 <i class="fas fa-pen"></i>

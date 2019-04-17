@@ -88,32 +88,8 @@ Author     : nicolas.hgyoshioka
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
-                        </tr>
-                </tbody>
-                <!--<tbody>
-                    <tr>
-                        <td><input type="radio"></td>
-                        <td>0001</td>
-                        <td>Rua Felipe Stevaux</td>
-                        <td>8000</td>
-                        <td>01000-999</td>
-                        <td>Jd. Angela</td>
-                        <td>São Paulo</td>
-                        <td>SP</td>
-                        <td>(11)0419-4015</td>
-                        <td class="btn-group">
-                            <button type="button" class="btn btn-success">
-                                <a href="cadastro_filiais.jsp">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
                     </tr>
-                </tbody>-->
-
+                </tbody>
             </table>
         </div>
     </body>
