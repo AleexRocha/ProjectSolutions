@@ -57,7 +57,7 @@ public class Database {
     public Connection obterConexao() {
         Database db = new Database();
         try {
-            Class.forName(getDriver());
+            Class.forName(db.getDriver());
             conexao = DriverManager.getConnection(
                     db.getUrl(),
                     db.getUsuario(),

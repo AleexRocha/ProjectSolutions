@@ -22,20 +22,13 @@ public class FilialDAO {
     private static Database db = new Database();
 
     public static boolean salvarFilial(Filial f) {
-        try {
-            String driver = "com.mysql.jdbc.Driver";
-            String usuario = "root";
-            String senha = "";
-            String nomeDB = "TADES_BCD";
-            String url = "jdbc:mysql://127.0.0.1:3306/" + nomeDB;
-            Class.forName(driver);
-            Connection conn = DriverManager.getConnection(url, usuario, senha);
+        Connection conn = db.obterConexao();
 
-            //Connection conn = db.obterConexao();
+        try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " tbl_filial ( logradouro, numero, cep, bairro, cidade, estado, telefone)"
+                    + " tbl_filial (logradouro, numero, cep, bairro, cidade, estado, telefone)"
                     + " VALUES (?, ?, ?, ?, ?, ?, ?);");
-            
+
             query.setString(1, f.getLogradouro());
             query.setInt(2, f.getNumero());
             query.setString(3, f.getCep());
@@ -43,11 +36,11 @@ public class FilialDAO {
             query.setString(5, f.getCidade());
             query.setString(6, f.getEstado());
             query.setString(7, f.getTelefone());
-            
+
             query.executeUpdate();
             conn.close();
-            
-        } catch (SQLException | ClassNotFoundException e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);
             return false;
@@ -64,7 +57,7 @@ public class FilialDAO {
             query.setInt(1, fCodigo);
 
             ResultSet linhasAfetadas = query.executeQuery();
-
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -95,7 +88,7 @@ public class FilialDAO {
             query.setInt(8, f.getCodigo());
 
             int linhasAfetadas = query.executeUpdate();
-
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -127,7 +120,7 @@ public class FilialDAO {
 
                 }
             }
-
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -135,4 +128,35 @@ public class FilialDAO {
         return filiais;
     }
 
+    public static Filial getFilial(int codigo) {
+        Filial filial = null;
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM"
+                    + " TBL_FILIAL WHERE id_filial = ?;");
+
+            query.setInt(1, codigo);
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    filial = new Filial(
+                            rs.getInt(0),
+                            rs.getString(1),
+                            rs.getInt(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5),
+                            rs.getString(6),
+                            rs.getString(7)
+                    );
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return filial;
+    }
 }

@@ -1,4 +1,4 @@
-package Controller;
+package Servlet;
 
 import DAO.RelatorioDAO;
 import Model.Relatorio;

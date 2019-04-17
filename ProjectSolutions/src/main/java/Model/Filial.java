@@ -15,6 +15,18 @@ public class Filial {
     private String cidade;
     private String telefone;
 
+    public Filial(int codigo, String logradouro, int numero, String cep, String bairro, String estado, String cidade, String telefone) {
+        this.codigo = codigo;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.cep = cep;
+        this.bairro = bairro;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.telefone = telefone;
+    }
+
+    
     public Filial(String logradouro, int numero, String cep, String bairro, String estado, String cidade, String telefone) {
         this.logradouro = logradouro;
         this.numero = numero;
@@ -23,6 +35,10 @@ public class Filial {
         this.estado = estado;
         this.cidade = cidade;
         this.telefone = telefone;
+    }
+
+    public Filial(int fCd_filial) {
+        codigo = fCd_filial;
     }
 
     public int getCodigo() {

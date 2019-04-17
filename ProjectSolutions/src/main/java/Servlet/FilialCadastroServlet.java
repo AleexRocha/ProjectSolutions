@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Servlet;
 
 import DAO.FilialDAO;
 import Model.Filial;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.psilva103
  */
-@WebServlet(name = "FilialServlet", urlPatterns = {"/ti/listagem_filiais"})
-public class FilialServlet extends HttpServlet {
+@WebServlet(name = "FilialServlet", urlPatterns = {"/ti/cadastro_filial"})
+public class FilialCadastroServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException{

@@ -5,6 +5,8 @@ Author     : nicolas.hgyoshioka
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -64,8 +66,31 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Telefone</th>
                         <th scope="col">Acoes</th>
                     </tr>
-                </thead>
+                </thead>   
                 <tbody>
+                    <tr>
+                        <td><input type="radio"></td>
+                        <td><c:out value="${codigo}" /></td>
+                        <td><c:out value="${logradouro}" /></td>
+                        <td><c:out value="${numero}" /></td>
+                        <td><c:out value="${cep}" /></td>
+                        <td><c:out value="${bairro}" /></td>
+                        <td><c:out value="${cidade}" /></td>
+                        <td><c:out value="${estado}" /></td>
+                        <td><c:out value="${telefone}" /></td>          
+                        <td class="btn-group">
+                            <button type="button" class="btn btn-success">
+                                <a href="../../ti/cadastro_filiais.jsp">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </button>
+                            <button type="button" class="btn btn-danger">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
+                        </tr>
+                </tbody>
+                <!--<tbody>
                     <tr>
                         <td><input type="radio"></td>
                         <td>0001</td>
@@ -78,14 +103,17 @@ Author     : nicolas.hgyoshioka
                         <td>(11)0419-4015</td>
                         <td class="btn-group">
                             <button type="button" class="btn btn-success">
-                                <i class="fas fa-pen"></i>
+                                <a href="cadastro_filiais.jsp">
+                                    <i class="fas fa-pen"></i>
+                                </a>
                             </button>
                             <button type="button" class="btn btn-danger">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
                     </tr>
-                </tbody>
+                </tbody>-->
+
             </table>
         </div>
     </body>

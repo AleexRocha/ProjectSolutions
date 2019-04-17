@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
 Document   : cadastro_filiais
 Created on : 08/04/2019, 21:40:32
@@ -43,11 +44,12 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <form action="listagem_filiais" method="post">
+                    <form action="cadastro_filial" method="post">
                         <div class="form-group">
                             <label for="codigoFilial">Código:</label>
-                            <input type="number" class="form-control inputForm" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">
-
+                            <input type="number" class="form-control inputForm" id="codigoFilial" 
+                                   placeholder="Código da filial" name="codigoFilial" disabled="true" value = "0">
+                            
                             <label for="logradouro">Logradouro:</label>
                             <input type="text" class="form-control inputForm" id="logradouro" placeholder="Logradouro" name="logradouro">
 
