@@ -45,8 +45,8 @@ Author     : nicolas.hgyoshioka
                 <div class="col-md-6">
                     <form>
                         <div class="form-group">
-                            <label for="codigoProduto">Código:</label>
-                            <input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Codigo do produto" name="codigoProduto">
+                            <label for="codigoProduto" class="sr-only">Código:</label>
+                            <input type="number" class="form-control inputForm sr-only" id="codigoProduto" placeholder="Codigo do produto" name="codigoProduto">
 
                             <label for="nomeProduto">Nome:</label>
                             <input type="text" class="form-control inputForm" id="nomeProduto" placeholder="Nome do produto" name="nomeProduto">

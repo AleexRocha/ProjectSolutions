@@ -45,8 +45,8 @@ Author     : nicolas.hgyoshioka
                 <div class="col-md-6">
                     <form action="cadastro_usuario" method="post">
                         <div class="form-group">
-                            <label for="codigoUsuario">Código:</label>
-                            <input type="number" class="form-control inputForm" id="codigoUsuario" placeholder="Código do usuário" name="codigoUsuario">
+                            <label for="codigoUsuario" class="sr-only">Código:</label>
+                            <input type="number" class="form-control inputForm sr-only" id="codigoUsuario" placeholder="Código do usuário" name="codigoUsuario">
 
                             <label for="nome">Nome:</label>
                             <input type="text" class="form-control inputForm" id="nome" placeholder="Nome" name="nome">

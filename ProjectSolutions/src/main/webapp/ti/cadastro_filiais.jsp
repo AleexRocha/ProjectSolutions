@@ -46,10 +46,9 @@ Author     : nicolas.hgyoshioka
                 <div class="col-md-6">
                     <form action="cadastro_filial" method="post">
                         <div class="form-group">
-                            <label for="codigoFilial">Código:</label>
-                            <input type="number" class="form-control inputForm" id="codigoFilial" 
-                                   placeholder="Código da filial" name="codigoFilial" disabled="true" value = "0">
-                            
+                            <label for="codigoFilial" class="sr-only">Código:</label>
+                            <input type="number" class="form-control inputForm sr-only" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">
+
                             <label for="logradouro">Logradouro:</label>
                             <input type="text" class="form-control inputForm" id="logradouro" placeholder="Logradouro" name="logradouro">
 
