@@ -40,11 +40,12 @@ public class FilialListaServlet extends HttpServlet {
                 estado = filiais.get(i).getEstado();
                 cidade = filiais.get(i).getCidade();
                 telefone = filiais.get(i).getTelefone();
-                //request.setAttribute("lista", filiais);
+                request.setAttribute("lista", filiais);
 
             }
 
-            request.setAttribute("metodoHttp", metodoHttp);
+            request.setAttribute("lista", filiais);
+            request.setAttribute("metodoHttp", metodoHttp); 
             request.setAttribute("codigo", codigo);
             request.setAttribute("logradouro", logradouro);
             request.setAttribute("numero", numero);

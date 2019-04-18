@@ -3,6 +3,8 @@ Document   : listagem_filiais
 Created on : 08/04/2019, 21:42:40
 Author     : nicolas.hgyoshioka
 --%>
+<%@page import="Model.Filial"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -10,6 +12,7 @@ Author     : nicolas.hgyoshioka
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>Filiais</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
@@ -66,18 +69,36 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Acoes</th>
                     </tr>
                 </thead>    
-                <tbody>
-                    
+                <script>
+                    window.onload = carregaFiliais();
+                    function carregaFiliais() {
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.open("GET", "listagem_filiais", false);
+                        xhttp.send();
+                        if (xhttp.status === 200) {
+                            var response = xhttp.responseText;
+                            document.write(result);
+
+                        } else {
+                            alert('errow');
+                        }
+                    }
+
+
+                </script>
+                <c:forEach var="filiais" items="${lista}">
+                    <tbody id="teste">                  
+
                         <tr>
                             <td><input type="radio"></td>
-                            <td><c:out value="${codigo}" /></td>
-                            <td><c:out value="${logradouro}" /></td>
-                            <td><c:out value="${numero}" /></td>
-                            <td><c:out value="${cep}" /></td>
-                            <td><c:out value="${bairro}" /></td>
-                            <td><c:out value="${estado}" /></td>
-                            <td><c:out value="${cidade}" /></td>
-                            <td><c:out value="${telefone}" /></td>        
+                            <td><c:out value="${filiais.codigo}" /></td>
+                            <td><c:out value="${filiais.logradouro}" /></td>
+                            <td><c:out value="${filiais.numero}" /></td>
+                            <td><c:out value="${filiais.cep}" /></td>
+                            <td><c:out value="${filiais.bairro}" /></td>
+                            <td><c:out value="${filiais.estado}" /></td>
+                            <td><c:out value="${filiais.cidade}" /></td>
+                            <td><c:out value="${filiais.telefone}" /></td>        
                             <td class="btn-group">
                                 <button type="button" class="btn btn-success">
                                     <a href="cadastro_filiais.jsp">
@@ -89,26 +110,11 @@ Author     : nicolas.hgyoshioka
                                 </button>
                             </td>
                         </tr>
+
                     </tbody>    
-             
+                </c:forEach>
             </table>
         </div>
-        <script>
-            window.onload = carregaFiliais();
-            function carregaFiliais() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "listagem_filiais", true);
-                xhttp.send();
-                if (xhttp.status === 200) {
-                    alert('sucesso');
-                    processData(this.responseXML.getElementById('test').textContent);
-                } else {
-                    alert('errow')
-                }
 
-            }
-
-
-        </script>
     </body>
 </html>
