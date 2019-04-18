@@ -18,20 +18,20 @@
                     <tbody id="teste">                  
                         <tr>
                             <td><input type="radio"></td>
-                            <td><c:out value="${filiais.codigo}" /></td>
-                            <td><c:out value="${filiais.logradouro}" /></td>
-                            <td><c:out value="${filiais.numero}" /></td>
-                            <td><c:out value="${filiais.cep}" /></td>
-                            <td><c:out value="${filiais.bairro}" /></td>
-                            <td><c:out value="${filiais.estado}" /></td>
-                            <td><c:out value="${filiais.cidade}" /></td>
-                            <td><c:out value="${filiais.telefone}" /></td>        
+                            <td name="codigo" ><c:out value="${filiais.codigo}" /></td>
+                            <td name="logradouro" ><c:out value="${filiais.logradouro}" /></td>
+                            <td name="numero" ><c:out value="${filiais.numero}" /></td>
+                            <td name="cep" ><c:out value="${filiais.cep}" /></td>
+                            <td name="bairro" ><c:out value="${filiais.bairro}" /></td>
+                            <td name="estado" ><c:out value="${filiais.estado}" /></td>
+                            <td name="cidade" ><c:out value="${filiais.cidade}" /></td>
+                            <td name="telefone" ><c:out value="${filiais.telefone}" /></td>        
                             <td class="btn-group">
-                                <button type="button" class="btn btn-success">
-                                    <a href="cadastro_filiais.jsp">
+                                <a href="cadastro_filiais.jsp?codigo=${filiais.codigo}">
+                                    <button type="button" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
-                                    </a>
-                                </button>
+                                    </button>
+                                </a>
                                 <button type="button" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
