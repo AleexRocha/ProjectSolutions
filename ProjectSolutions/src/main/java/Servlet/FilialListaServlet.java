@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import DAO.FilialDAO;
 import Model.Filial;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +38,7 @@ public class FilialListaServlet extends HttpServlet {
             }
 
             request.setAttribute("lista", filiais);
-            request.setAttribute("metodoHttp", metodoHttp); 
+            request.setAttribute("metodoHttp", metodoHttp);
             request.setAttribute("codigo", codigo);
             request.setAttribute("logradouro", logradouro);
             request.setAttribute("numero", numero);
@@ -56,7 +49,7 @@ public class FilialListaServlet extends HttpServlet {
             request.setAttribute("telefone", telefone);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
             dispatcher.forward(request, response);
-            
+
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
             dispatcher.forward(request, response);

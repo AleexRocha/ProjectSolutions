@@ -10,6 +10,10 @@ table{
     border: rgb(219, 92, 1);
 }
 
+.form-control.inputForm.error{
+    border: 2px solid red;
+}
+
 .subtitulo{
     color: rgb(219, 92, 1);
 }

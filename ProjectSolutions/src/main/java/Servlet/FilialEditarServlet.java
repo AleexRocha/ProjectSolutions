@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import DAO.FilialDAO;
@@ -20,23 +15,70 @@ import javax.servlet.http.HttpServletResponse;
  * @author guilherme.pereira
  */
 @WebServlet(name = "FilialServlet", urlPatterns = {"/ti/editar_filial"})
-public class FilialEditarServlet extends HttpServlet{
+public class FilialEditarServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String fCd_filial = String.valueOf(request.getParameter("codigo_filial"));
-        
-        Filial filial = FilialDAO.getFilial(Integer.parseInt(fCd_filial));
-       
+        String fCodigo = request.getParameter("codigoFilial");
+        String fLogradouro = request.getParameter("logradouro");
+        String fNumero = request.getParameter("numero");
+        String fCep = request.getParameter("cep");
+        String fBairro = request.getParameter("bairro");
+        String fCidade = request.getParameter("cidade");
+        String fEstado = request.getParameter("estado");
+        String fTelefone = request.getParameter("telefone");
 
-        /*if (httpOK) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
-        dispatcher.forward(request, response);
+        boolean error = false;
+        if (fCodigo.length() == 0) {
+            error = true;
+            request.setAttribute("codigoErro", "Codigo não informado");
+        }
+        if (fLogradouro.length() == 0) {
+            error = true;
+            request.setAttribute("logradouroErro", "Logradouro não informado");
+        }
+        if (fNumero.length() == 0) {
+            error = true;
+            request.setAttribute("numeroErro", "Numero não informado");
+        }
+        if (fCep.length() == 0) {
+            error = true;
+            request.setAttribute("cepErro", "CEP não informado");
+        }
+        if (fBairro.length() == 0) {
+            error = true;
+            request.setAttribute("bairroErro", "Bairro não informado");
+        }
+        if (fCidade.length() == 0) {
+            error = true;
+            request.setAttribute("cidadeErro", "Cidade não informada");
+        }
+        if (fEstado.length() == 0) {
+            error = true;
+            request.setAttribute("estadoErro", "Estado não informado");
+        }
+        if (fTelefone.length() == 0) {
+            error = true;
+            request.setAttribute("telefoneErro", "Telefone não informado");
+        }
+
+        if (error) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
+            dispatcher.forward(request, response);
         } else {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
-        dispatcher.forward(request, response);
-        }*/
+            Filial filial = new Filial(fLogradouro, Integer.parseInt(fNumero), fCep, fBairro, fCidade, fEstado, fTelefone);
+            filial.setCodigo(Integer.parseInt(fCodigo));
+            boolean httpOK = FilialDAO.atualizarFilial(filial);
+
+            if (httpOK) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
 
     }
 

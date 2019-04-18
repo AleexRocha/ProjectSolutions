@@ -1,5 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
 Document   : cadastro_filiais
 Created on : 08/04/2019, 21:40:32
@@ -7,6 +5,7 @@ Author     : nicolas.hgyoshioka
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -54,28 +53,62 @@ Author     : nicolas.hgyoshioka
                     <form action="cadastro_filial" method="post">
                         <div class="form-group">
                             <label for="codigoFilial" class="sr-only">Código:</label>
-                            <input type="number" class="form-control inputForm sr-only" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">
-
+                            <input type="number" class="form-control inputForm sr-only" id="codigoFilial" placeholder="Código da filial" name="codigoFilial">       
                             <label for="logradouro">Logradouro:</label>
-                            <input type="text" class="form-control inputForm" id="logradouro" placeholder="Logradouro" name="logradouro">
+                            <c:if test="${empty logradouroErro}">
+                                <input type="text" class="form-control inputForm" id="logradouro" placeholder="Logradouro" name="logradouro">
+                            </c:if>
+                            <c:if test="${not empty logradouroErro}">                                
+                                <input type="text" class="form-control inputForm error" id="logradouro" placeholder="${logradouroErro}" name="logradouro">
+                            </c:if>    
 
                             <label for="numero">Número:</label>
-                            <input type="number" class="form-control inputForm" id="numero" placeholder="Número" name="numero">
+                            <c:if test="${empty numeroErro}">                                
+                                <input type="number" class="form-control inputForm" id="numero" placeholder="Número" name="numero">
+                            </c:if>
+                            <c:if test="${not empty numeroErro}">                                
+                                <input type="number" class="form-control inputForm error" id="numero" placeholder="${numeroErro}" name="numero">
+                            </c:if>
 
                             <label for="cep">CEP:</label>
-                            <input type="number" class="form-control inputForm" id="cep" placeholder="CEP" name="cep">
+                            <c:if test="${empty cepErro}">
+                                <input type="number" class="form-control inputForm" id="cep" placeholder="CEP" name="cep">
+                            </c:if>
+                            <c:if test="${not empty cepErro}">
+                                <input type="number" class="form-control inputForm error" id="cep" placeholder="${cepErro}" name="cep">
+                            </c:if>
 
                             <label for="bairro">Bairro:</label>
-                            <input type="text" class="form-control inputForm" id="bairro" placeholder="Bairro" name="bairro">
+                            <c:if test="${empty bairroErro}">
+                                <input type="text" class="form-control inputForm" id="bairro" placeholder="Bairro" name="bairro">
+                            </c:if>
+                            <c:if test="${not empty bairroErro}">
+                                <input type="text" class="form-control inputForm error" id="bairro" placeholder="${bairroErro}" name="bairro">
+                            </c:if>
 
                             <label for="cidade">Cidade:</label>
-                            <input type="texte" class="form-control inputForm" id="cidade" placeholder="Cidade" name="cidade">
+                            <c:if test="${empty cidadeErro}">
+                                <input type="text" class="form-control inputForm" id="cidade" placeholder="Cidade" name="cidade">
+                            </c:if>
+                            <c:if test="${not empty cidadeErro}">
+                                <input type="text" class="form-control inputForm error" id="cidade" placeholder="${cidadeErro}" name="cidade">
+                            </c:if>
 
                             <label for="estado">Estado:</label>
-                            <input type="text" class="form-control inputForm" id="estado" placeholder="Estado" name="estado">
+                            <c:if test="${empty estadoErro}">
+                                <input type="text" class="form-control inputForm" id="estado" placeholder="Estado" name="estado">
+                            </c:if>
+                            <c:if test="${not empty estadoErro}">
+                                <input type="text" class="form-control inputForm error" id="estado" placeholder="${estadoErro}" name="estado">
+                            </c:if>
 
                             <label for="telefone">Telefone:</label>
-                            <input type="number" class="form-control inputForm" id="telefone" placeholder="Telefone" name="telefone">
+                            <c:if test="${empty telefoneErro}">
+                                <input type="number" class="form-control inputForm" id="telefone" placeholder="Telefone" name="telefone">
+                            </c:if>
+                            <c:if test="${not empty telefoneErro}">
+                                <input type="number" class="form-control inputForm error" id="telefone" placeholder="${telefoneErro}" name="telefone">
+                            </c:if>
                         </div>
                         <button type="submit" class="btn btn-light btn-block">
                             <i class="far fa-save"></i>
