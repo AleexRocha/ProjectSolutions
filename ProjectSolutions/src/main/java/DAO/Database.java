@@ -23,7 +23,7 @@ public class Database {
     private Connection conexao;
 
     public Database() {
-        driver = "com.mysql.jdbc.Driver";
+        driver = "com.mysql.cj.jdbc.Driver";
         usuario = "root";
         senha = "";
         nomeDB = "TADES_BCD";

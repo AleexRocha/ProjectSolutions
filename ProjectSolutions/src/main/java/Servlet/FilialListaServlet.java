@@ -31,20 +31,22 @@ public class FilialListaServlet extends HttpServlet {
         ArrayList<Filial> filiais = FilialDAO.getFiliais();
 
         if (filiais.size() > 0) {
+            for (int i = 0; i < filiais.size(); i++) {
 
-            request.setAttribute("lista", filiais);
-            request.setAttribute("metodoHttp", metodoHttp);
-            /*request.setAttribute("codigo", filiais.get(i).getCodigo());
+                //request.setAttribute("lista", filiais);
+                request.setAttribute("metodoHttp", metodoHttp);
+                request.setAttribute("codigo", filiais.get(i).getCodigo());
                 request.setAttribute("logradouro", filiais.get(i).getLogradouro());
                 request.setAttribute("numero", filiais.get(i).getNumero());
                 request.setAttribute("cep", filiais.get(i).getCep());
                 request.setAttribute("bairro", filiais.get(i).getBairro());
                 request.setAttribute("estado", filiais.get(i).getEstado());
                 request.setAttribute("cidade", filiais.get(i).getCidade());
-                request.setAttribute("telefone", filiais.get(i).getTelefone());*/
+                request.setAttribute("telefone", filiais.get(i).getTelefone());
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
-            dispatcher.forward(request, response);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+                dispatcher.forward(request, response);
+            }
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
             dispatcher.forward(request, response);

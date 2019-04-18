@@ -17,7 +17,6 @@ Author     : nicolas.hgyoshioka
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
-        <form action="listagem_filiais" method="GET"></form>
         <header>
             <h1 style="text-align: center;">
                 <span class="sr-only">Floricultura TADES</span>
@@ -68,17 +67,16 @@ Author     : nicolas.hgyoshioka
                     </tr>
                 </thead>    
                 <tbody>
-                    <c:forEach var="lista" items="${lista}">
+                    <!--<c:forEach var="lista" items="${lista}">-->
                         <tr>
                             <td><input type="radio"></td>
-                            <td><c:out value="${lista}" /></td>
-                            <td><c:out value="${lista}" /></td>
-                            <td><c:out value="${lista}" /></td>
-                            <td><c:out value="${lista}" /></td>
-                            <td><c:out value="${lista}" /></td>
-                            <td><c:out value="${lista}" /></td>
-                            <td><c:out value="${lista}" /></td>
-                            <td><c:out value="${lista}" /></td>          
+                            <td><c:out value="${logradouro}" /></td>
+                            <td><c:out value="${numero}" /></td>
+                            <td><c:out value="${cep}" /></td>
+                            <td><c:out value="${bairro}" /></td>
+                            <td><c:out value="${estado}" /></td>
+                            <td><c:out value="${cidade}" /></td>
+                            <td><c:out value="${telefone}" /></td>        
                             <td class="btn-group">
                                 <button type="button" class="btn btn-success">
                                     <a href="cadastro_filiais.jsp">
@@ -91,21 +89,20 @@ Author     : nicolas.hgyoshioka
                             </td>
                         </tr>
                     </tbody>    
-                </c:forEach>
+               <!-- </c:forEach> -->
             </table>
         </div>
         <script>
             window.onload = carregaFiliais();
             function carregaFiliais() {
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", "listagem_filiais", false);
+                xhttp.open("GET", "listagem_filiais", true);
                 xhttp.send()
                 if (this.status == 200) {
                     alert('sucesso')
                     processData(this.responseXML.getElementById('test').textContent);
                 } else {
                     alert('errow')
-                    …
                 }
 
             }
