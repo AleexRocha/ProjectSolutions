@@ -3,7 +3,6 @@ Document   : listagem_filiais
 Created on : 08/04/2019, 21:42:40
 Author     : nicolas.hgyoshioka
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -18,6 +17,7 @@ Author     : nicolas.hgyoshioka
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
+        <form action="listagem_filiais" method="GET"></form>
         <header>
             <h1 style="text-align: center;">
                 <span class="sr-only">Floricultura TADES</span>
@@ -66,31 +66,51 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Telefone</th>
                         <th scope="col">Acoes</th>
                     </tr>
-                </thead>   
+                </thead>    
                 <tbody>
-                    <tr>
-                        <td><input type="radio"></td>
-                        <td><c:out value="${codigo}" /></td>
-                        <td><c:out value="${logradouro}" /></td>
-                        <td><c:out value="${numero}" /></td>
-                        <td><c:out value="${cep}" /></td>
-                        <td><c:out value="${bairro}" /></td>
-                        <td><c:out value="${cidade}" /></td>
-                        <td><c:out value="${estado}" /></td>
-                        <td><c:out value="${telefone}" /></td>          
-                        <td class="btn-group">
-                            <button type="button" class="btn btn-success">
-                                <a href="../../ti/cadastro_filiais.jsp">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
+                    <c:forEach var="lista" items="${lista}">
+                        <tr>
+                            <td><input type="radio"></td>
+                            <td><c:out value="${lista}" /></td>
+                            <td><c:out value="${lista}" /></td>
+                            <td><c:out value="${lista}" /></td>
+                            <td><c:out value="${lista}" /></td>
+                            <td><c:out value="${lista}" /></td>
+                            <td><c:out value="${lista}" /></td>
+                            <td><c:out value="${lista}" /></td>
+                            <td><c:out value="${lista}" /></td>          
+                            <td class="btn-group">
+                                <button type="button" class="btn btn-success">
+                                    <a href="cadastro_filiais.jsp">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>    
+                </c:forEach>
             </table>
         </div>
+        <script>
+            window.onload = carregaFiliais();
+            function carregaFiliais() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "listagem_filiais", false);
+                xhttp.send()
+                if (this.status == 200) {
+                    alert('sucesso')
+                    processData(this.responseXML.getElementById('test').textContent);
+                } else {
+                    alert('errow')
+                    …
+                }
+
+            }
+
+
+        </script>
     </body>
 </html>

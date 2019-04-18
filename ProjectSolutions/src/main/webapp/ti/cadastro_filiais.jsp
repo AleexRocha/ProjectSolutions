@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
 Document   : cadastro_filiais
@@ -38,7 +39,13 @@ Author     : nicolas.hgyoshioka
                     </li>
                 </ul>
             </nav>
-            <h2 class="h2 text-center subtitulo">Cadastrar Filial</h2>
+            <%
+                if (true) {
+                    out.println("<h2 class='h2 text-center subtitulo'>Cadastrar Filial</h2>");
+                } else {
+                    out.println("<h2 class='h2 text-center subtitulo'>ASD Filial</h2>");
+                }
+            %>
         </header>
         <div class="container">
             <div class="row">
