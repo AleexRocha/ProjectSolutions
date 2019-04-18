@@ -109,6 +109,7 @@ public class FilialDAO {
             if (rs != null) {
                 while (rs.next()) {
                     filiais.add(new Filial(
+                            rs.getInt(1),
                             rs.getString(2),
                             rs.getInt(3),
                             rs.getString(4),

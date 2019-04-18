@@ -29,24 +29,33 @@ public class FilialListaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ArrayList<Filial> filiais = FilialDAO.getFiliais();
-
+        String codigo = "", logradouro = "", numero = "", cep = "", bairro = "", estado = "", cidade = "", telefone = "";
         if (filiais.size() > 0) {
-            for (int i = 0; i < filiais.size(); i++) {
-
+            for (int i = 0; i < 1; i++) {
+                codigo = String.valueOf(filiais.get(i).getCodigo());
+                logradouro = filiais.get(i).getLogradouro();
+                numero = String.valueOf(filiais.get(i).getNumero());
+                cep = filiais.get(i).getCep();
+                bairro = filiais.get(i).getBairro();
+                estado = filiais.get(i).getEstado();
+                cidade = filiais.get(i).getCidade();
+                telefone = filiais.get(i).getTelefone();
                 //request.setAttribute("lista", filiais);
-                request.setAttribute("metodoHttp", metodoHttp);
-                request.setAttribute("codigo", filiais.get(i).getCodigo());
-                request.setAttribute("logradouro", filiais.get(i).getLogradouro());
-                request.setAttribute("numero", filiais.get(i).getNumero());
-                request.setAttribute("cep", filiais.get(i).getCep());
-                request.setAttribute("bairro", filiais.get(i).getBairro());
-                request.setAttribute("estado", filiais.get(i).getEstado());
-                request.setAttribute("cidade", filiais.get(i).getCidade());
-                request.setAttribute("telefone", filiais.get(i).getTelefone());
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
-                dispatcher.forward(request, response);
             }
+
+            request.setAttribute("metodoHttp", metodoHttp);
+            request.setAttribute("codigo", codigo);
+            request.setAttribute("logradouro", logradouro);
+            request.setAttribute("numero", numero);
+            request.setAttribute("cep", cep);
+            request.setAttribute("bairro", bairro);
+            request.setAttribute("estado", estado);
+            request.setAttribute("cidade", cidade);
+            request.setAttribute("telefone", telefone);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+            dispatcher.forward(request, response);
+            
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
             dispatcher.forward(request, response);

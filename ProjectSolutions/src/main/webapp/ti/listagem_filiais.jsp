@@ -67,9 +67,10 @@ Author     : nicolas.hgyoshioka
                     </tr>
                 </thead>    
                 <tbody>
-                    <!--<c:forEach var="lista" items="${lista}">-->
+                    
                         <tr>
                             <td><input type="radio"></td>
+                            <td><c:out value="${codigo}" /></td>
                             <td><c:out value="${logradouro}" /></td>
                             <td><c:out value="${numero}" /></td>
                             <td><c:out value="${cep}" /></td>
@@ -89,7 +90,7 @@ Author     : nicolas.hgyoshioka
                             </td>
                         </tr>
                     </tbody>    
-               <!-- </c:forEach> -->
+             
             </table>
         </div>
         <script>
@@ -97,9 +98,9 @@ Author     : nicolas.hgyoshioka
             function carregaFiliais() {
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "listagem_filiais", true);
-                xhttp.send()
-                if (this.status == 200) {
-                    alert('sucesso')
+                xhttp.send();
+                if (xhttp.status === 200) {
+                    alert('sucesso');
                     processData(this.responseXML.getElementById('test').textContent);
                 } else {
                     alert('errow')
