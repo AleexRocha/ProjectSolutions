@@ -69,52 +69,25 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Acoes</th>
                     </tr>
                 </thead>    
-                <script>
-                    window.onload = carregaFiliais();
-                    function carregaFiliais() {
-                        var xhttp = new XMLHttpRequest();
-                        xhttp.open("GET", "listagem_filiais", false);
-                        xhttp.send();
-                        if (xhttp.status === 200) {
-                            var response = xhttp.responseText;
-                            document.write(result);
 
-                        } else {
-                            alert('errow');
-                        }
-                    }
-
-
-                </script>
-                <c:forEach var="filiais" items="${lista}">
-                    <tbody id="teste">                  
-
-                        <tr>
-                            <td><input type="radio"></td>
-                            <td><c:out value="${filiais.codigo}" /></td>
-                            <td><c:out value="${filiais.logradouro}" /></td>
-                            <td><c:out value="${filiais.numero}" /></td>
-                            <td><c:out value="${filiais.cep}" /></td>
-                            <td><c:out value="${filiais.bairro}" /></td>
-                            <td><c:out value="${filiais.estado}" /></td>
-                            <td><c:out value="${filiais.cidade}" /></td>
-                            <td><c:out value="${filiais.telefone}" /></td>        
-                            <td class="btn-group">
-                                <button type="button" class="btn btn-success">
-                                    <a href="cadastro_filiais.jsp">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                    </tbody>    
-                </c:forEach>
+                <%@include file="../WEB-INF/jsp/resultado_lista.jsp" %>
+               
             </table>
         </div>
+        <script>
+            window.onload = carregaFiliais();
+            function carregaFiliais() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "listagem_filiais", false);
+                xhttp.send();
+                if (xhttp.status === 200) {
+                    var response = xhttp.responseText;
+                    document.write(response);
 
+                } else {
+                    alert('errow');
+                }
+            }
+        </script>
     </body>
 </html>

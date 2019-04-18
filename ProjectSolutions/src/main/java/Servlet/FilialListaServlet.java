@@ -47,7 +47,8 @@ public class FilialListaServlet extends HttpServlet {
             request.setAttribute("estado", estado);
             request.setAttribute("cidade", cidade);
             request.setAttribute("telefone", telefone);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultado_lista.jsp");
             dispatcher.forward(request, response);
 
         } else {
