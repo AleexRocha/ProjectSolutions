@@ -30,7 +30,7 @@ public class FilialListaServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultado_lista.jsp");
             dispatcher.forward(request, response);
         }
     }
