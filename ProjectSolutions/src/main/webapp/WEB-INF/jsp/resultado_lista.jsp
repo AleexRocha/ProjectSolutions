@@ -14,8 +14,8 @@
     <body>
         <div class="container">
             <table class="table table-striped">
-                <c:forEach var="filiais" items="${lista}">
-                    <tbody id="teste">                  
+                <tbody id="teste">  
+                    <c:forEach var="filiais" items="${lista}">                
                         <tr>
                             <td><input type="radio"></td>
                             <td name="codigo" ><c:out value="${filiais.codigo}" /></td>
@@ -37,9 +37,8 @@
                                 </button>
                             </td>
                         </tr>
-
-                    </tbody>    
-                </c:forEach>
+                    </c:forEach>
+                </tbody>
             </table>
         </div>
     </body>

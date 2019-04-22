@@ -22,17 +22,12 @@ public class FilialListaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ArrayList<Filial> filiais = FilialDAO.getFiliais();
-        if (filiais.size() > 0) {
 
-            request.setAttribute("lista", filiais);
+        request.setAttribute("lista", filiais);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultado_lista.jsp");
-            dispatcher.forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultado_lista.jsp");
+        dispatcher.forward(request, response);
 
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultado_lista.jsp");
-            dispatcher.forward(request, response);
-        }
     }
 
     @Override
