@@ -3,6 +3,7 @@ package Servlet;
 import DAO.FilialDAO;
 import Model.Filial;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,6 +67,9 @@ public class FilialCadastroServlet extends HttpServlet {
             boolean httpOK = FilialDAO.salvarFilial(filial);
 
             if (httpOK) {
+                ArrayList<Filial> filiais = FilialDAO.getFiliais();
+                request.setAttribute("lista", filiais);
+                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
                 dispatcher.forward(request, response);
             } else {

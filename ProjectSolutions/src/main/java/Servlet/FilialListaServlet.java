@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.pereira
  */
-@WebServlet(name = "FilialListaServlet", urlPatterns = {"/venda/listagem_filiais"})
+@WebServlet(name = "FilialListaServlet", urlPatterns = {"/ti/listagem_filiais"})
 public class FilialListaServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)

@@ -27,7 +27,7 @@ Author     : nicolas.hgyoshioka
                         <a class="nav-link nav-text" href="../produtos/listagem_produtos.jsp">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <form action="listagem_filiais" method="GET">
+                        <form action="../ti/listagem_filiais" method="GET">
                             <button type="submit" class="nav-link nav-text" >Filiais</button>
                             <!--<a type="submit" class="nav-link nav-text" >Filiais</a>-->
                         </form>
