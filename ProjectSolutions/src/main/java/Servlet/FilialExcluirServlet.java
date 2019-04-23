@@ -6,8 +6,10 @@
 package Servlet;
 
 import DAO.FilialDAO;
+import Model.Filial;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,10 +27,13 @@ public class FilialExcluirServlet extends HttpServlet {
     protected void processaRequisicao(String HttpMethod, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String fCodigo = request.getParameter("codigo");
+        String fCodigo = request.getParameter("excluirID");
         boolean httpOk = FilialDAO.excluirFilial(Integer.parseInt(fCodigo));
 
         if (httpOk) {
+            ArrayList<Filial> filiais = FilialDAO.getFiliais();
+            request.setAttribute("lista", filiais);
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
             dispatcher.forward(request, response);
         }

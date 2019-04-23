@@ -86,14 +86,16 @@ Author     : nicolas.hgyoshioka
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
+                                <form action="excluir_filial" method="POST">
+                                    <button name ="excluirID" value="${filiais.codigo}" type="submit" class="btn btn-danger">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
-               
+
             </table>
         </div>      
     </body>
