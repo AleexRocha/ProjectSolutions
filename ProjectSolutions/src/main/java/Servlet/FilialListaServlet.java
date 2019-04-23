@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.pereira
  */
-@WebServlet(name = "FilialListaServlet", urlPatterns = {"/ti/listagem_filiais"})
+@WebServlet(name = "FilialListaServlet", urlPatterns = {"/venda/listagem_filiais"})
 public class FilialListaServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +25,7 @@ public class FilialListaServlet extends HttpServlet {
 
         request.setAttribute("lista", filiais);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultado_lista.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
         dispatcher.forward(request, response);
 
     }

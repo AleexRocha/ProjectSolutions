@@ -3,8 +3,6 @@ Document   : listagem_filiais
 Created on : 08/04/2019, 21:42:40
 Author     : nicolas.hgyoshioka
 --%>
-<%@page import="Model.Filial"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -70,24 +68,33 @@ Author     : nicolas.hgyoshioka
                     </tr>
                 </thead>    
 
-                <%@include file="../WEB-INF/jsp/resultado_lista.jsp" %>
+                <tbody id="teste">  
+                    <c:forEach var="filiais" items="${lista}">                
+                        <tr>
+                            <td><input type="radio"></td>
+                            <td name="codigo" ><c:out value="${filiais.codigo}" /></td>
+                            <td name="logradouro" ><c:out value="${filiais.logradouro}" /></td>
+                            <td name="numero" ><c:out value="${filiais.numero}" /></td>
+                            <td name="cep" ><c:out value="${filiais.cep}" /></td>
+                            <td name="bairro" ><c:out value="${filiais.bairro}" /></td>
+                            <td name="estado" ><c:out value="${filiais.estado}" /></td>
+                            <td name="cidade" ><c:out value="${filiais.cidade}" /></td>
+                            <td name="telefone" ><c:out value="${filiais.telefone}" /></td>        
+                            <td class="btn-group">
+                                <a href="cadastro_filiais.jsp?codigo=${filiais.codigo}">
+                                    <button type="button" class="btn btn-success">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                </a>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
                
             </table>
-        </div>
-        <script>
-            window.onload = carregaFiliais();
-            function carregaFiliais() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "listagem_filiais", false);
-                xhttp.send();
-                if (xhttp.status === 200) {
-                    var response = xhttp.responseText;
-                    document.write(response);
-
-                } else {
-                    alert('errow');
-                }
-            }
-        </script>
+        </div>      
     </body>
 </html>
