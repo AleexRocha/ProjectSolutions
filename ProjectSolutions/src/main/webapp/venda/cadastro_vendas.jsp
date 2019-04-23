@@ -14,6 +14,8 @@ Author     : nicolas.hgyoshioka
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     </head>
     <body>
         <header>
@@ -48,16 +50,18 @@ Author     : nicolas.hgyoshioka
                 <div class="col-md-6">
                     <form>
                         <div class="form-group">
-                            <label for="codigoProduto">Codigo do produto:</label>
-                            <input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">
+                                <span id="divProduto">
+                                    <label for="codigoProduto">Código do produto:</label>
+                                    <a href="javascript:void(0)" id="addInput" style="float: right; text-decoration: none;">
+                                        <span><i class="fas fa-plus"></i> Adicionar novo produto </span>
+                                    </a>
+                                    <input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">
+                                </span>
 
-                            <label for="nomeProduto">Nome do produto:</label>
-                            <input type="text" class="form-control inputForm" id="nomeProduto" placeholder="Nome do produto" name="nomeProduto">
-
-                            <label for="idFuncionario">ID do Funcionario:</label>
+                            <label for="idFuncionario">ID do Funcionário:</label>
                             <input type="number" class="form-control inputForm" id="idFuncionario" placeholder="ID do funcionario" name="idFuncionario">
 
-                            <label for="cpfCliente">CPF do Cliente:</label>
+                            <label for="cpfCliente">CPF do cliente:</label>
                             <input type="number" class="form-control inputForm" id="cpfCliente" placeholder="CPF do cliente" name="cpfCliente">
 
                             <label for="codigoFilial">Codigo da filial:</label>
@@ -78,6 +82,27 @@ Author     : nicolas.hgyoshioka
                 </div>
                 <div class="col-md-3"></div>
             </div>
-        </div> <!-- /container -->
+        </div>
+        <script>
+            $(function () {
+                var container = $('#divProduto');
+
+                $(document).on('click', '#addInput', function () {
+                    $('<p>' +
+                            '<label for="codigoProduto">Código do produto:</label>' +
+                            '<a href="javascript:void(0)" id="removerInput" style="float: right;">' +
+                            '<span><i class="far fa-trash-alt"></i> Remover produto </span>' +
+                            '</a>' +
+                            '<input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">' +
+                            '</p>').appendTo(container);
+                    return false;
+                });
+
+                $(document).on('click', '#removerInput', function () {
+                    $(this).parents('p').remove();
+                    return false;
+                });
+            });
+        </script>
     </body>
 </html>
