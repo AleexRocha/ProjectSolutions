@@ -56,7 +56,7 @@ public class FilialDAO {
 
             query.setInt(1, fCodigo);
 
-            ResultSet linhasAfetadas = query.executeQuery();
+            query.execute();
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
