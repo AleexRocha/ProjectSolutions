@@ -70,13 +70,13 @@ public class FilialDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE"
-                    + " TBL_FILIAL SET (LOGRADOURO = ?,"
+                    + " TBL_FILIAL SET LOGRADOURO = ?,"
                     + " NUMERO = ?,"
                     + " CEP = ?,"
                     + " BAIRRO = ?,"
                     + " CIDADE = ?,"
                     + " ESTADO = ?,"
-                    + " TELEFONE = ?) WHERE ID_FILIAL = ?;");
+                    + " TELEFONE = ? WHERE ID_FILIAL = ?;");
 
             query.setString(1, f.getLogradouro());
             query.setInt(2, f.getNumero());
@@ -142,14 +142,14 @@ public class FilialDAO {
             if (rs != null) {
                 while (rs.next()) {
                     filial = new Filial(
-                            rs.getInt(0),
-                            rs.getString(1),
-                            rs.getInt(2),
-                            rs.getString(3),
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getInt(3),
                             rs.getString(4),
                             rs.getString(5),
                             rs.getString(6),
-                            rs.getString(7)
+                            rs.getString(7),
+                            rs.getString(8)
                     );
                 }
             }

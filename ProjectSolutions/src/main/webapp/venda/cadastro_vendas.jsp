@@ -30,7 +30,7 @@ Author     : nicolas.hgyoshioka
                     </li>
                     <li class="nav-item">
                         <form action="../ti/listagem_filiais" method="GET">
-                            <button type="submit" class="nav-link nav-text" >Filiais</button>
+                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
                             <!--<a type="submit" class="nav-link nav-text" >Filiais</a>-->
                         </form>
                     </li>

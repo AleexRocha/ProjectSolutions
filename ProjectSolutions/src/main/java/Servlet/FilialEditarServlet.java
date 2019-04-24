@@ -3,6 +3,7 @@ package Servlet;
 import DAO.FilialDAO;
 import Model.Filial;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.pereira
  */
-@WebServlet(name = "FilialServlet", urlPatterns = {"/ti/editar_filial"})
+@WebServlet(name = "FilialEditarServlet", urlPatterns = {"/ti/editar_filial"})
 public class FilialEditarServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
@@ -64,14 +65,30 @@ public class FilialEditarServlet extends HttpServlet {
         }
 
         if (error) {
+            Filial filial = FilialDAO.getFilial(Integer.parseInt(fCodigo));
+
+            request.setAttribute("acao", "editar");
+            request.setAttribute("codigo", filial.getCodigo());
+            request.setAttribute("logradouro", filial.getLogradouro());
+            request.setAttribute("numero", filial.getNumero());
+            request.setAttribute("cep", filial.getCep());
+            request.setAttribute("bairro", filial.getBairro());
+            request.setAttribute("cidade", filial.getCidade());
+            request.setAttribute("estado", filial.getEstado());
+            request.setAttribute("telefone", filial.getTelefone());
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
             dispatcher.forward(request, response);
+        
         } else {
             Filial filial = new Filial(fLogradouro, Integer.parseInt(fNumero), fCep, fBairro, fCidade, fEstado, fTelefone);
             filial.setCodigo(Integer.parseInt(fCodigo));
             boolean httpOK = FilialDAO.atualizarFilial(filial);
 
             if (httpOK) {
+                ArrayList<Filial> filiais = FilialDAO.getFiliais();
+                request.setAttribute("lista", filiais);
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
                 dispatcher.forward(request, response);
             } else {

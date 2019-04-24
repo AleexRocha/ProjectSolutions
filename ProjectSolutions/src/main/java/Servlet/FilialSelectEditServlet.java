@@ -19,15 +19,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.psilva103
  */
-@WebServlet(name = "FilialServlet", urlPatterns = {"/ti/get_filial"})
-public class FilialSelectEdit extends HttpServlet {
+@WebServlet(name = "FilialGetFilialServlet", urlPatterns = {"/ti/dados_filial"})
+public class FilialSelectEditServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String fCodigo = request.getParameter("codigo");
-        Filial filial= FilialDAO.getFilial(Integer.parseInt(fCodigo));
+        String fCodigo = request.getParameter("editarID");
+        Filial filial = FilialDAO.getFilial(Integer.parseInt(fCodigo));
 
+        request.setAttribute("acao", "editar");
         request.setAttribute("codigo", filial.getCodigo());
         request.setAttribute("logradouro", filial.getLogradouro());
         request.setAttribute("numero", filial.getNumero());
@@ -37,7 +38,7 @@ public class FilialSelectEdit extends HttpServlet {
         request.setAttribute("estado", filial.getEstado());
         request.setAttribute("telefone", filial.getTelefone());
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editar_filial_selected.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
         dispatcher.forward(request, response);
     }
 

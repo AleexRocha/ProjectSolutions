@@ -50,8 +50,10 @@ Author     : nicolas.hgyoshioka
                 <i class="far fa-trash-alt"></i>
                 Excluir Selecionado(s)
             </a>
+
             <br>
             <br>
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -81,11 +83,13 @@ Author     : nicolas.hgyoshioka
                             <td name="cidade" ><c:out value="${filiais.cidade}" /></td>
                             <td name="telefone" ><c:out value="${filiais.telefone}" /></td>        
                             <td class="btn-group">
-                                <a href="cadastro_filiais.jsp?codigo=${filiais.codigo}">
-                                    <button type="button" class="btn btn-success">
+                                <form action="dados_filial" method="POST">
+
+                                    <button name="editarID" value="${filiais.codigo}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
-                                </a>
+
+                                </form>
                                 <form action="excluir_filial" method="POST">
                                     <button name ="excluirID" value="${filiais.codigo}" type="submit" class="btn btn-danger">
                                         <i class="far fa-trash-alt"></i>
@@ -97,6 +101,6 @@ Author     : nicolas.hgyoshioka
                 </tbody>
 
             </table>
-        </div>      
+        </div>   
     </body>
 </html>
