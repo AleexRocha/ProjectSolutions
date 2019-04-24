@@ -2,7 +2,6 @@ package Servlet;
 
 import DAO.RelatorioDAO;
 import Model.Relatorio;
-import Utils.Validacao;
 import java.io.IOException;
 import java.util.ArrayList;
 

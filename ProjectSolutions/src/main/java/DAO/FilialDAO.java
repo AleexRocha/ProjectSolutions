@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Model.Filial;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +13,7 @@ import java.util.ArrayList;
  */
 public class FilialDAO {
 
-    private static Database db = new Database();
+    private static final Database db = new Database();
 
     public static boolean salvarFilial(Filial f) {
         Connection conn = db.obterConexao();
@@ -41,7 +35,6 @@ public class FilialDAO {
             conn.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
             System.out.println(e);
             return false;
         }
@@ -52,14 +45,14 @@ public class FilialDAO {
     public static boolean excluirFilial(int fCodigo) {
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("DELETE FROM TBL_FILIAL WHERE ID_FILIAL = ?");
+            PreparedStatement query = conn.prepareStatement("DELETE FROM tbl_filial WHERE id_filial = ?");
 
             query.setInt(1, fCodigo);
 
             query.execute();
             conn.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
             return false;
         }
 
@@ -70,13 +63,13 @@ public class FilialDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE"
-                    + " TBL_FILIAL SET LOGRADOURO = ?,"
-                    + " NUMERO = ?,"
-                    + " CEP = ?,"
-                    + " BAIRRO = ?,"
-                    + " CIDADE = ?,"
-                    + " ESTADO = ?,"
-                    + " TELEFONE = ? WHERE ID_FILIAL = ?;");
+                    + " tbl_filial SET logradour = ?,"
+                    + " numero = ?,"
+                    + " cep = ?,"
+                    + " bairro = ?,"
+                    + " ciade = ?,"
+                    + " estado = ?,"
+                    + " telefone = ? WHERE id_filial = ?;");
 
             query.setString(1, f.getLogradouro());
             query.setInt(2, f.getNumero());
@@ -90,7 +83,7 @@ public class FilialDAO {
             int linhasAfetadas = query.executeUpdate();
             conn.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
             return false;
         }
 
@@ -102,7 +95,7 @@ public class FilialDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM"
-                    + " TBL_FILIAL;");
+                    + " tbl_filial;");
 
             ResultSet rs = query.executeQuery();
 
@@ -123,7 +116,7 @@ public class FilialDAO {
             }
             conn.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         return filiais;
@@ -134,7 +127,7 @@ public class FilialDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM"
-                    + " TBL_FILIAL WHERE id_filial = ?;");
+                    + " tbl_filial WHERE id_filial = ?;");
 
             query.setInt(1, codigo);
             ResultSet rs = query.executeQuery();
@@ -155,7 +148,7 @@ public class FilialDAO {
             }
             conn.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         return filial;

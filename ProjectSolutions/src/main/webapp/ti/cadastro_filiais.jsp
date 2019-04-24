@@ -197,6 +197,5 @@ Author     : nicolas.hgyoshioka
                 </div>
             </div>
         </c:if>
-
     </body>
 </html>

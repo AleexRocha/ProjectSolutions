@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-import Model.Filial;
 import Model.Relatorio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +13,7 @@ import java.util.ArrayList;
  */
 public class RelatorioDAO {
 
-    private static Database db = new Database();
+    private static final Database db = new Database();
 
     public static ArrayList<Relatorio> getRelatorios() {
         ArrayList<Relatorio> getRelatorio = new ArrayList<>();
@@ -32,10 +26,6 @@ public class RelatorioDAO {
                     + " WHERE TBL_VENDA.DATA_VENDA >= ? AND TBL_VENDA.DATA_VENDA <= ? "
                     + " ORDER BY TBL_VENDA.DATA_VENDA AND TBL_VENDA.ID_FILIAL;");
 
-            /*
-            query.setString(1, ??);
-            query.setString(2, ???);*/
-            //Ver de onde sera tirado o conteudo da clausula where
             ResultSet rs = query.executeQuery();
 
             getRelatorio.add(new Relatorio(
@@ -50,7 +40,7 @@ public class RelatorioDAO {
                     rs.getString(8)
             ));
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         return getRelatorio;

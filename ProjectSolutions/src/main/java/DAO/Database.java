@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import java.sql.Connection;
@@ -52,7 +47,7 @@ public class Database {
 
     public Connection getConexao() {
         return conexao;
-    }    
+    }
 
     public Connection obterConexao() {
         Database db = new Database();
@@ -64,7 +59,7 @@ public class Database {
                     db.getSenha()
             );
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         return conexao;

@@ -83,6 +83,6 @@ Author     : nicolas.hgyoshioka
                     </tr>
                 </tbody>
             </table>
-        </table>
-</body>
+        </div>
+    </body>
 </html>

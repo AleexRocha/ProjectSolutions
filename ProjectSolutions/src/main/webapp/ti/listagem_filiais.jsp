@@ -10,7 +10,6 @@ Author     : nicolas.hgyoshioka
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <title>Filiais</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
@@ -50,10 +49,8 @@ Author     : nicolas.hgyoshioka
                 <i class="far fa-trash-alt"></i>
                 Excluir Selecionado(s)
             </a>
-
             <br>
             <br>
-
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -69,7 +66,6 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Acoes</th>
                     </tr>
                 </thead>    
-
                 <tbody id="teste">  
                     <c:forEach var="filiais" items="${lista}">                
                         <tr>
@@ -99,7 +95,6 @@ Author     : nicolas.hgyoshioka
                         </tr>
                     </c:forEach>
                 </tbody>
-
             </table>
         </div>   
     </body>

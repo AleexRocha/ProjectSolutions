@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-import Model.Filial;
 import Model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,13 +13,14 @@ import java.util.ArrayList;
  */
 public class ProdutoDAO {
 
-    private static Database db = new Database();
+    private static final Database db = new Database();
 
     public static boolean salvarProduto(Produto p) {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " TBL_PRODUTOS VALUES (?, ?, ?, ?, ?, ?);");
+                    + " tbl_produtos(nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade)"
+                    + "VALUES (?, ?, ?, ?, ?, ?);");
             query.setString(1, p.getNome());
             query.setString(2, p.getDescricao());
             query.setString(3, p.getTipo());
@@ -36,7 +31,7 @@ public class ProdutoDAO {
             int rs = query.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
             return false;
         }
 
@@ -46,14 +41,14 @@ public class ProdutoDAO {
     public static boolean excluirProduto(int pCodigo) {
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("DELETE FROM TBL_PRODUTO WHERE ID_PRODUTO = ?");
+            PreparedStatement query = conn.prepareStatement("DELETE FROM tbl_produtos WHERE id_produto = ?");
 
             query.setInt(1, pCodigo);
 
             ResultSet linhasAfetadas = query.executeQuery();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
             return false;
         }
 
@@ -64,8 +59,10 @@ public class ProdutoDAO {
         ArrayList<Produto> produtos = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT ID_PRODUTO, NOME, DESCRICAO, TIPO, FK_FILIAL, QTD_ESTOQUE, VALOR_UNIDADE "
-                    + " FROM TBL_PRODUTOS INNER JOIN TBL_FILIAL ON TBL_PRODUTOS.FK_FILIAL = TBL_FILIAL.ID_FILIAL;");
+            PreparedStatement query = conn.prepareStatement("SELECT * "
+                    + "FROM tbl_produtos "
+                    + "INNER JOIN tbl_filial "
+                    + "ON tbl_produtos.fk_filial = tbl_filial.id_filial;");
 
             ResultSet rs = query.executeQuery();
 
@@ -83,8 +80,8 @@ public class ProdutoDAO {
                 }
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
 
         return produtos;

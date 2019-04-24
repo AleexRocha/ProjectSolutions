@@ -18,6 +18,17 @@ table{
     color: rgb(219, 92, 1);
 }
 
+.ctrl-produto{
+    font-weight: bolder;
+    color: #ffc107;
+    float: right;
+}
+.ctrl-produto:hover{
+    color: #ffc107;
+    border-bottom: 1px solid #ffc107;
+    text-decoration: none;
+}
+
 .btn-light{
     background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
     border-color: #dae0e5;
