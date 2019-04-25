@@ -50,55 +50,33 @@ Author     : nicolas.hgyoshioka
                         <div class="form-group">
                             <span id="divProduto">
                                 <label for="codigoProduto">Código do produto:</label>
-                                <!--
-                                <a href="javascript:void(0)" id="addInput" class="ctrl-produto">
-                                    <span><i class="fas fa-plus"></i> Adicionar novo produto </span>
-                                </a>
-                                -->
-                                <c:choose>
-                                    <c:when test="${empty codProdutoErro}">
-                                        <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">  
-                                            <c:forEach var="elemento" items="${lista}">  
-                                                <option value="${lista.id_produto}">${lista.id_produto}</option>  
-                                            </c:forEach>  
-                                        </select>
-                                        <input type="number" class="form-control inputForm" id="codigoProduto"
-                                               placeholder="Código do produto" name="codigoProduto">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <input type="number" class="form-control inputForm error" id="codigoProduto"
-                                               placeholder="${codProdutoErro}" name="codigoProduto">
-                                    </c:otherwise>
-                                </c:choose>
+                                <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
+                                    <option disabled="" selected="" hidden="">Código do produto</option>
+                                    <c:forEach var="lista" items="${lista}">  
+                                        <option value=" <c:out value="${lista.codigoProduto}"></c:out> "> <c:out value="${lista.codigoProduto}"></c:out> </option>  
+                                    </c:forEach>  
+                                </select>
                             </span>
 
                             <label for="idFuncionario">ID do Funcionário:</label>
-                            <c:choose>
-                                <c:when test="${empty idFuncErro}">
-                                    <input type="number" class="form-control inputForm" id="idFuncionario"
-                                           placeholder="ID do funcionario" name="idFuncionario">
-                                </c:when>
-                                <c:otherwise>
-                                    <input type="number" class="form-control inputForm error" id="idFuncionario"
-                                           placeholder="${idFuncErro}" name="idFuncionario">
-                                </c:otherwise>
-                            </c:choose>
+                            <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
+                                <option disabled="" selected="" hidden="">ID do funcionário</option>
+                                <c:forEach var="lista" items="${lista}">  
+                                    <option value=" <c:out value="${lista.idFuncionario}"></c:out> "> <c:out value="${lista.idFuncionario}"></c:out> </option>  
+                                </c:forEach>  
+                            </select>
 
                             <label for="cpfCliente">CPF do cliente:</label>
                             <input type="number" class="form-control inputForm" id="cpfCliente"
                                    placeholder="CPF do cliente" name="cpfCliente">
 
-                            <label for="codigoFilial">Codigo da filial:</label>
-                            <c:choose>
-                                <c:when test="${empty codFilialErro}">
-                                    <input type="number" class="form-control inputForm" id="codigoFilial"
-                                           placeholder="Código da filial" name="codigoFilial">
-                                </c:when>
-                                <c:otherwise>
-                                    <input type="number" class="form-control inputForm error" id="codigoFilial"
-                                           placeholder="${codFilialErro}" name="codigoFilial">
-                                </c:otherwise>
-                            </c:choose>
+                            <label for="codigoFilial">Código da filial:</label>
+                            <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
+                                <option disabled="" selected="" hidden="">Código da filial</option>
+                                <c:forEach var="lista" items="${lista}">  
+                                    <option value=" <c:out value="${lista.codigoFilial}"></c:out> "> <c:out value="${lista.codigoFilial}"></c:out> </option>  
+                                </c:forEach>  
+                            </select>
 
                             <label for="quantidade">Quantidade vendida:</label>
                             <c:choose>

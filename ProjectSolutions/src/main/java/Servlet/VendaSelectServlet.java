@@ -15,17 +15,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "VendaSelectServlet", urlPatterns = {"/venda/cadastro_vendas"})
+@WebServlet(name = "VendaSelectServlet", urlPatterns = {"/venda/inicio_venda"})
 public class VendaSelectServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         ArrayList<Venda> venda = VendaDAO.getItemVenda();
-
         request.setAttribute("lista", venda);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
         dispatcher.forward(request, response);
 
     }
