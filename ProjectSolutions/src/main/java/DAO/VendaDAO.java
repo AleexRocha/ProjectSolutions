@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -52,6 +53,34 @@ public class VendaDAO {
         }
 
         return true;
+    }
+
+    public static ArrayList<Venda> getItemVenda() {
+        ArrayList<Venda> venda = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT id_produto, "
+                    + "(SELECT id_usuario FROM tbl_usuario) AS id_usuario, "
+                    + "(SELECT id_filial FROM tbl_filial) AS id_filial "
+                    + "FROM tbl_produtos;");
+
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    venda.add(new Venda(
+                            rs.getInt(1),
+                            rs.getInt(2),
+                            rs.getInt(3)
+                    ));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return venda;
     }
 
 }

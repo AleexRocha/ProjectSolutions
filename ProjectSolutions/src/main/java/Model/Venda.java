@@ -12,6 +12,12 @@ public class Venda {
     private int quantidadeVenda;
     private String cpfCliente;
 
+    public Venda(int codigoProduto, int idFuncionario, int codigoFilial) {
+        this.codigoProduto = codigoProduto;
+        this.idFuncionario = idFuncionario;
+        this.codigoFilial = codigoFilial;
+    }
+    
     public Venda(int codigoProduto, int idFuncionario, int codigoFilial, int quantidadeVenda) {
         this.codigoProduto = codigoProduto;
         this.idFuncionario = idFuncionario;

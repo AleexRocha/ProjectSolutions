@@ -57,6 +57,11 @@ Author     : nicolas.hgyoshioka
                                 -->
                                 <c:choose>
                                     <c:when test="${empty codProdutoErro}">
+                                        <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">  
+                                            <c:forEach var="elemento" items="${lista}">  
+                                                <option value="${lista.id_produto}">${lista.id_produto}</option>  
+                                            </c:forEach>  
+                                        </select>
                                         <input type="number" class="form-control inputForm" id="codigoProduto"
                                                placeholder="Código do produto" name="codigoProduto">
                                     </c:when>
