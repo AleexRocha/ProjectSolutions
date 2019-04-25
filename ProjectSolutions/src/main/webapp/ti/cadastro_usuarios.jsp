@@ -62,19 +62,18 @@ Author     : nicolas.hgyoshioka
 
                             <label for="setor" >Setor:</label>
                             <select class="custom-select inputForm" id="setor" name="setor">
-                                <option value="venda">Venda</option>
-                                <option value="backoffice">Back Office</option>
-                                <option value="ti">TI</option>
-                                <option value="global">Gerente Global</option>
-                                <option value="regional">Gerente Regional</option>
-                                <option value="diretora">Diretoria</option>
+                                <option value="1">TI</option>
+                                <option value="2">Back Office</option>
+                                <option value="3">Gerente</option>
+                                <option value="4">Diretor</option>
+                               
                             </select>
 
                             <label for="tipo" >Filial:</label>
                             <select class="custom-select inputForm" id="tipo" name="filial">
                                 <option value="1">Filial 1</option>
-                                <option value="1">Filial 2</option>
-                                <option value="1">Filial 3</option>
+                                <option value="2">Filial 2</option>
+                                <option value="3">Filial 3</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-light btn-block">

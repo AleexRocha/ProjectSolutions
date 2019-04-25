@@ -5,6 +5,8 @@ Author     : nicolas.hgyoshioka
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -63,24 +65,33 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Acoes</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="teste">  
+                <c:forEach var="usuarios" items="${listaUsuarios}">                
                     <tr>
                         <td><input type="radio"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="btn-group">
-                            <button type="button" class="btn btn-success">
+                        <td name="codigo" ><c:out value="${usuarios.codigo}" /></td>
+                    <td name="nome" ><c:out value="${usuarios.nome}" /></td>
+                    <td name="email" ><c:out value="${usuarios.email}" /></td>
+                    <td name="senha" ><c:out value="${usuarios.senha}" /></td>
+                    <td name="setor" ><c:out value="${usuarios.setor}" /></td>
+                    <td name="filial" ><c:out value="${usuarios.filial}" /></td>
+
+                    <td class="btn-group">
+                        <form action="dados_usuario" method="POST">
+
+                            <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
                                 <i class="fas fa-pen"></i>
                             </button>
-                            <button type="button" class="btn btn-danger">
+
+                        </form>
+                        <form action="excluir_filial" method="POST">
+                            <button name ="excluirID" value="${usuarios.codigo}" type="submit" class="btn btn-danger">
                                 <i class="far fa-trash-alt"></i>
                             </button>
-                        </td>
+                        </form>
+                    </td>
                     </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
