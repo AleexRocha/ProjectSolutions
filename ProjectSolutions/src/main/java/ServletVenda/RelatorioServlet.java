@@ -1,10 +1,10 @@
-package Servlet;
+package ServletVenda;
 
-import DAO.VendaDAO;
-import Model.Venda;
+import DAO.RelatorioDAO;
+import Model.Relatorio;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,30 +13,31 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Alexsander Rocha
+ * @author alexsander.mrocha
  */
-@WebServlet(name = "VendaSelectServlet", urlPatterns = {"/venda/cadastro_vendas"})
-public class VendaSelectServlet extends HttpServlet {
+@WebServlet(name = "RelatorioServlet", urlPatterns = {"/venda/relatorio"})
+public class RelatorioServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Venda> venda = VendaDAO.getItemVenda();
-        request.setAttribute("lista", venda);
+        String rFilial = request.getParameter("filial");
+        String rDataDe = request.getParameter("dataDe");
+        String rDataAte = request.getParameter("dataAte");
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-        dispatcher.forward(request, response);
+        ArrayList<Relatorio> relatorioGerado = new ArrayList<>();
+        relatorioGerado = RelatorioDAO.getRelatorios();
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp); //To change body of generated methods, choose Tools | Templates.
+        processaRequisicao("GET", req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp); //To change body of generated methods, choose Tools | Templates.
+        processaRequisicao("POST", req, resp);
     }
 
 }

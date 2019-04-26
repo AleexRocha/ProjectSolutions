@@ -1,6 +1,7 @@
+package ServletFilial;
 
-import DAO.UsuarioDAO;
-import Model.Usuario;
+import DAO.FilialDAO;
+import Model.Filial;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,23 +14,26 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.psilva103
  */
-@WebServlet(name = "UsuarioSelectEditServlet", urlPatterns = {"/ti/dados_usuario"})
-public class UsuarioSelectEditServlet extends HttpServlet {
+@WebServlet(name = "FilialGetFilialServlet", urlPatterns = {"/ti/dados_filial"})
+public class FilialSelectEditServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cCodigo = request.getParameter("editarID");
-        Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
+        String fCodigo = request.getParameter("editarID");
+        Filial filial = FilialDAO.getFilial(Integer.parseInt(fCodigo));
 
         request.setAttribute("acao", "editar");
-        request.setAttribute("codigo", usuario.getCodigo());
-        request.setAttribute("nome", usuario.getNome());
-        request.setAttribute("email", usuario.getEmail());
-        request.setAttribute("setor", usuario.getSetor());
-        request.setAttribute("filial", usuario.getCodigoFilial());
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
+        request.setAttribute("codigo", filial.getCodigo());
+        request.setAttribute("logradouro", filial.getLogradouro());
+        request.setAttribute("numero", filial.getNumero());
+        request.setAttribute("cep", filial.getCep());
+        request.setAttribute("bairro", filial.getBairro());
+        request.setAttribute("cidade", filial.getCidade());
+        request.setAttribute("estado", filial.getEstado());
+        request.setAttribute("telefone", filial.getTelefone());
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
         dispatcher.forward(request, response);
     }
 

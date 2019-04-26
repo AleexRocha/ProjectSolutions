@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Servlet;
+package ServletUsuario;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
@@ -16,18 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "UsuarioCadastroServlet", urlPatterns = {"/ti/cadastro_usuario"})
-public class UsuarioCadastroServlet extends HttpServlet {
+/**
+ *
+ * @author guilherme.pereira
+ */
+@WebServlet(name = "UsuarioEditarServlet", urlPatterns = {"/ti/editar_usuario"})
+public class UsuarioEditarServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String cCodigo = request.getParameter("codigoFilial");
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
         String cSetor = request.getParameter("setor");
         String cFilial = request.getParameter("filial");
-      
 
         boolean error = false;
         if (cNome.length() == 0) {
@@ -50,18 +49,28 @@ public class UsuarioCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("filialErro", "Filial não informada");
         }
-       
 
         if (error) {
+            ArrayList<Usuario> usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
+
+            request.setAttribute("acao", "editar");
+            request.setAttribute("codigo", usuario.getCodigo());
+            request.setAttribute("nome", usuario.getNome());
+            request.setAttribute("email", usuario.getEmail());
+            request.setAttribute("setor", usuario.getSetor());
+            request.setAttribute("filial", usuario.getCodigoFilial());
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
+
         } else {
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha,Integer.parseInt(cSetor),Integer.parseInt(cFilial));
-            boolean httpOK = UsuarioDAO.salvarUsuario(usuario);
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor), Integer.parseInt(cFilial));
+            usuario.setCodigo(Integer.parseInt(cCodigo));
+            boolean httpOK = UsuarioDAO.alterarUsuario(usuario);
 
             if (httpOK) {
                 ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
-                request.setAttribute("listaUsuarios", usuarios);
+                request.setAttribute("lista", usuarios);
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                 dispatcher.forward(request, response);
@@ -70,6 +79,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         }
+
     }
 
     @Override

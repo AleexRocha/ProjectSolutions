@@ -1,4 +1,4 @@
-package Servlet;
+package ServletProduto;
 
 import DAO.FilialDAO;
 import DAO.ProdutoDAO;

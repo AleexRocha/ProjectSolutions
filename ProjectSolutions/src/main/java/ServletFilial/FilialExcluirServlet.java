@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Servlet;
+package ServletFilial;
 
-import DAO.UsuarioDAO;
-import Model.Usuario;
+import DAO.FilialDAO;
+import Model.Filial;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -20,20 +15,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.psilva103
  */
-@WebServlet(name = "UsuarioExcluirServlet", urlPatterns = {"/ti/excluir_usuario"})
-public class UsuarioExcluirServlet extends HttpServlet {
+@WebServlet(name = "FilialExcluirServlet", urlPatterns = {"/ti/excluir_filial"})
+public class FilialExcluirServlet extends HttpServlet {
 
     protected void processaRequisicao(String HttpMethod, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cCodigo = request.getParameter("excluirID");
-        boolean httpOk = UsuarioDAO.excluirUsuario(Integer.parseInt(cCodigo));
+        String fCodigo = request.getParameter("excluirID");
+        boolean httpOk = FilialDAO.excluirFilial(Integer.parseInt(fCodigo));
 
         if (httpOk) {
-            ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
-            request.setAttribute("listaUsuarios", usuarios);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+            ArrayList<Filial> filiais = FilialDAO.getFiliais();
+            request.setAttribute("lista", filiais);
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
             dispatcher.forward(request, response);
         }
 

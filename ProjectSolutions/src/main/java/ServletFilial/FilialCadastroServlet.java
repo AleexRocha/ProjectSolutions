@@ -1,4 +1,4 @@
-package Servlet;
+package ServletFilial;
 
 import DAO.FilialDAO;
 import Model.Filial;

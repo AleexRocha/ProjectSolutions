@@ -1,5 +1,5 @@
 
-package Servlet;
+package ServletProduto;
 
 /**
  *

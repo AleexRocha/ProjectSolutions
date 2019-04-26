@@ -1,10 +1,10 @@
-package Servlet;
+package ServletFilial;
 
-import DAO.RelatorioDAO;
-import Model.Relatorio;
+import DAO.FilialDAO;
+import Model.Filial;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,31 +13,31 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author alexsander.mrocha
+ * @author guilherme.pereira
  */
-@WebServlet(name = "RelatorioServlet", urlPatterns = {"/venda/relatorio"})
-public class RelatorioServlet extends HttpServlet {
+@WebServlet(name = "FilialListaServlet", urlPatterns = {"/ti/listagem_filiais"})
+public class FilialListaServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String rFilial = request.getParameter("filial");
-        String rDataDe = request.getParameter("dataDe");
-        String rDataAte = request.getParameter("dataAte");
+        ArrayList<Filial> filiais = FilialDAO.getFiliais();
 
-        ArrayList<Relatorio> relatorioGerado = new ArrayList<>();
-        relatorioGerado = RelatorioDAO.getRelatorios();
+        request.setAttribute("lista", filiais);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+        dispatcher.forward(request, response);
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp);
+        processaRequisicao("GET", req, resp); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp);
+        processaRequisicao("POST", req, resp); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
