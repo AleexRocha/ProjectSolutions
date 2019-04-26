@@ -22,6 +22,7 @@ public class Produto {
         this.nome = nome;
         this.descricao = descricao;
         this.quantidadeEstoque = quantidadeEstoque;
+        this.codigoFilial = codigoFilialint;
         this.valorUnitario = valorUnitario;
         this.tipo = tipo;
 
@@ -30,6 +31,7 @@ public class Produto {
     public Produto(String nome, String descricao, String tipo, int codigoFilialint, int quantidadeEstoque, double valorUnitario) {
         this.nome = nome;
         this.descricao = descricao;
+        this.codigoFilial = codigoFilialint;
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
         this.tipo = tipo;

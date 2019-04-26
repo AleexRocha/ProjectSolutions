@@ -56,25 +56,23 @@ public class ProdutoDAO {
     }
 
     public static ArrayList<Produto> getProdutos() {
-        ArrayList<Produto> produtos = new ArrayList<>();
+            ArrayList<Produto> produtos = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * "
-                    + "FROM tbl_produtos "
-                    + "INNER JOIN tbl_filial "
-                    + "ON tbl_produtos.fk_filial = tbl_filial.id_filial;");
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_produtos");
 
             ResultSet rs = query.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
                     produtos.add(new Produto(
-                            rs.getString(1),
+                            rs.getInt(1),
                             rs.getString(2),
                             rs.getString(3),
-                            rs.getInt(4),
+                            rs.getString(4),
                             rs.getInt(5),
-                            rs.getDouble(6)
+                            rs.getInt(6),
+                            rs.getDouble(7)
                     ));
 
                 }

@@ -4,6 +4,7 @@ Created on : 08/04/2019, 21:44:27
 Author     : nicolas.hgyoshioka
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,6 +44,7 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
+                    
                     <form action="cadastro_produto" method="POST">
                         <div class="form-group">
                             <label for="codigoProduto" class="sr-only">Código:</label>
@@ -54,9 +56,6 @@ Author     : nicolas.hgyoshioka
                             <label for="descricaoProduto">Descrição:</label>
                             <input type="text" class="form-control inputForm" id="descricao" placeholder="Descrição do produto" name="descricao">
 
-                            <label for="tipo">Tipo:</label>
-                            <input type="text" class="form-control inputForm" id="tipo" placeholder="Tipo do produto" name="tipo">
-                            
                             <label for="quantidadeEstoque">Quantidade em estoque:</label>
                             <input type="number" class="form-control inputForm" id="quantidadeEstoque" placeholder="Quantidade em estoque" name="quantidadeEstoque">
 
@@ -64,17 +63,19 @@ Author     : nicolas.hgyoshioka
                             <input type="number" class="form-control inputForm" id="valorUnitario" placeholder="Valor Unitário" name="valorUnitario">
 
                             <label for="tipo" >Tipo:</label>
-                            <select class="custom-select inputForm" id="tipo">
-                                <option value="produto">Produto</option>
-                                <option value="servico">Serviço</option>
+                            <select class="custom-select inputForm" id="tipo" name="tipo">
+                                <option value="Produto">Produto</option>
+                                <option value="Serviço">Serviço</option>
                             </select>
 
                             <label for="filial" >Filial:</label>
-                            <select class="custom-select inputForm" id="filial">
-                                <option value="1">Filial 1</option>
-                                <option value="1">Filial 2</option>
-                                <option value="1">Filial 3</option>
+                            <select class="custom-select inputForm" id="filial" name="filial">
+                                <option disabled="" selected="" hidden=""> Filial </option>
+                                <c:forEach var="filiais" items="${listaFiliais}">
+                                    <option value="<c:out value="${filiais.codigo}"/>"><c:out value="${filiais.codigo}"/></option>
+                                </c:forEach>
                             </select>
+
                         </div>
                         <button type="submit" class="btn btn-light btn-block">
                             <i class="far fa-save"></i>

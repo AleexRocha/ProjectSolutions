@@ -41,10 +41,14 @@
             <h2 class="h2 text-center subtitulo">Produtos</h2>
         </header>
         <div class="container">
-            <a href="cadastro_produtos.jsp" class="btn btn-light">
-                <i class="fas fa-box"></i>
-                Cadastrar Produto
-            </a>
+            
+            <form action="select_cadastro" method="GET">
+                <Button type="submit" class="btn btn-light">
+                    <i class="fas fa-box"></i>
+                    Cadastrar Produto
+                </Button>
+            </form>
+            
             <a class="btn btn-danger" href="">
                 <i class="far fa-trash-alt"></i>
                 Excluir Selecionado(s)
@@ -71,9 +75,9 @@
                             <td><input type="radio"></td>
                             <td name="codigo"><c:out value ="${produtos.codigo}"/></td>
                             <td name="nome"><c:out value ="${produtos.nome}"/></td>
-                            <td name="descricao"><c:out value ="${produtos.descrico}"/></td>
+                            <td name="descricao"><c:out value ="${produtos.descricao}"/></td>
                             <td name="tipo"><c:out value ="${produtos.tipo}"/></td>
-                            <td name="codigoFilialint"><c:out value ="${produtos.codigoFilialint}"/></td>
+                            <td name="codigoFilialint"><c:out value ="${produtos.codigoFilial}"/></td>
                             <td name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
                             <td name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
 

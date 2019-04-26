@@ -1,4 +1,3 @@
-
 package ServletProduto;
 
 import DAO.ProdutoDAO;
@@ -57,20 +56,20 @@ public class ProdutoCadastroServlet  extends HttpServlet {
         
 
         if (error) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produto.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
         } else {
-            Produto produtos = new Produto(fNome, fDescricao, fTipo, Integer.parseInt(fCodigoFilial) , Integer.parseInt(fQuantidadeEstoque) , Double.parseDouble(fValorUnitario));
+            Produto produtos = new Produto(fNome, fDescricao, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque) ,Double.parseDouble(fValorUnitario));
             boolean httpOK = ProdutoDAO.salvarProduto(produtos);
 
             if (httpOK) {
                 ArrayList<Produto> produto = ProdutoDAO.getProdutos();
                 request.setAttribute("lista", produto);
                 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produto.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
             } else {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produto.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                 dispatcher.forward(request, response);
             }
         }
