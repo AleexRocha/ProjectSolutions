@@ -86,5 +86,34 @@ public class ProdutoDAO {
 
         return produtos;
     }
+public static Produto getProduto(int codigo) {
+        Produto produto = null;
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM"
+                    + " tbl_produtos WHERE id_filial = ?;");
 
+            query.setInt(1, codigo);
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    produto = new Produto(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getInt(5),
+                            rs.getInt(6),
+                            rs.getDouble(7)
+                    );
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return produto;
+    }
 }

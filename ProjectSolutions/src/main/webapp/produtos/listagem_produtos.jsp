@@ -41,7 +41,7 @@
             <h2 class="h2 text-center subtitulo">Produtos</h2>
         </header>
         <div class="container">
-            <a class="btn btn-light">
+            <a href="cadastro_produtos.jsp" class="btn btn-light">
                 <i class="fas fa-box"></i>
                 Cadastrar Produto
             </a>
@@ -78,12 +78,11 @@
                             <td name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
 
                             <td class="btn-group">
-                                <button type="button" class="btn btn-success">
-                                    <i class="fas fa-pen"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
+                                <form action="dados_produto" method="POST">
+                                    <button name="editarID" value="${filiais.codigo}" type="submit" class="btn btn-success">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>

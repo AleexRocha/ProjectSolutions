@@ -71,9 +71,9 @@ Author     : nicolas.hgyoshioka
 
                             <label for="filial" >Filial:</label>
                             <select class="custom-select inputForm" id="filial">
-                                <option value="filial 1">Filial 1</option>
-                                <option value="filial 2">Filial 2</option>
-                                <option value="filial 3">Filial 3</option>
+                                <option value="1">Filial 1</option>
+                                <option value="1">Filial 2</option>
+                                <option value="1">Filial 3</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-light btn-block">

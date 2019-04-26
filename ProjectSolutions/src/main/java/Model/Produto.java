@@ -10,11 +10,21 @@ public class Produto {
     private String nome;
     private String descricao;
     private String tipo;
-    private int codigoFilial; 
+    private int codigoFilial;
     private int quantidadeEstoque;
     private double valorUnitario;
-    
+
     public Produto() {
+    }
+
+    public Produto(int codigo, String nome, String descricao, String tipo, int codigoFilialint, int quantidadeEstoque, double valorUnitario) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.quantidadeEstoque = quantidadeEstoque;
+        this.valorUnitario = valorUnitario;
+        this.tipo = tipo;
+
     }
 
     public Produto(String nome, String descricao, String tipo, int codigoFilialint, int quantidadeEstoque, double valorUnitario) {
@@ -23,7 +33,7 @@ public class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
         this.tipo = tipo;
-        this.codigoFilial = codigoFilial;
+
     }
 
     public int getCodigo() {
@@ -82,5 +92,4 @@ public class Produto {
         this.codigoFilial = codigoFilial;
     }
 
-    
 }
