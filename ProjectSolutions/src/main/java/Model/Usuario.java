@@ -13,16 +13,10 @@ public class Usuario {
     private int codigoFilial;
     private int setor;
 
-    public Usuario() {
-    }
-
-    public Usuario(String nome, String email, String senha, int codigoFilial, int setor) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.setor = setor;
-        this.codigoFilial = codigoFilial;
-    }
+//    public Usuario(int codigoFilial, int setor) {
+//        this.codigoFilial = codigoFilial;
+//        this.setor = setor
+//    }
 
     public Usuario(int codigo, String nome, String email, String senha, int codigoFilial, int setor) {
         this.codigo = codigo;
@@ -32,7 +26,14 @@ public class Usuario {
         this.setor = setor;
         this.codigoFilial = codigoFilial;
     }
-
+    
+    public Usuario(String nome, String email, String senha, int codigoFilial, int setor) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.setor = setor;
+        this.codigoFilial = codigoFilial;
+    }
 
     public int getCodigo() {
         return codigo;

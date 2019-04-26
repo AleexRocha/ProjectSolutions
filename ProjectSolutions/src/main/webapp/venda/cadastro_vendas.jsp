@@ -33,7 +33,9 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../ti/listagem_usuarios.jsp">Usuarios</a>
+                        <form action="../ti/listagem_usuarios" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-text" href="relatorio.jsp">Relatorio</a>

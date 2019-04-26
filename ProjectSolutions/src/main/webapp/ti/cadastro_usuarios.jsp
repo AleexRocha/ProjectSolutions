@@ -4,6 +4,7 @@ Created on : 08/04/2019, 21:45:57
 Author     : nicolas.hgyoshioka
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -61,14 +62,12 @@ Author     : nicolas.hgyoshioka
                             <input type="text" class="form-control inputForm" id="confirmarSenha" placeholder="Confirmar senha" name="confirmarSenha">
 
                             <label for="setor" >Setor:</label>
-                            <select class="custom-select inputForm" id="setor" name="setor">
-                                <option value="1">TI</option>
-                                <option value="2">Back Office</option>
-                                <option value="3">Gerente</option>
-                                <option value="4">Diretor</option>
-                               
-                            </select>
-
+                             <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
+                                <option disabled="" selected="" hidden="">Código do Setor</option>
+                                <c:forEach var="lista" items="${lista}">  
+                                    <option value="<c:out value="${lista.codigoSetor}"></c:out>"> <c:out value="${lista.codigoSetor}"/> </option>  
+                                </c:forEach>  
+                            </select>                  
                             <label for="tipo" >Filial:</label>
                             <select class="custom-select inputForm" id="tipo" name="filial">
                                 <option value="1">Filial 1</option>

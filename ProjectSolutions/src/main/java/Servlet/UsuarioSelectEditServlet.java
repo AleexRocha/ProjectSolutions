@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Servlet;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,31 +11,36 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author guilherme.pereira
+ * @author guilherme.psilva103
  */
-@WebServlet(name = "UsuarioListaServlet", urlPatterns = {"/ti/create_usuarios"})
-public class UsuarioListaServlet extends HttpServlet {
+@WebServlet(name = "UsuarioSelectEditServlet", urlPatterns = {"/ti/dados_usuario"})
+public class UsuarioSelectEditServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+        String cCodigo = request.getParameter("editarID");
+        Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
 
-        request.setAttribute("listaUsuarios", usuarios);
+        request.setAttribute("acao", "editar");
+        request.setAttribute("codigo", usuario.getCodigo());
+        request.setAttribute("nome", usuario.getNome());
+        request.setAttribute("email", usuario.getEmail());
+        request.setAttribute("setor", usuario.getSetor());
+        request.setAttribute("filial", usuario.getCodigoFilial());
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);
-
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp); //To change body of generated methods, choose Tools | Templates.
+        processaRequisicao("GET", req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp); //To change body of generated methods, choose Tools | Templates.
+        processaRequisicao("POST", req, resp);
     }
 
 }

@@ -18,19 +18,18 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author guilherme.pereira
+ * @author Alexsander Rocha
  */
-@WebServlet(name = "UsuarioListaServlet", urlPatterns = {"/ti/create_usuarios"})
-public class UsuarioListaServlet extends HttpServlet {
+@WebServlet(name = "UsuarioSelectServlet", urlPatterns = {"/ti/cadastro_usuarios"})
+public class UsuarioSelectServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+        ArrayList<Usuario> usuario = UsuarioDAO.getItemUsuarios();
+        request.setAttribute("lista", usuario);
 
-        request.setAttribute("listaUsuarios", usuarios);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);
 
     }

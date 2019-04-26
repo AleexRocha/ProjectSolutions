@@ -42,10 +42,13 @@ Author     : nicolas.hgyoshioka
             <h2 class="h2 text-center subtitulo">Usuários</h2>
         </header>
         <div class="container">
-            <a class="btn btn-light" href="cadastro_usuarios.jsp">
-                <i class="fas fa-user-plus"></i>
-                Cadastrar Usuário
-            </a>
+            <form  action="ti/cadastro_usuarios" method="post">
+                <button class="btn btn-light" type="submit">
+                    <i class="fas fa-user-plus"></i>
+                    Cadastrar Usuário
+                </button>
+            </form>
+<!--            <a class="btn btn-light" href="cadastro_usuarios.jsp"></a>-->
             <a class="btn btn-danger" href="">
                 <i class="far fa-trash-alt"></i>
                 Excluir Selecionado(s)
@@ -66,32 +69,32 @@ Author     : nicolas.hgyoshioka
                     </tr>
                 </thead>
                 <tbody id="teste">  
-                <c:forEach var="usuarios" items="${listaUsuarios}">                
-                    <tr>
-                        <td><input type="radio"></td>
-                        <td name="codigo" ><c:out value="${usuarios.codigo}" /></td>
-                    <td name="nome" ><c:out value="${usuarios.nome}" /></td>
-                    <td name="email" ><c:out value="${usuarios.email}" /></td>
-                    <td name="senha" ><c:out value="${usuarios.senha}" /></td>
-                    <td name="setor" ><c:out value="${usuarios.setor}" /></td>
-                    <td name="filial" ><c:out value="${usuarios.filial}" /></td>
+                    <c:forEach var="usuarios" items="${listaUsuarios}">                
+                        <tr>
+                            <td><input type="radio"></td>
+                            <td name="codigo" ><c:out value="${usuarios.codigo}" /></td>
+                            <td name="nome" ><c:out value="${usuarios.nome}" /></td>
+                            <td name="email" ><c:out value="${usuarios.email}" /></td>
+                            <td name="senha" ><c:out value="${usuarios.senha}" /></td>
+                            <td name="setor" ><c:out value="${usuarios.setor}" /></td>
+                            <td name="filial"><c:out value="${usuarios.codigoFilial}" /></td>
 
-                    <td class="btn-group">
-                        <form action="dados_usuario" method="POST">
+                            <td class="btn-group">
+                                <form action="dados_usuario" method="POST">
 
-                            <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
+                                    <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
 
-                        </form>
-                        <form action="excluir_filial" method="POST">
-                            <button name ="excluirID" value="${usuarios.codigo}" type="submit" class="btn btn-danger">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                    </tr>
-                </c:forEach>
+                                </form>
+                                <form action="excluir_usuario" method="POST">
+                                    <button name ="excluirID" value="${usuarios.codigo}" type="submit" class="btn btn-danger">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

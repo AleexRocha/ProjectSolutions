@@ -63,11 +63,11 @@ public class FilialDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE"
-                    + " tbl_filial SET logradour = ?,"
+                    + " tbl_filial SET logradouro = ?,"
                     + " numero = ?,"
                     + " cep = ?,"
                     + " bairro = ?,"
-                    + " ciade = ?,"
+                    + " cidade = ?,"
                     + " estado = ?,"
                     + " telefone = ? WHERE id_filial = ?;");
 

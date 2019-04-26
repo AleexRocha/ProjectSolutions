@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.Filial;
 import Model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -65,7 +66,8 @@ public class UsuarioDAO {
 
             query.setInt(1, uCodigo);
 
-            ResultSet linhasAfetadas = query.executeQuery();
+            query.execute();
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
             return false;
@@ -104,5 +106,68 @@ public class UsuarioDAO {
 
         return usuarios;
     }
+    
+    public static ArrayList<Usuario> getUsuario(int codigoUsuario) {
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario "
+                    + " INNER JOIN tbl_setor "
+                    + " ON tbl_usuario.fk_setor = tbl_setor.id_setor"
+                    + "WHERE id_usuario = ? ;");
+
+            query.setInt(1, codigoUsuario);
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    usuarios.add(new Usuario(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getInt(5),
+                            rs.getInt(6)
+                    ));
+
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return usuarios;
+    }
+
+//    public static ArrayList<Usuario> getItemUsuario(int codigo) {
+//        ArrayList<Usuario> usuarios = new ArrayList<>();
+//        Connection conn = db.obterConexao();
+//        try {
+//            PreparedStatement query = conn.prepareStatement("SELECT * FROM"
+//                    + " tbl_usuario WHERE id_usuario= ?;");
+//
+//            query.setInt(1, codigo);
+//            ResultSet rs = query.executeQuery();
+//
+//            if (rs != null) {
+//                while (rs.next()) {
+//                    usuario = new Usuario(
+//                            rs.getInt(1),
+//                            rs.getString(2),
+//                            rs.getString(3),
+//                            rs.getString(4),
+//                            rs.getInt(5),
+//                            rs.getInt(6)
+//                    );
+//                }
+//            }
+//            conn.close();
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//
+//        return usuario;
+//    }
 
 }
