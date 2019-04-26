@@ -59,7 +59,6 @@ public class UsuarioEditarServlet extends HttpServlet {
             request.setAttribute("email", usuario.getEmail());
             request.setAttribute("setor", usuario.getSetor());
             request.setAttribute("filial", usuario.getCodigoFilial());
-
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
 

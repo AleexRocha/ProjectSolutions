@@ -1,9 +1,11 @@
-package ServletUsuario;
+package ServletProduto;
 
-
-import DAO.UsuarioDAO;
-import Model.Usuario;
+import DAO.FilialDAO;
+import DAO.ProdutoDAO;
+import Model.Filial;
+import Model.Produto;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,26 +15,20 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author guilherme.psilva103
+ * @author guilher.rsvieira
  */
-@WebServlet(name = "UsuarioSelectEditServlet", urlPatterns = {"/ti/dados_usuario"})
-public class UsuarioSelectEditServlet extends HttpServlet {
+@WebServlet(name = "ProdutoSelectItensCadastro", urlPatterns = {"/produtos/select_cadastro"})
+public class ProdutoSelectItensCadastro extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cCodigo = request.getParameter("editarID");
-        Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
+        ArrayList<Filial> filiais = FilialDAO.getFiliais();
+        request.setAttribute("listaFiliais", filiais);
         
-        request.setAttribute("acao", "editar");
-        request.setAttribute("codigo", usuario.getCodigo());
-        request.setAttribute("nome", usuario.getNome());
-        request.setAttribute("email", usuario.getEmail());
-        request.setAttribute("setor", usuario.getSetor());
-        request.setAttribute("filial", usuario.getCodigoFilial());
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
         dispatcher.forward(request, response);
+        
     }
 
     @Override
