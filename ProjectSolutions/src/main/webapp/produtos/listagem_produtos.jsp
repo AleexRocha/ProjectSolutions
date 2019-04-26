@@ -4,6 +4,7 @@
    Author     : nicolas.hgyoshioka
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,7 @@
             <h2 class="h2 text-center subtitulo">Produtos</h2>
         </header>
         <div class="container">
-            <a class="btn btn-light" href="cadastro_produtos.jsp">
+            <a class="btn btn-light">
                 <i class="fas fa-box"></i>
                 Cadastrar Produto
             </a>
@@ -66,23 +67,26 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="radio"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="btn-group">
-                            <button type="button" class="btn btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
+                        <c:forEach var = "produtos"  items="${lista}">
+                            <td><input type="radio"></td>
+                            <td name="codigo"><c:out value ="${produtos.codigo}"/></td>
+                            <td name="nome"><c:out value ="${produtos.nome}"/></td>
+                            <td name="descricao"><c:out value ="${produtos.descrico}"/></td>
+                            <td name="tipo"><c:out value ="${produtos.tipo}"/></td>
+                            <td name="codigoFilialint"><c:out value ="${produtos.codigoFilialint}"/></td>
+                            <td name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
+                            <td name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
+
+                            <td class="btn-group">
+                                <button type="button" class="btn btn-success">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

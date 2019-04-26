@@ -43,22 +43,25 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <form>
+                    <form action="cadastro_produto" method="POST">
                         <div class="form-group">
                             <label for="codigoProduto" class="sr-only">Código:</label>
                             <input type="number" class="form-control inputForm sr-only" id="codigoProduto" placeholder="Codigo do produto" name="codigoProduto">
 
                             <label for="nomeProduto">Nome:</label>
-                            <input type="text" class="form-control inputForm" id="nomeProduto" placeholder="Nome do produto" name="nomeProduto">
+                            <input type="text" class="form-control inputForm" id="nome" placeholder="Nome do produto" name="nome">
 
                             <label for="descricaoProduto">Descrição:</label>
-                            <input type="text" class="form-control inputForm" id="descricaoProduto" placeholder="Descrição do produto" name="descricaoProduto">
+                            <input type="text" class="form-control inputForm" id="descricao" placeholder="Descrição do produto" name="descricao">
 
+                            <label for="tipo">Tipo:</label>
+                            <input type="text" class="form-control inputForm" id="tipo" placeholder="Tipo do produto" name="tipo">
+                            
                             <label for="quantidadeEstoque">Quantidade em estoque:</label>
                             <input type="number" class="form-control inputForm" id="quantidadeEstoque" placeholder="Quantidade em estoque" name="quantidadeEstoque">
 
                             <label for="valorProduto">Valor Unitário:</label>
-                            <input type="number" class="form-control inputForm" id="valorProduto" placeholder="Valor Unitário" name="valorProduto">
+                            <input type="number" class="form-control inputForm" id="valorUnitario" placeholder="Valor Unitário" name="valorUnitario">
 
                             <label for="tipo" >Tipo:</label>
                             <select class="custom-select inputForm" id="tipo">
