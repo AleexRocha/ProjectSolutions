@@ -42,7 +42,7 @@ Author     : nicolas.hgyoshioka
             <h2 class="h2 text-center subtitulo">Usuários</h2>
         </header>
         <div class="container">
-            <form  action="ti/cadastro_usuarios" method="post">
+            <form  action="formulario_usuarios" method="post">
                 <button class="btn btn-light" type="submit">
                     <i class="fas fa-user-plus"></i>
                     Cadastrar Usuário

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServletUsuario;
 
 import DAO.UsuarioDAO;
@@ -20,14 +15,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "UsuarioSelectServlet", urlPatterns = {"/ti/cadastro_usuarios"})
+@WebServlet(name = "UsuarioSelectServlet", urlPatterns = {"/ti/formulario_usuarios"})
 public class UsuarioSelectServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        ArrayList<Usuario> usuario = UsuarioDAO.getItemUsuarios();
-        request.setAttribute("lista", usuario);
+        
+        ArrayList<Usuario> setores  = UsuarioDAO.getSetoresCadastro();
+        request.setAttribute("listaSetores", setores);
+        
+        ArrayList<Usuario> filiais  = UsuarioDAO.getFiliaisCadastro();
+        request.setAttribute("listaFiliais", filiais);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);

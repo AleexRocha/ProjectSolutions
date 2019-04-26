@@ -64,15 +64,16 @@ Author     : nicolas.hgyoshioka
                             <label for="setor" >Setor:</label>
                              <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
                                 <option disabled="" selected="" hidden="">Código do Setor</option>
-                                <c:forEach var="lista" items="${lista}">  
-                                    <option value="<c:out value="${lista.codigoSetor}"></c:out>"> <c:out value="${lista.codigoSetor}"/> </option>  
+                                <c:forEach var="listaSetores" items="${setores}">  
+                                    <option value="<c:out value="${listaSetores.id}"></c:out>"> <c:out value="${listaSetores.id}"/> </option>  
                                 </c:forEach>  
-                            </select>                  
+                            </select>
                             <label for="tipo" >Filial:</label>
-                            <select class="custom-select inputForm" id="tipo" name="filial">
-                                <option value="1">Filial 1</option>
-                                <option value="2">Filial 2</option>
-                                <option value="3">Filial 3</option>
+                            <select class="custom-select inputForm" id="codigoFilial" name="filial">
+                                <option disabled="" selected="" hidden="">Código da Filial</option>
+                                <c:forEach var="listaFiliais" items="${filiais}">  
+                                    <option value="<c:out value="${listaFiliais.id}"></c:out>"> <c:out value="${listaFiliais.id}"/> </option>  
+                                </c:forEach>  
                             </select>
                         </div>
                         <button type="submit" class="btn btn-light btn-block">

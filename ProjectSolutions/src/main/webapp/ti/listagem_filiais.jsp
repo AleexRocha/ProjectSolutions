@@ -66,7 +66,7 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Acoes</th>
                     </tr>
                 </thead>    
-                <tbody id="teste">  
+<!--                <tbody id="teste">  
                     <c:forEach var="filiais" items="${lista}">                
                         <tr>
                             <td><input type="radio"></td>
@@ -94,7 +94,7 @@ Author     : nicolas.hgyoshioka
                             </td>
                         </tr>
                     </c:forEach>
-                </tbody>
+                </tbody>-->
             </table>
         </div>   
     </body>

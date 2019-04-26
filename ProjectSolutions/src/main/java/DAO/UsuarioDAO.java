@@ -106,9 +106,9 @@ public class UsuarioDAO {
 
         return usuarios;
     }
-    
-    public static ArrayList<Usuario> getUsuario(int codigoUsuario) {
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+    public static Usuario getUsuario(int codigoUsuario) {
+        Usuario usuarios = null;
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario "
@@ -121,15 +121,14 @@ public class UsuarioDAO {
 
             if (rs != null) {
                 while (rs.next()) {
-                    usuarios.add(new Usuario(
+                    usuarios = new Usuario(
                             rs.getInt(1),
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
                             rs.getInt(5),
                             rs.getInt(6)
-                    ));
-
+                    );
                 }
             }
 
@@ -140,34 +139,50 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-//    public static ArrayList<Usuario> getItemUsuario(int codigo) {
-//        ArrayList<Usuario> usuarios = new ArrayList<>();
-//        Connection conn = db.obterConexao();
-//        try {
-//            PreparedStatement query = conn.prepareStatement("SELECT * FROM"
-//                    + " tbl_usuario WHERE id_usuario= ?;");
-//
-//            query.setInt(1, codigo);
-//            ResultSet rs = query.executeQuery();
-//
-//            if (rs != null) {
-//                while (rs.next()) {
-//                    usuario = new Usuario(
-//                            rs.getInt(1),
-//                            rs.getString(2),
-//                            rs.getString(3),
-//                            rs.getString(4),
-//                            rs.getInt(5),
-//                            rs.getInt(6)
-//                    );
-//                }
-//            }
-//            conn.close();
-//        } catch (SQLException e) {
-//            System.out.println(e);
-//        }
-//
-//        return usuario;
-//    }
+    public static ArrayList<Usuario> getSetoresCadastro() {
+        ArrayList<Usuario> setores = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT id_setor FROM tbl_setor;");
 
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    setores.add(new Usuario(
+                            rs.getInt(1)
+                    ));
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return setores;
+    }
+
+    public static ArrayList<Usuario> getFiliaisCadastro() {
+        ArrayList<Usuario> filiais = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT id_filial FROM tbl_filial;");
+
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    filiais.add(new Usuario(
+                            rs.getInt(1)
+                    ));
+                }
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return filiais;
+    }
 }

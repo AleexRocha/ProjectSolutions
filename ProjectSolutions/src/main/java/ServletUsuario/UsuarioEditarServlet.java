@@ -51,7 +51,7 @@ public class UsuarioEditarServlet extends HttpServlet {
         }
 
         if (error) {
-            ArrayList<Usuario> usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
+            Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
 
             request.setAttribute("acao", "editar");
             request.setAttribute("codigo", usuario.getCodigo());

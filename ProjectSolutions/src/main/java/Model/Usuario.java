@@ -13,13 +13,11 @@ public class Usuario {
     private int codigoFilial;
     private int setor;
 
-//    public Usuario(int codigoFilial, int setor) {
-//        this.codigoFilial = codigoFilial;
-//        this.setor = setor
-//    }
-
-    public Usuario(int codigo, String nome, String email, String senha, int codigoFilial, int setor) {
-        this.codigo = codigo;
+    public Usuario(int id) {
+        
+    }
+    
+    public Usuario(String nome, String email, String senha, int codigoFilial, int setor) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -27,7 +25,8 @@ public class Usuario {
         this.codigoFilial = codigoFilial;
     }
     
-    public Usuario(String nome, String email, String senha, int codigoFilial, int setor) {
+    public Usuario(int codigo, String nome, String email, String senha, int codigoFilial, int setor) {
+        this.codigo = codigo;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -82,7 +81,5 @@ public class Usuario {
     public void setCodigoFilial(int codigoFilial) {
         this.codigoFilial = codigoFilial;
     }
-
-    
 
 }
