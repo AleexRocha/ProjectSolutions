@@ -29,10 +29,14 @@ Author     : nicolas.hgyoshioka
                         <a class="nav-link nav-text" href="../venda/cadastro_vendas.jsp">Vendas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../produtos/listagem_produtos.jsp">Produtos</a>
+                        <form action="../produtos/listagem_produtos" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                        </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="listagem_filiais.jsp">Filiais</a>
+                        <form action="../ti/listagem_filiais" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-text" href="../venda/relatorio.jsp">Relatorio</a>
@@ -42,19 +46,22 @@ Author     : nicolas.hgyoshioka
             <h2 class="h2 text-center subtitulo">Usuários</h2>
         </header>
         <div class="container">
+            
             <form  action="formulario_usuarios" method="post">
                 <button class="btn btn-light" type="submit">
                     <i class="fas fa-user-plus"></i>
                     Cadastrar Usuário
                 </button>
             </form>
-<!--            <a class="btn btn-light" href="cadastro_usuarios.jsp"></a>-->
+            <!--            <a class="btn btn-light" href="cadastro_usuarios.jsp"></a>-->
             <a class="btn btn-danger" href="">
                 <i class="far fa-trash-alt"></i>
                 Excluir Selecionado(s)
             </a>
+            
             <br>
             <br>
+            
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -75,13 +82,12 @@ Author     : nicolas.hgyoshioka
                             <td name="codigo" ><c:out value="${usuarios.codigo}" /></td>
                             <td name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td name="email" ><c:out value="${usuarios.email}" /></td>
-                            <td name="senha" ><c:out value="${usuarios.senha}" /></td>
+                            <td name="senha" ><c:out value="********" /></td>
                             <td name="setor" ><c:out value="${usuarios.setor}" /></td>
                             <td name="filial"><c:out value="${usuarios.codigoFilial}" /></td>
 
                             <td class="btn-group">
                                 <form action="dados_usuario" method="POST">
-
                                     <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>

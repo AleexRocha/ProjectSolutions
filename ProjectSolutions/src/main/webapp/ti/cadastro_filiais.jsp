@@ -38,68 +38,68 @@ Author     : nicolas.hgyoshioka
                     </li>
                 </ul>
             </nav>
+        </header>
+        <c:if test="${acao == 'editar'}"> 
+            <h2 class='h2 text-center subtitulo'>Editar Filial</h2> 
 
-            <c:if test="${acao == 'editar'}"> 
-                <h2 class='h2 text-center subtitulo'>Editar Filial</h2> 
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <form action="editar_filial" method="post">
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <form action="editar_filial" method="post">
+                            <div class="form-group">
 
-                                <div class="form-group">
+                                <label for="codigoFilial" class="sr-only">Código:</label>
+                                <input type="number" class="form-control inputForm sr-only" id="codigoFilial" 
+                                       placeholder="Código da filial" name="codigoFilial" value="${codigo}">       
 
-                                    <label for="codigoFilial" class="sr-only">Código:</label>
-                                    <input type="number" class="form-control inputForm sr-only" id="codigoFilial" 
-                                           placeholder="Código da filial" name="codigoFilial" value="${codigo}">       
+                                <label for="logradouro">Logradouro:</label>
+                                <input type="text" class="form-control inputForm" id="logradouro" 
+                                       placeholder="Logradouro" name="logradouro" value="${logradouro}">
+                                <label for="numero">Número:</label>   
 
-                                    <label for="logradouro">Logradouro:</label>
-                                    <input type="text" class="form-control inputForm" id="logradouro" 
-                                           placeholder="Logradouro" name="logradouro" value="${logradouro}">
-                                    <label for="numero">Número:</label>   
+                                <input type="number" class="form-control inputForm" id="numero" 
+                                       placeholder="Número" name="numero" value="${numero}">
 
-                                    <input type="number" class="form-control inputForm" id="numero" 
-                                           placeholder="Número" name="numero" value="${numero}">
+                                <label for="cep">CEP:</label>
+                                <input type="number" class="form-control inputForm" id="cep" 
+                                       placeholder="CEP" name="cep" value="${cep}">
+                                <label for="bairro">Bairro:</label>
+                                <input type="text" class="form-control inputForm" id="bairro" 
+                                       placeholder="Bairro" name="bairro" value="${bairro}">
 
-                                    <label for="cep">CEP:</label>
-                                    <input type="number" class="form-control inputForm" id="cep" 
-                                           placeholder="CEP" name="cep" value="${cep}">
-                                    <label for="bairro">Bairro:</label>
-                                    <input type="text" class="form-control inputForm" id="bairro" 
-                                           placeholder="Bairro" name="bairro" value="${bairro}">
+                                <label for="cidade">Cidade:</label>
+                                <input type="text" class="form-control inputForm" id="cidade" 
+                                       placeholder="Cidade" name="cidade" value="${cidade}">
 
-                                    <label for="cidade">Cidade:</label>
-                                    <input type="text" class="form-control inputForm" id="cidade" 
-                                           placeholder="Cidade" name="cidade" value="${cidade}">
+                                <label for="estado">Estado:</label>
+                                <input type="text" class="form-control inputForm" id="estado" 
+                                       placeholder="Estado" name="estado" value="${estado}">
 
-                                    <label for="estado">Estado:</label>
-                                    <input type="text" class="form-control inputForm" id="estado" 
-                                           placeholder="Estado" name="estado" value="${estado}">
-
-                                    <label for="telefone">Telefone:</label>
-                                    <input type="number" class="form-control inputForm" id="telefone" 
-                                           placeholder="Telefone" name="telefone" value="${telefone}">
-                                </div>
-                                <button type="submit" class="btn btn-light btn-block">
-                                    <i class="far fa-save"></i>
-                                    Salvar
-                                </button>
-                                <button type="submit" class="btn btn-light btn-block">
-                                    <i class="fas fa-ban"></i>
-                                    Cancelar
-                                </button> 
-                            </form>
-                        </div>
-                        <div class="col-md-3"></div>
+                                <label for="telefone">Telefone:</label>
+                                <input type="number" class="form-control inputForm" id="telefone" 
+                                       placeholder="Telefone" name="telefone" value="${telefone}">
+                            </div>
+                            <button type="submit" class="btn btn-light btn-block">
+                                <i class="far fa-save"></i>
+                                Salvar
+                            </button>
+                            <button type="submit" class="btn btn-light btn-block">
+                                <i class="fas fa-ban"></i>
+                                Cancelar
+                            </button> 
+                        </form>
                     </div>
+                    <div class="col-md-3"></div>
                 </div>
-            </c:if>
+            </div>
+        </c:if>
 
-            <c:if test="${empty acao}">
-                <h2 class='h2 text-center subtitulo'>Cadastrar Filial</h2>
+        <c:if test="${empty acao}">
+            <h2 class='h2 text-center subtitulo'>Cadastrar Filial</h2>
 
-            </header>
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-3"></div>

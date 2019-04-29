@@ -25,7 +25,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
-        String cSetor = request.getParameter("setor");
+        String cSetor = request.getParameter("codigoSetor");
         String cFilial = request.getParameter("filial");
       
 
@@ -56,7 +56,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha,Integer.parseInt(cSetor),Integer.parseInt(cFilial));
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha,Integer.parseInt(cFilial), Integer.parseInt(cSetor));
             boolean httpOK = UsuarioDAO.salvarUsuario(usuario);
 
             if (httpOK) {

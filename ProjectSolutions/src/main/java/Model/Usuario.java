@@ -13,7 +13,7 @@ public class Usuario {
     private int codigoFilial;
     private int setor;
 
-    public Usuario(int id) {
+    public Usuario() {
         
     }
     

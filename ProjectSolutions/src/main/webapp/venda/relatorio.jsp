@@ -27,10 +27,14 @@ Author     : nicolas.hgyoshioka
                         <a class="nav-link nav-text" href="cadastro_vendas.jsp">Vendas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../produtos/listagem_produtos.jsp">Produtos</a>
+                        <form action="../produtos/listagem_produtos" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                        </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../ti/listagem_filiais.jsp">Filiais</a>
+                        <form action="../ti/listagem_filiais" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-text" href="../ti/listagem_usuarios.jsp">Usuarios</a>

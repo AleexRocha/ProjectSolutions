@@ -42,15 +42,17 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE"
-                    + " tbl_usuario SET (nome = ?, email = ?, senha = ?, fk_filial = ?, setor = ?);");
+                    + " tbl_usuario SET nome = ?, email = ?, senha = ?, fk_filial = ?, fk_setor = ? where id_usuario = ?;");
 
             query.setString(1, u.getNome());
             query.setString(2, u.getEmail());
             query.setString(3, u.getSenha());
             query.setInt(4, u.getCodigoFilial());
             query.setInt(5, u.getSetor());
+            query.setInt(6, u.getCodigo());
 
             int rs = query.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
             return false;
@@ -114,7 +116,7 @@ public class UsuarioDAO {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario "
                     + " INNER JOIN tbl_setor "
                     + " ON tbl_usuario.fk_setor = tbl_setor.id_setor"
-                    + "WHERE id_usuario = ? ;");
+                    + " WHERE id_usuario = ? ;");
 
             query.setInt(1, codigoUsuario);
             ResultSet rs = query.executeQuery();
@@ -149,9 +151,9 @@ public class UsuarioDAO {
 
             if (rs != null) {
                 while (rs.next()) {
-                    setores.add(new Usuario(
-                            rs.getInt(1)
-                    ));
+                    Usuario user = new Usuario();
+                    user.setSetor(rs.getInt(1));
+                    setores.add(user);
                 }
             }
             conn.close();
@@ -172,9 +174,9 @@ public class UsuarioDAO {
 
             if (rs != null) {
                 while (rs.next()) {
-                    filiais.add(new Usuario(
-                            rs.getInt(1)
-                    ));
+                    Usuario user = new Usuario();
+                    user.setCodigoFilial(rs.getInt(1));
+                    filiais.add(user);
                 }
             }
 

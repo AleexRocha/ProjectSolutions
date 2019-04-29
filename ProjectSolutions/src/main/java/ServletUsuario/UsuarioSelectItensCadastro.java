@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Alexsander Rocha
  */
 @WebServlet(name = "UsuarioSelectServlet", urlPatterns = {"/ti/formulario_usuarios"})
-public class UsuarioSelectServlet extends HttpServlet {
+public class UsuarioSelectItensCadastro extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

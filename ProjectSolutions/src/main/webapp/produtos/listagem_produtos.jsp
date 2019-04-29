@@ -28,7 +28,9 @@
                         <a class="nav-link nav-text" href="../venda/cadastro_vendas.jsp">Vendas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../ti/listagem_filiais.jsp">Filiais</a>
+                        <form action="../ti/listagem_filiais" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-text" href="../ti/listagem_usuarios.jsp">Usuarios</a>
@@ -83,7 +85,7 @@
 
                             <td class="btn-group">
                                 <form action="dados_produto" method="POST">
-                                    <button name="editarID" value="${filiais.codigo}" type="submit" class="btn btn-success">
+                                    <button name="editarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </form>

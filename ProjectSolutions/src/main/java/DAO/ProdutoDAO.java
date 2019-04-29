@@ -89,7 +89,7 @@ public static Produto getProduto(int codigo) {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM"
-                    + " tbl_produtos WHERE id_filial = ?;");
+                    + " tbl_produtos WHERE id_produto = ?;");
 
             query.setInt(1, codigo);
             ResultSet rs = query.executeQuery();

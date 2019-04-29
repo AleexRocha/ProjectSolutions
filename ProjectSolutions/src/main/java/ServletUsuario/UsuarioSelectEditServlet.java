@@ -1,9 +1,9 @@
 package ServletUsuario;
 
-
 import DAO.UsuarioDAO;
 import Model.Usuario;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,13 +23,20 @@ public class UsuarioSelectEditServlet extends HttpServlet {
 
         String cCodigo = request.getParameter("editarID");
         Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
+       
+        ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();   
+        ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
         
+
         request.setAttribute("acao", "editar");
         request.setAttribute("codigo", usuario.getCodigo());
         request.setAttribute("nome", usuario.getNome());
         request.setAttribute("email", usuario.getEmail());
+        request.setAttribute("senha", usuario.getSenha());
         request.setAttribute("setor", usuario.getSetor());
+        request.setAttribute("listaSetores", setores);
         request.setAttribute("filial", usuario.getCodigoFilial());
+        request.setAttribute("listaFiliais", filiais);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);

@@ -21,11 +21,11 @@ public class UsuarioEditarServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cCodigo = request.getParameter("codigoFilial");
+        String cCodigo = request.getParameter("codigoUsuario");
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
-        String cSetor = request.getParameter("setor");
+        String cSetor = request.getParameter("codigoSetor");
         String cFilial = request.getParameter("filial");
 
         boolean error = false;
@@ -63,13 +63,13 @@ public class UsuarioEditarServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         } else {
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor), Integer.parseInt(cFilial));
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cFilial), Integer.parseInt(cSetor));
             usuario.setCodigo(Integer.parseInt(cCodigo));
             boolean httpOK = UsuarioDAO.alterarUsuario(usuario);
 
             if (httpOK) {
                 ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
-                request.setAttribute("lista", usuarios);
+                request.setAttribute("listaUsuarios", usuarios);
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                 dispatcher.forward(request, response);
