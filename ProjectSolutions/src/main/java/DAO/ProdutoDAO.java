@@ -38,6 +38,34 @@ public class ProdutoDAO {
         return true;
     }
 
+    public static boolean atualizarProduto(Produto produto) {
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("UPDATE"
+                    + " tbl_produtos SET "
+                    + " nome = ?,"
+                    + " tipo = ?,"
+                    + " fk_filial = ?,"
+                    + " qtd_estoque = ?,"
+                    + " valor_unidade = ? WHERE id_produto = ?;");
+
+            query.setString(1, produto.getNome());
+            query.setString(2, produto.getTipo());
+            query.setInt(3, produto.getCodigoFilial());
+            query.setInt(4, produto.getQuantidadeEstoque());
+            query.setDouble(5, produto.getValorUnitario());
+            query.setInt(6, produto.getCodigo());
+            
+            int linhasAfetadas = query.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+
+        return true;
+    }
+
     public static boolean excluirProduto(int pCodigo) {
         Connection conn = db.obterConexao();
         try {
