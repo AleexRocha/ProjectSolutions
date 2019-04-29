@@ -5,6 +5,7 @@ Author     : nicolas.hgyoshioka
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,38 +46,29 @@ Author     : nicolas.hgyoshioka
         </header>
         <div class="container">
             <div class="row">
-                <form action="relatorio">
-                    <div class="col-md-3">
-                        <label for="filial" >Filial:</label>
-                        <select class="custom-select inputForm" id="filial" name="filial">
-                            <option value="1">Filial 1</option>
-                            <option value="1">Filial 2</option>
-                            <option value="1">Filial 3</option>
-                        </select>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="form-row">
-                            <div class="col">
-                                <label for="dataDe">De:</label>
-                                <input type="date" class="form-control inputForm" id="dataDe" name="dataDe">
-                            </div>
-                            <div class="col">
-                                <label for="dataAte">Ate:</label>
-                                <input type="date" class="form-control inputForm" id="dataAte" name="dataAte">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 btn-relatorio">
-                        <button class="btn btn-light">
-                            <i class="far fa-file-alt"></i>
-                            Gerar relatorio
-                        </button>
-                        <button class="btn btn-success">
-                            <i class="far fa-file-excel"></i>
-                            Exportar
-                        </button>
-                    </div>
-                </form>
+                <form action="gerar_relatorio">
+                    <label for="filial" >Filial:</label>
+                    <select class="custom-select inputForm" id="filial" name="filial">
+                        <option> Filial </option>
+                        <c:forEach var="filiais" items="${listaFiliais}">
+                            <option value=" <c:out value="${filiais.codigo}"></c:out> ">
+                                <c:out value="${filiais.codigo}"/>
+                            </option>
+                        </c:forEach>
+                    </select>
+                    <label for="dataDe">De:</label>
+                    <input type="date" class="form-control inputForm" id="dataDe" name="dataDe">
+                    <label for="dataAte">Ate:</label>
+                    <input type="date" class="form-control inputForm" id="dataAte" name="dataAte">
+                    <button class="btn btn-light">
+                        <i class="far fa-file-alt"></i>
+                        Gerar relatorio
+                    </button>
+                </form> 
+<!--                <button class="btn btn-success">
+                    <i class="far fa-file-excel"></i>
+                    Exportar
+                </button>-->
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -89,25 +81,33 @@ Author     : nicolas.hgyoshioka
                                 <th scope="col">Código do produto</th>
                                 <th scope="col">Quantidade vendida</th>
                                 <th scope="col">Valor total</th>
+                                <th scope="col">CPF do cliente</th>
+                                <th scope="col">Código da filial</th>
                                 <th scope="col">Nome da filial</th>
-                                <th scope="col">ID do funcionario</th>
+                                <th scope="col">ID do funcionário</th>
+                                <th scope="col">Data da venda</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>0001</td>
-                                <td>Rosa Vermelha do Acre</td>
-                                <td>0010</td>
-                                <td>100</td>
-                                <td>R$ 1000,00</td>
-                                <td>São Paulo - SP</td>
-                                <td>1234</td>
-                            </tr>
+                            <c:forEach var="relatorio" items="${lista}">
+                                <tr>
+                                    <td name="codigoVenda" ><c:out value="${relatorio.codigoVenda}" /></td>
+                                    <td name="nomeProduto" ><c:out value="${relatorio.nomeProduto}" /></td>
+                                    <td name="codigoProduto" ><c:out value="${relatorio.codigoProduto}" /></td>
+                                    <td name="quantidadeProduto" ><c:out value="${relatorio.quantidadeProduto}" /></td>
+                                    <td name="valorTotal" ><c:out value="${relatorio.valorTotal}" /></td>
+                                    <td name="cpfCliente" ><c:out value="${relatorio.cpfCliente}" /></td>
+                                    <td name="idFilial" ><c:out value="${relatorio.idFilial}" /></td>
+                                    <td name="nomeFilial" ><c:out value="${relatorio.nomeFilial}" /></td>   
+                                    <td name="idUsuario" ><c:out value="${relatorio.idUsuario}" /></td>   
+                                    <td name="dataVenda" ><c:out value="${relatorio.dataVenda}" /></td>   
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
+            </div>
+        </div>
     </div>
 </body>
 </html>

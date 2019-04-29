@@ -4,6 +4,7 @@ import DAO.RelatorioDAO;
 import Model.Relatorio;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,19 +16,22 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alexsander.mrocha
  */
-@WebServlet(name = "RelatorioServlet", urlPatterns = {"/venda/relatorio"})
+@WebServlet(name = "RelatorioServlet", urlPatterns = {"/venda/gerar_relatorio"})
 public class RelatorioServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String rFilial = request.getParameter("filial");
-        String rDataDe = request.getParameter("dataDe");
-        String rDataAte = request.getParameter("dataAte");
+        String where[] = new String[3];
+        where[0] = request.getParameter("filial");
+        where[1] = request.getParameter("dataDe");
+        where[2] = request.getParameter("dataAte");
 
-        ArrayList<Relatorio> relatorioGerado = new ArrayList<>();
-        relatorioGerado = RelatorioDAO.getRelatorios();
-
+        ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorio(where);
+        request.setAttribute("lista", relatorio);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/relatorio.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override

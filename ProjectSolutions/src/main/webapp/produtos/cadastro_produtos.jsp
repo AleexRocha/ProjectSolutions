@@ -152,7 +152,7 @@ Author     : nicolas.hgyoshioka
                                              </option>
                                          </c:forEach>
                                      </select>
-                                 </c:if>  
+                                 </c:if>
 
                              </div>
                              <button type="submit" class="btn btn-light btn-block">

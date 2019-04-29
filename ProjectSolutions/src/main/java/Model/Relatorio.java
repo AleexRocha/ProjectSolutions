@@ -7,27 +7,29 @@ package Model;
 public class Relatorio {
 
     private int codigoVenda;
-    private int codigoProduto;
     private String nomeProduto;
+    private int codigoProduto;
     private int quantidadeProduto;
-    private double valor;
+    private double valorTotal;
+    private String cpfCliente;
     private int idFilial;
     private String nomeFilial;
-    private int idFuncionario;
+    private int idUsuario;
     private String dataVenda;
 
     public Relatorio() {
     }
 
-    public Relatorio(int codigoVenda, int codigoProduto, String nomeProduto, int quantidadeProduto, double valor, int idFilial, String nomeFilial, int idFuncionario, String dataVenda) {
+    public Relatorio(int codigoVenda, String nomeProduto, int codigoProduto, int quantidadeProduto, double valorTotal, String cpfCliente, int idFilial, String nomeFilial, int idUsuario, String dataVenda) {
         this.codigoVenda = codigoVenda;
-        this.codigoProduto = codigoProduto;
         this.nomeProduto = nomeProduto;
+        this.codigoProduto = codigoProduto;
         this.quantidadeProduto = quantidadeProduto;
-        this.valor = valor;
+        this.valorTotal = valorTotal;
+        this.cpfCliente = cpfCliente;
         this.idFilial = idFilial;
         this.nomeFilial = nomeFilial;
-        this.idFuncionario = idFuncionario;
+        this.idUsuario = idUsuario;
         this.dataVenda = dataVenda;
     }
 
@@ -39,20 +41,20 @@ public class Relatorio {
         this.codigoVenda = codigoVenda;
     }
 
-    public int getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(int codigoProduto) {
-        this.codigoProduto = codigoProduto;
-    }
-
     public String getNomeProduto() {
         return nomeProduto;
     }
 
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
+    }
+
+    public int getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(int codigoProduto) {
+        this.codigoProduto = codigoProduto;
     }
 
     public int getQuantidadeProduto() {
@@ -63,12 +65,20 @@ public class Relatorio {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public double getValor() {
-        return valor;
+    public double getValorTotal() {
+        return valorTotal;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public String getCpfCliente() {
+        return cpfCliente;
+    }
+
+    public void setCpfCliente(String cpfCliente) {
+        this.cpfCliente = cpfCliente;
     }
 
     public int getIdFilial() {
@@ -87,12 +97,12 @@ public class Relatorio {
         this.nomeFilial = nomeFilial;
     }
 
-    public int getIdFuncionario() {
-        return idFuncionario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getDataVenda() {

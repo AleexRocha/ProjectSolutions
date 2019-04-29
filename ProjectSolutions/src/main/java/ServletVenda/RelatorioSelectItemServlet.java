@@ -1,9 +1,7 @@
-package ServletProduto;
+package ServletVenda;
 
 import DAO.FilialDAO;
-import DAO.ProdutoDAO;
 import Model.Filial;
-import Model.Produto;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -17,30 +15,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilher.rsvieira
  */
-@WebServlet(name = "ProdutoSelectEdit", urlPatterns = {"/produtos/dados_produto"})
-public class ProdutoSelectEdit extends HttpServlet {
+@WebServlet(name = "RelatorioSelectItem", urlPatterns = {"/venda/carrega_relatorio"})
+public class RelatorioSelectItemServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String pCodigo = request.getParameter("editarID");
-        
-        Produto produto = ProdutoDAO.getProduto(Integer.parseInt(pCodigo));
         ArrayList<Filial> filiais = FilialDAO.getFiliais();
         request.setAttribute("listaFiliais", filiais);
         
-        request.setAttribute("acao", "editar");
-        request.setAttribute("codigo", produto.getCodigo());
-        request.setAttribute("nome", produto.getNome());
-        request.setAttribute("descricao", produto.getDescricao());
-        request.setAttribute("tipo", produto.getTipo());
-        request.setAttribute("tipoCadastrado", produto.getTipo());
-        request.setAttribute("filialCadastrada", produto.getCodigoFilial());
-        request.setAttribute("listaFiliais", filiais);
-        request.setAttribute("qtd_estoque", produto.getQuantidadeEstoque());
-        request.setAttribute("valor_unidade", produto.getValorUnitario());        
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/relatorio.jsp");
         dispatcher.forward(request, response);
         
     }

@@ -15,37 +15,41 @@ public class RelatorioDAO {
 
     private static final Database db = new Database();
 
-    public static ArrayList<Relatorio> getRelatorios() {
-        ArrayList<Relatorio> getRelatorio = new ArrayList<>();
+    public static ArrayList<Relatorio> getRelatorio(String where[]) {
+        ArrayList<Relatorio> relatorio = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT TBL_VENDA.ID_VENDA, TBL_VENDA.NOME_PRODUTO, TBL_VENDA.ID_PRODUTO, "
-                    + " TBL_VENDA.QTD_ITENS, TBL_VENDA.ID_USUARIO, TBL_VENDA.ID_FILIAL, TBL_VENDA.CPF_CLIENTE, TBL_VENDA.DATA_VENDA "
-                    + " FROM TBL_VENDA"
-                    + " INNER JOIN TBL_FILIAL ON TBL_VENDA.ID_FILIAL = TBL_FILIAL.ID_FILIAL "
-                    + " WHERE TBL_VENDA.DATA_VENDA >= ? AND TBL_VENDA.DATA_VENDA <= ? "
-                    + " ORDER BY TBL_VENDA.DATA_VENDA AND TBL_VENDA.ID_FILIAL;");
+            PreparedStatement query = conn.prepareStatement("SELECT v.id_venda, p.nome, v.id_produto, v.qtd_itens, "
+                    + "(v.qtd_itens*p.valor_unidade) AS valor_total, v.cpf_cliente, v.id_filial, "
+                    + "CONCAT(f.cidade, ' - ', f.estado) AS nome_filial, v.id_usuario, v.data_venda "
+                    + "FROM tbl_venda AS v INNER JOIN tbl_produtos AS p ON v.id_produto = p.id_produto "
+                    + "INNER JOIN tbl_filial AS f ON v.id_filial = f.id_filial;");
 
             ResultSet rs = query.executeQuery();
 
-            getRelatorio.add(new Relatorio(
-                    rs.getInt(0),
-                    rs.getInt(1),
-                    rs.getString(2),
-                    rs.getInt(3),
-                    rs.getDouble(4),
-                    rs.getInt(5),
-                    rs.getString(6),
-                    rs.getInt(7),
-                    rs.getString(8)
-            ));
+            if (rs != null) {
+                while (rs.next()) {
+                    relatorio.add(new Relatorio(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getInt(3),
+                            rs.getInt(4),
+                            rs.getDouble(5),
+                            rs.getString(6),
+                            rs.getInt(7),
+                            rs.getString(8),
+                            rs.getInt(9),
+                            rs.getString(10)
+                    ));
+                }
+            }
 
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
 
-        return getRelatorio;
+        return relatorio;
     }
 
 }

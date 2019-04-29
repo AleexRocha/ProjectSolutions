@@ -31,38 +31,38 @@ public class GerarExcel {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheetAlunos = workbook.createSheet("Relatorio");
 
-        ArrayList<Relatorio> listaRelatorio = new ArrayList<>();
-        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-
-        int rowNum = 0;
-        for (Relatorio relatorio : listaRelatorio) {
-            Row row = sheetAlunos.createRow(rowNum++);
-            int cellNum = 0;
-            Cell cellCodigoVenda = row.createCell(cellNum++);
-            cellCodigoVenda.setCellValue(relatorio.getCodigoVenda());
-            Cell cellCodigoProduto = row.createCell(cellNum++);
-            cellCodigoProduto.setCellValue(relatorio.getCodigoProduto());
-            Cell cellNomeProduto = row.createCell(cellNum++);
-            cellNomeProduto.setCellValue(relatorio.getNomeProduto());
-            Cell cellQuantidadeProduto = row.createCell(cellNum++);
-            cellQuantidadeProduto.setCellValue(relatorio.getQuantidadeProduto());
-            Cell cellValorTotal = row.createCell(cellNum++);
-            cellValorTotal.setCellValue(relatorio.getValor());
-            Cell cellIdFilial = row.createCell(cellNum++);
-            cellIdFilial.setCellValue(relatorio.getIdFilial());
-            Cell cellNomeFilial = row.createCell(cellNum++);
-            cellNomeFilial.setCellValue(relatorio.getNomeFilial());
-            Cell cellIdFuncionario = row.createCell(cellNum++);
-            cellIdFuncionario.setCellValue(relatorio.getIdFuncionario());
-            Cell cellDataVenda = row.createCell(cellNum++);
-            cellDataVenda.setCellValue(relatorio.getDataVenda());
-        }
+//        ArrayList<Relatorio> listaRelatorio = new ArrayList<>();
+//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
+//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
+//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
+//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
+//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
+//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
+//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
+//
+//        int rowNum = 0;
+//        for (Relatorio relatorio : listaRelatorio) {
+//            Row row = sheetAlunos.createRow(rowNum++);
+//            int cellNum = 0;
+//            Cell cellCodigoVenda = row.createCell(cellNum++);
+//            cellCodigoVenda.setCellValue(relatorio.getCodigoVenda());
+//            Cell cellCodigoProduto = row.createCell(cellNum++);
+//            cellCodigoProduto.setCellValue(relatorio.getCodigoProduto());
+//            Cell cellNomeProduto = row.createCell(cellNum++);
+//            cellNomeProduto.setCellValue(relatorio.getNomeProduto());
+//            Cell cellQuantidadeProduto = row.createCell(cellNum++);
+//            cellQuantidadeProduto.setCellValue(relatorio.getQuantidadeProduto());
+//            Cell cellValorTotal = row.createCell(cellNum++);
+//            cellValorTotal.setCellValue(relatorio.getValor());
+//            Cell cellIdFilial = row.createCell(cellNum++);
+//            cellIdFilial.setCellValue(relatorio.getIdFilial());
+//            Cell cellNomeFilial = row.createCell(cellNum++);
+//            cellNomeFilial.setCellValue(relatorio.getNomeFilial());
+//            Cell cellIdFuncionario = row.createCell(cellNum++);
+//            cellIdFuncionario.setCellValue(relatorio.getIdFuncionario());
+//            Cell cellDataVenda = row.createCell(cellNum++);
+//            cellDataVenda.setCellValue(relatorio.getDataVenda());
+//        }
 
         try {
             FileOutputStream saida = new FileOutputStream(new File(fileName));
