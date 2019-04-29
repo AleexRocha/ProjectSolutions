@@ -29,7 +29,7 @@ public class ProdutoDAO {
             query.setDouble(6, p.getValorUnitario());
 
             int rs = query.executeUpdate();
-
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
             return false;
@@ -46,7 +46,7 @@ public class ProdutoDAO {
             query.setInt(1, pCodigo);
 
             ResultSet linhasAfetadas = query.executeQuery();
-
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
             return false;
@@ -56,7 +56,7 @@ public class ProdutoDAO {
     }
 
     public static ArrayList<Produto> getProdutos() {
-            ArrayList<Produto> produtos = new ArrayList<>();
+        ArrayList<Produto> produtos = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_produtos");
@@ -78,13 +78,16 @@ public class ProdutoDAO {
                 }
             }
 
+            conn.close();
+
         } catch (SQLException e) {
             System.out.println(e);
         }
 
         return produtos;
     }
-public static Produto getProduto(int codigo) {
+
+    public static Produto getProduto(int codigo) {
         Produto produto = null;
         Connection conn = db.obterConexao();
         try {

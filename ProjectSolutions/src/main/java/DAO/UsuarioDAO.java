@@ -30,6 +30,8 @@ public class UsuarioDAO {
             query.setInt(5, u.getSetor());
 
             int rs = query.executeUpdate();
+
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
             return false;
@@ -101,7 +103,7 @@ public class UsuarioDAO {
 
                 }
             }
-
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -133,7 +135,7 @@ public class UsuarioDAO {
                     );
                 }
             }
-
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
         }

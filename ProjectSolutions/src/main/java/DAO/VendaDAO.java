@@ -29,7 +29,7 @@ public class VendaDAO {
             query.setString(5, v.getCpfCliente());
 
             int rs = query.executeUpdate();
-
+            conn.close();
         } catch (SQLException e) {
             System.out.println("SQL Exception" + e);
             return false;
@@ -46,7 +46,7 @@ public class VendaDAO {
             query.setInt(1, vCodigo);
 
             ResultSet linhasAfetadas = query.executeQuery();
-
+            conn.close();
         } catch (SQLException e) {
             System.out.println("SQL Exception" + e);
             return false;
@@ -75,7 +75,7 @@ public class VendaDAO {
                     ));
                 }
             }
-
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
         }

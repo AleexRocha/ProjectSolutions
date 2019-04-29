@@ -39,6 +39,8 @@ public class RelatorioDAO {
                     rs.getInt(7),
                     rs.getString(8)
             ));
+
+            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
