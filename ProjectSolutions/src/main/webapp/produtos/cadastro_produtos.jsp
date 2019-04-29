@@ -33,7 +33,9 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../ti/listagem_usuarios.jsp">Usuarios</a>
+                        <form action="../ti/listagem_usuarios" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-text" href="../venda/relatorio.jsp">Relatorio</a>
@@ -41,131 +43,132 @@ Author     : nicolas.hgyoshioka
                 </ul>
             </nav>
         </header>
-        
+
         <c:if test="${acao == 'editar'}"> 
             <h2 class="h2 text-center subtitulo">Editar Produto</h2>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-
-                        <form action="cadastro_produto" method="POST">
-                            <div class="form-group">
-                                <label for="codigoProduto" class="sr-only">Código:</label>
-                                <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
-                                       placeholder="Codigo do produto" name="codigoProduto" value="${codigo}">
-
-                                <label for="nomeProduto">Nome:</label>
-                                <input type="text" class="form-control inputForm" id="nome"
-                                       placeholder="Nome do produto" name="nome" value="${nome}">
-
-                                <label for="descricaoProduto">Descrição:</label>
-                                <input type="text" class="form-control inputForm" id="descricao"
-                                       placeholder="Descrição do produto" name="descricao" value="${descricao}">
-
-                                <label for="quantidadeEstoque">Quantidade em estoque:</label>
-                                <input type="number" class="form-control inputForm" id="quantidadeEstoque"
-                                       placeholder="Quantidade em estoque" name="quantidadeEstoque" value="${qtd_estoque}">
-
-                                <label for="valorProduto">Valor Unitário:</label>
-                                <input type="number" class="form-control inputForm" id="valorUnitario"
-                                       placeholder="Valor Unitário" name="valorUnitario" value="${valor_unidade}">
-
-                                <label for="tipo" >Tipo:</label>
-                                <select class="custom-select inputForm" id="tipo" name="tipo">
-                                    <option value="Produto">Produto</option>
-                                    <option value="Serviço">Serviço</option>
-                                </select>
-
-                                <label for="filial" >Filial:</label>
-                                <select class="custom-select inputForm" id="filial" name="filial">
-                                    <option disabled="" selected="" hidden=""> Filial </option>
-                                    <c:forEach var="filiais" items="${listaFiliais}">
-                                        <option value="<c:out value="${filiais.codigo}"/>">
-                                            <c:out value="${filiais.codigo}"/>
-                                        </option>
-                                    </c:forEach>
-                                </select>
-
-                            </div>
-
-                            <button type="submit" class="btn btn-light btn-block">
-                                <i class="far fa-save"></i>
-                                Salvar
-                            </button>
-
-                            <button type="submit" class="btn btn-light btn-block">
-                                <i class="fas fa-ban"></i>
-                                Cancelar
-                            </button> 
-                        </form>
-                    </div>
-                    <div class="col-md-3"></div>
-                </div>
-            </div>
         </c:if>
 
         <c:if test="${empty acao}"> 
             <h2 class="h2 text-center subtitulo">Cadastrar Produto</h2>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-
-                        <form action="cadastro_produto" method="POST">
-                            <div class="form-group">
-                                <label for="codigoProduto" class="sr-only">Código:</label>
-                                <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
-                                       placeholder="Codigo do produto" name="codigoProduto">
-
-                                <label for="nomeProduto">Nome:</label>
-                                <input type="text" class="form-control inputForm" id="nome"
-                                       placeholder="Nome do produto" name="nome">
-
-                                <label for="descricaoProduto">Descrição:</label>
-                                <input type="text" class="form-control inputForm" id="descricao"
-                                       placeholder="Descrição do produto" name="descricao">
-
-                                <label for="quantidadeEstoque">Quantidade em estoque:</label>
-                                <input type="number" class="form-control inputForm" id="quantidadeEstoque"
-                                       placeholder="Quantidade em estoque" name="quantidadeEstoque">
-
-                                <label for="valorProduto">Valor Unitário:</label>
-                                <input type="number" class="form-control inputForm" id="valorUnitario"
-                                       placeholder="Valor Unitário" name="valorUnitario">
-
-                                <label for="tipo" >Tipo:</label>
-                                <select class="custom-select inputForm" id="tipo" name="tipo">
-                                    <option value="Produto">Produto</option>
-                                    <option value="Serviço">Serviço</option>
-                                </select>
-
-                                <label for="filial" >Filial:</label>
-                                <select class="custom-select inputForm" id="filial" name="filial">
-                                    <option disabled="" selected="" hidden=""> Filial </option>
-                                    <c:forEach var="filiais" items="${listaFiliais}">
-                                        <option value="<c:out value="${filiais.codigo}"/>"><c:out value="${filiais.codigo}"/></option>
-                                    </c:forEach>
-                                </select>
-
-                            </div>
-
-                            <button type="submit" class="btn btn-light btn-block">
-                                <i class="far fa-save"></i>
-                                Salvar
-                            </button>
-
-                            <button type="submit" class="btn btn-light btn-block">
-                                <i class="fas fa-ban"></i>
-                                Cancelar
-                            </button> 
-                        </form>
-                    </div>
-                    <div class="col-md-3"></div>
-                </div>
-            </div>
         </c:if>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6"
+                     
+                        <c:if test="${acao == 'editar'}">
+                            <form action="editar_produto" method="POST">
+                        </c:if>
+                        <c:if test="${empty acao}">
+                            <form action="cadastro_produto" method="POST">
+                        </c:if>
+
+                             <div class="form-group">
+
+                                 <label for="codigoProduto" class="sr-only">Código:</label>
+                                 <c:if test="${acao == editar}">
+                                     <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
+                                            value="${codigoProduto}" name="codigoProduto">
+                                 </c:if>
+                                 <c:if test="${empty acao}">
+                                     <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
+                                            placeholder="Codigo do produto" name="codigoProduto">
+                                 </c:if>
+
+                                 <label for="nomeProduto">Nome:</label>
+                                 <c:if test="${acao == editar}">
+                                     <input type="text" class="form-control inputForm" id="nome"
+                                            value="${nome}" name="nome">
+                                 </c:if>
+                                 <c:if test="${empty acao}">
+                                     <input type="text" class="form-control inputForm" id="nome"
+                                            placeholder="Nome do produto" name="nome">
+                                 </c:if>
+
+                                 <label for="descricaoProduto">Descrição:</label>
+                                 <c:if test="${acao == editar}">
+                                     <input type="text" class="form-control inputForm" id="descricao"
+                                            value="${descricao}" name="descricao">
+                                 </c:if>
+                                 <c:if test="${empty acao}">
+                                     <input type="text" class="form-control inputForm" id="descricao"
+                                            placeholder="Descrição do produto" name="descricao">
+                                 </c:if>
+
+                                 <label for="quantidadeEstoque">Quantidade em estoque:</label>
+                                 <c:if test="${acao == editar}">
+                                     <input type="number" class="form-control inputForm" id="quantidadeEstoque"
+                                            value="${quantidadeEstoque}" name="quantidadeEstoque">
+                                 </c:if>
+                                 <c:if test="${empty acao}">
+                                     <input type="number" class="form-control inputForm" id="quantidadeEstoque"
+                                            placeholder="Quantidade em estoque" name="quantidadeEstoque">
+                                 </c:if>
+
+                                 <label for="valorProduto">Valor Unitário:</label>
+                                 <c:if test="${acao == editar}">
+                                     <input type="number" class="form-control inputForm" id="valorUnitario"
+                                            value="valorUnitario" name="valorUnitario">
+                                 </c:if>
+                                 <c:if test="${empty acao}">
+                                     <input type="number" class="form-control inputForm" id="valorUnitario"
+                                            placeholder="Valor Unitário" name="valorUnitario">
+                                 </c:if>
+
+
+                                 <label for="tipo" >Tipo:</label>
+                                 <c:if test="${acao == editar}">
+                                     <select class="custom-select inputForm" id="tipo" name="tipo">
+                                         <option value="Produto">Produto</option>
+                                         <option value="Serviço">Serviço</option>
+                                     </select>
+                                 </c:if>
+                                 <c:if test="${empty acao}">
+                                     <select class="custom-select inputForm" id="tipo" name="tipo">
+                                         <option value="Produto">${tipoCadastrado}</option>
+                                         <option value="Produto">Produto</option>
+                                         <option value="Serviço">Serviço</option>
+                                     </select>
+                                 </c:if>                            
+
+                                 <label for="filial" >Filial:</label>
+                                 <c:if test="${acao == editar}">
+                                     <select class="custom-select inputForm" id="filial" name="filial">
+                                         <option> Filial </option>
+                                         <c:forEach var="filiais" items="${listaFiliais}">
+                                             <option value="<c:out value="${filiais.codigo}"/>">
+                                                 <c:out value="${filiais.codigo}"/>
+                                             </option>
+                                         </c:forEach>
+                                     </select>
+                                 </c:if>
+                                 <c:if test="${empty acao}">
+                                     <select class="custom-select inputForm" id="filial" name="filial">
+                                         <option> ${filialCadastrada} </option>
+                                         <c:forEach var="filiais" items="${listaFiliais}">
+                                             <option value="<c:out value="${filiais.codigo}"/>">
+                                                 <c:out value="${filiais.codigo}"/>
+                                             </option>
+                                         </c:forEach>
+                                     </select>
+                                 </c:if>  
+
+                             </div>
+                             <button type="submit" class="btn btn-light btn-block">
+                                 <i class="far fa-save"></i>
+                                 Salvar
+                             </button>
+
+                             <button type="submit" class="btn btn-light btn-block">
+                                 <i class="fas fa-ban"></i>
+                                 Cancelar
+                             </button> 
+                         </form>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
 
     </body>
 </html>
