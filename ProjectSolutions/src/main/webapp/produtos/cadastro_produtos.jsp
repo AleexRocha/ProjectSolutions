@@ -55,21 +55,21 @@ Author     : nicolas.hgyoshioka
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-6"
-                     
-                        <c:if test="${acao == 'editar'}">
-                            <form action="editar_produto" method="POST">
-                        </c:if>
-                        <c:if test="${empty acao}">
-                            <form action="cadastro_produto" method="POST">
-                        </c:if>
+                <div class="col-md-6">
+
+                    <c:if test="${acao == 'editar'}">
+                        <form action="editar_produto" method="POST">
+                    </c:if>
+                    <c:if test="${empty acao}">
+                        <form action="cadastro_produto" method="POST">
+                    </c:if>
 
                              <div class="form-group">
 
                                  <label for="codigoProduto" class="sr-only">Código:</label>
-                                 <c:if test="${acao == editar}">
+                                 <c:if test="${acao == 'editar'}">
                                      <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
-                                            value="${codigoProduto}" name="codigoProduto">
+                                            value="${codigo}" name="codigoProduto">
                                  </c:if>
                                  <c:if test="${empty acao}">
                                      <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
@@ -77,7 +77,7 @@ Author     : nicolas.hgyoshioka
                                  </c:if>
 
                                  <label for="nomeProduto">Nome:</label>
-                                 <c:if test="${acao == editar}">
+                                 <c:if test="${acao == 'editar'}">
                                      <input type="text" class="form-control inputForm" id="nome"
                                             value="${nome}" name="nome">
                                  </c:if>
@@ -87,7 +87,7 @@ Author     : nicolas.hgyoshioka
                                  </c:if>
 
                                  <label for="descricaoProduto">Descrição:</label>
-                                 <c:if test="${acao == editar}">
+                                 <c:if test="${acao == 'editar'}">
                                      <input type="text" class="form-control inputForm" id="descricao"
                                             value="${descricao}" name="descricao">
                                  </c:if>
@@ -97,9 +97,9 @@ Author     : nicolas.hgyoshioka
                                  </c:if>
 
                                  <label for="quantidadeEstoque">Quantidade em estoque:</label>
-                                 <c:if test="${acao == editar}">
+                                 <c:if test="${acao == 'editar'}">
                                      <input type="number" class="form-control inputForm" id="quantidadeEstoque"
-                                            value="${quantidadeEstoque}" name="quantidadeEstoque">
+                                            value="${qtd_estoque}" name="quantidadeEstoque">
                                  </c:if>
                                  <c:if test="${empty acao}">
                                      <input type="number" class="form-control inputForm" id="quantidadeEstoque"
@@ -107,35 +107,34 @@ Author     : nicolas.hgyoshioka
                                  </c:if>
 
                                  <label for="valorProduto">Valor Unitário:</label>
-                                 <c:if test="${acao == editar}">
+                                 <c:if test="${acao == 'editar'}">
                                      <input type="number" class="form-control inputForm" id="valorUnitario"
-                                            value="valorUnitario" name="valorUnitario">
+                                            value="${valor_unidade}" name="valorUnitario">
                                  </c:if>
                                  <c:if test="${empty acao}">
                                      <input type="number" class="form-control inputForm" id="valorUnitario"
                                             placeholder="Valor Unitário" name="valorUnitario">
                                  </c:if>
 
-
                                  <label for="tipo" >Tipo:</label>
-                                 <c:if test="${acao == editar}">
+                                 <c:if test="${acao == 'editar'}">
                                      <select class="custom-select inputForm" id="tipo" name="tipo">
+                                         <option value="Produto">${tipoCadastrado}</option>
                                          <option value="Produto">Produto</option>
                                          <option value="Serviço">Serviço</option>
                                      </select>
                                  </c:if>
                                  <c:if test="${empty acao}">
                                      <select class="custom-select inputForm" id="tipo" name="tipo">
-                                         <option value="Produto">${tipoCadastrado}</option>
                                          <option value="Produto">Produto</option>
                                          <option value="Serviço">Serviço</option>
                                      </select>
                                  </c:if>                            
 
                                  <label for="filial" >Filial:</label>
-                                 <c:if test="${acao == editar}">
-                                     <select class="custom-select inputForm" id="filial" name="filial">
-                                         <option> Filial </option>
+                                 <c:if test="${acao == 'editar'}">
+                                     <select class="custom-select inputForm" id="filial" name="codigoFilial">
+                                         <option>${filialCadastrada}</option>
                                          <c:forEach var="filiais" items="${listaFiliais}">
                                              <option value="<c:out value="${filiais.codigo}"/>">
                                                  <c:out value="${filiais.codigo}"/>
@@ -144,8 +143,8 @@ Author     : nicolas.hgyoshioka
                                      </select>
                                  </c:if>
                                  <c:if test="${empty acao}">
-                                     <select class="custom-select inputForm" id="filial" name="filial">
-                                         <option> ${filialCadastrada} </option>
+                                     <select class="custom-select inputForm" id="filial" name="filial">    
+                                         <option disabled="" selected=""> Filial </option>
                                          <c:forEach var="filiais" items="${listaFiliais}">
                                              <option value="<c:out value="${filiais.codigo}"/>">
                                                  <c:out value="${filiais.codigo}"/>
@@ -164,7 +163,7 @@ Author     : nicolas.hgyoshioka
                                  <i class="fas fa-ban"></i>
                                  Cancelar
                              </button> 
-                         </form>
+                        </form>
                 </div>
                 <div class="col-md-3"></div>
             </div>

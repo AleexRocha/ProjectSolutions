@@ -79,7 +79,7 @@ public class ProdutoEditarServlet extends HttpServlet {
         } else {
             Produto produto = new Produto(fNome, fDescricao, fTipo,Integer.parseInt(fCodigoFilial) , Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
             produto.setCodigo(Integer.parseInt(fCodigo));
-            boolean httpOK = ProdutoDAO.salvarProduto(produto);
+            boolean httpOK = ProdutoDAO.atualizarProduto(produto);
 
             if (httpOK) {
                 ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
