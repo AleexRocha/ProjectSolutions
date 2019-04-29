@@ -1,8 +1,11 @@
 package ServletProduto;
 
+import DAO.FilialDAO;
 import DAO.ProdutoDAO;
+import Model.Filial;
 import Model.Produto;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,28 +17,81 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.pereira
  */
-@WebServlet(name = "ProdutoEditarServlet", urlPatterns = {"/produtos/dados_produto"})
+@WebServlet(name = "ProdutoEditarServlet", urlPatterns = {"/produtos/editar_produto"})
 public class ProdutoEditarServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String fCodigo = request.getParameter("codigoProduto");
+        String fNome = request.getParameter("nome");
+        String fDescricao = request.getParameter("descricao");
+        String fTipo = request.getParameter("tipo");
+        String fCodigoFilial = request.getParameter("codigoFilial");
+        String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
+        String fValorUnitario = request.getParameter("valorUnitario");
 
-        String pCodigo = request.getParameter("codigo");
-        Produto produto = ProdutoDAO.getProduto(Integer.parseInt(pCodigo));
+        boolean error = false;
+        if (fCodigo.length() == 0) {
+            error = true;
+            request.setAttribute("codigoErro", "Codigo não informado");
+        }
+        if (fNome.length() == 0) {
+            error = true;
+            request.setAttribute("nomeErro", "Nome não informado");
+        }
+        if (fDescricao.length() == 0) {
+            error = true;
+            request.setAttribute("descricaoErro", "Descricao não informado");
+        }
+        if (fTipo.length() == 0) {
+            error = true;
+            request.setAttribute("TipoErro", "tipo não informado");
+        }
+        if (fCodigoFilial.length() == 0) {
+            error = true;
+            request.setAttribute("filialErro", "Filial não informado");
+        }
+        if (fQuantidadeEstoque.length() == 0) {
+            error = true;
+            request.setAttribute("quantidadeEstoqueErro", "QuantidadeEstoque não informada");
+        }
+        if (fValorUnitario.length() == 0) {
+            error = true;
+            request.setAttribute("valorUnitarioErro", "Valor Unitario não informado");
+        }
 
-        request.setAttribute("acao", "editar");
-        request.setAttribute("codigo", produto.getCodigo());
-        request.setAttribute("nome", produto.getNome());
-        request.setAttribute("descricao", produto.getDescricao());
-        request.setAttribute("tipo", produto.getTipo());
-        request.setAttribute("quantidadeEstoque", produto.getQuantidadeEstoque());
-        request.setAttribute("valorUnitario", produto.getValorUnitario());
-        /*request.setAttribute("estado", filial.getEstado());
-        request.setAttribute("telefone", filial.getTelefone());
-*/
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
-        dispatcher.forward(request, response);
+        if (error) {
+            String pCodigo = request.getParameter("codigo");
+            Produto produto = ProdutoDAO.getProduto(Integer.parseInt(pCodigo));
 
+            request.setAttribute("acao", "editar");
+            request.setAttribute("codigo", produto.getCodigo());
+            request.setAttribute("nome", produto.getNome());
+            request.setAttribute("descricao", produto.getDescricao());
+            request.setAttribute("tipo", produto.getTipo());
+            request.setAttribute("codigoFilial", produto.getCodigoFilial());
+            request.setAttribute("quantidadeEstoque", produto.getQuantidadeEstoque());
+            request.setAttribute("valorUnitario", produto.getValorUnitario());
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produto.jsp");
+            dispatcher.forward(request, response);
+
+        } else {
+            Produto produto = new Produto(fNome, fDescricao, fTipo,Integer.parseInt(fCodigoFilial) , Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
+            produto.setCodigo(Integer.parseInt(fCodigo));
+            boolean httpOK = ProdutoDAO.salvarProduto(produto);
+
+            if (httpOK) {
+                ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+                request.setAttribute("lista", produtos);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
     }
 
     @Override
