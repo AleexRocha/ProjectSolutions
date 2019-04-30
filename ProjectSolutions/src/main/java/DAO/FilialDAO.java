@@ -94,14 +94,13 @@ public class FilialDAO {
         ArrayList<Filial> filiais = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM"
-                    + " tbl_filial;");
+            PreparedStatement query = conn.prepareStatement("select *, concat(cidade, \" -\",estado) from tbl_filial;");
 
             ResultSet rs = query.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
-                    filiais.add(new Filial(
+                    Filial filial = new Filial(
                             rs.getInt(1),
                             rs.getString(2),
                             rs.getInt(3),
@@ -110,8 +109,9 @@ public class FilialDAO {
                             rs.getString(6),
                             rs.getString(7),
                             rs.getString(8)
-                    ));
-
+                    );
+                    filial.setNomeFilial(rs.getString(9));
+                    filiais.add(filial);
                 }
             }
             conn.close();

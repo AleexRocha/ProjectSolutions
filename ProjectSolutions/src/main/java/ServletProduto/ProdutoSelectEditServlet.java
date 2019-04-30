@@ -35,7 +35,8 @@ public class ProdutoSelectEditServlet extends HttpServlet {
         request.setAttribute("descricao", produto.getDescricao());
         request.setAttribute("tipo", produto.getTipo());
         request.setAttribute("tipoCadastrado", produto.getTipo());
-        request.setAttribute("filialCadastrada", produto.getCodigoFilial());
+        request.setAttribute("cdFilialCadastrada", produto.getCodigoFilial());
+        request.setAttribute("nomeFilialCadastrada", filiais.get(produto.getCodigoFilial()).getNomeFilial());
         request.setAttribute("listaFiliais", filiais);
         request.setAttribute("qtd_estoque", produto.getQuantidadeEstoque());
         request.setAttribute("valor_unidade", produto.getValorUnitario());        

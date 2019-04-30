@@ -7,6 +7,7 @@ package Model;
 public class Filial {
 
     private int codigo;
+    private String nomeFilial;
     private String logradouro;
     private int numero;
     private String cep;
@@ -15,7 +16,7 @@ public class Filial {
     private String cidade;
     private String telefone;
 
-    public Filial(int codigo, String logradouro, int numero, String cep, String bairro, String estado, String cidade, String telefone) {
+    public Filial(int codigo, String logradouro, int numero, String cep, String bairro, String cidade, String estado,  String telefone) {
         this.codigo = codigo;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -47,6 +48,14 @@ public class Filial {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public String getNomeFilial() {
+        return nomeFilial;
+    }
+
+    public void setNomeFilial(String nomeFilial) {
+        this.nomeFilial = nomeFilial;
     }
 
     public String getLogradouro() {
