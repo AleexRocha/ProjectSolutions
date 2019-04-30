@@ -29,10 +29,13 @@ table{
     text-decoration: none;
 }
 #btn_cadastro{
-   float: left;
-   margin-right: 5px;
+    float: left;
+    margin-right: 5px;
 }
-
+#itensMenu{
+    margin-left: auto; 
+    margin-right: auto; 
+}
 .btn-light{
     background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
     border-color: #dae0e5;

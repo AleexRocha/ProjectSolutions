@@ -23,7 +23,7 @@ public class ProdutoCadastroServlet  extends HttpServlet {
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");
-        String fCodigoFilial = request.getParameter("filial");
+        String fCodigoFilial = request.getParameter("codigoFilial");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
        
@@ -68,7 +68,7 @@ public class ProdutoCadastroServlet  extends HttpServlet {
                 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
-            } else {
+             } else {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                 dispatcher.forward(request, response);
             }

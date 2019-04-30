@@ -118,7 +118,8 @@ public class UsuarioDAO {
             PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, senha,"
                     + " fk_filial, fk_setor, nome_setor, concat(cidade, \" - \", estado)\n" 
                     + " FROM tbl_usuario INNER JOIN tbl_setor ON "
-                    + " tbl_usuario.fk_setor = tbl_setor.id_setor inner join tbl_filial on tbl_usuario.fk_filial = tbl_filial.id_filial;");
+                    + " tbl_usuario.fk_setor = tbl_setor.id_setor inner join tbl_filial on tbl_usuario.fk_filial = tbl_filial.id_filial "
+                    + " where id_usuario = ? ;");
 
             query.setInt(1, codigoUsuario);
             ResultSet rs = query.executeQuery();

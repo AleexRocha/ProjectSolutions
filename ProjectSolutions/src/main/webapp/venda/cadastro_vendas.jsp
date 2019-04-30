@@ -23,7 +23,7 @@ Author     : nicolas.hgyoshioka
                 <img src="../assets/img/logo.png">
             </h1>
             <nav class="navbar navbar-expand-md navbar-light bg-warning">
-                <ul class="nav justify-content-center">
+                <ul id="itensMenu" class="nav justify-content-center">
                     <li class="nav-item">
                         <form action="../produtos/listagem_produtos" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Produtos</button>

@@ -119,15 +119,17 @@ public class ProdutoDAO {
         Produto produto = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM"
-                    + " tbl_produtos WHERE id_produto = ?;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade,"
+                    + " concat(cidade, \" - \", estado) \n" +
+                    "FROM tbl_produtos inner join tbl_filial on tbl_produtos.fk_filial = tbl_filial .id_filial\n" +
+                    "WHERE id_produto = ?;");
 
             query.setInt(1, codigo);
             ResultSet rs = query.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
-                    produto = new Produto(
+                    Produto prod = new Produto(
                             rs.getInt(1),
                             rs.getString(2),
                             rs.getString(3),
@@ -136,6 +138,8 @@ public class ProdutoDAO {
                             rs.getInt(6),
                             rs.getDouble(7)
                     );
+                    prod.setNomeFilial(rs.getString(8));
+                    produto = prod;
                 }
             }
             conn.close();

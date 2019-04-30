@@ -24,7 +24,7 @@ Author     : nicolas.hgyoshioka
                 <img src="../assets/img/logo.png">
             </h1>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <ul class="nav justify-content-center">
+                <ul id="itensMenu" class="nav justify-content-center">
                     <li class="nav-item">
                         <a class="nav-link nav-text" href="../venda/cadastro_vendas.jsp">Vendas</a>
                     </li>

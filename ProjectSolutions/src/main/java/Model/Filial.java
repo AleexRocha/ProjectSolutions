@@ -28,7 +28,7 @@ public class Filial {
     }
 
     
-    public Filial(String logradouro, int numero, String cep, String bairro, String estado, String cidade, String telefone) {
+    public Filial(String logradouro, int numero, String cep, String bairro, String cidade, String estado, String telefone) {
         this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;

@@ -23,7 +23,7 @@ Author     : nicolas.hgyoshioka
                 <img src="../assets/img/logo.png">
             </h1>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <ul class="nav justify-content-center">
+                <ul id="itensMenu" class="nav justify-content-center">
                     <li class="nav-item">
                         <a class="nav-link nav-text" href="../venda/cadastro_vendas.jsp">Vendas</a>
                     </li>
@@ -79,8 +79,8 @@ Author     : nicolas.hgyoshioka
                             <td name="numero" ><c:out value="${filiais.numero}" /></td>
                             <td name="cep" ><c:out value="${filiais.cep}" /></td>
                             <td name="bairro" ><c:out value="${filiais.bairro}" /></td>
-                            <td name="estado" ><c:out value="${filiais.estado}" /></td>
                             <td name="cidade" ><c:out value="${filiais.cidade}" /></td>
+                            <td name="estado" ><c:out value="${filiais.estado}" /></td>
                             <td name="telefone" ><c:out value="${filiais.telefone}" /></td>        
                             <td class="btn-group">
                                 <form action="dados_filial" method="POST">

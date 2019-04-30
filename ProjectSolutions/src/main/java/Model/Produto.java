@@ -11,6 +11,7 @@ public class Produto {
     private String descricao;
     private String tipo;
     private int codigoFilial;
+    private String nomeFilial;
     private int quantidadeEstoque;
     private double valorUnitario;
 
@@ -88,6 +89,14 @@ public class Produto {
 
     public int getCodigoFilial() {
         return codigoFilial;
+    }
+
+    public String getNomeFilial() {
+        return nomeFilial;
+    }
+
+    public void setNomeFilial(String nomeFilial) {
+        this.nomeFilial = nomeFilial;
     }
 
     public void setCodigoFilial(int codigoFilial) {
