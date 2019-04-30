@@ -21,8 +21,14 @@ public class VendaSelectServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Venda> venda = VendaDAO.getItemVenda();
-        request.setAttribute("lista", venda);
+        ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
+        ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
+        ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
+        
+        request.setAttribute("listaProdutos", produtosVenda);
+        request.setAttribute("listaUsuarios", usuariosVenda);
+        request.setAttribute("listaFiliais", filiaisVenda);
+        
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
         dispatcher.forward(request, response);

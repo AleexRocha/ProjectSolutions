@@ -55,24 +55,46 @@ public class VendaDAO {
         return true;
     }
 
-    public static ArrayList<Venda> getItemVenda() {
+    public static ArrayList<Venda> getProdutosVenda() {
         ArrayList<Venda> venda = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_produto, "
-                    + "(SELECT id_usuario FROM tbl_usuario) AS id_usuario, "
-                    + "(SELECT id_filial FROM tbl_filial) AS id_filial "
-                    + "FROM tbl_produtos;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome FROM tbl_produtos;");
 
             ResultSet rs = query.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
-                    venda.add(new Venda(
-                            rs.getInt(1),
-                            rs.getInt(2),
-                            rs.getInt(3)
-                    ));
+                    Venda v = new Venda();
+                    v.setCodigoProduto(rs.getInt(1));
+                    v.setNomeProduto(rs.getString(2));
+                    
+                    venda.add(v);
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return venda;
+    }
+    
+    public static ArrayList<Venda> getUsuariosVenda() {
+        ArrayList<Venda> venda = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome FROM tbl_usuario;");
+
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Venda v = new Venda();
+                    v.setIdFuncionario(rs.getInt(1));
+                    v.setNomeFuncionario(rs.getString(2));
+                    
+                    venda.add(v);
                 }
             }
             conn.close();
@@ -83,4 +105,29 @@ public class VendaDAO {
         return venda;
     }
 
+    public static ArrayList<Venda> getFiliaisVenda() {
+        ArrayList<Venda> venda = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("select id_filial, concat(estado, \"-\", cidade) as nome_filial from tbl_filial;");
+
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Venda v = new Venda();
+                    v.setCodigoFilial(rs.getInt(1));
+                    v.setNomeFilial(rs.getString(2));
+                    
+                    venda.add(v);
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return venda;
+    }
+    
 }

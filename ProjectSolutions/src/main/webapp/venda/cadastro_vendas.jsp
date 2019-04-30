@@ -58,8 +58,8 @@ Author     : nicolas.hgyoshioka
                                 <label for="codigoProduto">Código do produto:</label>
                                 <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
                                     <option disabled="" selected="" hidden="">Código do produto</option>
-                                    <c:forEach var="lista" items="${lista}">  
-                                        <option value=" <c:out value="${lista.codigoProduto}"></c:out> "> <c:out value="${lista.codigoProduto}"></c:out> </option>  
+                                    <c:forEach var="lista" items="${listaProdutos}">  
+                                        <option value=" <c:out value="${lista.codigoProduto}"></c:out> "> <c:out value="${lista.nomeProduto}"></c:out> </option>  
                                     </c:forEach>  
                                 </select>
                             </span>
@@ -67,8 +67,8 @@ Author     : nicolas.hgyoshioka
                             <label for="idFuncionario">ID do Funcionário:</label>
                             <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
                                 <option disabled="" selected="" hidden="">ID do funcionário</option>
-                                <c:forEach var="lista" items="${lista}">  
-                                    <option value=" <c:out value="${lista.idFuncionario}"></c:out> "> <c:out value="${lista.idFuncionario}"></c:out> </option>  
+                                <c:forEach var="lista" items="${listaUsuarios}">  
+                                    <option value=" <c:out value="${lista.idFuncionario}"></c:out> "> <c:out value="${lista.nomeFuncionario}"></c:out> </option>  
                                 </c:forEach>  
                             </select>
 
@@ -79,8 +79,8 @@ Author     : nicolas.hgyoshioka
                             <label for="codigoFilial">Código da filial:</label>
                             <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
                                 <option disabled="" selected="" hidden="">Código da filial</option>
-                                <c:forEach var="lista" items="${lista}">  
-                                    <option value=" <c:out value="${lista.codigoFilial}"></c:out> "> <c:out value="${lista.codigoFilial}"></c:out> </option>  
+                                <c:forEach var="lista" items="${listaFiliais}">  
+                                    <option value=" <c:out value="${lista.codigoFilial}"></c:out> "> <c:out value="${lista.nomeFilial}"></c:out> </option>  
                                 </c:forEach>  
                             </select>
 
