@@ -116,35 +116,47 @@ Author     : nicolas.hgyoshioka
                             <label for="setor" >Setor:</label>
                             <c:if test="${acao == 'editar'}">
                                 <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                    <option>${setor}</option>                               
+                                    <option value="${setor}">
+                                        <c:out value="${nomeSetorCadastrado}"/>
+                                    </option>                               
                                     <c:forEach var="listaSetores" items="${listaSetores}">  
-                                        <option value="<c:out value="${listaSetores.setor}"></c:out>"> <c:out value="${listaSetores.setor}"/> </option>  
+                                        <option value="<c:out value="${listaSetores.setor}"></c:out>">
+                                            <c:out value="${listaSetores.nomeSetor}"/> 
+                                        </option>  
                                     </c:forEach>    
                                 </select>
                             </c:if>
                             <c:if test="${empty acao}">
                                 <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                    <option disabled="" selected="" hidden="">Código do Setor</option>                               
-                                    <c:forEach var="listaSetores" items="${listaSetores}">  
-                                        <option value="<c:out value="${listaSetores.setor}"></c:out>"> <c:out value="${listaSetores.setor}"/> </option>  
-                                    </c:forEach>    
+                                    <option disabled="" selected="" hidden="">Setor</option>                               
+                                     <c:forEach var="listaSetores" items="${listaSetores}">  
+                                        <option value="<c:out value="${listaSetores.setor}"></c:out>">
+                                            <c:out value="${listaSetores.nomeSetor}"/> 
+                                        </option>  
+                                    </c:forEach>       
                                 </select>
                             </c:if>
 
                             <label for="tipo" >Filial:</label>
                             <c:if test="${acao == 'editar'}">
                                 <select class="custom-select inputForm" id="codigoFilial" name="filial">
-                                    <option>${filial}</option>
+                                    <option value="${filial}">
+                                        <c:out value="${nomeFilialCadastrado}"/>
+                                    </option>
                                     <c:forEach var="listaFiliais" items="${listaFiliais}">  
-                                        <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> <c:out value="${listaFiliais.codigoFilial}"/> </option>  
+                                        <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
+                                            <c:out value="${listaFiliais.nomeFilial}"/> 
+                                        </option>  
                                     </c:forEach>  
                                 </select>
                             </c:if>
                             <c:if test="${empty acao}">
                                 <select class="custom-select inputForm" id="codigoFilial" name="filial">
-                                    <option disabled="" selected="" hidden="">Código da Filial</option>
+                                    <option disabled="" selected="" hidden="">Filial</option>
                                     <c:forEach var="listaFiliais" items="${listaFiliais}">  
-                                        <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> <c:out value="${listaFiliais.codigoFilial}"/> </option>  
+                                        <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
+                                            <c:out value="${listaFiliais.nomeFilial}"/> 
+                                        </option>  
                                     </c:forEach>  
                                 </select>
                             </c:if>

@@ -147,7 +147,7 @@ public class UsuarioDAO {
         ArrayList<Usuario> setores = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_setor FROM tbl_setor;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_setor, nome_setor FROM tbl_setor;");
 
             ResultSet rs = query.executeQuery();
 
@@ -155,6 +155,7 @@ public class UsuarioDAO {
                 while (rs.next()) {
                     Usuario user = new Usuario();
                     user.setSetor(rs.getInt(1));
+                    user.setNomeSetor(rs.getString(2));
                     setores.add(user);
                 }
             }
@@ -170,7 +171,7 @@ public class UsuarioDAO {
         ArrayList<Usuario> filiais = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_filial FROM tbl_filial;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_filial, CONCAT(cidade, \" - \", estado) FROM tbl_filial;");
 
             ResultSet rs = query.executeQuery();
 
@@ -178,6 +179,7 @@ public class UsuarioDAO {
                 while (rs.next()) {
                     Usuario user = new Usuario();
                     user.setCodigoFilial(rs.getInt(1));
+                    user.setNomeFilial(rs.getString(2));
                     filiais.add(user);
                 }
             }

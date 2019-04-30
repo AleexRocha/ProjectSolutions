@@ -94,7 +94,7 @@ public class FilialDAO {
         ArrayList<Filial> filiais = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("select *, concat(cidade, \" -\",estado) from tbl_filial;");
+            PreparedStatement query = conn.prepareStatement("select *, concat(cidade, \" - \",estado) from tbl_filial;");
 
             ResultSet rs = query.executeQuery();
 

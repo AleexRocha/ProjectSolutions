@@ -109,7 +109,7 @@ public class VendaDAO {
         ArrayList<Venda> venda = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("select id_filial, concat(estado, \" -\",cidade) as nome_filial from tbl_filial;");
+            PreparedStatement query = conn.prepareStatement("select id_filial, concat(cidade, \" - \",estado) as nome_filial from tbl_filial;");
 
             ResultSet rs = query.executeQuery();
 

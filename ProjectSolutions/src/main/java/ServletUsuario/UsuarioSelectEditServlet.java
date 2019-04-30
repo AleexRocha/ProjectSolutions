@@ -27,16 +27,18 @@ public class UsuarioSelectEditServlet extends HttpServlet {
         ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();   
         ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
         
-
         request.setAttribute("acao", "editar");
         request.setAttribute("codigo", usuario.getCodigo());
         request.setAttribute("nome", usuario.getNome());
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("senha", usuario.getSenha());
         request.setAttribute("setor", usuario.getSetor());
+        request.setAttribute("nomeSetorCadastrado", setores.get(usuario.getSetor()).getNomeSetor());
         request.setAttribute("listaSetores", setores);
         request.setAttribute("filial", usuario.getCodigoFilial());
         request.setAttribute("listaFiliais", filiais);
+        request.setAttribute("nomeFilialCadastrado", setores.get(usuario.getCodigoFilial()).getNomeFilial());
+        
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);
