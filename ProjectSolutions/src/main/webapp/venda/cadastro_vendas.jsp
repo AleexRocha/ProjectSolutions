@@ -52,23 +52,27 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <form action="cadastro_vendas" method="post">
+                    <form action="create_venda" method="post">
                         <div class="form-group">
                             <span id="divProduto">
                                 <label for="codigoProduto">Código do produto:</label>
                                 <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
                                     <option disabled="" selected="" hidden="">Código do produto</option>
                                     <c:forEach var="lista" items="${listaProdutos}">  
-                                        <option value=" <c:out value="${lista.codigoProduto}"></c:out> "> <c:out value="${lista.nomeProduto}"></c:out> </option>  
+                                        <option value="<c:out value="${lista.codigoProduto}"></c:out>">
+                                            <c:out value="${lista.nomeProduto}"></c:out>
+                                        </option>  
                                     </c:forEach>  
                                 </select>
                             </span>
 
                             <label for="idFuncionario">ID do Funcionário:</label>
-                            <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
+                            <select class="custom-select inputForm" id="codigoProduto" name="idFuncionario">
                                 <option disabled="" selected="" hidden="">ID do funcionário</option>
                                 <c:forEach var="lista" items="${listaUsuarios}">  
-                                    <option value=" <c:out value="${lista.idFuncionario}"></c:out> "> <c:out value="${lista.nomeFuncionario}"></c:out> </option>  
+                                    <option value="<c:out value="${lista.idFuncionario}"></c:out>">
+                                        <c:out value="${lista.nomeFuncionario}"></c:out>
+                                    </option>  
                                 </c:forEach>  
                             </select>
 
@@ -77,10 +81,12 @@ Author     : nicolas.hgyoshioka
                                    placeholder="CPF do cliente" name="cpfCliente">
 
                             <label for="codigoFilial">Código da filial:</label>
-                            <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
+                            <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
                                 <option disabled="" selected="" hidden="">Código da filial</option>
                                 <c:forEach var="lista" items="${listaFiliais}">  
-                                    <option value=" <c:out value="${lista.codigoFilial}"></c:out> "> <c:out value="${lista.nomeFilial}"></c:out> </option>  
+                                    <option value="<c:out value="${lista.codigoFilial}"></c:out>">
+                                        <c:out value="${lista.nomeFilial}"></c:out>
+                                    </option>  
                                 </c:forEach>  
                             </select>
 

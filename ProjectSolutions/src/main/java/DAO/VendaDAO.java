@@ -19,7 +19,7 @@ public class VendaDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " tbl_venda(id_produto, id_funcionario, id_filial, qtd_itens, cpf_cliente, data_venda)"
+                    + " tbl_venda(id_produto, id_usuario, id_filial, qtd_itens, cpf_cliente, data_venda)"
                     + "VALUES (?, ?, ?, ?, ?, NOW());");
 
             query.setInt(1, v.getCodigoProduto());
