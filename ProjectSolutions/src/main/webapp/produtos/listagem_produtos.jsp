@@ -46,7 +46,7 @@
         </header>
         <div class="container">
             
-            <form action="select_cadastro" method="GET">
+            <form id="btn_cadastro" action="select_cadastro" method="GET">
                 <Button type="submit" class="btn btn-light">
                     <i class="fas fa-box"></i>
                     Cadastrar Produto

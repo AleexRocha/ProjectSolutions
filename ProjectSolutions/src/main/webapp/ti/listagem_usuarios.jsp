@@ -47,7 +47,7 @@ Author     : nicolas.hgyoshioka
         </header>
         <div class="container">
             
-            <form  action="formulario_usuarios" method="post">
+            <form id="btn_cadastro" action="formulario_usuarios" method="post">
                 <button class="btn btn-light" type="submit">
                     <i class="fas fa-user-plus"></i>
                     Cadastrar Usuário

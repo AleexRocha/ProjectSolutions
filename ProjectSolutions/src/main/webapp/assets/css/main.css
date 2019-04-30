@@ -28,6 +28,10 @@ table{
     border-bottom: 1px solid #ffc107;
     text-decoration: none;
 }
+#btn_cadastro{
+   float: left;
+   margin-right: 5px;
+}
 
 .btn-light{
     background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
