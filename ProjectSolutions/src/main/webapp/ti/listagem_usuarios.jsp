@@ -83,8 +83,9 @@ Author     : nicolas.hgyoshioka
                             <td name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td name="email" ><c:out value="${usuarios.email}" /></td>
                             <td name="senha" ><c:out value="********" /></td>
-                            <td name="setor" ><c:out value="${usuarios.setor}" /></td>
-                            <td name="filial"><c:out value="${usuarios.codigoFilial}" /></td>
+                            <td name="filial"><c:out value="${usuarios.codigoFilial}"/></td>
+                            <td name="setor" ><c:out value="${usuarios.setor}"/></td>
+                            
 
                             <td class="btn-group">
                                 <form action="dados_usuario" method="POST">
