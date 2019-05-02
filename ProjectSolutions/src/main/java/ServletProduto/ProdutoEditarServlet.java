@@ -59,8 +59,7 @@ public class ProdutoEditarServlet extends HttpServlet {
         }
 
         if (error) {
-            String pCodigo = request.getParameter("codigo");
-            Produto produto = ProdutoDAO.getProduto(Integer.parseInt(pCodigo));
+            Produto produto = ProdutoDAO.getProduto(Integer.parseInt(fCodigo));
 
             request.setAttribute("acao", "editar");
             request.setAttribute("codigo", produto.getCodigo());
@@ -71,7 +70,7 @@ public class ProdutoEditarServlet extends HttpServlet {
             request.setAttribute("quantidadeEstoque", produto.getQuantidadeEstoque());
             request.setAttribute("valorUnitario", produto.getValorUnitario());
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produto.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
 
         } else {

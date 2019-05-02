@@ -130,7 +130,7 @@ Author     : nicolas.hgyoshioka
                                 </c:if>
 
                                 <label for="valorProduto">Valor Unitário:</label>
-                                <c:if test="${acao == 'editar'}">
+                                <c:if test="${acao == 'editar'}">                                  
                                     <input type="number" class="form-control inputForm" id="valorUnitario"
                                            value="${valor_unidade}" name="valorUnitario">
                                 </c:if>
