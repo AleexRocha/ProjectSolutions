@@ -1,8 +1,6 @@
 package ServletProduto;
 
-import DAO.FilialDAO;
 import DAO.ProdutoDAO;
-import Model.Filial;
 import Model.Produto;
 import java.io.IOException;
 import java.util.ArrayList;

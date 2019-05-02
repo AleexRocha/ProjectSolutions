@@ -24,7 +24,7 @@ Author     : nicolas.hgyoshioka
             </h1>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
                 <ul id="itensMenu" class="nav justify-content-center">
-                   <li class="nav-item">
+                    <li class="nav-item">
                         <form action="../venda/cadastro_vendas">
                             <button type="submit" class="btn nav-link nav-text">Vendas</button>
                         </form>                     
@@ -51,9 +51,9 @@ Author     : nicolas.hgyoshioka
                 <form action="gerar_relatorio">
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="filial" name="filial">
-                        <option> Filial </option>
+                        <option selected="" hidden="" value="0">Filial</option>
                         <c:forEach var="filiais" items="${listaFiliais}">
-                            <option value=" <c:out value="${filiais.codigo}"></c:out> ">
+                            <option value="<c:out value="${filiais.codigo}"></c:out>">
                                 <c:out value="${filiais.codigo}"/>
                             </option>
                         </c:forEach>
@@ -66,11 +66,11 @@ Author     : nicolas.hgyoshioka
                         <i class="far fa-file-alt"></i>
                         Gerar relatorio
                     </button>
-                </form> 
-<!--                <button class="btn btn-success">
-                    <i class="far fa-file-excel"></i>
-                    Exportar
-                </button>-->
+                    <a href="#" class="btn btn-success">
+                        <i class="far fa-file-excel"></i>
+                        Exportar
+                    </a>
+                </form>
             </div>
             <div class="row">
                 <div class="col-md-12">
