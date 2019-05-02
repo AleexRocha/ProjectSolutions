@@ -71,7 +71,6 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Codigo</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Senha</th>
                         <th scope="col">Filial</th>
                         <th scope="col">Setor</th>
                         <th scope="col">Acoes</th>
@@ -84,11 +83,9 @@ Author     : nicolas.hgyoshioka
                             <td name="codigo" ><c:out value="${usuarios.codigo}" /></td>
                             <td name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td name="email" ><c:out value="${usuarios.email}" /></td>
-                            <td name="senha" ><c:out value="********" /></td>
                             <td name="filial"><c:out value="${usuarios.nomeFilial}"/></td>
                             <td name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
                             
-
                             <td class="btn-group">
                                 <form action="dados_usuario" method="POST">
                                     <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
