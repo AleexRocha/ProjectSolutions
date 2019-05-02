@@ -24,7 +24,7 @@ Author     : nicolas.hgyoshioka
             </h1>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
                 <ul id="itensMenu" class="nav justify-content-center">
-                   <li class="nav-item">
+                    <li class="nav-item">
                         <form action="../venda/cadastro_vendas">
                             <button type="submit" class="btn nav-link nav-text">Vendas</button>
                         </form>                     
@@ -86,14 +86,12 @@ Author     : nicolas.hgyoshioka
                             <td name="telefone" ><c:out value="${filiais.telefone}" /></td>        
                             <td class="btn-group">
                                 <form action="dados_filial" method="POST">
-
                                     <button name="editarID" value="${filiais.codigo}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
-
                                 </form>
-                                <form action="excluir_filial" method="POST">
-                                    <button name ="excluirID" value="${filiais.codigo}" type="submit" class="btn btn-danger">
+                                <form name ="deletarFilial" action="excluir_filial" onSubmit="return validaAcao(${filiais.codigo});" method="POST">
+                                    <button name="excluirID" value="${filiais.codigo}" type="submit" class="btn btn-danger">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </form>
@@ -101,7 +99,20 @@ Author     : nicolas.hgyoshioka
                         </tr>
                     </c:forEach>
                 </tbody>
-            </table>
+            </table>    
         </div>   
+        <script>
+            function validaAcao(codigoBtn) {
+                var codigo = codigoBtn;
+                var r = confirm("Deseja excluir a filial " + codigo + "?");
+
+                if (r == true) {
+                    deletarFilial.submit(codigo);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
     </body>
 </html>
