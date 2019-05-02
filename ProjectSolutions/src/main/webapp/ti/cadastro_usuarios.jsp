@@ -25,7 +25,9 @@ Author     : nicolas.hgyoshioka
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
                 <ul id="itensMenu" class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../venda/cadastro_vendas.jsp">Vendas</a>
+                        <form action="../venda/cadastro_vendas">
+                            <button type="submit" class="btn nav-link nav-text">Vendas</button>
+                        </form>                     
                     </li>
                     <li class="nav-item">
                         <form action="../produtos/listagem_produtos" method="GET">
@@ -58,119 +60,119 @@ Author     : nicolas.hgyoshioka
                 <div class="col-md-6">
                     <c:if test="${acao == 'editar'}">
                         <form action="editar_usuario" method="post">
-                    </c:if>
-                            
-                    <c:if test="${empty acao}">
-                        <form action="cadastro_usuario" method="post">
-                    </c:if>
-                            
-                        <div class="form-group">
-                            <label for="codigoUsuario" class="sr-only">Código:</label>
-                            <c:if test="${acao == 'editar'}">
-                                <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
-                                       value="${codigo}" name="codigoUsuario">
-                            </c:if>
-                            <c:if test="${empty acao}">
-                                <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
-                                       placeholder="Código do usuário" name="codigoUsuario">
+                        </c:if>
+
+                        <c:if test="${empty acao}">
+                            <form action="cadastro_usuario" method="post">
                             </c:if>
 
+                            <div class="form-group">
+                                <label for="codigoUsuario" class="sr-only">Código:</label>
+                                <c:if test="${acao == 'editar'}">
+                                    <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
+                                           value="${codigo}" name="codigoUsuario">
+                                </c:if>
+                                <c:if test="${empty acao}">
+                                    <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
+                                           placeholder="Código do usuário" name="codigoUsuario">
+                                </c:if>
 
-                            <label for="nome">Nome:</label>
-                            <c:if test="${acao == 'editar'}">
-                                <input type="text" class="form-control inputForm" id="nome"
-                                       value="${nome}" name="nome">
-                            </c:if>
-                            <c:if test="${empty acao}">
-                                <input type="text" class="form-control inputForm" id="nome"
-                                       placeholder="Nome" name="nome">
-                            </c:if>
+
+                                <label for="nome">Nome:</label>
+                                <c:if test="${acao == 'editar'}">
+                                    <input type="text" class="form-control inputForm" id="nome"
+                                           value="${nome}" name="nome">
+                                </c:if>
+                                <c:if test="${empty acao}">
+                                    <input type="text" class="form-control inputForm" id="nome"
+                                           placeholder="Nome" name="nome">
+                                </c:if>
 
 
-                            <label for="email">E-mail:</label>                         
-                            <c:if test="${acao == 'editar'}">
-                                <input type="email" class="form-control inputForm" id="email"
-                                       value="${email}" name="email">
-                            </c:if>
-                            <c:if test="${empty acao}">
-                                <input type="email" class="form-control inputForm" id="email"
-                                       placeholder="E-mail" name="email">
-                            </c:if>
+                                <label for="email">E-mail:</label>                         
+                                <c:if test="${acao == 'editar'}">
+                                    <input type="email" class="form-control inputForm" id="email"
+                                           value="${email}" name="email">
+                                </c:if>
+                                <c:if test="${empty acao}">
+                                    <input type="email" class="form-control inputForm" id="email"
+                                           placeholder="E-mail" name="email">
+                                </c:if>
 
-                            <label for="senha">Senha:</label>
-                            <c:if test="${acao == 'editar'}">
-                                <input type="password" class="form-control inputForm" id="senha"
-                                       value="${senha}" name="senha">
-                            </c:if>
-                            <c:if test="${empty acao}">
-                                <input type="password" class="form-control inputForm" id="senha"
-                                       placeholder="Senha" name="senha">
-                            </c:if>
+                                <label for="senha">Senha:</label>
+                                <c:if test="${acao == 'editar'}">
+                                    <input type="password" class="form-control inputForm" id="senha"
+                                           value="${senha}" name="senha">
+                                </c:if>
+                                <c:if test="${empty acao}">
+                                    <input type="password" class="form-control inputForm" id="senha"
+                                           placeholder="Senha" name="senha">
+                                </c:if>
 
-                            <c:if test="${empty acao}">
-                                <label for="confirmarSenha">Confirmar senha:</label>
-                                <input type="password" class="form-control inputForm" id="confirmarSenha" 
-                                       placeholder="Confirmar senha" name="confirmarSenha">
-                            </c:if>
+                                <c:if test="${empty acao}">
+                                    <label for="confirmarSenha">Confirmar senha:</label>
+                                    <input type="password" class="form-control inputForm" id="confirmarSenha" 
+                                           placeholder="Confirmar senha" name="confirmarSenha">
+                                </c:if>
 
-                            <label for="setor" >Setor:</label>
-                            <c:if test="${acao == 'editar'}">
-                                <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                    <option value="${setor}">
-                                        <c:out value="${nomeSetorCadastrado}"/>
-                                    </option>                               
-                                    <c:forEach var="listaSetores" items="${listaSetores}">  
-                                        <option value="<c:out value="${listaSetores.setor}"></c:out>">
-                                            <c:out value="${listaSetores.nomeSetor}"/> 
-                                        </option>  
-                                    </c:forEach>    
-                                </select>
-                            </c:if>
-                            <c:if test="${empty acao}">
-                                <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                    <option disabled="" selected="" hidden="">Setor</option>                               
-                                     <c:forEach var="listaSetores" items="${listaSetores}">  
-                                        <option value="<c:out value="${listaSetores.setor}"></c:out>">
-                                            <c:out value="${listaSetores.nomeSetor}"/> 
-                                        </option>  
-                                    </c:forEach>       
-                                </select>
-                            </c:if>
+                                <label for="setor" >Setor:</label>
+                                <c:if test="${acao == 'editar'}">
+                                    <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
+                                        <option value="${setor}">
+                                            <c:out value="${nomeSetorCadastrado}"/>
+                                        </option>                               
+                                        <c:forEach var="listaSetores" items="${listaSetores}">  
+                                            <option value="<c:out value="${listaSetores.setor}"></c:out>">
+                                                <c:out value="${listaSetores.nomeSetor}"/> 
+                                            </option>  
+                                        </c:forEach>    
+                                    </select>
+                                </c:if>
+                                <c:if test="${empty acao}">
+                                    <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
+                                        <option disabled="" selected="" hidden="">Setor</option>                               
+                                        <c:forEach var="listaSetores" items="${listaSetores}">  
+                                            <option value="<c:out value="${listaSetores.setor}"></c:out>">
+                                                <c:out value="${listaSetores.nomeSetor}"/> 
+                                            </option>  
+                                        </c:forEach>       
+                                    </select>
+                                </c:if>
 
-                            <label for="tipo" >Filial:</label>
-                            <c:if test="${acao == 'editar'}">
-                                <select class="custom-select inputForm" id="codigoFilial" name="filial">
-                                    <option value="${filial}">
-                                        <c:out value="${nomeFilialCadastrado}"/>
-                                    </option>
-                                    <c:forEach var="listaFiliais" items="${listaFiliais}">  
-                                        <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
-                                            <c:out value="${listaFiliais.nomeFilial}"/> 
-                                        </option>  
-                                    </c:forEach>  
-                                </select>
-                            </c:if>
-                            <c:if test="${empty acao}">
-                                <select class="custom-select inputForm" id="codigoFilial" name="filial">
-                                    <option disabled="" selected="" hidden="">Filial</option>
-                                    <c:forEach var="listaFiliais" items="${listaFiliais}">  
-                                        <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
-                                            <c:out value="${listaFiliais.nomeFilial}"/> 
-                                        </option>  
-                                    </c:forEach>  
-                                </select>
-                            </c:if>
+                                <label for="tipo" >Filial:</label>
+                                <c:if test="${acao == 'editar'}">
+                                    <select class="custom-select inputForm" id="codigoFilial" name="filial">
+                                        <option value="${filial}">
+                                            <c:out value="${nomeFilialCadastrado}"/>
+                                        </option>
+                                        <c:forEach var="listaFiliais" items="${listaFiliais}">  
+                                            <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
+                                                <c:out value="${listaFiliais.nomeFilial}"/> 
+                                            </option>  
+                                        </c:forEach>  
+                                    </select>
+                                </c:if>
+                                <c:if test="${empty acao}">
+                                    <select class="custom-select inputForm" id="codigoFilial" name="filial">
+                                        <option disabled="" selected="" hidden="">Filial</option>
+                                        <c:forEach var="listaFiliais" items="${listaFiliais}">  
+                                            <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
+                                                <c:out value="${listaFiliais.nomeFilial}"/> 
+                                            </option>  
+                                        </c:forEach>  
+                                    </select>
+                                </c:if>
 
-                        </div>
-                        <button type="submit" class="btn btn-light btn-block">
-                            <i class="far fa-save"></i>
-                            Salvar
-                        </button>
-                        <button type="submit" class="btn btn-light btn-block">
-                            <i class="fas fa-ban"></i>
-                            Cancelar
-                        </button> 
-                    </form>
+                            </div>
+                            <button type="submit" class="btn btn-light btn-block">
+                                <i class="far fa-save"></i>
+                                Salvar
+                            </button>
+                            <button type="submit" class="btn btn-light btn-block">
+                                <i class="fas fa-ban"></i>
+                                Cancelar
+                            </button> 
+                        </form>
                 </div>
                 <div class="col-md-3"></div>
             </div>

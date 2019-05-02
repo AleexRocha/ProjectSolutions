@@ -25,8 +25,10 @@ Author     : nicolas.hgyoshioka
             </h1>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
                 <ul id="itensMenu" class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link nav-text" href="../venda/cadastro_vendas.jsp">Vendas</a>
+                   <li class="nav-item">
+                        <form action="../venda/cadastro_vendas">
+                            <button type="submit" class="btn nav-link nav-text">Vendas</button>
+                        </form>                     
                     </li>
                     <li class="nav-item">
                         <form action="../produtos/listagem_produtos" method="GET">
