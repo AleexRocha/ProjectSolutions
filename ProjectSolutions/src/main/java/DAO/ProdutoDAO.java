@@ -87,21 +87,24 @@ public class ProdutoDAO {
         ArrayList<Produto> produtos = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_produtos");
+            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade,"
+                    + " CONCAT(cidade, \" - \", estado) \n" 
+                    + " FROM tbl_produtos INNER JOIN tbl_filial ON tbl_produtos.fk_filial = tbl_filial.id_filial;");
 
             ResultSet rs = query.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
-                    produtos.add(new Produto(
+                    Produto produto = new Produto(
                             rs.getInt(1),
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
                             rs.getInt(5),
                             rs.getInt(6),
-                            rs.getDouble(7)
-                    ));
+                            rs.getDouble(7));
+                    produto.setNomeFilial(rs.getString(8));
+                    produtos.add(produto);
 
                 }
             }

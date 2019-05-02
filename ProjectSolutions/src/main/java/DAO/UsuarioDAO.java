@@ -84,22 +84,26 @@ public class UsuarioDAO {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario "
-                    + " INNER JOIN tbl_setor "
-                    + " ON tbl_usuario.fk_setor = tbl_setor.id_setor;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, senha,"
+                    + " fk_filial, fk_setor, nome_setor, concat(cidade, \" - \", estado)\n"
+                    + " FROM tbl_usuario INNER JOIN tbl_setor ON "
+                    + " tbl_usuario.fk_setor = tbl_setor.id_setor inner join tbl_filial on tbl_usuario.fk_filial = tbl_filial.id_filial;");
 
             ResultSet rs = query.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
-                    usuarios.add(new Usuario(
+                    Usuario user = new Usuario(
                             rs.getInt(1),
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
                             rs.getInt(5),
                             rs.getInt(6)
-                    ));
+                    );
+                    user.setNomeSetor(rs.getString(7));
+                    user.setNomeFilial(rs.getString(8));
+                    usuarios.add(user);
 
                 }
             }
@@ -116,7 +120,7 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, senha,"
-                    + " fk_filial, fk_setor, nome_setor, concat(cidade, \" - \", estado)\n" 
+                    + " fk_filial, fk_setor, nome_setor, concat(cidade, \" - \", estado)\n"
                     + " FROM tbl_usuario INNER JOIN tbl_setor ON "
                     + " tbl_usuario.fk_setor = tbl_setor.id_setor inner join tbl_filial on tbl_usuario.fk_filial = tbl_filial.id_filial "
                     + " where id_usuario = ? ;");

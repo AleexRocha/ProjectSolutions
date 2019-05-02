@@ -83,7 +83,7 @@
                             <td name="nome"><c:out value ="${produtos.nome}"/></td>
                             <td name="descricao"><c:out value ="${produtos.descricao}"/></td>
                             <td name="tipo"><c:out value ="${produtos.tipo}"/></td>
-                            <td name="codigoFilialint"><c:out value ="${produtos.codigoFilial}"/></td>
+                            <td name="codigoFilialint"><c:out value ="${produtos.nomeFilial}"/></td>
                             <td name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
                             <td name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
 
