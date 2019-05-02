@@ -73,7 +73,7 @@ Author     : nicolas.hgyoshioka
                                     <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
                                            value="${codigo}" name="codigoProduto">
                                 </c:if>
-                                <c:if test="${empty acao}">
+                                <c:if test="${empty acao}">   
                                     <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
                                            placeholder="Codigo do produto" name="codigoProduto">
                                 </c:if>
@@ -84,8 +84,15 @@ Author     : nicolas.hgyoshioka
                                            value="${nome}" name="nome">
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <input type="text" class="form-control inputForm" id="nome"
-                                           placeholder="Nome do produto" name="nome">
+                                    <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
+                                    <c:if test="${empty nomeErro}">
+                                        <input type="text" class="form-control inputForm" id="nome"
+                                               placeholder="Nome do produto" name="nome">
+                                    </c:if>
+                                    <c:if test="${not empty nomeErro}">         
+                                        <input type="text" class="form-control inputForm error" id="nome"
+                                               placeholder="${nomeErro}" name="nome">                                  
+                                    </c:if>    
                                 </c:if>
 
                                 <label for="descricaoProduto">Descrição:</label>
@@ -94,8 +101,15 @@ Author     : nicolas.hgyoshioka
                                            value="${descricao}" name="descricao">
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <input type="text" class="form-control inputForm" id="descricao"
-                                           placeholder="Descrição do produto" name="descricao">
+                                    <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
+                                    <c:if test="${empty descricaoErro}">
+                                        <input type="text" class="form-control inputForm" id="descricao"
+                                               placeholder="Descrição do produto" name="descricao">
+                                    </c:if>
+                                    <c:if test="${not empty descricaoErro}">         
+                                        <input type="text" class="form-control inputForm error" id="descricao"
+                                               placeholder="${descricaoErro}" name="descricao">                            
+                                    </c:if> 
                                 </c:if>
 
                                 <label for="quantidadeEstoque">Quantidade em estoque:</label>
@@ -104,8 +118,15 @@ Author     : nicolas.hgyoshioka
                                            value="${qtd_estoque}" name="quantidadeEstoque">
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <input type="number" class="form-control inputForm" id="quantidadeEstoque"
-                                           placeholder="Quantidade em estoque" name="quantidadeEstoque">
+                                    <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
+                                    <c:if test="${empty quantidadeEstoqueErro}">
+                                        <input type="number" class="form-control inputForm" id="quantidadeEstoque"
+                                               placeholder="Quantidade em estoque" name="quantidadeEstoque">
+                                    </c:if>
+                                    <c:if test="${not empty quantidadeEstoqueErro}">        
+                                        <input type="number" class="form-control inputForm error" id="quantidadeEstoque"
+                                               placeholder="${quantidadeEstoqueErro}" name="quantidadeEstoque">
+                                    </c:if> 
                                 </c:if>
 
                                 <label for="valorProduto">Valor Unitário:</label>
@@ -114,8 +135,15 @@ Author     : nicolas.hgyoshioka
                                            value="${valor_unidade}" name="valorUnitario">
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <input type="number" class="form-control inputForm" id="valorUnitario"
-                                           placeholder="Valor Unitário" name="valorUnitario">
+                                    <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
+                                    <c:if test="${empty valorUnitarioErro}">
+                                        <input type="number" class="form-control inputForm" id="valorUnitario"
+                                               placeholder="Valor Unitário" name="valorUnitario">
+                                    </c:if>
+                                    <c:if test="${not empty valorUnitarioErro}">         
+                                        <input type="number" class="form-control inputForm error" id="valorUnitario"
+                                               placeholder="${valorUnitarioErro}" name="valorUnitario">
+                                    </c:if> 
                                 </c:if>
 
                                 <label for="tipo" >Tipo:</label>
@@ -145,17 +173,33 @@ Author     : nicolas.hgyoshioka
                                     </select>
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                        <option disabled="" selected=""> Filial </option>
-                                        <c:forEach var="filiais" items="${listaFiliais}">
-                                            <option value="<c:out value="${filiais.codigo}"/>">
-                                                <c:out value="${filiais.nomeFilial}"/>
-                                            </option>
-                                        </c:forEach>
-                                    </select>
+                                    <c:if test="${empty codigoFilialErro}">
+                                        <select class="custom-select inputForm" id="filial" name="codigoFilial">
+                                            <option disabled="" selected=""> Filial </option>
+                                            <c:forEach var="filiais" items="${listaFiliais}">
+                                                <option value="<c:out value="${filiais.codigo}"/>">
+                                                    <c:out value="${filiais.nomeFilial}"/>
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${not empty codigoFilialErro}">
+                                        <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
+                                            <option disabled="" selected=""> <c:out value="${codigoFilialErro}"/> </option>
+                                            <c:forEach var="filiais" items="${listaFiliais}">
+                                                <option value="<c:out value="${filiais.codigo}"/>">
+                                                    <c:out value="${filiais.nomeFilial}"/>
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </c:if>
+                                </c:if>
+                            </div>
+
+                                <c:if test="${temErro == true}">
+                                    <p><c:out value="${msgErro}"/></p>
                                 </c:if>
 
-                            </div>
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="far fa-save"></i>
                                 Salvar

@@ -60,6 +60,9 @@ public class FilialCadastroServlet extends HttpServlet {
         }
 
         if (error) {
+            request.setAttribute("temErro", true);
+            request.setAttribute("msgErro", "Corrija os campos obrigatórios");
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
             dispatcher.forward(request, response);
         } else {
