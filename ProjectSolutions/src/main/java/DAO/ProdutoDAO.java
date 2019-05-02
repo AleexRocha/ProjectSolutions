@@ -44,17 +44,19 @@ public class ProdutoDAO {
             PreparedStatement query = conn.prepareStatement("UPDATE"
                     + " tbl_produtos SET "
                     + " nome = ?,"
+                    + " descricao = ?,"
                     + " tipo = ?,"
                     + " fk_filial = ?,"
                     + " qtd_estoque = ?,"
                     + " valor_unidade = ? WHERE id_produto = ?;");
 
             query.setString(1, produto.getNome());
-            query.setString(2, produto.getTipo());
-            query.setInt(3, produto.getCodigoFilial());
-            query.setInt(4, produto.getQuantidadeEstoque());
-            query.setDouble(5, produto.getValorUnitario());
-            query.setInt(6, produto.getCodigo());
+            query.setString(2, produto.getDescricao());
+            query.setString(3, produto.getTipo());
+            query.setInt(4, produto.getCodigoFilial());
+            query.setInt(5, produto.getQuantidadeEstoque());
+            query.setDouble(6, produto.getValorUnitario());
+            query.setInt(7, produto.getCodigo());
             
             int linhasAfetadas = query.executeUpdate();
             conn.close();
