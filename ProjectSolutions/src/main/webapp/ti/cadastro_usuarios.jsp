@@ -77,17 +77,22 @@ Author     : nicolas.hgyoshioka
                                            placeholder="Código do usuário" name="codigoUsuario">
                                 </c:if>
 
-
                                 <label for="nome">Nome:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <input type="text" class="form-control inputForm" id="nome"
                                            value="${nome}" name="nome">
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <input type="text" class="form-control inputForm" id="nome"
-                                           placeholder="Nome" name="nome">
+                                    <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
+                                    <c:if test="${empty nomeErro}">
+                                        <input type="text" class="form-control inputForm" id="nome"
+                                               placeholder="Nome" name="nome">
+                                    </c:if>
+                                    <c:if test="${not empty nomeErro}">         
+                                        <input type="text" class="form-control inputForm error" id="nome"
+                                               placeholder="${nomeErro}" name="nome">
+                                    </c:if>                                   
                                 </c:if>
-
 
                                 <label for="email">E-mail:</label>                         
                                 <c:if test="${acao == 'editar'}">
@@ -95,8 +100,15 @@ Author     : nicolas.hgyoshioka
                                            value="${email}" name="email">
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <input type="email" class="form-control inputForm" id="email"
-                                           placeholder="E-mail" name="email">
+                                    <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
+                                    <c:if test="${empty emailErro}">
+                                        <input type="email" class="form-control inputForm" id="email"
+                                               placeholder="E-mail" name="email">
+                                    </c:if>
+                                    <c:if test="${not empty emailErro}">         
+                                        <input type="email" class="form-control inputForm error" id="email"
+                                               placeholder="${emailErro}" name="email">
+                                    </c:if>    
                                 </c:if>
 
                                 <label for="senha">Senha:</label>
@@ -105,8 +117,15 @@ Author     : nicolas.hgyoshioka
                                            value="${senha}" name="senha">
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <input type="password" class="form-control inputForm" id="senha"
-                                           placeholder="Senha" name="senha">
+                                    <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
+                                    <c:if test="${empty senhaErro}">
+                                        <input type="password" class="form-control inputForm" id="senha"
+                                               placeholder="Senha" name="senha">
+                                    </c:if>
+                                    <c:if test="${not empty senhaErro}">         
+                                        <input type="password" class="form-control inputForm error" id="senha"
+                                               placeholder="${senhaErro}" name="senha">
+                                    </c:if>  
                                 </c:if>
 
                                 <c:if test="${empty acao}">
@@ -129,14 +148,27 @@ Author     : nicolas.hgyoshioka
                                     </select>
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                        <option disabled="" selected="" hidden="">Setor</option>                               
-                                        <c:forEach var="listaSetores" items="${listaSetores}">  
-                                            <option value="<c:out value="${listaSetores.setor}"></c:out>">
-                                                <c:out value="${listaSetores.nomeSetor}"/> 
-                                            </option>  
-                                        </c:forEach>       
-                                    </select>
+                                    <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
+                                    <c:if test="${empty setorErro}">
+                                        <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
+                                            <option disabled="" selected="" hidden="">Setor</option>                               
+                                            <c:forEach var="listaSetores" items="${listaSetores}">  
+                                                <option value="<c:out value="${listaSetores.setor}"></c:out>">
+                                                    <c:out value="${listaSetores.nomeSetor}"/> 
+                                                </option>  
+                                            </c:forEach>       
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${not empty setorErro}">         
+                                        <select class="custom-select form-control inputForm error" id="codigoSetor" name="codigoSetor">
+                                            <option disabled="" selected="" hidden=""><c:out value="${setorErro}"/></option>                               
+                                            <c:forEach var="listaSetores" items="${listaSetores}">  
+                                                <option value="<c:out value="${listaSetores.setor}"></c:out>">
+                                                    <c:out value="${listaSetores.nomeSetor}"/> 
+                                                </option>  
+                                            </c:forEach>       
+                                        </select>
+                                    </c:if>  
                                 </c:if>
 
                                 <label for="tipo" >Filial:</label>
@@ -153,21 +185,38 @@ Author     : nicolas.hgyoshioka
                                     </select>
                                 </c:if>
                                 <c:if test="${empty acao}">
-                                    <select class="custom-select inputForm" id="codigoFilial" name="filial">
-                                        <option disabled="" selected="" hidden="">Filial</option>
-                                        <c:forEach var="listaFiliais" items="${listaFiliais}">  
-                                            <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
-                                                <c:out value="${listaFiliais.nomeFilial}"/> 
-                                            </option>  
-                                        </c:forEach>  
-                                    </select>
+                                    <c:if test="${empty filialErro}">
+                                        <select class="custom-select inputForm" id="codigoFilial" name="filial">
+                                            <option disabled="" selected="" hidden="">Filial</option>
+                                            <c:forEach var="listaFiliais" items="${listaFiliais}">  
+                                                <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
+                                                    <c:out value="${listaFiliais.nomeFilial}"/> 
+                                                </option>  
+                                            </c:forEach>  
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${not empty filialErro}">         
+                                        <select class="custom-select form-control inputForm error" id="codigoFilial" name="filial">
+                                            <option disabled="" selected="" hidden=""><c:out value="${filialErro}"/></option>
+                                            <c:forEach var="listaFiliais" items="${listaFiliais}">  
+                                                <option value="<c:out value="${listaFiliais.codigoFilial}"></c:out>"> 
+                                                    <c:out value="${listaFiliais.nomeFilial}"/> 
+                                                </option>  
+                                            </c:forEach>  
+                                        </select>
+                                    </c:if>  
                                 </c:if>
-
                             </div>
+
+                            <c:if test="${temErro == true}">
+                                <p><c:out value="${msgErro}"/></p>
+                            </c:if>
+
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="far fa-save"></i>
                                 Salvar
                             </button>
+
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="fas fa-ban"></i>
                                 Cancelar

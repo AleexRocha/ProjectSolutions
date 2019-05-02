@@ -1,6 +1,8 @@
 package ServletProduto;
 
+import DAO.FilialDAO;
 import DAO.ProdutoDAO;
+import Model.Filial;
 import Model.Produto;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author guilher.rsvieira
  */
 @WebServlet(name = "ProdutoCadastroServlet", urlPatterns = {"/produtos/cadastro_produto"})
-public class ProdutoCadastroServlet  extends HttpServlet {
+public class ProdutoCadastroServlet extends HttpServlet {
+
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -26,7 +29,6 @@ public class ProdutoCadastroServlet  extends HttpServlet {
         String fCodigoFilial = request.getParameter("codigoFilial");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
-       
 
         boolean error = false;
         if (fNome.length() == 0) {
@@ -41,9 +43,9 @@ public class ProdutoCadastroServlet  extends HttpServlet {
             error = true;
             request.setAttribute("tipoErro", "Tipo não informado");
         }
-        if (fCodigoFilial.length() == 0) {
+        if (fCodigoFilial == null) {
             error = true;
-            request.setAttribute("codigoFilialErro", "Código da Filial não informado");
+            request.setAttribute("codigoFilialErro", "Filial não informada");
         }
         if (fQuantidadeEstoque.length() == 0) {
             error = true;
@@ -53,22 +55,27 @@ public class ProdutoCadastroServlet  extends HttpServlet {
             error = true;
             request.setAttribute("valorUnitarioErro", "Valor unitário não informado");
         }
-        
 
         if (error) {
+            ArrayList<Filial> filiais = FilialDAO.getFiliais();
+            request.setAttribute("listaFiliais", filiais);
+
+            request.setAttribute("temErro", true);
+            request.setAttribute("msgErro", "Corrija os campos obrigatórios");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
+
         } else {
-            Produto produtos = new Produto(fNome, fDescricao, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque) ,Double.parseDouble(fValorUnitario));
+            Produto produtos = new Produto(fNome, fDescricao, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
             boolean httpOK = ProdutoDAO.salvarProduto(produtos);
 
             if (httpOK) {
                 ArrayList<Produto> produto = ProdutoDAO.getProdutos();
                 request.setAttribute("lista", produto);
-                
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
-             } else {
+            } else {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                 dispatcher.forward(request, response);
             }

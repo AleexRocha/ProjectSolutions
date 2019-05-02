@@ -42,17 +42,19 @@ public class UsuarioCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("senhaErro", "Senha não informada");
         }
-        if (cSetor.length() == 0) {
+        if (cSetor == null) {
             error = true;
             request.setAttribute("setorErro", "Setor não informado");
         }
-        if (cFilial.length() == 0) {
+        if (cFilial == null) {
             error = true;
             request.setAttribute("filialErro", "Filial não informada");
         }
        
 
         if (error) {
+            request.setAttribute("temErro", true);
+            request.setAttribute("msgErro", "Corrija os campos obrigatórios");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
