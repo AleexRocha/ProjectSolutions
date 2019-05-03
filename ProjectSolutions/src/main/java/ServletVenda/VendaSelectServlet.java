@@ -29,7 +29,7 @@ public class VendaSelectServlet extends HttpServlet {
             Venda uv = new Venda();
 
             uv.setNomeProduto("Não há produtos cadastrados");
-            usuariosVenda.add(uv);
+            produtosVenda.add(uv);
 
             request.setAttribute("listaProdutos", produtosVenda);
         } else {
@@ -51,7 +51,7 @@ public class VendaSelectServlet extends HttpServlet {
             Venda uv = new Venda();
 
             uv.setNomeFilial("Não há filiais cadastradas");
-            usuariosVenda.add(uv);
+            filiaisVenda.add(uv);
 
             request.setAttribute("listaFiliais", filiaisVenda);
         } else {

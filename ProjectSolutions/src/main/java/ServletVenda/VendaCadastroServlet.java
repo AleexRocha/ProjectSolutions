@@ -27,28 +27,28 @@ public class VendaCadastroServlet extends HttpServlet {
         String vQuantidade = request.getParameter("quantidade");
 
         boolean error = false;
-        if (vCodProduto.length() == 0) {
+        if (vCodProduto == null) {
             error = true;
-            request.setAttribute("codProdutoErro", "Codigo do Produto não informado");
+            request.setAttribute("codProdutoErro", "Não há produto cadastrado para concluir a venda");
         }
-        if (vIdFuncionario.length() == 0) {
+        if (vIdFuncionario == null) {
             error = true;
-            request.setAttribute("idFuncErro", "ID do Funcionario não informado");
+            request.setAttribute("idFuncErro", "Não há usuario cadastrado para concluir a a venda");
         }
-        if (vCodFilial.length() == 0) {
+        if (vCodFilial == null) {
             error = true;
-            request.setAttribute("codFilialErro", "Codigo da Filial não informado");
+            request.setAttribute("codFilialErro", "Não há filial cadastrado para concluir a a venda");
         }
-        if (vQuantidade.length() == 0) {
+        if (vQuantidade == null) {
             error = true;
-            request.setAttribute("quantidadeErro", "Quantidade não informada");
+            request.setAttribute("quantidadeErro", "Não há filial cadastrada para concluir a a venda");
         }
 
         if (error) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
             dispatcher.forward(request, response);
         } else {
-            Venda venda = new Venda(Integer.parseInt(vCodProduto), Integer.parseInt(vIdFuncionario), Integer.parseInt(vCodFilial), Integer.parseInt(vQuantidade));
+            Venda venda = new Venda(vCodProduto, vIdFuncionario, vCodFilial, vQuantidade);
             if (vCpfCliente.length() != 0) {
                 venda.setCpfCliente(vCpfCliente);
             }
