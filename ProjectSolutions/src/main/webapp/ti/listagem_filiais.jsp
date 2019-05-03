@@ -5,7 +5,6 @@ Author     : nicolas.hgyoshioka
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -90,29 +89,42 @@ Author     : nicolas.hgyoshioka
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </form>
-                                <form name ="deletarFilial" action="excluir_filial" onSubmit="return validaAcao(${filiais.codigo});" method="POST">
-                                    <button name="excluirID" value="${filiais.codigo}" type="submit" class="btn btn-danger">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
+                                <!-- Button que chama a modal -->
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteFilial">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
-            </table>    
-        </div>   
-        <script>
-            function validaAcao(codigoBtn) {
-                var codigo = codigoBtn;
-                var r = confirm("Deseja excluir a filial " + codigo + "?");
-
-                if (r == true) {
-                    deletarFilial.submit(codigo);
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        </script>
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="deleteFilial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ATENÇÃO!!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Tem certeza que deseja excluir a filial?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="excluir_filial" method="POST" name ="deletarFilial">
+                                <button name="excluirID" value="${filiais.codigo}" type="submit" class="btn btn-danger">
+                                    <i class="far fa-trash-alt"></i> Sim
+                                </button>
+                            </form>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">
+                                <i class="fas fa-ban"></i> Não
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="../assets/js/jquery-2.1.3.min.js"></script>
+            <script src="../assets/js/bootstrap.min.js"></script>
     </body>
 </html>

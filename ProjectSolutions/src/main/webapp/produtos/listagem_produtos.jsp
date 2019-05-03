@@ -47,14 +47,14 @@
             <h2 class="h2 text-center subtitulo">Produtos</h2>
         </header>
         <div class="container">
-            
+
             <form id="btn_cadastro" action="select_cadastro" method="GET">
                 <Button type="submit" class="btn btn-light">
                     <i class="fas fa-box"></i>
                     Cadastrar Produto
                 </Button>
             </form>
-            
+
             <a class="btn btn-danger" href="">
                 <i class="far fa-trash-alt"></i>
                 Excluir Selecionado(s)
@@ -86,18 +86,48 @@
                             <td name="codigoFilialint"><c:out value ="${produtos.nomeFilial}"/></td>
                             <td name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
                             <td name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
-
                             <td class="btn-group">
                                 <form action="dados_produto" method="POST">
                                     <button name="editarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </form>
+                                <!-- Button que chama a modal -->
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-        </div>
+            <!-- Modal -->
+            <div class="modal fade" id="deleteProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ATENÇÃO!!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Tem certeza que deseja excluir o produto?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="excluir_produto" method="POST" name ="deletarProduto">
+                                <button name="excluirID" value="${produtos.codigo}" type="submit" class="btn btn-danger">
+                                    <i class="far fa-trash-alt"></i> Sim
+                                </button>
+                            </form>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">
+                                <i class="fas fa-ban"></i> Não
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="../assets/js/jquery-2.1.3.min.js"></script>
+            <script src="../assets/js/bootstrap.min.js"></script>
     </body>
 </html>

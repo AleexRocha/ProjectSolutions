@@ -116,7 +116,6 @@ Author     : nicolas.hgyoshioka
                 <div class="col-md-3"></div>
             </div>
         </div>
-        <script src="../assets/js/jquery-1.12.4.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/venda.js"></script>
     </body>
