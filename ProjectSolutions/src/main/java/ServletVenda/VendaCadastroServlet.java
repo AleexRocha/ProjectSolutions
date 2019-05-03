@@ -3,6 +3,7 @@ package ServletVenda;
 import DAO.VendaDAO;
 import Model.Venda;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,26 +30,75 @@ public class VendaCadastroServlet extends HttpServlet {
         boolean error = false;
         if (vCodProduto == null) {
             error = true;
-            request.setAttribute("codProdutoErro", "Não há produto cadastrado para concluir a venda");
+            request.setAttribute("codProdutoErro", "Não há produto cadastrado para realizar a venda");
+        } else if (vCodProduto.equalsIgnoreCase("0")) {
+            error = true;
+            request.setAttribute("quantidadeErro", "Não há produto cadastrado para realizar a venda");
         }
         if (vIdFuncionario == null) {
             error = true;
-            request.setAttribute("idFuncErro", "Não há usuario cadastrado para concluir a a venda");
+            request.setAttribute("idFuncErro", "Não há usuario cadastrado para realizar a venda");
+        } else if (vIdFuncionario.equalsIgnoreCase("0")) {
+            error = true;
+            request.setAttribute("quantidadeErro", "Não há usuario cadastrado para realizar a venda");
         }
         if (vCodFilial == null) {
             error = true;
-            request.setAttribute("codFilialErro", "Não há filial cadastrado para concluir a a venda");
-        }
-        if (vQuantidade == null) {
+            request.setAttribute("codFilialErro", "Não há filial cadastrado para realizar a venda");
+        } else if (vCodFilial.equalsIgnoreCase("0")) {
             error = true;
-            request.setAttribute("quantidadeErro", "Não há filial cadastrada para concluir a a venda");
+            request.setAttribute("quantidadeErro", "Não há filial cadastrado para realizar a venda");
+        }
+        if (vQuantidade.equalsIgnoreCase("")) {
+            error = true;
+            request.setAttribute("quantidadeErro", "A quantidade deve ser informada");
+        } else if ((vQuantidade.equalsIgnoreCase("0"))) {
+            error = true;
+            request.setAttribute("quantidadeErro", "Quantidade invalida, valor deve ser maior que 0");
         }
 
         if (error) {
+            ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
+            ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
+            ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
+
+            if (produtosVenda.isEmpty()) {
+                Venda uv = new Venda();
+
+                uv.setNomeProduto("Não há produtos cadastrados");
+                produtosVenda.add(uv);
+
+                request.setAttribute("listaProdutos", produtosVenda);
+            } else {
+                request.setAttribute("listaProdutos", produtosVenda);
+            }
+
+            if (usuariosVenda.isEmpty()) {
+                Venda uv = new Venda();
+
+                uv.setNomeFuncionario("Não há usuarios cadastrados");
+                usuariosVenda.add(uv);
+
+                request.setAttribute("listaUsuarios", usuariosVenda);
+            } else {
+                request.setAttribute("listaUsuarios", usuariosVenda);
+            }
+
+            if (filiaisVenda.isEmpty()) {
+                Venda uv = new Venda();
+
+                uv.setNomeFilial("Não há filiais cadastradas");
+                filiaisVenda.add(uv);
+
+                request.setAttribute("listaFiliais", filiaisVenda);
+            } else {
+                request.setAttribute("listaFiliais", filiaisVenda);
+            }
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
             dispatcher.forward(request, response);
         } else {
-            Venda venda = new Venda(vCodProduto, vIdFuncionario, vCodFilial, vQuantidade);
+            Venda venda = new Venda(Integer.parseInt(vCodProduto), Integer.parseInt(vIdFuncionario), Integer.parseInt(vCodFilial), Integer.parseInt(vQuantidade));
             if (vCpfCliente.length() != 0) {
                 venda.setCpfCliente(vCpfCliente);
             }
