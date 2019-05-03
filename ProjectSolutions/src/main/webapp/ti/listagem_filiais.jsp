@@ -112,7 +112,8 @@ Author     : nicolas.hgyoshioka
                             <p>Tem certeza que deseja excluir a filial?</p>
                         </div>
                         <div class="modal-footer">
-                            <form action="excluir_filial" method="POST" name ="deletarFilial">
+                            <!--<form name ="deletarFilial" action="excluir_filial" onSubmit="return validaAcao(${filiais.codigo});" method="POST">-->
+                            <form action="excluir_filial" name ="deletarFilial" method="POST">
                                 <button name="excluirID" value="${filiais.codigo}" type="submit" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i> Sim
                                 </button>
@@ -126,5 +127,17 @@ Author     : nicolas.hgyoshioka
             </div>
             <script src="../assets/js/jquery-2.1.3.min.js"></script>
             <script src="../assets/js/bootstrap.min.js"></script>
+            <!--            <script>
+                            function validaAcao(codigoBtn) {
+                                var codigo = codigoBtn;
+                                var r = confirm("Deseja excluir a filial " + codigo + "?");
+                                if (r === true) {
+                                    deletarFilial.submit(codigo);
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        </script>-->
     </body>
 </html>
