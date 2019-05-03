@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         boolean httpOK = UsuarioDAO.getLogin(uEmail, uSenha);
 
         if (httpOK) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas");
             dispatcher.forward(request, response);
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.html");
