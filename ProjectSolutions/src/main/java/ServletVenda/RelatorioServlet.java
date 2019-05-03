@@ -26,15 +26,14 @@ public class RelatorioServlet extends HttpServlet {
         String dataDe = request.getParameter("dataDe");
         String dataAte = request.getParameter("dataAte");
         int filial = Integer.parseInt(request.getParameter("filial"));
-
-        // Corrigir WHERE por data        
+    
         if ((!dataDe.equalsIgnoreCase("")) || (!dataAte.equalsIgnoreCase(""))) {
+            String dataDeFormat = dataDe.concat(" 00:00:00");
+            String dataAteFormat = dataAte.concat(" 23:59:59");
             if (filial != 0) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(filial, dataDe + " 00:00:00", dataAte + " 00:00:00");
+                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(filial, dataDeFormat, dataAteFormat);
                 request.setAttribute("lista", relatorio);
             } else {
-                String dataDeFormat = dataDe.concat(" 00:00:00");
-                String dataAteFormat = dataAte.concat(" 00:00:00");
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
                 request.setAttribute("lista", relatorio);
             }
