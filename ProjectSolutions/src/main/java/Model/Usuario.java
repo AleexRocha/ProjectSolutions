@@ -16,9 +16,9 @@ public class Usuario {
     private String nomeSetor;
 
     public Usuario() {
-        
+
     }
-    
+
     public Usuario(String nome, String email, String senha, int codigoFilial, int setor) {
         this.nome = nome;
         this.email = email;
@@ -26,7 +26,7 @@ public class Usuario {
         this.setor = setor;
         this.codigoFilial = codigoFilial;
     }
-    
+
     public Usuario(int codigo, String nome, String email, String senha, int codigoFilial, int setor) {
         this.codigo = codigo;
         this.nome = nome;
@@ -91,7 +91,7 @@ public class Usuario {
     public void setNomeSetor(String nomeSetor) {
         this.nomeSetor = nomeSetor;
     }
-    
+
     public int getCodigoFilial() {
         return codigoFilial;
     }

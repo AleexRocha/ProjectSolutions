@@ -196,4 +196,45 @@ public class UsuarioDAO {
 
         return filiais;
     }
+// getLogin(String usuario)
+    public static boolean getLogin() {
+        Usuario usuarios = null;
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("select * from tbl_usuario where email=? and senha =?;");
+            query.setString(1, usuarios.getEmail());
+            query.setString(2, usuarios.getSenha());
+            ResultSet rs = query.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
+//    public static ArrayList<Usuario> getLogin() {
+//        ArrayList<Usuario> usuario = new ArrayList<>();
+//        Connection conn = db.obterConexao();
+//        try {
+//            PreparedStatement query = conn.prepareStatement("select * from tbl_usuario where email=? and senha =?;");
+//            query.setString(1, usuario.getEmail());
+//            query.setString(2, usuario.getSenha());
+//            ResultSet rs = query.executeQuery();
+//            if (rs != null) {
+//                Usuario user = new Usuario();
+//                user.setEmail(rs.getString(1));
+//                user.setSenha(rs.getString(2));
+//                Usuario.add(user);
+//
+//            }
+//            conn.close();
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//
+//        return false;
 }
