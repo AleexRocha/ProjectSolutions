@@ -4,8 +4,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Floricultura Tades</title>
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="assets/css/main.css"/>
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../assets/css/main.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
@@ -13,20 +13,24 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <form action ="LoginServlet" method="get" action="venda/cadastro_vendas" method="post">
+                    <form action ="../venda/valida_usuario" method="post" >
                         <div class="text-center mb-4">
                             <h1 class="h3 mb-3 font-weight-normal">
                                 <span class="sr-only">Floricultura TADES</span>
-                                <img src="assets/img/logo.png">
+                                <img src="../assets/img/logo.png">
                             </h1>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail">E-mail</label>
-                            <input type="email" id="inputEmail" class="form-control inputForm" placeholder="Digite seu e-mail" autofocus>
+                            <input name = "email" type="email" id="inputEmail" 
+                                   class="form-control inputForm" 
+                                   placeholder="Digite seu e-mail" autofocus>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Senha</label>
-                            <input type="password" id="inputPassword" class="form-control inputForm" placeholder="Digite sua senha">
+                            <input name = "password" type="password" id="inputPassword" 
+                                   class="form-control inputForm" 
+                                   placeholder="Digite sua senha">
                         </div>
                         <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
                         <!--<a class="btn btn-warning btn-block btn-lg" href="venda/cadastro_vendas.jsp"> Sign in </a>-->

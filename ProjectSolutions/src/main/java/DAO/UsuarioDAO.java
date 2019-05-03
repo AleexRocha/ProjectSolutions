@@ -197,13 +197,13 @@ public class UsuarioDAO {
         return filiais;
     }
 // getLogin(String usuario)
-    public static boolean getLogin() {
-        Usuario usuarios = null;
+    public static boolean getLogin(String email, String senha) {
+       
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("select * from tbl_usuario where email=? and senha =?;");
-            query.setString(1, usuarios.getEmail());
-            query.setString(2, usuarios.getSenha());
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario WHERE email=? AND senha =?;");
+            query.setString(1,email);
+            query.setString(2, senha);
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
                 return true;
