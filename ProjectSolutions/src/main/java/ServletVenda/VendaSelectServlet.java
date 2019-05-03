@@ -24,11 +24,39 @@ public class VendaSelectServlet extends HttpServlet {
         ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
         ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
         ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
-        
-        request.setAttribute("listaProdutos", produtosVenda);
-        request.setAttribute("listaUsuarios", usuariosVenda);
-        request.setAttribute("listaFiliais", filiaisVenda);
-        
+
+        if (produtosVenda.isEmpty()) {
+            Venda uv = new Venda();
+
+            uv.setNomeProduto("Não há produtos cadastrados");
+            usuariosVenda.add(uv);
+
+            request.setAttribute("listaProdutos", produtosVenda);
+        } else {
+            request.setAttribute("listaProdutos", produtosVenda);
+        }
+
+        if (usuariosVenda.isEmpty()) {
+            Venda uv = new Venda();
+
+            uv.setNomeFuncionario("Não há usuarios cadastrados");
+            usuariosVenda.add(uv);
+
+            request.setAttribute("listaUsuarios", usuariosVenda);
+        } else {
+            request.setAttribute("listaUsuarios", usuariosVenda);
+        }
+
+        if (filiaisVenda.isEmpty()) {
+            Venda uv = new Venda();
+
+            uv.setNomeFilial("Não há filiais cadastradas");
+            usuariosVenda.add(uv);
+
+            request.setAttribute("listaFiliais", filiaisVenda);
+        } else {
+            request.setAttribute("listaFiliais", filiaisVenda);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
         dispatcher.forward(request, response);
