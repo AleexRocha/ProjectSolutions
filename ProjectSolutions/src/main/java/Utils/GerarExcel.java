@@ -9,7 +9,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -21,7 +20,7 @@ import org.apache.poi.ss.usermodel.Row;
  */
 public class GerarExcel {
 
-    public static void GerarExcel() {
+    public static void GerarExcel(ArrayList relatorio) {
 
         DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm");
         Date now = new Date(System.currentTimeMillis());
@@ -31,38 +30,34 @@ public class GerarExcel {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheetAlunos = workbook.createSheet("Relatorio");
 
-//        ArrayList<Relatorio> listaRelatorio = new ArrayList<>();
-//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-//        listaRelatorio.add(new Relatorio(0001, 0001, "Rosa Vermelha do Acre", 0010, 1000.00, 100, "São Paulo - SP", 1234, "16/04/2019"));
-//
-//        int rowNum = 0;
-//        for (Relatorio relatorio : listaRelatorio) {
-//            Row row = sheetAlunos.createRow(rowNum++);
-//            int cellNum = 0;
-//            Cell cellCodigoVenda = row.createCell(cellNum++);
-//            cellCodigoVenda.setCellValue(relatorio.getCodigoVenda());
-//            Cell cellCodigoProduto = row.createCell(cellNum++);
-//            cellCodigoProduto.setCellValue(relatorio.getCodigoProduto());
-//            Cell cellNomeProduto = row.createCell(cellNum++);
-//            cellNomeProduto.setCellValue(relatorio.getNomeProduto());
-//            Cell cellQuantidadeProduto = row.createCell(cellNum++);
-//            cellQuantidadeProduto.setCellValue(relatorio.getQuantidadeProduto());
-//            Cell cellValorTotal = row.createCell(cellNum++);
-//            cellValorTotal.setCellValue(relatorio.getValor());
-//            Cell cellIdFilial = row.createCell(cellNum++);
-//            cellIdFilial.setCellValue(relatorio.getIdFilial());
-//            Cell cellNomeFilial = row.createCell(cellNum++);
-//            cellNomeFilial.setCellValue(relatorio.getNomeFilial());
-//            Cell cellIdFuncionario = row.createCell(cellNum++);
-//            cellIdFuncionario.setCellValue(relatorio.getIdFuncionario());
-//            Cell cellDataVenda = row.createCell(cellNum++);
-//            cellDataVenda.setCellValue(relatorio.getDataVenda());
-//        }
+        ArrayList<Relatorio> listaRelatorio = relatorio;
+
+        int rowNum = 0;
+        for (Relatorio itemRelatorio : listaRelatorio) {
+            Row row = sheetAlunos.createRow(rowNum++);
+            int cellNum = 0;
+
+            Cell cellCodigoVenda = row.createCell(cellNum++);
+            cellCodigoVenda.setCellValue(itemRelatorio.getCodigoVenda());
+            Cell cellNomeProduto = row.createCell(cellNum++);
+            cellNomeProduto.setCellValue(itemRelatorio.getNomeProduto());
+            Cell cellCodigoProduto = row.createCell(cellNum++);
+            cellCodigoProduto.setCellValue(itemRelatorio.getCodigoProduto());
+            Cell cellQuantidadeProduto = row.createCell(cellNum++);
+            cellQuantidadeProduto.setCellValue(itemRelatorio.getQuantidadeProduto());
+            Cell cellValorTotal = row.createCell(cellNum++);
+            cellValorTotal.setCellValue(itemRelatorio.getValorTotal());
+            Cell cellCpfCliente = row.createCell(cellNum++);
+            cellCpfCliente.setCellValue(itemRelatorio.getCpfCliente());
+            Cell cellIdFilial = row.createCell(cellNum++);
+            cellIdFilial.setCellValue(itemRelatorio.getIdFilial());
+            Cell cellNomeFilial = row.createCell(cellNum++);
+            cellNomeFilial.setCellValue(itemRelatorio.getNomeFilial());
+            Cell cellIdUsuario = row.createCell(cellNum++);
+            cellIdUsuario.setCellValue(itemRelatorio.getIdUsuario());
+            Cell cellDataVenda = row.createCell(cellNum++);
+            cellDataVenda.setCellValue(itemRelatorio.getDataVenda());
+        }
 
         try {
             FileOutputStream saida = new FileOutputStream(new File(fileName));

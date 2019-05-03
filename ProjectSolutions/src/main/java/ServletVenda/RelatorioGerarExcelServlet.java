@@ -4,6 +4,7 @@ import DAO.FilialDAO;
 import DAO.RelatorioDAO;
 import Model.Filial;
 import Model.Relatorio;
+import Utils.GerarExcel;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -17,33 +18,37 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alexsander.mrocha
  */
-@WebServlet(name = "RelatorioServlet", urlPatterns = {"/venda/gerar_relatorio"})
-public class RelatorioServlet extends HttpServlet {
+@WebServlet(name = "RelatorioGerarExcelServlet", urlPatterns = {"/venda/gerar_excel"})
+public class RelatorioGerarExcelServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String dataDe = request.getParameter("dataDe");
         String dataAte = request.getParameter("dataAte");
-        int filial = Integer.parseInt(request.getParameter("filial"));
+        String filial = request.getParameter("filial");
 
-        if ((!dataDe.equalsIgnoreCase("")) && (!dataAte.equalsIgnoreCase(""))) {
+        if (((dataDe != null) && dataAte != null)) {
             String dataDeFormat = dataDe.concat(" 00:00:00");
             String dataAteFormat = dataAte.concat(" 23:59:59");
-            if (filial != 0) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(filial, dataDeFormat, dataAteFormat);
+            if (filial != null) {
+                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(Integer.parseInt(filial), dataDeFormat, dataAteFormat);
                 request.setAttribute("lista", relatorio);
+                GerarExcel.GerarExcel(relatorio);
             } else {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
                 request.setAttribute("lista", relatorio);
+                GerarExcel.GerarExcel(relatorio);
             }
         } else {
-            if (filial != 0) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioFilial(filial);
+            if (filial != null) {
+                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioFilial(Integer.parseInt(filial));
                 request.setAttribute("lista", relatorio);
+                GerarExcel.GerarExcel(relatorio);
             } else {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioGeral();
                 request.setAttribute("lista", relatorio);
+                GerarExcel.GerarExcel(relatorio);
             }
         }
 

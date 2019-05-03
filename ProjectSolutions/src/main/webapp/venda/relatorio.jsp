@@ -48,7 +48,7 @@ Author     : nicolas.hgyoshioka
         </header>
         <div class="container">
             <div class="row">
-                <form action="gerar_relatorio">
+                <form action="gerar_relatorio" method="get">
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="filial" name="filial">
                         <option selected="" hidden="" value="0">Filial</option>
@@ -66,10 +66,12 @@ Author     : nicolas.hgyoshioka
                         <i class="far fa-file-alt"></i>
                         Gerar relatorio
                     </button>
-                    <a href="#" class="btn btn-success">
+                </form>
+                <form action="gerar_excel" method="get">
+                    <button class="btn btn-success">
                         <i class="far fa-file-excel"></i>
                         Exportar
-                    </a>
+                    </button>
                 </form>
             </div>
             <div class="row">
