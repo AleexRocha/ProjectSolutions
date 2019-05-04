@@ -56,6 +56,14 @@ Author     : nicolas.hgyoshioka
             </a>
             <br>
             <br>
+            <c:if test="${varMsg == true}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${msg}"/>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -125,19 +133,21 @@ Author     : nicolas.hgyoshioka
                     </div>
                 </div>
             </div>
-            <script src="../assets/js/jquery-2.1.3.min.js"></script>
-            <script src="../assets/js/bootstrap.min.js"></script>
-            <!--            <script>
-                            function validaAcao(codigoBtn) {
-                                var codigo = codigoBtn;
-                                var r = confirm("Deseja excluir a filial " + codigo + "?");
-                                if (r === true) {
-                                    deletarFilial.submit(codigo);
-                                    return true;
-                                } else {
-                                    return false;
-                                }
+        </div>
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <!--            <script>
+                        function validaAcao(codigoBtn) {
+                            var codigo = codigoBtn;
+                            var r = confirm("Deseja excluir a filial " + codigo + "?");
+                            if (r === true) {
+                                deletarFilial.submit(codigo);
+                                return true;
+                            } else {
+                                return false;
                             }
-                        </script>-->
+                        }
+                    </script>-->
     </body>
 </html>

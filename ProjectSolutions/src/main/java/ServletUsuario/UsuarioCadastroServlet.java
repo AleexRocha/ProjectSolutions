@@ -51,10 +51,10 @@ public class UsuarioCadastroServlet extends HttpServlet {
 
             ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
             request.setAttribute("listaFiliais", filiais);
-            
-            request.setAttribute("temErro", true);
-            request.setAttribute("msgErro", "Corrija os campos obrigatórios");
-            
+
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -65,9 +65,15 @@ public class UsuarioCadastroServlet extends HttpServlet {
                 ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
                 request.setAttribute("listaUsuarios", usuarios);
 
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Cadastro realizado com sucesso.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                 dispatcher.forward(request, response);
             } else {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
                 dispatcher.forward(request, response);
             }

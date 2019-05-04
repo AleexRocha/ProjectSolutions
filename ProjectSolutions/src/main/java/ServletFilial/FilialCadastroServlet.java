@@ -60,9 +60,9 @@ public class FilialCadastroServlet extends HttpServlet {
         }
 
         if (error) {
-            request.setAttribute("temErro", true);
-            request.setAttribute("msgErro", "Corrija os campos obrigatórios");
-            
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -72,10 +72,16 @@ public class FilialCadastroServlet extends HttpServlet {
             if (httpOK) {
                 ArrayList<Filial> filiais = FilialDAO.getFiliais();
                 request.setAttribute("lista", filiais);
-                
+
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Cadastro realizado com sucesso.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
                 dispatcher.forward(request, response);
             } else {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
                 dispatcher.forward(request, response);
             }

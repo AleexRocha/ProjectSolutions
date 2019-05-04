@@ -61,9 +61,12 @@ public class UsuarioEditarServlet extends HttpServlet {
             request.setAttribute("nomeSetor", usuario.getNomeSetor());
             request.setAttribute("filial", usuario.getCodigoFilial());
             request.setAttribute("nomeFilial", usuario.getNomeFilial());
+
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Erro ao editar o usuário, verifique os campos e tente novamente.");
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
-
         } else {
             Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cFilial), Integer.parseInt(cSetor));
             usuario.setCodigo(Integer.parseInt(cCodigo));
@@ -73,9 +76,15 @@ public class UsuarioEditarServlet extends HttpServlet {
                 ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
                 request.setAttribute("listaUsuarios", usuarios);
 
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Filial editada com sucesso.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                 dispatcher.forward(request, response);
             } else {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Erro ao salvar editação no banco de dados, verifique os campos e tente novamente.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
                 dispatcher.forward(request, response);
             }

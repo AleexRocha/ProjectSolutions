@@ -47,22 +47,26 @@ Author     : nicolas.hgyoshioka
             <h2 class="h2 text-center subtitulo">Usuários</h2>
         </header>
         <div class="container">
-
             <form id="btn_cadastro" action="formulario_usuarios" method="post">
                 <button class="btn btn-light" type="submit">
                     <i class="fas fa-user-plus"></i>
                     Cadastrar Usuário
                 </button>
             </form>
-            <!--            <a class="btn btn-light" href="cadastro_usuarios.jsp"></a>-->
             <a class="btn btn-danger" href="">
                 <i class="far fa-trash-alt"></i>
                 Excluir Selecionado(s)
             </a>
-
             <br>
             <br>
-
+            <c:if test="${varMsg == true}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${msg}"/>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -89,7 +93,6 @@ Author     : nicolas.hgyoshioka
                                     <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
-
                                 </form>
                                 <!-- Button que chama a modal -->
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario">
@@ -126,7 +129,9 @@ Author     : nicolas.hgyoshioka
                     </div>
                 </div>
             </div>
-            <script src="../assets/js/jquery-2.1.3.min.js"></script>
-            <script src="../assets/js/bootstrap.min.js"></script>
+        </div>
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/main.js"></script>
     </body>
 </html>

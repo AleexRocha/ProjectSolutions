@@ -77,9 +77,11 @@ public class FilialEditarServlet extends HttpServlet {
             request.setAttribute("estado", filial.getEstado());
             request.setAttribute("telefone", filial.getTelefone());
 
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Erro ao editar a filial, verifique os campos e tente novamente.");
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
             dispatcher.forward(request, response);
-        
         } else {
             Filial filial = new Filial(fLogradouro, Integer.parseInt(fNumero), fCep, fBairro, fCidade, fEstado, fTelefone);
             filial.setCodigo(Integer.parseInt(fCodigo));
@@ -89,14 +91,19 @@ public class FilialEditarServlet extends HttpServlet {
                 ArrayList<Filial> filiais = FilialDAO.getFiliais();
                 request.setAttribute("lista", filiais);
 
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Filial editada com sucesso.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
                 dispatcher.forward(request, response);
             } else {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Erro ao salvar editação no banco de dados, verifique os campos e tente novamente.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
                 dispatcher.forward(request, response);
             }
         }
-
     }
 
     @Override

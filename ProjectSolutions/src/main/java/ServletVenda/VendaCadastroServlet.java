@@ -33,21 +33,21 @@ public class VendaCadastroServlet extends HttpServlet {
             request.setAttribute("codProdutoErro", "Não há produto cadastrado para realizar a venda");
         } else if (vCodProduto.equalsIgnoreCase("0")) {
             error = true;
-            request.setAttribute("quantidadeErro", "Não há produto cadastrado para realizar a venda");
+            request.setAttribute("codProdutoErro", "Não há produto cadastrado para realizar a venda");
         }
         if (vIdFuncionario == null) {
             error = true;
             request.setAttribute("idFuncErro", "Não há usuario cadastrado para realizar a venda");
         } else if (vIdFuncionario.equalsIgnoreCase("0")) {
             error = true;
-            request.setAttribute("quantidadeErro", "Não há usuario cadastrado para realizar a venda");
+            request.setAttribute("idFuncErro", "Não há usuario cadastrado para realizar a venda");
         }
         if (vCodFilial == null) {
             error = true;
             request.setAttribute("codFilialErro", "Não há filial cadastrado para realizar a venda");
         } else if (vCodFilial.equalsIgnoreCase("0")) {
             error = true;
-            request.setAttribute("quantidadeErro", "Não há filial cadastrado para realizar a venda");
+            request.setAttribute("codFilialErro", "Não há filial cadastrado para realizar a venda");
         }
         if (vQuantidade.equalsIgnoreCase("")) {
             error = true;
@@ -95,6 +95,9 @@ public class VendaCadastroServlet extends HttpServlet {
                 request.setAttribute("listaFiliais", filiaisVenda);
             }
 
+            request.setAttribute("varMsgE", true);
+            request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -102,12 +105,18 @@ public class VendaCadastroServlet extends HttpServlet {
             if (vCpfCliente.length() != 0) {
                 venda.setCpfCliente(vCpfCliente);
             }
-            boolean httpOK = VendaDAO.salvarVenda(venda);
 
+            boolean httpOK = VendaDAO.salvarVenda(venda);
             if (httpOK) {
+                request.setAttribute("varMsgS", true);
+                request.setAttribute("msg", "Venda realizada com sucesso.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
                 dispatcher.forward(request, response);
             } else {
+                request.setAttribute("varMsgE", true);
+                request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
                 dispatcher.forward(request, response);
             }

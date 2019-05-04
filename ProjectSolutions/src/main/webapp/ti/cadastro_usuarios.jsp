@@ -44,16 +44,13 @@ Author     : nicolas.hgyoshioka
                     </li>
                 </ul>
             </nav>
-
-            <c:if test="${acao == 'editar'}">
-                <h2 class="h2 text-center subtitulo">Editar Usuário</h2>
-            </c:if>
-
-            <c:if test="${empty acao}">
-                <h2 class="h2 text-center subtitulo">Cadastrar Usuário</h2>
-            </c:if>
-
         </header>
+        <c:if test="${acao == 'editar'}">
+            <h2 class="h2 text-center subtitulo">Editar Usuário</h2>
+        </c:if>
+        <c:if test="${empty acao}">
+            <h2 class="h2 text-center subtitulo">Cadastrar Usuário</h2>
+        </c:if>
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>
@@ -61,9 +58,17 @@ Author     : nicolas.hgyoshioka
                     <c:if test="${acao == 'editar'}">
                         <form action="editar_usuario" method="post">
                         </c:if>
-
                         <c:if test="${empty acao}">
                             <form action="cadastro_usuario" method="post">
+                            </c:if>
+
+                            <c:if test="${varMsg == true}">
+                                <div class="alert alert-danger" role="alert">
+                                    <c:out value="${msg}"/>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                             </c:if>
 
                             <div class="form-group">
@@ -207,24 +212,23 @@ Author     : nicolas.hgyoshioka
                                     </c:if>  
                                 </c:if>
                             </div>
-
-                            <c:if test="${temErro == true}">
-                                <p><c:out value="${msgErro}"/></p>
-                            </c:if>
-
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="far fa-save"></i>
                                 Salvar
                             </button>
-
+                        </form>
+                        <form action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="fas fa-ban"></i>
                                 Cancelar
-                            </button> 
+                            </button>
                         </form>
                 </div>
                 <div class="col-md-3"></div>
             </div>
         </div>
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/main.js"></script>
     </body>
 </html>

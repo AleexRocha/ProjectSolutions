@@ -1,8 +1,9 @@
-package ServletFilial;
+package ServletProduto;
 
-import DAO.FilialDAO;
-import Model.Filial;
+import DAO.ProdutoDAO;
+import Model.Produto;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,53 +14,53 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author guilherme.psilva103
+ * @author Alexsander Rocha
  */
-@WebServlet(name = "FilialExcluirServlet", urlPatterns = {"/ti/excluir_filial"})
-public class FilialExcluirServlet extends HttpServlet {
+@WebServlet(name = "ProdutoExcluirServlet", urlPatterns = {"/ProdutoExcluirServlet"})
+public class ProdutoExcluirServlet extends HttpServlet {
 
     protected void processaRequisicao(String HttpMethod, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String fCodigo = request.getParameter("excluirID");
+        String pCodigo = request.getParameter("excluirID");
 
         boolean error = false;
-        if (fCodigo == null) {
+        if (pCodigo == null) {
             error = true;
             request.setAttribute("codigoErro", "Codigo não informado");
-        } else if (fCodigo.equalsIgnoreCase("0")) {
+        } else if (pCodigo.equalsIgnoreCase("0")) {
             error = true;
             request.setAttribute("codigoErro", "Codigo invalido");
         }
 
         if (error) {
-            ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("lista", filiais);
+            ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+            request.setAttribute("lista", produtos);
 
             request.setAttribute("varMsg", true);
-            request.setAttribute("msg", "Erro ao excluir a filial, verifique os campos e tente novamente.");
+            request.setAttribute("msg", "Erro ao excluir o produto.");
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
             dispatcher.forward(request, response);
         } else {
-            boolean httpOk = FilialDAO.excluirFilial(Integer.parseInt(fCodigo));
+            boolean httpOk = ProdutoDAO.excluirProduto(Integer.parseInt(pCodigo));
             if (httpOk) {
-                ArrayList<Filial> filiais = FilialDAO.getFiliais();
-                request.setAttribute("lista", filiais);
+                ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+                request.setAttribute("lista", produtos);
 
                 request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Filial excluida com sucesso.");
+                request.setAttribute("msg", "Produto excluido com sucesso.");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
             } else {
-                ArrayList<Filial> filiais = FilialDAO.getFiliais();
-                request.setAttribute("lista", filiais);
+                ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+                request.setAttribute("lista", produtos);
 
                 request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Erro ao excluir filial.");
+                request.setAttribute("msg", "Erro ao excluir produto.");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
             }
         }
@@ -76,5 +77,4 @@ public class FilialExcluirServlet extends HttpServlet {
             throws ServletException, IOException {
         processaRequisicao("POST", request, response);
     }
-
 }

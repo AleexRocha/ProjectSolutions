@@ -47,20 +47,26 @@
             <h2 class="h2 text-center subtitulo">Produtos</h2>
         </header>
         <div class="container">
-
             <form id="btn_cadastro" action="select_cadastro" method="GET">
                 <Button type="submit" class="btn btn-light">
                     <i class="fas fa-box"></i>
                     Cadastrar Produto
                 </Button>
             </form>
-
             <a class="btn btn-danger" href="">
                 <i class="far fa-trash-alt"></i>
                 Excluir Selecionado(s)
             </a>
             <br>
             <br>
+            <c:if test="${varMsg == true}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${msg}"/>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -127,7 +133,9 @@
                     </div>
                 </div>
             </div>
-            <script src="../assets/js/jquery-2.1.3.min.js"></script>
-            <script src="../assets/js/bootstrap.min.js"></script>
+        </div>
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/main.js"></script>
     </body>
 </html>

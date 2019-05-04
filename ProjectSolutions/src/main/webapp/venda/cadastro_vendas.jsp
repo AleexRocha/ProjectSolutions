@@ -46,13 +46,31 @@ Author     : nicolas.hgyoshioka
                     </li>
                 </ul>
             </nav>
-            <h2 class="h2 text-center subtitulo">Cadastrar uma venda</h2>
+            <h2 class="h2 text-center subtitulo" style="padding: 24px 0px;">Cadastrar uma venda</h2>
         </header>
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <form action="create_venda" method="post">
+
+                        <c:if test="${varMsgS == true}">
+                            <div class="alert alert-success" role="alert">
+                                <c:out value="${msg}"/>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </c:if>
+                        <c:if test="${varMsgE == true}">
+                            <div class="alert alert-danger" role="alert">
+                                <c:out value="${msg}"/>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </c:if>
+
                         <div class="form-group">
                             <label for="codigoProduto">Código do produto:</label>
                             <c:choose>
@@ -156,7 +174,8 @@ Author     : nicolas.hgyoshioka
                 <div class="col-md-3"></div>
             </div>
         </div>
-        <script src="../assets/js/bootstrap.min.js"></script>
-        <script src="../assets/js/venda.js"></script>
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+            <script src="../assets/js/bootstrap.min.js"></script>
+            <script src="../assets/js/main.js"></script>
     </body>
 </html>

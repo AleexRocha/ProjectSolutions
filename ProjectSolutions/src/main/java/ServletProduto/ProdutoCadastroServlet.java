@@ -60,11 +60,11 @@ public class ProdutoCadastroServlet extends HttpServlet {
             ArrayList<Filial> filiais = FilialDAO.getFiliais();
             request.setAttribute("listaFiliais", filiais);
 
-            request.setAttribute("temErro", true);
-            request.setAttribute("msgErro", "Corrija os campos obrigatórios");
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
-
         } else {
             Produto produtos = new Produto(fNome, fDescricao, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
             boolean httpOK = ProdutoDAO.salvarProduto(produtos);
@@ -73,9 +73,15 @@ public class ProdutoCadastroServlet extends HttpServlet {
                 ArrayList<Produto> produto = ProdutoDAO.getProdutos();
                 request.setAttribute("lista", produto);
 
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Cadastro realizado com sucesso.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
             } else {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                 dispatcher.forward(request, response);
             }

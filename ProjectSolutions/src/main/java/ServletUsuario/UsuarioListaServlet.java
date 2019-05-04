@@ -22,7 +22,6 @@ public class UsuarioListaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
-
         request.setAttribute("listaUsuarios", usuarios);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");

@@ -70,11 +70,13 @@ public class ProdutoEditarServlet extends HttpServlet {
             request.setAttribute("quantidadeEstoque", produto.getQuantidadeEstoque());
             request.setAttribute("valorUnitario", produto.getValorUnitario());
 
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Erro ao editar o produto, verifique os campos e tente novamente.");
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
-
         } else {
-            Produto produto = new Produto(fNome, fDescricao, fTipo,Integer.parseInt(fCodigoFilial) , Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
+            Produto produto = new Produto(fNome, fDescricao, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
             produto.setCodigo(Integer.parseInt(fCodigo));
             boolean httpOK = ProdutoDAO.atualizarProduto(produto);
 
@@ -82,9 +84,15 @@ public class ProdutoEditarServlet extends HttpServlet {
                 ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
                 request.setAttribute("lista", produtos);
 
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Produto editado com sucesso.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
             } else {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Erro ao salvar editação no banco de dados, verifique os campos e tente novamente.");
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                 dispatcher.forward(request, response);
             }
