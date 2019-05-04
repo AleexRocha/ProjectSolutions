@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServletLogin;
 
 import DAO.UsuarioDAO;
-import Model.Usuario;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         boolean httpOK = UsuarioDAO.getLogin(uEmail, uSenha);
 
         if (httpOK) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas");
             dispatcher.forward(request, response);
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.html");
