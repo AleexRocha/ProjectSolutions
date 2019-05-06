@@ -44,7 +44,6 @@
                                     <input name="email" type="email" id="inputEmail" 
                                            class="form-control inputForm error" 
                                            placeholder="${emailError}" autofocus>
-
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -63,8 +62,8 @@
                                            placeholder="${senhaError}">
                                 </c:otherwise>
                             </c:choose>
-
                         </div>
+                        
                         <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
                         <!--<a class="btn btn-warning btn-block btn-lg" href="venda/cadastro_vendas.jsp"> Sign in </a>-->
                         <p class="mt-5 mb-3 text-center subtitulo">&copy; Project Solutions - 2019</p>
