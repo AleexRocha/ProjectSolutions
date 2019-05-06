@@ -142,8 +142,8 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${empty acao}">
                                     <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
                                     <c:if test="${empty valorUnitarioErro}">
-                                        <input type="number" class="form-control inputForm" id="valorUnitario"
-                                               placeholder="Valor Unitário" name="valorUnitario">
+                                        <input onkeypress="valorProduto()" type="text" class="form-control inputForm" id="valorUnitario"
+                                               placeholder="Valor Unitário" name="valorUnitario" maxlength="9">
                                     </c:if>
                                     <c:if test="${not empty valorUnitarioErro}">         
                                         <input type="number" class="form-control inputForm error" id="valorUnitario"
@@ -218,5 +218,34 @@ Author     : nicolas.hgyoshioka
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
+        <script>
+            function valorProduto(){
+                var valorUnitario = document.getElementById('valorUnitario').value;
+                if (valorUnitario.length == 0) {
+                    
+                    document.getElementById('valorUnitario').value = 'R$';
+                    
+                }else if (valorUnitario.length == 4){
+                    
+                   var maskValor = 'R$' + valorUnitario.substring(2,5) + ',';
+                   document.getElementById('valorUnitario').value = maskValor;
+                   
+                }else if (valorUnitario.length == 7){  
+                    
+                    var maskValor = 'R$' + valorUnitario.substring(2,4) + 
+                            valorUnitario.substring(5,6) + ',' +  
+                            valorUnitario.substring(6,7);
+                    document.getElementById('valorUnitario').value = maskValor;
+                    
+                }else if (valorUnitario.length == 8){  
+                    
+                    var maskValor = 'R$' + valorUnitario.substring(2,5) +
+                            valorUnitario.substring(6,7) + ',' + 
+                            valorUnitario.substring(7,8);
+                    document.getElementById('valorUnitario').value = maskValor;
+                    
+                }               
+            }
+        </script>
     </body>
 </html>
