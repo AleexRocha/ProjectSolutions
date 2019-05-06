@@ -100,12 +100,14 @@ Author     : nicolas.hgyoshioka
                                 <!-- Button que chama a modal -->
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteFilial">
                                     <i class="far fa-trash-alt"></i>
+                                    <c:set var="codigoItem" value="${filiais.codigo}"/>
                                 </button>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
+
             <!-- Modal -->
             <div class="modal fade" id="deleteFilial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -119,10 +121,9 @@ Author     : nicolas.hgyoshioka
                         <div class="modal-body">
                             <p>Tem certeza que deseja excluir a filial?</p>
                         </div>
-                        <div class="modal-footer">
-                            <!--<form name ="deletarFilial" action="excluir_filial" onSubmit="return validaAcao(${filiais.codigo});" method="POST">-->
+                        <div class="modal-footer"> 
                             <form action="excluir_filial" name ="deletarFilial" method="POST">
-                                <button name="excluirID" value="${filiais.codigo}" type="submit" class="btn btn-danger">
+                                <button name="excluirID" value="${codigoItem}" type="submit" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i> Sim
                                 </button>
                             </form>
@@ -137,17 +138,19 @@ Author     : nicolas.hgyoshioka
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
-        <!--            <script>
-                        function validaAcao(codigoBtn) {
-                            var codigo = codigoBtn;
-                            var r = confirm("Deseja excluir a filial " + codigo + "?");
-                            if (r === true) {
-                                deletarFilial.submit(codigo);
-                                return true;
-                            } else {
-                                return false;
-                            }
+
+    <!--<form name ="deletarFilial" action="excluir_filial" onSubmit="return validaAcao(${filiais.codigo});" method="POST">-->
+        <!--<script>
+                    function validaAcao(codigoBtn) {
+                        var codigo = codigoBtn;
+                        var r = confirm("Deseja excluir a filial " + codigo + "?");
+                        if (r === true) {
+                            deletarFilial.submit(codigo);
+                            return true;
+                        }else {
+                            return false;
                         }
-                    </script>-->
+                    }
+        </script>-->
     </body>
 </html>

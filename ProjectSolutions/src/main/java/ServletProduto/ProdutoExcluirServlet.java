@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "ProdutoExcluirServlet", urlPatterns = {"/ProdutoExcluirServlet"})
+@WebServlet(name = "ProdutoExcluirServlet", urlPatterns = {"/produtos/excluir_produto"})
 public class ProdutoExcluirServlet extends HttpServlet {
 
     protected void processaRequisicao(String HttpMethod, HttpServletRequest request, HttpServletResponse response)
@@ -42,8 +42,10 @@ public class ProdutoExcluirServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
             dispatcher.forward(request, response);
+            
         } else {
-            boolean httpOk = ProdutoDAO.excluirProduto(Integer.parseInt(pCodigo));
+            
+            boolean httpOk = ProdutoDAO.AlteraStatusProduto(Integer.parseInt(pCodigo));
             if (httpOk) {
                 ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
                 request.setAttribute("lista", produtos);

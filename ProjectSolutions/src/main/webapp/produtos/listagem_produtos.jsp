@@ -101,6 +101,7 @@
                                 <!-- Button que chama a modal -->
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
                                     <i class="far fa-trash-alt"></i>
+                                    <c:set var="codigoProduto" value="${produtos.codigo}"/>
                                 </button>
                             </td>
                         </tr>
@@ -122,7 +123,7 @@
                         </div>
                         <div class="modal-footer">
                             <form action="excluir_produto" method="POST" name ="deletarProduto">
-                                <button name="excluirID" value="${produtos.codigo}" type="submit" class="btn btn-danger">
+                                <button name="excluirID" value="${codigoProduto}" type="submit" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i> Sim
                                 </button>
                             </form>

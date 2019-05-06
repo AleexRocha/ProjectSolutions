@@ -97,6 +97,7 @@ Author     : nicolas.hgyoshioka
                                 <!-- Button que chama a modal -->
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario">
                                     <i class="far fa-trash-alt"></i>
+                                    <c:set var="codigoUsuario" value="${usuarios.codigo}"/>
                                 </button>
                             </td>
                         </tr>
@@ -118,7 +119,7 @@ Author     : nicolas.hgyoshioka
                         </div>
                         <div class="modal-footer">
                             <form action="excluir_usuario" method="POST" name ="deletarUsuario">
-                                <button name="excluirID" value="${usuarios.codigo}" type="submit" class="btn btn-danger">
+                                <button name="excluirID" value="${codigoUsuario}" type="submit" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i> Sim
                                 </button>
                             </form>
