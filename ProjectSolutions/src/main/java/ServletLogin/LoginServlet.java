@@ -22,16 +22,35 @@ public class LoginServlet extends HttpServlet {
         String uEmail = request.getParameter("email");
         String uSenha = request.getParameter("password");
 
-        boolean httpOK = UsuarioDAO.getLogin(uEmail, uSenha);
-
-        if (httpOK) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas");
-            dispatcher.forward(request, response);
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.html");
-            dispatcher.forward(request, response);
+        boolean error = false;
+        if (uEmail.length() == 0) {
+            request.setAttribute("emailError", "Campo email obrigatório");
+            error = true;
         }
+        if (uSenha.length() == 0) {
+            request.setAttribute("senhaError", "Campo senha obrigatório");
+            request.setAttribute("emailUser", uEmail);
+            request.setAttribute("loginError", "Login ou senha inválidos");
+            error = true;
+        }
+        if (error) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.jsp");
+            dispatcher.forward(request, response);
+        
+        } else {
+            boolean httpOK = UsuarioDAO.getLogin(uEmail, uSenha);
 
+            if (httpOK) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas");
+                dispatcher.forward(request, response);
+            } else {
+                request.setAttribute("loginError", "Login ou senha inválidos");
+                request.setAttribute("emailUser", uEmail);
+                
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
     }
 
     @Override
