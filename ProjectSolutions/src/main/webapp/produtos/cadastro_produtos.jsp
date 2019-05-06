@@ -136,7 +136,7 @@ Author     : nicolas.hgyoshioka
 
                                 <label for="valorProduto">Valor Unitário:</label>
                                 <c:if test="${acao == 'editar'}">                                  
-                                    <input type="number" class="form-control inputForm" id="valorUnitario"
+                                    <input onkeypress="valorProduto()" type="text" class="form-control inputForm" id="valorUnitario"
                                            value="${valor_unidade}" name="valorUnitario">
                                 </c:if>
                                 <c:if test="${empty acao}">
@@ -146,7 +146,7 @@ Author     : nicolas.hgyoshioka
                                                placeholder="Valor Unitário" name="valorUnitario" maxlength="9">
                                     </c:if>
                                     <c:if test="${not empty valorUnitarioErro}">         
-                                        <input type="number" class="form-control inputForm error" id="valorUnitario"
+                                        <input onkeypress="valorProduto()" type="number" class="form-control inputForm error" id="valorUnitario"
                                                placeholder="${valorUnitarioErro}" name="valorUnitario">
                                     </c:if> 
                                 </c:if>

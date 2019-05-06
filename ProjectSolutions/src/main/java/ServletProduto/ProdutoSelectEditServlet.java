@@ -24,6 +24,7 @@ public class ProdutoSelectEditServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String pCodigo = request.getParameter("editarID");
+        String valor_unitario;
         
         Produto produto = ProdutoDAO.getProduto(Integer.parseInt(pCodigo));
         ArrayList<Filial> filiais = FilialDAO.getFiliais();
@@ -38,8 +39,10 @@ public class ProdutoSelectEditServlet extends HttpServlet {
         request.setAttribute("cdFilialCadastrada", produto.getCodigoFilial());
         request.setAttribute("nomeFilialCadastrada", produto.getNomeFilial());
         request.setAttribute("listaFiliais", filiais);
-        request.setAttribute("qtd_estoque", produto.getQuantidadeEstoque());
-        request.setAttribute("valor_unidade", produto.getValorUnitario());        
+        request.setAttribute("qtd_estoque", produto.getQuantidadeEstoque());   
+        
+        valor_unitario = String.valueOf(produto.getValorUnitario()).replace(".", ",");            
+        request.setAttribute("valor_unidade", "R$" +valor_unitario);        
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
         dispatcher.forward(request, response);

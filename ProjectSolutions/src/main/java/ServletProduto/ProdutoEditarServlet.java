@@ -56,6 +56,12 @@ public class ProdutoEditarServlet extends HttpServlet {
         if (fValorUnitario.length() == 0) {
             error = true;
             request.setAttribute("valorUnitarioErro", "Valor Unitario não informado");
+        } else {
+            String valorReplace;
+            valorReplace = fValorUnitario.replace("R$", "");
+            valorReplace = valorReplace.replace(",", ".");
+
+            fValorUnitario = valorReplace;
         }
 
         if (error) {

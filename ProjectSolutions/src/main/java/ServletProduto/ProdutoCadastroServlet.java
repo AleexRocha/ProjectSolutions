@@ -55,11 +55,11 @@ public class ProdutoCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("valorUnitarioErro", "Valor unitário não informado");
         } else {
-            String teste;
-            teste = fValorUnitario.replace("R$", "");
-            teste = teste.replace(",", ".");
+            String valorReplace;
+            valorReplace = fValorUnitario.replace("R$", "");
+            valorReplace = valorReplace.replace(",", ".");
 
-            fValorUnitario = teste;
+            fValorUnitario = valorReplace;
         }
 
         if (error) {
