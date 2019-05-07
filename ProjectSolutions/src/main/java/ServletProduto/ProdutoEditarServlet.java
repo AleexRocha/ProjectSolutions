@@ -31,7 +31,7 @@ public class ProdutoEditarServlet extends HttpServlet {
         boolean error = false;
         if (fCodigo.length() == 0) {
             error = true;
-            request.setAttribute("codigoErro", "Codigo não informado");
+            request.setAttribute("codigoErro", "Código não informado");
         }
         if (fNome.length() == 0) {
             error = true;
@@ -39,23 +39,23 @@ public class ProdutoEditarServlet extends HttpServlet {
         }
         if (fDescricao.length() == 0) {
             error = true;
-            request.setAttribute("descricaoErro", "Descricao não informado");
+            request.setAttribute("descricaoErro", "Descrição não informado");
         }
         if (fTipo.length() == 0) {
             error = true;
-            request.setAttribute("TipoErro", "tipo não informado");
+            request.setAttribute("TipoErro", "Tipo não informado");
         }
         if (fCodigoFilial.length() == 0) {
             error = true;
-            request.setAttribute("filialErro", "Filial não informado");
+            request.setAttribute("filialErro", "Filial não informada");
         }
         if (fQuantidadeEstoque.length() == 0) {
             error = true;
-            request.setAttribute("quantidadeEstoqueErro", "QuantidadeEstoque não informada");
+            request.setAttribute("quantidadeEstoqueErro", "Quantidade Estoque não informada");
         }
         if (fValorUnitario.length() == 0) {
             error = true;
-            request.setAttribute("valorUnitarioErro", "Valor Unitario não informado");
+            request.setAttribute("valorUnitarioErro", "Valor Unitário não informado");
         } else {
             String valorReplace;
             valorReplace = fValorUnitario.replace("R$", "");
@@ -97,7 +97,7 @@ public class ProdutoEditarServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             } else {
                 request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Erro ao salvar editação no banco de dados, verifique os campos e tente novamente.");
+                request.setAttribute("msg", "Erro ao salvar edição no banco de dados, verifique os campos e tente novamente.");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                 dispatcher.forward(request, response);

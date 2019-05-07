@@ -168,7 +168,8 @@ Author     : nicolas.hgyoshioka
                         <button type="submit" class="btn btn-light btn-block">
                             <i class="fas fa-ban"></i>
                             Cancelar
-                        </button>                    
+                        </button>        
+                         <a href="${pageContext.request.contextPath}/login/index.html">Logout</a>
                     </form>
                 </div>
                 <div class="col-md-3"></div>
