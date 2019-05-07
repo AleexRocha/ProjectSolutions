@@ -45,7 +45,7 @@ public class FilialDAO {
     public static boolean excluirFilial(int fCodigo) {
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("DELETE FROM tbl_filial WHERE id_filial = ?");
+            PreparedStatement query = conn.prepareStatement("UPDATE tbl_filial SET status = 1 WHERE id_filial = ?");
 
             query.setInt(1, fCodigo);
 

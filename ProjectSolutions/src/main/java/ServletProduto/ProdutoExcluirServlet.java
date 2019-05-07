@@ -45,7 +45,7 @@ public class ProdutoExcluirServlet extends HttpServlet {
             
         } else {
             
-            boolean httpOk = ProdutoDAO.AlteraStatusProduto(Integer.parseInt(pCodigo));
+            boolean httpOk = ProdutoDAO.excluirProduto(Integer.parseInt(pCodigo));
             if (httpOk) {
                 ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
                 request.setAttribute("lista", produtos);

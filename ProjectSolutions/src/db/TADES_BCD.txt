@@ -11,6 +11,7 @@ create table tbl_filial (
     cidade varchar(50) not null,
     estado varchar(50) not null,
     telefone varchar(15)
+    status int not null,
 );
 
 create table tbl_setor(
@@ -25,6 +26,7 @@ create table tbl_usuario(
     senha varchar(25) not null,
     fk_filial int not null,
     fk_setor int not null,
+    status int not null,
     foreign key (fk_filial) references tbl_filial(id_filial),
     foreign key (fk_setor) references tbl_setor(id_setor)
 );

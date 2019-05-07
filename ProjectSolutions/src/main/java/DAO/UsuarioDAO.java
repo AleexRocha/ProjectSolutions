@@ -65,7 +65,7 @@ public class UsuarioDAO {
     public static boolean excluirUsuario(int uCodigo) {
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("DELETE FROM tbl_usuario WHERE id_usuario = ?");
+            PreparedStatement query = conn.prepareStatement("UPDATE tbl_usuario SET status = 1 WHERE id_usuario = ?");
 
             query.setInt(1, uCodigo);
 

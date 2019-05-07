@@ -68,7 +68,7 @@ public class ProdutoDAO {
         return true;
     }
 
-    public static boolean AlteraStatusProduto(int pCodigo) {
+    public static boolean excluirProduto(int pCodigo) {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE tbl_produtos SET status = 1 WHERE id_produto = ?");
