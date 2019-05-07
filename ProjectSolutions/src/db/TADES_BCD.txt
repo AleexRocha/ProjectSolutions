@@ -1,7 +1,6 @@
 create database TADES_BCD;
 
 use TADES_BCD;
-SET @@GLOBAL.TIME_ZONE = '+03:00';
 
 create table tbl_filial (
     id_filial int not null primary key auto_increment,
@@ -26,8 +25,8 @@ create table tbl_usuario(
     senha varchar(25) not null,
     fk_filial int not null,
     fk_setor int not null,
-    foreign key (fk_filial) references tbl_filial(id_filial) on delete cascade,
-    foreign key (fk_setor) references tbl_setor(id_setor) on delete cascade
+    foreign key (fk_filial) references tbl_filial(id_filial),
+    foreign key (fk_setor) references tbl_setor(id_setor)
 );
 
 create table tbl_produtos(
@@ -38,7 +37,8 @@ create table tbl_produtos(
     fk_filial int not null,
     qtd_estoque int not null,
     valor_unidade double not null,
-    foreign key (fk_filial) references tbl_filial(id_filial) on delete cascade
+    status int not null,
+    foreign key (fk_filial) references tbl_filial(id_filial)
 );
 
 create table tbl_venda(
@@ -49,6 +49,20 @@ create table tbl_venda(
     qtd_itens int not null,
     cpf_cliente varchar(15),
     data_venda datetime not null,
-    foreign key(id_usuario) references tbl_usuario(id_usuario) on delete cascade,
-    foreign key(id_filial) references tbl_filial(id_filial) on delete cascade
+    foreign key(id_usuario) references tbl_usuario(id_usuario),
+    foreign key(id_filial) references tbl_filial(id_filial)
 );
+
+SET @@GLOBAL.TIME_ZONE = '+03:00';
+
+INSERT INTO tbl_setor(nome_setor) VALUES ('TI');
+INSERT INTO tbl_setor(nome_setor) VALUES ('BackOffice');
+INSERT INTO tbl_setor(nome_setor) VALUES ('Gerente regional');
+INSERT INTO tbl_setor(nome_setor) VALUES ('Gerente global');
+INSERT INTO tbl_setor(nome_setor) VALUES ('Diretor');
+
+INSERT INTO tbl_filial(logradouro, numero, cep, bairro, cidade, estado, telefone)
+	VALUES ('Av. Eng. Eusebio Stevaux', 823, '04696000', 'Santo Amaro','São Paulo', 'SP', '1156827300');
+
+INSERT INTO tbl_usuario(nome, email, senha, fk_filial, fk_setor)
+	VALUES ('Milena Flores', 'diretoria@email.com','123',1,5);
