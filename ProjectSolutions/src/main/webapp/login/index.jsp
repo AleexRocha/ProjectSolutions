@@ -22,6 +22,14 @@
                                 <img src="../assets/img/logo.png">
                             </h1>
                         </div>
+                        <c:if test="${varMsg == true}">
+                            <div class="alert alert-danger" role="alert">
+                                <c:out value="${msg}"/>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </c:if>
                         <div class="form-group">
                             <label for="inputEmail">E-mail</label>
                             <c:choose>
@@ -35,11 +43,10 @@
                                         <c:otherwise>  
                                             <input name="email" type="email" id="inputEmail" 
                                                    class="form-control inputForm" 
-                                                   value="${emailUser}" autofocus>
+                                                   value="${loginError}" autofocus>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:when>
-
                                 <c:otherwise>
                                     <input name="email" type="email" id="inputEmail" 
                                            class="form-control inputForm error" 
@@ -63,7 +70,7 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
-                        
+
                         <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
                         <!--<a class="btn btn-warning btn-block btn-lg" href="venda/cadastro_vendas.jsp"> Sign in </a>-->
                         <p class="mt-5 mb-3 text-center subtitulo">&copy; Project Solutions - 2019</p>
