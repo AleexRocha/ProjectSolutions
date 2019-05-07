@@ -63,7 +63,7 @@ Author     : nicolas.hgyoshioka
                 </div>
             </c:if>
 
-            <form name="deletarFiliais" action="excluir_filiais" method="POST">
+            <form action="excluir_filiais" method="POST">
                 <a id="btn_cadastro" class="btn btn-light" href="cadastro_filiais.jsp">
                     <i class="far fa-building"></i>
                     Cadastrar filial

@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServletFilial;
+package ServletProduto;
 
 import DAO.FilialDAO;
+import DAO.ProdutoDAO;
 import Model.Filial;
+import Model.Produto;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,32 +23,31 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.pereira
  */
-@WebServlet(name = "FilialExcluirVariosServlet", urlPatterns = {"/ti/excluir_filiais"})
-public class FilialExcluirVariosServlet extends HttpServlet {
+@WebServlet(name = "ProdutoExcluirVariosServlet", urlPatterns = {"/produtos/excluir_produtos"})
+public class ProdutoExcluirVariosServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String[] produtosSelecionados = request.getParameterValues("selected");
 
-        String[] filiaisSelecionadas = request.getParameterValues("selected");
-
-        boolean httpOK = FilialDAO.excluirFiliais(filiaisSelecionadas);
+        boolean httpOK = ProdutoDAO.excluirProdutos(produtosSelecionados);
 
         if (httpOK) {
-            ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("lista", filiais);
+            ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+            request.setAttribute("lista", produtos);
 
             request.setAttribute("varMsg", true);
-            request.setAttribute("msg", "Filiais excluidas com sucesso.");
+            request.setAttribute("msg", "Produtos excluidos com sucesso.");
             
         } else {
-            ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("lista", filiais);
+            ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+            request.setAttribute("lista", produtos);
 
             request.setAttribute("varMsgErro", true);
-            request.setAttribute("msg", "Erro ao excluir filiais.");
+            request.setAttribute("msg", "Erro ao excluir Produtos.");
         }
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -60,4 +62,5 @@ public class FilialExcluirVariosServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
 }

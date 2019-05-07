@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -76,12 +78,35 @@ public class ProdutoDAO {
 
             query.setInt(1, pCodigo);
 
-            ResultSet linhasAfetadas = query.executeQuery();
+            query.execute();
 
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);
             return false;
+        }
+
+        return true;
+    }
+
+    public static boolean excluirProdutos(String[] codigos) {
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("UPDATE tbl_produtos SET status = 1 WHERE id_produto = ?");
+
+            for (String codigo : codigos) {
+                query.setInt(1, Integer.parseInt(codigo));
+                query.execute();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
         }
 
         return true;
