@@ -45,6 +45,10 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                 </ul>
+                <i class="fas fa-user-tie"></i> &nbsp;&nbsp; Olá, (Nome do usuário) -
+                <form action="/logout" method="POST">
+                    <button type="submit" class="btn nav-link nav-text" >Sair</button>
+                </form>
             </nav>
             <h2 class="h2 text-center subtitulo" style="padding: 24px 0px;">Cadastrar uma venda</h2>
         </header>
@@ -169,14 +173,14 @@ Author     : nicolas.hgyoshioka
                             <i class="fas fa-ban"></i>
                             Cancelar
                         </button>        
-                         <a href="${pageContext.request.contextPath}/login/index.html">Logout</a>
+<!--                         <a href="${pageContext.request.contextPath}/login/index.html">Logout</a>-->
                     </form>
                 </div>
                 <div class="col-md-3"></div>
             </div>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
-            <script src="../assets/js/bootstrap.min.js"></script>
-            <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/main.js"></script>
     </body>
 </html>
