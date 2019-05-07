@@ -19,14 +19,15 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO "
-                    + " tbl_usuario(nome, email, senha, fk_filial, fk_setor) "
-                    + "VALUES (?, ?, ?, ?, ?);");
+                    + " tbl_usuario(nome, email, senha, status, fk_filial, fk_setor) "
+                    + "VALUES (?, ?, ?, ?, ?, ?);");
 
             query.setString(1, u.getNome());
             query.setString(2, u.getEmail());
             query.setString(3, u.getSenha());
-            query.setInt(4, u.getCodigoFilial());
-            query.setInt(5, u.getSetor());
+            query.setInt(4, 0);
+            query.setInt(5, u.getCodigoFilial());
+            query.setInt(6, u.getSetor());
 
             int rs = query.executeUpdate();
 
@@ -84,9 +85,11 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, senha,"
-                    + " fk_filial, fk_setor, nome_setor, concat(cidade, \" - \", estado)\n"
+                    + " fk_filial, fk_setor, nome_setor, CONCAT(cidade, \" - \", estado)\n"
                     + " FROM tbl_usuario INNER JOIN tbl_setor ON "
-                    + " tbl_usuario.fk_setor = tbl_setor.id_setor inner join tbl_filial on tbl_usuario.fk_filial = tbl_filial.id_filial;");
+                    + " tbl_usuario.fk_setor = tbl_setor.id_setor "
+                    + " INNER JOIN tbl_filial ON tbl_usuario.fk_filial = tbl_filial.id_filial"
+                    + " WHERE status = 0;");
 
             ResultSet rs = query.executeQuery();
 
@@ -119,10 +122,11 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, senha,"
-                    + " fk_filial, fk_setor, nome_setor, concat(cidade, \" - \", estado)\n"
+                    + " fk_filial, fk_setor, nome_setor, CONCAT(cidade, \" - \", estado)\n"
                     + " FROM tbl_usuario INNER JOIN tbl_setor ON "
-                    + " tbl_usuario.fk_setor = tbl_setor.id_setor inner join tbl_filial on tbl_usuario.fk_filial = tbl_filial.id_filial "
-                    + " where id_usuario = ? ;");
+                    + " tbl_usuario.fk_setor = tbl_setor.id_setor "
+                    + " INNER JOIN tbl_filial ON tbl_usuario.fk_filial = tbl_filial.id_filial "
+                    + " where id_usuario = ? AND status = 0;");
 
             query.setInt(1, codigoUsuario);
             ResultSet rs = query.executeQuery();
@@ -176,7 +180,7 @@ public class UsuarioDAO {
         ArrayList<Usuario> filiais = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_filial, CONCAT(cidade, \" - \", estado) FROM tbl_filial;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_filial, CONCAT(cidade, \" - \", estado) FROM tbl_filial WHERE status = 0;");
 
             ResultSet rs = query.executeQuery();
 
@@ -196,13 +200,13 @@ public class UsuarioDAO {
 
         return filiais;
     }
-// getLogin(String usuario)
+
     public static boolean getLogin(String email, String senha) {
-       
+
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario WHERE email=? AND senha =?;");
-            query.setString(1,email);
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario WHERE email= ? AND senha = ?;");
+            query.setString(1, email);
             query.setString(2, senha);
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
@@ -215,26 +219,4 @@ public class UsuarioDAO {
 
         return false;
     }
-
-//    public static ArrayList<Usuario> getLogin() {
-//        ArrayList<Usuario> usuario = new ArrayList<>();
-//        Connection conn = db.obterConexao();
-//        try {
-//            PreparedStatement query = conn.prepareStatement("select * from tbl_usuario where email=? and senha =?;");
-//            query.setString(1, usuario.getEmail());
-//            query.setString(2, usuario.getSenha());
-//            ResultSet rs = query.executeQuery();
-//            if (rs != null) {
-//                Usuario user = new Usuario();
-//                user.setEmail(rs.getString(1));
-//                user.setSenha(rs.getString(2));
-//                Usuario.add(user);
-//
-//            }
-//            conn.close();
-//        } catch (SQLException e) {
-//            System.out.println(e);
-//        }
-//
-//        return false;
 }

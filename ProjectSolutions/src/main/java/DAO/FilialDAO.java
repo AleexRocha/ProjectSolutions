@@ -20,8 +20,8 @@ public class FilialDAO {
 
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " tbl_filial (logradouro, numero, cep, bairro, cidade, estado, telefone)"
-                    + " VALUES (?, ?, ?, ?, ?, ?, ?);");
+                    + " tbl_filial (logradouro, numero, cep, bairro, cidade, estado, telefone, status)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 
             query.setString(1, f.getLogradouro());
             query.setInt(2, f.getNumero());
@@ -30,6 +30,7 @@ public class FilialDAO {
             query.setString(5, f.getCidade());
             query.setString(6, f.getEstado());
             query.setString(7, f.getTelefone());
+            query.setInt(8, 0);
 
             query.executeUpdate();
             conn.close();
@@ -94,7 +95,7 @@ public class FilialDAO {
         ArrayList<Filial> filiais = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("select *, concat(cidade, \" - \",estado) from tbl_filial;");
+            PreparedStatement query = conn.prepareStatement("SELECT *, CONCAT(cidade, \" - \",estado) FROM tbl_filial WHERE status = 0;");
 
             ResultSet rs = query.executeQuery();
 
@@ -127,7 +128,7 @@ public class FilialDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM"
-                    + " tbl_filial WHERE id_filial = ?;");
+                    + " tbl_filial WHERE id_filial = ? AND status = 0;");
 
             query.setInt(1, codigo);
             ResultSet rs = query.executeQuery();

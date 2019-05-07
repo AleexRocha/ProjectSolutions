@@ -19,14 +19,15 @@ public class ProdutoDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " tbl_produtos(nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade)"
-                    + "VALUES (?, ?, ?, ?, ?, ?);");
+                    + " tbl_produtos(nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade, status)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?);");
             query.setString(1, p.getNome());
             query.setString(2, p.getDescricao());
             query.setString(3, p.getTipo());
             query.setInt(4, p.getCodigoFilial());
             query.setInt(5, p.getQuantidadeEstoque());
             query.setDouble(6, p.getValorUnitario());
+            query.setInt(7, 0);
 
             int rs = query.executeUpdate();
             conn.close();
@@ -92,7 +93,7 @@ public class ProdutoDAO {
         try {
             PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade,"
                     + " CONCAT(cidade, \" - \", estado) \n"
-                    + " FROM tbl_produtos INNER JOIN tbl_filial ON tbl_produtos.fk_filial = tbl_filial.id_filial;");
+                    + " FROM tbl_produtos INNER JOIN tbl_filial ON tbl_produtos.fk_filial = tbl_filial.id_filial WHERE status = 0;");
 
             ResultSet rs = query.executeQuery();
 
@@ -126,9 +127,9 @@ public class ProdutoDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade,"
-                    + " concat(cidade, \" - \", estado) \n"
-                    + "FROM tbl_produtos inner join tbl_filial on tbl_produtos.fk_filial = tbl_filial .id_filial\n"
-                    + "WHERE id_produto = ?;");
+                    + " CONCAT(cidade, \" - \", estado) \n"
+                    + "FROM tbl_produtos INNER JOIN tbl_filial ON tbl_produtos.fk_filial = tbl_filial.id_filial\n"
+                    + "WHERE id_produto = ? AND status = 0;");
 
             query.setInt(1, codigo);
             ResultSet rs = query.executeQuery();
