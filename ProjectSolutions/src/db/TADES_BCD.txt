@@ -10,8 +10,8 @@ create table tbl_filial (
     bairro varchar(50) not null,
     cidade varchar(50) not null,
     estado varchar(50) not null,
-    telefone varchar(15)
-    status int not null,
+    telefone varchar(15),
+    status int not null
 );
 
 create table tbl_setor(
@@ -64,7 +64,7 @@ INSERT INTO tbl_setor(nome_setor) VALUES ('Gerente global');
 INSERT INTO tbl_setor(nome_setor) VALUES ('Diretor');
 
 INSERT INTO tbl_filial(logradouro, numero, cep, bairro, cidade, estado, telefone, status)
-	VALUES ('Av. Eng. Eusebio Stevaux', 823, '04696000', 'Santo Amaro','São Paulo', 'SP', '1156827300', 0);
+	VALUES ('Av. Eng. Eusebio Stevaux', 823, '04696000', 'Santo Amaro', 'São Paulo', 'SP', '1156827300', 0);
 
 INSERT INTO tbl_usuario(nome, email, senha, status, fk_filial, fk_setor)
-	VALUES ('Milena Flores', 'diretoria@email.com','123',0,1,5);
+	VALUES ('Milena Flores', 'diretoria@email.com','123', 0, 1, 5);

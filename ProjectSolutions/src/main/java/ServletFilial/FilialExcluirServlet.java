@@ -36,7 +36,7 @@ public class FilialExcluirServlet extends HttpServlet {
             ArrayList<Filial> filiais = FilialDAO.getFiliais();
             request.setAttribute("lista", filiais);
 
-            request.setAttribute("varMsg", true);
+            request.setAttribute("varMsgErro", true);
             request.setAttribute("msg", "Erro ao excluir a filial, verifique os campos e tente novamente.");
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
@@ -56,7 +56,7 @@ public class FilialExcluirServlet extends HttpServlet {
                 ArrayList<Filial> filiais = FilialDAO.getFiliais();
                 request.setAttribute("lista", filiais);
 
-                request.setAttribute("varMsg", true);
+                request.setAttribute("varMsgErro", true);
                 request.setAttribute("msg", "Erro ao excluir filial.");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");

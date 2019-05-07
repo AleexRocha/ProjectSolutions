@@ -91,9 +91,11 @@ public class ProdutoDAO {
         ArrayList<Produto> produtos = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade,"
+            PreparedStatement query = conn.prepareStatement("SELECT p.id_produto, p.nome, p.descricao, p.tipo,"
+                    + " p.fk_filial, p.qtd_estoque, p.valor_unidade,"
                     + " CONCAT(cidade, \" - \", estado) \n"
-                    + " FROM tbl_produtos INNER JOIN tbl_filial ON tbl_produtos.fk_filial = tbl_filial.id_filial WHERE status = 0;");
+                    + " FROM tbl_produtos AS p INNER JOIN tbl_filial AS f"
+                    + " ON p.fk_filial = f.id_filial WHERE p.status = 0;");
 
             ResultSet rs = query.executeQuery();
 
@@ -126,10 +128,11 @@ public class ProdutoDAO {
         Produto produto = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade,"
+            PreparedStatement query = conn.prepareStatement("SELECT p.id_produto, p.nome, p.descricao,"
+                    + " p.tipo, p.fk_filial, p.qtd_estoque, p.valor_unidade,"
                     + " CONCAT(cidade, \" - \", estado) \n"
-                    + "FROM tbl_produtos INNER JOIN tbl_filial ON tbl_produtos.fk_filial = tbl_filial.id_filial\n"
-                    + "WHERE id_produto = ? AND status = 0;");
+                    + " FROM tbl_produtos AS p INNER JOIN tbl_filial AS F ON p.fk_filial = f.id_filial\n"
+                    + " WHERE p.id_produto = ? AND p.status = 0;");
 
             query.setInt(1, codigo);
             ResultSet rs = query.executeQuery();

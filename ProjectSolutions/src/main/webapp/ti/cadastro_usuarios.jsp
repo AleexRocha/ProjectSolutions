@@ -142,7 +142,7 @@ Author     : nicolas.hgyoshioka
                                 <label for="setor" >Setor:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                        <option value="${setor}">
+                                        <option disabled="" value="${setor}">
                                             <c:out value="${nomeSetorCadastrado}"/>
                                         </option>                               
                                         <c:forEach var="listaSetores" items="${listaSetores}">  
@@ -179,7 +179,7 @@ Author     : nicolas.hgyoshioka
                                 <label for="tipo" >Filial:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="codigoFilial" name="filial">
-                                        <option value="${filial}">
+                                        <option disabled="" value="${filial}">
                                             <c:out value="${nomeFilialCadastrado}"/>
                                         </option>
                                         <c:forEach var="listaFiliais" items="${listaFiliais}">  

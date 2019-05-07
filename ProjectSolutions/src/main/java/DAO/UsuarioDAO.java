@@ -84,12 +84,12 @@ public class UsuarioDAO {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, senha,"
-                    + " fk_filial, fk_setor, nome_setor, CONCAT(cidade, \" - \", estado)\n"
-                    + " FROM tbl_usuario INNER JOIN tbl_setor ON "
-                    + " tbl_usuario.fk_setor = tbl_setor.id_setor "
-                    + " INNER JOIN tbl_filial ON tbl_usuario.fk_filial = tbl_filial.id_filial"
-                    + " WHERE status = 0;");
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha,"
+                    + "    u.fk_filial, u.fk_setor, s.nome_setor, CONCAT(cidade, \" - \", estado)\n"
+                    + "    FROM tbl_usuario AS u INNER JOIN tbl_setor AS s ON \n"
+                    + "    u.fk_setor = s.id_setor \n"
+                    + "    INNER JOIN tbl_filial AS f ON u.fk_filial = f.id_filial\n"
+                    + "    WHERE u.status = 0;");
 
             ResultSet rs = query.executeQuery();
 
@@ -121,12 +121,12 @@ public class UsuarioDAO {
         Usuario usuarios = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, senha,"
-                    + " fk_filial, fk_setor, nome_setor, CONCAT(cidade, \" - \", estado)\n"
-                    + " FROM tbl_usuario INNER JOIN tbl_setor ON "
-                    + " tbl_usuario.fk_setor = tbl_setor.id_setor "
-                    + " INNER JOIN tbl_filial ON tbl_usuario.fk_filial = tbl_filial.id_filial "
-                    + " where id_usuario = ? AND status = 0;");
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha,"
+                    + " u.fk_filial, u.fk_setor, s.nome_setor, CONCAT(cidade, \" - \", estado)\n"
+                    + " FROM tbl_usuario AS u INNER JOIN tbl_setor AS s ON "
+                    + " u.fk_setor = s.id_setor "
+                    + " INNER JOIN tbl_filial AS f ON u.fk_filial = f.id_filial "
+                    + " where u.id_usuario = ? AND u.status = 0;");
 
             query.setInt(1, codigoUsuario);
             ResultSet rs = query.executeQuery();

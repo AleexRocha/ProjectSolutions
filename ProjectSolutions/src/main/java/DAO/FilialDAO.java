@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -60,6 +62,29 @@ public class FilialDAO {
         return true;
     }
 
+    public static boolean excluirFiliais(String[] codigos) {
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("UPDATE tbl_filial SET status = 1 WHERE id_filial = ?");
+
+            for (String codigo : codigos) {
+                query.setInt(1, Integer.parseInt(codigo));
+                query.execute();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+        return true;
+    }
+
     public static boolean atualizarFilial(Filial f) {
         Connection conn = db.obterConexao();
         try {
@@ -81,7 +106,7 @@ public class FilialDAO {
             query.setString(7, f.getTelefone());
             query.setInt(8, f.getCodigo());
 
-            int linhasAfetadas = query.executeUpdate();
+            query.executeUpdate();
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);
@@ -111,7 +136,7 @@ public class FilialDAO {
                             rs.getString(7),
                             rs.getString(8)
                     );
-                    filial.setNomeFilial(rs.getString(9));
+                    filial.setNomeFilial(rs.getString(10));
                     filiais.add(filial);
                 }
             }
