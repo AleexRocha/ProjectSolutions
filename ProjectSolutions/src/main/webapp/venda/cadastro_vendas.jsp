@@ -51,6 +51,9 @@ Author     : nicolas.hgyoshioka
                 </form>
             </nav>
             <h2 class="h2 text-center subtitulo" style="padding: 24px 0px;">Cadastrar uma venda</h2>
+            <form action="extorno" method="GET" class="form-extorno-cadastro">
+                <button type="submit" class="btn btn-success" >Extornar compras</button>
+            </form>
         </header>
         <div class="container">
             <div class="row">
@@ -133,11 +136,11 @@ Author     : nicolas.hgyoshioka
                                 <c:when test="${empty codFilialErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
                                         <option disabled="" selected="" hidden="">Código da filial</option>
-                                        <c:forEach var="lista" items="${listaFiliais}">  
+                                        <c:forEach var="lista" items="${listaFiliais}">
                                             <option value="<c:out value="${lista.codigoFilial}"></c:out>">
                                                 <c:out value="${lista.nomeFilial}"></c:out>
-                                                </option>  
-                                        </c:forEach>  
+                                                </option>
+                                        </c:forEach>
                                     </select>
                                 </c:when>
                                 <c:otherwise>
@@ -172,8 +175,7 @@ Author     : nicolas.hgyoshioka
                         <button type="submit" class="btn btn-light btn-block">
                             <i class="fas fa-ban"></i>
                             Cancelar
-                        </button>        
-<!--                         <a href="${pageContext.request.contextPath}/login/index.html">Logout</a>-->
+                        </button>
                     </form>
                 </div>
                 <div class="col-md-3"></div>

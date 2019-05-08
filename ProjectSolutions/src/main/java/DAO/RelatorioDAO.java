@@ -128,7 +128,7 @@ public class RelatorioDAO {
 
         return relatorio;
     }
-    
+
     public static ArrayList<Relatorio> getRelatorioCompleto(int filial, String dataDe, String dataAte) {
         ArrayList<Relatorio> relatorio = new ArrayList<>();
         Connection conn = db.obterConexao();
@@ -145,6 +145,111 @@ public class RelatorioDAO {
             query.setString(3, dataAte);
             ResultSet rs = query.executeQuery();
 
+            if (rs != null) {
+                while (rs.next()) {
+                    relatorio.add(new Relatorio(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getInt(3),
+                            rs.getInt(4),
+                            rs.getDouble(5),
+                            rs.getString(6),
+                            rs.getInt(7),
+                            rs.getString(8),
+                            rs.getInt(9),
+                            rs.getString(10)
+                    ));
+                }
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return relatorio;
+    }
+
+    public static ArrayList<Relatorio> getExtornoProduto(String eCodProduto) {
+        ArrayList<Relatorio> relatorio = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_venda AS v WHERE v.id_produto = ?;");
+
+            query.setString(1, eCodProduto);
+            ResultSet rs = query.executeQuery();
+
+//            Corrigir a construção do relatorio
+            if (rs != null) {
+                while (rs.next()) {
+                    relatorio.add(new Relatorio(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getInt(3),
+                            rs.getInt(4),
+                            rs.getDouble(5),
+                            rs.getString(6),
+                            rs.getInt(7),
+                            rs.getString(8),
+                            rs.getInt(9),
+                            rs.getString(10)
+                    ));
+                }
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return relatorio;
+    }
+
+    public static ArrayList<Relatorio> getExtornoFilial(String eCodFilial) {
+        ArrayList<Relatorio> relatorio = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_venda AS v WHERE v.id_filial = ?;");
+
+            query.setString(1, eCodFilial);
+            ResultSet rs = query.executeQuery();
+
+//            Corrigir a construção do relatorio
+            if (rs != null) {
+                while (rs.next()) {
+                    relatorio.add(new Relatorio(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getInt(3),
+                            rs.getInt(4),
+                            rs.getDouble(5),
+                            rs.getString(6),
+                            rs.getInt(7),
+                            rs.getString(8),
+                            rs.getInt(9),
+                            rs.getString(10)
+                    ));
+                }
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return relatorio;
+    }
+
+    public static ArrayList<Relatorio> getExtornoCpf(String eCpfCliente) {
+        ArrayList<Relatorio> relatorio = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_venda AS v WHERE v.cpf_cliente = ?;");
+
+            query.setString(1, eCpfCliente);
+            ResultSet rs = query.executeQuery();
+
+//            Corrigir a construção do relatorio
             if (rs != null) {
                 while (rs.next()) {
                     relatorio.add(new Relatorio(

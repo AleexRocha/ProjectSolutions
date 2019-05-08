@@ -73,3 +73,12 @@ table{
 .nav-item .nav-link.nav-text:hover{
     border-bottom: 1px solid black;
 }
+
+.form-extorno-cadastro{
+    float: right;
+    margin: -70px 32px 0px 0px;
+}
+.form-extorno-relatorio{
+    float: right;
+    margin: -38px 32px 0px 0px;
+}
