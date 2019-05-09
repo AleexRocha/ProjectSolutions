@@ -46,11 +46,11 @@ public class VendaDAO {
     public static boolean excluirVenda(int vCodigo) {
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("DELETE FROM tbl_venda WHERE id_venda = ?");
+            PreparedStatement query = conn.prepareStatement("UPDATE tbl_venda SET status = 1 WHERE id_venda = ?");
 
             query.setInt(1, vCodigo);
-
             ResultSet linhasAfetadas = query.executeQuery();
+            
             conn.close();
         } catch (SQLException e) {
             System.out.println("SQL Exception" + e);

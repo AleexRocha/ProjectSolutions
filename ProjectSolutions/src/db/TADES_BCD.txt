@@ -51,6 +51,7 @@ create table tbl_venda(
     qtd_itens int not null,
     cpf_cliente varchar(15),
     data_venda datetime not null,
+    status int not null,
     foreign key(id_usuario) references tbl_usuario(id_usuario),
     foreign key(id_filial) references tbl_filial(id_filial)
 );
