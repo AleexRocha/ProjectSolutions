@@ -156,7 +156,7 @@ public class ProdutoDAO {
             PreparedStatement query = conn.prepareStatement("SELECT p.id_produto, p.nome, p.descricao,"
                     + " p.tipo, p.fk_filial, p.qtd_estoque, p.valor_unidade,"
                     + " CONCAT(cidade, \" - \", estado) \n"
-                    + " FROM tbl_produtos AS p INNER JOIN tbl_filial AS F ON p.fk_filial = f.id_filial\n"
+                    + " FROM tbl_produtos AS p INNER JOIN tbl_filial AS f ON p.fk_filial = f.id_filial\n"
                     + " WHERE p.id_produto = ? AND p.status = 0;");
 
             query.setInt(1, codigo);

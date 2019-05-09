@@ -73,57 +73,53 @@ Author     : nicolas.hgyoshioka
                     Cadastrar Usuário
                 </button>
             </form>
+            <button type="submit" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+                Excluir Selecionado(s)
+            </button>
 
-            <form action="excluir_usuarios" method="POST">
-                <button type="submit" class="btn btn-danger">
-                    <i class="far fa-trash-alt"></i>
-                    Excluir Selecionado(s)
-                </button>
+            <br>
+            <br>
 
-                <br>
-                <br>
-
-                <table class="table table-striped">
-                    <thead>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Filial</th>
+                        <th scope="col">Setor</th>
+                        <th scope="col">Acoes</th>
+                    </tr>
+                </thead>
+                <tbody id="teste">  
+                    <c:forEach var="usuarios" items="${listaUsuarios}">                
                         <tr>
-                            <th><input type="checkbox"></th>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Filial</th>
-                            <th scope="col">Setor</th>
-                            <th scope="col">Acoes</th>
-                        </tr>
-                    </thead>
-                    <tbody id="teste">  
-                        <c:forEach var="usuarios" items="${listaUsuarios}">                
-                            <tr>
-                                <td>
-                                    <input name="selected" value="${usuarios.codigo}" type="checkbox"> 
-                                </td>
-                                <td name="codigo" ><c:out value="${usuarios.codigo}" /></td>
-                                <td name="nome" ><c:out value="${usuarios.nome}" /></td>
-                                <td name="email" ><c:out value="${usuarios.email}" /></td>
-                                <td name="filial"><c:out value="${usuarios.nomeFilial}"/></td>
-                                <td name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
-                                <td class="btn-group">
-                                    <form action="dados_usuario" method="POST">
-                                        <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
-                                            <i class="fas fa-pen"></i>
-                                        </button>
-                                    </form>
-                                    <!-- Button que chama a modal -->
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario">
-                                        <i class="far fa-trash-alt"></i>
-                                        <c:set var="codigoUsuario" value="${usuarios.codigo}"/>
+                            <td>
+                                <input name="selected" value="${usuarios.codigo}" type="checkbox"> 
+                            </td>
+                            <td name="codigo" ><c:out value="${usuarios.codigo}" /></td>
+                            <td name="nome" ><c:out value="${usuarios.nome}" /></td>
+                            <td name="email" ><c:out value="${usuarios.email}" /></td>
+                            <td name="filial"><c:out value="${usuarios.nomeFilial}"/></td>
+                            <td name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
+                            <td class="btn-group">
+                                <form action="dados_usuario" method="POST">
+                                    <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
+                                        <i class="fas fa-pen"></i>
                                     </button>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </form>
-
+                                </form>
+                                <!-- Button que chama a modal -->
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario">
+                                    <i class="far fa-trash-alt"></i>
+                                    <c:set var="codigoUsuario" value="${usuarios.codigo}"/>
+                                </button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
             <!-- Modal -->
             <div class="modal fade" id="deleteUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
