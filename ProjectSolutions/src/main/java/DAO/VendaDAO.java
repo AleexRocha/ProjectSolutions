@@ -29,6 +29,11 @@ public class VendaDAO {
             query.setString(5, v.getCpfCliente());
 
             int rs = query.executeUpdate();
+
+            if (rs != 0) {
+                atualizaEstoque(v.getQuantidadeVenda(), v.getCodigoProduto());
+            }
+
             conn.close();
         } catch (SQLException e) {
             System.out.println("SQL Exception" + e);
@@ -68,7 +73,7 @@ public class VendaDAO {
                     Venda v = new Venda();
                     v.setCodigoProduto(rs.getInt(1));
                     v.setNomeProduto(rs.getString(2));
-                    
+
                     venda.add(v);
                 }
             }
@@ -79,7 +84,7 @@ public class VendaDAO {
 
         return venda;
     }
-    
+
     public static ArrayList<Venda> getUsuariosVenda() {
         ArrayList<Venda> venda = new ArrayList<>();
         Connection conn = db.obterConexao();
@@ -93,7 +98,7 @@ public class VendaDAO {
                     Venda v = new Venda();
                     v.setIdFuncionario(rs.getInt(1));
                     v.setNomeFuncionario(rs.getString(2));
-                    
+
                     venda.add(v);
                 }
             }
@@ -118,7 +123,7 @@ public class VendaDAO {
                     Venda v = new Venda();
                     v.setCodigoFilial(rs.getInt(1));
                     v.setNomeFilial(rs.getString(2));
-                    
+
                     venda.add(v);
                 }
             }
@@ -129,5 +134,22 @@ public class VendaDAO {
 
         return venda;
     }
-    
+
+    public static void atualizaEstoque(int quantidadeVendida, int codigProduto) {
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("UPDATE tbl_produtos AS p "
+                    + " SET p.qtd_estoque = (p.qtd_estoque - ?) WHERE p.id_produto = ?;");
+
+            query.setInt(1, quantidadeVendida);
+            query.setInt(2, codigProduto);
+
+            int rs = query.executeUpdate();
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("SQL Exception" + e);
+        }
+    }
+
 }
