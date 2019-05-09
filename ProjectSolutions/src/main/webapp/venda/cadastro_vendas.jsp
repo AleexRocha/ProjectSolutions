@@ -51,8 +51,8 @@ Author     : nicolas.hgyoshioka
                 </form>-->
             </nav>
             <h2 class="h2 text-center subtitulo" style="padding: 24px 0px;">Cadastrar uma venda</h2>
-            <form action="select_extorno" method="GET" class="form-extorno-cadastro">
-                <button type="submit" class="btn btn-success" >Extornar compras</button>
+            <form action="estorno" method="GET" class="form-estorno-cadastro">
+                <button type="submit" class="btn btn-success" >Estornar compras</button>
             </form>
         </header>
         <div class="container">

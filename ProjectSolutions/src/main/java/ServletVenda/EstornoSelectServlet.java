@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "ExtornoSelectServlet", urlPatterns = {"/venda/extorno"})
-public class ExtornoSelectServlet extends HttpServlet {
+@WebServlet(name = "EstornoSelectServlet", urlPatterns = {"/venda/estorno"})
+public class EstornoSelectServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,7 +46,7 @@ public class ExtornoSelectServlet extends HttpServlet {
             request.setAttribute("listaFiliais", filiaisVenda);
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/extorno.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/estorno.jsp");
         dispatcher.forward(request, response);
 
     }

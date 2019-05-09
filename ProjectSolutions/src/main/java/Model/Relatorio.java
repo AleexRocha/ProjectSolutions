@@ -20,6 +20,16 @@ public class Relatorio {
     public Relatorio() {
     }
 
+    public Relatorio(int codigoVenda, int codigoProduto, int idUsuario, String cpfCliente, int idFilial, int quantidadeProduto, String dataVenda) {
+        this.codigoVenda = codigoVenda;
+        this.codigoProduto = codigoProduto;
+        this.quantidadeProduto = quantidadeProduto;
+        this.cpfCliente = cpfCliente;
+        this.idFilial = idFilial;
+        this.idUsuario = idUsuario;
+        this.dataVenda = dataVenda;
+    }
+
     public Relatorio(int codigoVenda, String nomeProduto, int codigoProduto, int quantidadeProduto, double valorTotal, String cpfCliente, int idFilial, String nomeFilial, int idUsuario, String dataVenda) {
         this.codigoVenda = codigoVenda;
         this.nomeProduto = nomeProduto;

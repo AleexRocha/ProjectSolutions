@@ -1,5 +1,5 @@
 <%-- 
-    Document   : extorno
+    Document   : estorno
     Created on : 08/05/2019, 16:00:20
     Author     : Alexsander Rocha
 --%>
@@ -46,14 +46,14 @@
                     </li>
                 </ul>
             </nav>
-            <h2 class="h2 text-center subtitulo">Extorno de compras</h2>
-            <form action="cadastro_vendas" method="GET" class="form-extorno-relatorio">
+            <h2 class="h2 text-center subtitulo">Estorno de compras</h2>
+            <form action="cadastro_vendas" method="GET" class="form-estorno-relatorio">
                 <button type="submit" class="btn btn-success" >Cadastrar Vendas</button>
             </form>
         </header>
         <div class="container">
             <div class="row">
-                <form action="select_extorno" method="get">
+                <form action="select_estorno" method="post">
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
                         <option disabled="" selected="" hidden="">Código da filial</option>
@@ -97,7 +97,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="relatorio" items="${listaExtorno}">
+                            <c:forEach var="relatorio" items="${listaEstorno}">
                                 <tr>
                                     <td name="codigoVenda" ><c:out value="${relatorio.codigoVenda}" /></td>
                                     <td name="codigoProduto" ><c:out value="${relatorio.codigoProduto}" /></td>

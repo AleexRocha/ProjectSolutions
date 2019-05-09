@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "ExtornoListaSelect", urlPatterns = {"/select_extorno"})
-public class ExtornoListaSelect extends HttpServlet {
+@WebServlet(name = "EstornoListaSelect", urlPatterns = {"/select_estorno"})
+public class EstornoListaSelect extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,17 +26,20 @@ public class ExtornoListaSelect extends HttpServlet {
         String eCpfCliente = request.getParameter("cpfCliente");
 
         if (!eCodProduto.equalsIgnoreCase("")) {
-            ArrayList<Relatorio> extorno = RelatorioDAO.getExtornoProduto(eCodProduto);
-            request.setAttribute("listaExtorno", extorno);
+            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoProduto(eCodProduto);
+            request.setAttribute("listaEstorno", estorno);
         } else if (!eCodFilial.equalsIgnoreCase("")) {
-            ArrayList<Relatorio> extorno = RelatorioDAO.getExtornoFilial(eCodFilial);
-            request.setAttribute("listaExtorno", extorno);
+            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoFilial(eCodFilial);
+            request.setAttribute("listaEstorno", estorno);
         } else if (!eCpfCliente.equalsIgnoreCase("")) {
-            ArrayList<Relatorio> extorno = RelatorioDAO.getExtornoCpf(eCpfCliente);
-            request.setAttribute("listaExtorno", extorno);
+            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoCpf(eCpfCliente);
+            request.setAttribute("listaEstorno", estorno);
+        } else {
+            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoGeral();
+            request.setAttribute("listaEstorno", estorno);
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/extorno.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/etorno.jsp");
         dispatcher.forward(request, response);
     }
 
