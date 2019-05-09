@@ -92,7 +92,7 @@ Author     : nicolas.hgyoshioka
                     </tr>
                 </thead>    
                 <tbody id="teste">  
-                    <c:forEach var="filiais" items="${listaFiliais}">                
+                    <c:forEach var="filiais" items="${listaFilial}">                
                         <tr>
                             <td>
                                 <input name="selected" value="${filiais.codigo}" 
