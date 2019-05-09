@@ -56,7 +56,7 @@ Author     : nicolas.hgyoshioka
                         <option selected="" hidden="" value="0">Filial</option>
                         <c:forEach var="filiais" items="${listaFiliais}">
                             <option value="<c:out value="${filiais.codigo}"></c:out>">
-                                <c:out value="${filiais.codigo}"/>
+                                <c:out value="${filiais.nomeFilial}"/>
                             </option>
                         </c:forEach>
                     </select>
