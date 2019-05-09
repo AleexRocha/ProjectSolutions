@@ -77,7 +77,7 @@ public class ProdutoCadastroServlet extends HttpServlet {
 
             if (httpOK) {
                 ArrayList<Produto> produto = ProdutoDAO.getProdutos();
-                request.setAttribute("lista", produto);
+                request.setAttribute("listaProduto", produto);
 
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Cadastro realizado com sucesso.");
