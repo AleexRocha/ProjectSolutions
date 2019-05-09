@@ -55,13 +55,13 @@
             <div class="row">
                 <form action="select_estorno" method="post">
                     <c:if test="${varMsg == true}">
-                    <div class="alert alert-danger" role="alert">
-                        <c:out value="${msg}"/>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </c:if>
+                        <div class="alert alert-danger" role="alert">
+                            <c:out value="${msg}"/>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </c:if>
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
                         <option disabled="" selected="" hidden="">Código da filial</option>
@@ -102,6 +102,7 @@
                                 <th scope="col">Código da filial</th>
                                 <th scope="col">Quantidade vendida</th>
                                 <th scope="col">Data da venda</th>
+                                <th scope="col">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,15 +114,50 @@
                                     <td name="cpfCliente" ><c:out value="${relatorio.cpfCliente}" /></td>
                                     <td name="idFilial" ><c:out value="${relatorio.idFilial}" /></td>
                                     <td name="quantidadeProduto" ><c:out value="${relatorio.quantidadeProduto}" /></td>
-                                    <td name="valorTotal" ><c:out value="${relatorio.valorTotal}" /></td>
-                                    <td name="dataVenda" ><c:out value="${relatorio.dataVenda}" /></td>   
+                                    <td name="dataVenda" ><c:out value="${relatorio.dataVenda}" /></td>
+                                    <td name="acao" >
+                                        <!-- Button que chama a modal -->
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
+                                            <i class="far fa-trash-alt"></i>
+                                            <c:set var="codigoProduto" value="${produtos.codigo}"/>
+                                        </button>
+                                    </td>
+
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ATENÇÃO!!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Tem certeza que deseja estornar está venda?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="excluir_produto" method="POST" name ="deletarProduto">
+                                        <button name="excluirID" value="${codigoProduto}" type="submit" class="btn btn-danger">
+                                            <i class="far fa-trash-alt"></i> Sim
+                                        </button>
+                                    </form>
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">
+                                        <i class="fas fa-ban"></i> Não
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/main.js"></script>
+    </body>
 </html>
