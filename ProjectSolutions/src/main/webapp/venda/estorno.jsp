@@ -54,6 +54,14 @@
         <div class="container">
             <div class="row">
                 <form action="select_estorno" method="post">
+                    <c:if test="${varMsg == true}">
+                    <div class="alert alert-danger" role="alert">
+                        <c:out value="${msg}"/>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </c:if>
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
                         <option disabled="" selected="" hidden="">Código da filial</option>

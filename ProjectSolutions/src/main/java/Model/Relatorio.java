@@ -20,13 +20,13 @@ public class Relatorio {
     public Relatorio() {
     }
 
-    public Relatorio(int codigoVenda, int codigoProduto, int idUsuario, String cpfCliente, int idFilial, int quantidadeProduto, String dataVenda) {
+    public Relatorio(int codigoVenda, int codigoProduto, int idUsuario, int idFilial, int quantidadeProduto, String cpfCliente, String dataVenda) {
         this.codigoVenda = codigoVenda;
         this.codigoProduto = codigoProduto;
         this.quantidadeProduto = quantidadeProduto;
-        this.cpfCliente = cpfCliente;
         this.idFilial = idFilial;
         this.idUsuario = idUsuario;
+        this.cpfCliente = cpfCliente;
         this.dataVenda = dataVenda;
     }
 

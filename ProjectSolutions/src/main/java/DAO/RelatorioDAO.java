@@ -185,9 +185,9 @@ public class RelatorioDAO {
                             rs.getInt(1),
                             rs.getInt(2),
                             rs.getInt(3),
-                            rs.getString(4),
+                            rs.getInt(4),
                             rs.getInt(5),
-                            rs.getInt(6),
+                            rs.getString(6),
                             rs.getString(7)
                     ));
                 }
@@ -216,9 +216,9 @@ public class RelatorioDAO {
                             rs.getInt(1),
                             rs.getInt(2),
                             rs.getInt(3),
-                            rs.getString(4),
+                            rs.getInt(4),
                             rs.getInt(5),
-                            rs.getInt(6),
+                            rs.getString(6),
                             rs.getString(7)
                     ));
                 }
@@ -247,9 +247,9 @@ public class RelatorioDAO {
                             rs.getInt(1),
                             rs.getInt(2),
                             rs.getInt(3),
-                            rs.getString(4),
+                            rs.getInt(4),
                             rs.getInt(5),
-                            rs.getInt(6),
+                            rs.getString(6),
                             rs.getString(7)
                     ));
                 }
@@ -277,9 +277,9 @@ public class RelatorioDAO {
                             rs.getInt(1),
                             rs.getInt(2),
                             rs.getInt(3),
-                            rs.getString(4),
+                            rs.getInt(4),
                             rs.getInt(5),
-                            rs.getInt(6),
+                            rs.getString(6),
                             rs.getString(7)
                     ));
                 }

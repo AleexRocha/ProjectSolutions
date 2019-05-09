@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "EstornoListaSelect", urlPatterns = {"/select_estorno"})
+@WebServlet(name = "EstornoListaSelect", urlPatterns = {"/venda/select_estorno"})
 public class EstornoListaSelect extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
@@ -25,21 +25,35 @@ public class EstornoListaSelect extends HttpServlet {
         String eCodFilial = request.getParameter("codigoFilial");
         String eCpfCliente = request.getParameter("cpfCliente");
 
-        if (!eCodProduto.equalsIgnoreCase("")) {
+        if (eCodProduto != null) {
             ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoProduto(eCodProduto);
             request.setAttribute("listaEstorno", estorno);
-        } else if (!eCodFilial.equalsIgnoreCase("")) {
+        } else if (eCodFilial  != null) {
             ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoFilial(eCodFilial);
             request.setAttribute("listaEstorno", estorno);
         } else if (!eCpfCliente.equalsIgnoreCase("")) {
             ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoCpf(eCpfCliente);
             request.setAttribute("listaEstorno", estorno);
         } else {
-            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoGeral();
-            request.setAttribute("listaEstorno", estorno);
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Escolha um filtro para gerar o relátorio.");
         }
+        
+//        if (!eCodProduto.equalsIgnoreCase("")) {
+//            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoProduto(eCodProduto);
+//            request.setAttribute("listaEstorno", estorno);
+//        } else if (!eCodFilial.equalsIgnoreCase("")) {
+//            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoFilial(eCodFilial);
+//            request.setAttribute("listaEstorno", estorno);
+//        } else if (!eCpfCliente.equalsIgnoreCase("")) {
+//            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoCpf(eCpfCliente);
+//            request.setAttribute("listaEstorno", estorno);
+//        } else {
+//            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoGeral();
+//            request.setAttribute("listaEstorno", estorno);
+//        }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/etorno.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/estorno.jsp");
         dispatcher.forward(request, response);
     }
 
