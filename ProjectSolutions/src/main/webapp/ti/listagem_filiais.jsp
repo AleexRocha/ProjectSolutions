@@ -64,67 +64,64 @@ Author     : nicolas.hgyoshioka
                     </button>
                 </div>
             </c:if>
+            <a id="btn_cadastro" class="btn btn-light" href="cadastro_filiais.jsp">
+                <i class="far fa-building"></i>
+                Cadastrar filial
+            </a>
+            <button type="subimt" class="btn btn-danger">                 
+                <i class="far fa-trash-alt"></i>
+                Excluir Selecionado(s)
+            </button> 
 
-            <form action="excluir_filiais" method="POST">
-                <a id="btn_cadastro" class="btn btn-light" href="cadastro_filiais.jsp">
-                    <i class="far fa-building"></i>
-                    Cadastrar filial
-                </a>
-                <button type="subimt" class="btn btn-danger">                 
-                    <i class="far fa-trash-alt"></i>
-                    Excluir Selecionado(s)
-                </button> 
-                
-                <br>
-                <br>
-                
-                <table class="table table-striped">
-                    <thead>
+            <br>
+            <br>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectAll" onClick="selectAll()"></th>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Logradouro</th>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Cep</th>
+                        <th scope="col">Bairro</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Acoes</th>
+                    </tr>
+                </thead>    
+                <tbody id="teste">  
+                    <c:forEach var="filiais" items="${listaFiliais}">                
                         <tr>
-                            <th><input type="checkbox" id="selectAll" onClick="selectAll()"></th>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Logradouro</th>
-                            <th scope="col">Numero</th>
-                            <th scope="col">Cep</th>
-                            <th scope="col">Bairro</th>
-                            <th scope="col">Cidade</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Acoes</th>
-                        </tr>
-                    </thead>    
-                    <tbody id="teste">  
-                        <c:forEach var="filiais" items="${lista}">                
-                            <tr>
-                                <td>
-                                    <input name="selected" value="${filiais.codigo}" 
-                                           id="chkFilial" type="checkbox"> 
-                                </td>
-                                <td name="codigo" ><c:out value="${filiais.codigo}" /></td>
-                                <td name="logradouro" ><c:out value="${filiais.logradouro}" /></td>
-                                <td name="numero" ><c:out value="${filiais.numero}" /></td>
-                                <td name="cep" ><c:out value="${filiais.cep}" /></td>
-                                <td name="bairro" ><c:out value="${filiais.bairro}" /></td>
-                                <td name="cidade" ><c:out value="${filiais.cidade}" /></td>
-                                <td name="estado" ><c:out value="${filiais.estado}" /></td>
-                                <td name="telefone" ><c:out value="${filiais.telefone}" /></td>        
-                                <td class="btn-group">
-                                    <form action="dados_filial" method="POST">
-                                        <button name="editarID" value="${filiais.codigo}" type="submit" class="btn btn-success">
-                                            <i class="fas fa-pen"></i>
-                                        </button>
-                                    </form>
-                                    <!-- Button que chama a modal -->
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteFilial">
-                                        <i class="far fa-trash-alt"></i>
-                                        <c:set var="codigoItem" value="${filiais.codigo}"/>
+                            <td>
+                                <input name="selected" value="${filiais.codigo}" 
+                                       id="chkFilial" type="checkbox"> 
+                            </td>
+                            <td name="codigo" ><c:out value="${filiais.codigo}" /></td>
+                            <td name="logradouro" ><c:out value="${filiais.logradouro}" /></td>
+                            <td name="numero" ><c:out value="${filiais.numero}" /></td>
+                            <td name="cep" ><c:out value="${filiais.cep}" /></td>
+                            <td name="bairro" ><c:out value="${filiais.bairro}" /></td>
+                            <td name="cidade" ><c:out value="${filiais.cidade}" /></td>
+                            <td name="estado" ><c:out value="${filiais.estado}" /></td>
+                            <td name="telefone" ><c:out value="${filiais.telefone}" /></td>        
+                            <td class="btn-group">
+                                <form action="dados_filial" method="POST">
+                                    <button name="editarID" value="${filiais.codigo}" type="submit" class="btn btn-success">
+                                        <i class="fas fa-pen"></i>
                                     </button>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </form>
+                                </form>
+                                <!-- Button que chama a modal -->
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteFilial">
+                                    <i class="far fa-trash-alt"></i>
+                                    <c:set var="codigoItem" value="${filiais.codigo}"/>
+                                </button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
             <!-- Modal -->
             <div class="modal fade" id="deleteFilial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

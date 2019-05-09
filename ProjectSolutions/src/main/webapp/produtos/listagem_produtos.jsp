@@ -73,60 +73,56 @@
                     Cadastrar Produto
                 </Button>
             </form>
+            <button type="submit" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+                Excluir Selecionado(s)
+            </button>
+            <br>
+            <br>    
 
-            <form action="excluir_produtos" method="POST">
-                <button type="submit" class="btn btn-danger">
-                    <i class="far fa-trash-alt"></i>
-                    Excluir Selecionado(s)
-                </button>
-                <br>
-                <br>    
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox"></th>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Descricao</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Filial</th>
-                            <th scope="col">Estoque</th>
-                            <th scope="col">Valor unidade</th>
-                            <th scope="col">Acoes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <c:forEach var = "produtos"  items="${listaProduto}">
-                                <td>
-                                    <input name="selected" value="${produtos.codigo}" type="checkbox"> 
-                                </td>
-                                <td name="codigo"><c:out value ="${produtos.codigo}"/></td>
-                                <td name="nome"><c:out value ="${produtos.nome}"/></td>
-                                <td name="descricao"><c:out value ="${produtos.descricao}"/></td>
-                                <td name="tipo"><c:out value ="${produtos.tipo}"/></td>
-                                <td name="codigoFilialint"><c:out value ="${produtos.nomeFilial}"/></td>
-                                <td name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
-                                <td name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
-                                <td class="btn-group">
-                                    <form action="dados_produto" method="POST">
-                                        <button name="editarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
-                                            <i class="fas fa-pen"></i>
-                                        </button>
-                                    </form>
-                                    <!-- Button que chama a modal -->
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
-                                        <i class="far fa-trash-alt"></i>
-                                        <c:set var="codigoProduto" value="${produtos.codigo}"/>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descricao</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Filial</th>
+                        <th scope="col">Estoque</th>
+                        <th scope="col">Valor unidade</th>
+                        <th scope="col">Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <c:forEach var = "produtos"  items="${listaProduto}">
+                            <td>
+                                <input name="selected" value="${produtos.codigo}" type="checkbox"> 
+                            </td>
+                            <td name="codigo"><c:out value ="${produtos.codigo}"/></td>
+                            <td name="nome"><c:out value ="${produtos.nome}"/></td>
+                            <td name="descricao"><c:out value ="${produtos.descricao}"/></td>
+                            <td name="tipo"><c:out value ="${produtos.tipo}"/></td>
+                            <td name="codigoFilialint"><c:out value ="${produtos.nomeFilial}"/></td>
+                            <td name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
+                            <td name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
+                            <td class="btn-group">
+                                <form action="dados_produto" method="POST">
+                                    <button name="editarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
+                                        <i class="fas fa-pen"></i>
                                     </button>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </form>
-
+                                </form>
+                                <!-- Button que chama a modal -->
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
+                                    <i class="far fa-trash-alt"></i>
+                                    <c:set var="codigoProduto" value="${produtos.codigo}"/>
+                                </button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
             <!-- Modal -->
             <div class="modal fade" id="deleteProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
