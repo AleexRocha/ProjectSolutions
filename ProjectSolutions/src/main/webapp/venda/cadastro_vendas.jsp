@@ -54,7 +54,7 @@ Author     : nicolas.hgyoshioka
                 </form>
             </nav>
             <h2 class="h2 text-center subtitulo" style="padding: 24px 0px;">Cadastrar uma venda</h2>
-            <form action="extorno" method="GET" class="form-extorno-cadastro">
+            <form action="select_extorno" method="GET" class="form-extorno-cadastro">
                 <button type="submit" class="btn btn-success" >Extornar compras</button>
             </form>
         </header>
@@ -87,9 +87,9 @@ Author     : nicolas.hgyoshioka
                                 <c:when test="${empty codProdutoErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
                                         <option disabled="" selected="" hidden="">Código do produto</option>
-                                        <c:forEach var="lista" items="${listaProdutos}">
-                                            <option value="<c:out value="${lista.codigoProduto}"></c:out>">
-                                                <c:out value="${lista.nomeProduto}"></c:out>
+                                        <c:forEach var="produto" items="${listaProdutos}">
+                                            <option value="<c:out value="${produto.codigoProduto}"></c:out>">
+                                                <c:out value="${produto.nomeProduto}"></c:out>
                                                 </option>
                                         </c:forEach>
                                     </select>
@@ -97,9 +97,9 @@ Author     : nicolas.hgyoshioka
                                 <c:otherwise>
                                     <select class="custom-select inputForm error" id="codigoProduto" name="codigoProduto">
                                         <option disabled="" selected="" hidden="">${codProdutoErro}</option>
-                                        <c:forEach var="lista" items="${listaProdutos}">
-                                            <option value="<c:out value="${lista.codigoProduto}"></c:out>">
-                                                <c:out value="${lista.nomeProduto}"></c:out>
+                                        <c:forEach var="produto" items="${listaProdutos}">
+                                            <option value="<c:out value="${produto.codigoProduto}"></c:out>">
+                                                <c:out value="${produto.nomeProduto}"></c:out>
                                                 </option>
                                         </c:forEach>
                                     </select>
@@ -111,9 +111,9 @@ Author     : nicolas.hgyoshioka
                                 <c:when test="${empty idFuncErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="idFuncionario">
                                         <option disabled="" selected="" hidden="">ID do funcionário</option>
-                                        <c:forEach var="lista" items="${listaUsuarios}">  
-                                            <option value="<c:out value="${lista.idFuncionario}"></c:out>">
-                                                <c:out value="${lista.nomeFuncionario}"></c:out>
+                                        <c:forEach var="usuario" items="${listaUsuarios}">  
+                                            <option value="<c:out value="${usuario.idFuncionario}"></c:out>">
+                                                <c:out value="${usuario.nomeFuncionario}"></c:out>
                                                 </option>  
                                         </c:forEach>  
                                     </select>
@@ -121,9 +121,9 @@ Author     : nicolas.hgyoshioka
                                 <c:otherwise>
                                     <select class="custom-select inputForm error" id="codigoProduto" name="idFuncionario">
                                         <option disabled="" selected="" hidden="">${idFuncErro}</option>
-                                        <c:forEach var="lista" items="${listaUsuarios}">
-                                            <option value="<c:out value="${lista.idFuncionario}"></c:out>">
-                                                <c:out value="${lista.nomeFuncionario}"></c:out>
+                                        <c:forEach var="usuario" items="${listaUsuarios}">
+                                            <option value="<c:out value="${usuario.idFuncionario}"></c:out>">
+                                                <c:out value="${usuario.nomeFuncionario}"></c:out>
                                                 </option>
                                         </c:forEach>
                                     </select>
@@ -139,9 +139,9 @@ Author     : nicolas.hgyoshioka
                                 <c:when test="${empty codFilialErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
                                         <option disabled="" selected="" hidden="">Código da filial</option>
-                                        <c:forEach var="lista" items="${listaFiliais}">
-                                            <option value="<c:out value="${lista.codigoFilial}"></c:out>">
-                                                <c:out value="${lista.nomeFilial}"></c:out>
+                                        <c:forEach var="filial" items="${listaFiliais}">
+                                            <option value="<c:out value="${filial.codigoFilial}"></c:out>">
+                                                <c:out value="${filial.nomeFilial}"></c:out>
                                                 </option>
                                         </c:forEach>
                                     </select>
@@ -149,9 +149,9 @@ Author     : nicolas.hgyoshioka
                                 <c:otherwise>
                                     <select class="custom-select inputForm error" id="codigoProduto" name="codigoFilial">
                                         <option disabled="" selected="" hidden="">${codFilialErro}</option>
-                                        <c:forEach var="lista" items="${listaFiliais}">  
-                                            <option value="<c:out value="${lista.codigoFilial}"></c:out>">
-                                                <c:out value="${lista.nomeFilial}"></c:out>
+                                        <c:forEach var="filial" items="${listaFiliais}">  
+                                            <option value="<c:out value="${filial.codigoFilial}"></c:out>">
+                                                <c:out value="${filial.nomeFilial}"></c:out>
                                                 </option>  
                                         </c:forEach>  
                                     </select>

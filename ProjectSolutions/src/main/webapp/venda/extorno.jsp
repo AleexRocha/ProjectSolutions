@@ -40,7 +40,9 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../ti/listagem_usuarios.jsp">Usuarios</a>
+                        <form action="../ti/listagem_usuarios" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -55,18 +57,18 @@
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
                         <option disabled="" selected="" hidden="">Código da filial</option>
-                        <c:forEach var="lista" items="${listaFiliais}">
-                            <option value="<c:out value="${lista.codigoFilial}"></c:out>">
-                                <c:out value="${lista.nomeFilial}"></c:out>
+                        <c:forEach var="filial" items="${listaFiliais}">
+                            <option value="<c:out value="${filial.codigoFilial}"></c:out>">
+                                <c:out value="${filial.nomeFilial}"></c:out>
                                 </option>
                         </c:forEach>
                     </select>
                     <label for="produto" >Produto:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
                         <option disabled="" selected="" hidden="">Código do produto</option>
-                        <c:forEach var="lista" items="${listaProdutos}">
-                            <option value="<c:out value="${lista.codigoProduto}"></c:out>">
-                                <c:out value="${lista.nomeProduto}"></c:out>
+                        <c:forEach var="produto" items="${listaProdutos}">
+                            <option value="<c:out value="${produto.codigoProduto}"></c:out>">
+                                <c:out value="${produto.nomeProduto}"></c:out>
                                 </option>
                         </c:forEach>
                     </select>
@@ -95,7 +97,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="relatorio" items="${lista}">
+                            <c:forEach var="relatorio" items="${listaExtorno}">
                                 <tr>
                                     <td name="codigoVenda" ><c:out value="${relatorio.codigoVenda}" /></td>
                                     <td name="codigoProduto" ><c:out value="${relatorio.codigoProduto}" /></td>

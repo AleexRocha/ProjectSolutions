@@ -40,7 +40,9 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../ti/listagem_usuarios.jsp">Usuarios</a>
+                        <form action="../ti/listagem_usuarios" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -93,7 +95,7 @@ Author     : nicolas.hgyoshioka
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="relatorio" items="${lista}">
+                            <c:forEach var="relatorio" items="${listaRelatorio}">
                                 <tr>
                                     <td name="codigoVenda" ><c:out value="${relatorio.codigoVenda}" /></td>
                                     <td name="nomeProduto" ><c:out value="${relatorio.nomeProduto}" /></td>

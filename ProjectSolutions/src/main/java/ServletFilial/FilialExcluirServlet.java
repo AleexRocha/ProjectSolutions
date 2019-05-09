@@ -34,7 +34,7 @@ public class FilialExcluirServlet extends HttpServlet {
 
         if (error) {
             ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("lista", filiais);
+            request.setAttribute("listaFilial", filiais);
 
             request.setAttribute("varMsgErro", true);
             request.setAttribute("msg", "Erro ao excluir a filial, verifique os campos e tente novamente.");
@@ -45,7 +45,7 @@ public class FilialExcluirServlet extends HttpServlet {
             boolean httpOk = FilialDAO.excluirFilial(Integer.parseInt(fCodigo));
             if (httpOk) {
                 ArrayList<Filial> filiais = FilialDAO.getFiliais();
-                request.setAttribute("lista", filiais);
+                request.setAttribute("listaFilial", filiais);
 
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Filial excluida com sucesso.");
@@ -54,7 +54,7 @@ public class FilialExcluirServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             } else {
                 ArrayList<Filial> filiais = FilialDAO.getFiliais();
-                request.setAttribute("lista", filiais);
+                request.setAttribute("listaFilial", filiais);
 
                 request.setAttribute("varMsgErro", true);
                 request.setAttribute("msg", "Erro ao excluir filial.");

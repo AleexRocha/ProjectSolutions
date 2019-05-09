@@ -40,7 +40,9 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../venda/relatorio.jsp">Relatorio</a>
+                        <form action="carrega_relatorio" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Relatorio</button>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -96,7 +98,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <c:forEach var = "produtos"  items="${lista}">
+                            <c:forEach var = "produtos"  items="${listaProduto}">
                                 <td>
                                     <input name="selected" value="${produtos.codigo}" type="checkbox"> 
                                 </td>

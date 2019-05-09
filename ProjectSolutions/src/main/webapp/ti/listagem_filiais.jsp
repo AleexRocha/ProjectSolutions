@@ -39,7 +39,9 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text" href="../venda/relatorio.jsp">Relatorio</a>
+                        <form action="carrega_relatorio" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Relatorio</button>
+                        </form>
                     </li>
                 </ul>
             </nav>

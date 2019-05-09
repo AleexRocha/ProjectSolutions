@@ -4,6 +4,7 @@ import DAO.RelatorioDAO;
 import Model.Relatorio;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,21 +27,17 @@ public class ExtornoListaSelect extends HttpServlet {
 
         if (!eCodProduto.equalsIgnoreCase("")) {
             ArrayList<Relatorio> extorno = RelatorioDAO.getExtornoProduto(eCodProduto);
-            request.setAttribute("lista", extorno);
+            request.setAttribute("listaExtorno", extorno);
         } else if (!eCodFilial.equalsIgnoreCase("")) {
             ArrayList<Relatorio> extorno = RelatorioDAO.getExtornoFilial(eCodFilial);
-            request.setAttribute("lista", extorno);
+            request.setAttribute("listaExtorno", extorno);
         } else if (!eCpfCliente.equalsIgnoreCase("")) {
             ArrayList<Relatorio> extorno = RelatorioDAO.getExtornoCpf(eCpfCliente);
-            request.setAttribute("lista", extorno);
-        } else {
-
-//            ArrayList<Filial> filiais = FilialDAO.getFiliais();
-//            request.setAttribute("listaFiliais", filiais);
-//
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/relatorio.jsp");
-//            dispatcher.forward(request, response);
+            request.setAttribute("listaExtorno", extorno);
         }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/extorno.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override

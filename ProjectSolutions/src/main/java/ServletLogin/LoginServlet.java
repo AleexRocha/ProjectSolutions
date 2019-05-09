@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                 ArrayList<Usuario> infoSessao = UsuarioDAO.getInfoSessao(uEmail);
 
                 HttpSession sessao = request.getSession();
-                sessao.setAttribute("lista", infoSessao);
+                sessao.setAttribute("listaSessao", infoSessao);
 
                 response.sendRedirect("../venda/cadastro_vendas");
             } else {
