@@ -46,7 +46,7 @@ public class VendaDAO {
     public static boolean excluirVenda(int vCodigo) {
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("DELETE FROM TBL_VENDA WHERE ID_VENDA = ?");
+            PreparedStatement query = conn.prepareStatement("DELETE FROM tbl_venda WHERE id_venda = ?");
 
             query.setInt(1, vCodigo);
 
@@ -64,7 +64,7 @@ public class VendaDAO {
         ArrayList<Venda> venda = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome FROM tbl_produtos;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome FROM tbl_produtos WHERE status = 0;");
 
             ResultSet rs = query.executeQuery();
 
@@ -89,7 +89,7 @@ public class VendaDAO {
         ArrayList<Venda> venda = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome FROM tbl_usuario;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome FROM tbl_usuario WHERE status = 0;");
 
             ResultSet rs = query.executeQuery();
 
@@ -114,7 +114,8 @@ public class VendaDAO {
         ArrayList<Venda> venda = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("select id_filial, concat(cidade, \" - \",estado) as nome_filial from tbl_filial;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_filial, concat(cidade, \" - \",estado) AS nome_filial "
+                    + " FROM tbl_filial WHERE status = 0;");
 
             ResultSet rs = query.executeQuery();
 
