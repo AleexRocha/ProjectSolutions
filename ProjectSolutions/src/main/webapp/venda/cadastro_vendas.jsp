@@ -45,7 +45,10 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                 </ul>
-                <i class="fas fa-user-tie"></i> &nbsp;&nbsp; Olá, (Nome do usuário) -
+                <i class="fas fa-user-tie"></i> &nbsp;&nbsp; Olá, 
+                <%--<c:forEach var="sessao" items="lista">--%>
+                    <%--<c:out value="${lista.nome}"/>--%>
+                <%--</c:forEach>--%>
                 <form action="/logout" method="POST">
                     <button type="submit" class="btn nav-link nav-text" >Sair</button>
                 </form>

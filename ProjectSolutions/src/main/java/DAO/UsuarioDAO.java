@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -94,7 +92,7 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             System.out.println(e);
             return false;
-        }finally{
+        } finally {
             try {
                 conn.close();
             } catch (SQLException e) {
@@ -227,7 +225,6 @@ public class UsuarioDAO {
     }
 
     public static boolean getLogin(String email, String senha) {
-
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario WHERE email= ? AND senha = ?;");
@@ -243,5 +240,36 @@ public class UsuarioDAO {
         }
 
         return false;
+    }
+
+    public static ArrayList<Usuario> getInfoSessao(String uEmail) {
+        ArrayList<Usuario> sessao = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.fk_filial, u.fk_setor "
+                    + "FROM tbl_usuario AS u WHERE u.email = ?;");
+            query.setString(1, uEmail);
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Usuario user = new Usuario();
+
+                    user.setCodigo(rs.getInt(1));
+                    user.setNome(rs.getString(2));
+                    user.setEmail(rs.getString(3));
+                    user.setCodigoFilial(rs.getInt(4));
+                    user.setSetor(rs.getInt(5));
+                    
+                    sessao.add(user);
+                }
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return sessao;
     }
 }

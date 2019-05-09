@@ -1,13 +1,16 @@
 package ServletLogin;
 
 import DAO.UsuarioDAO;
+import Model.Usuario;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,8 +46,12 @@ public class LoginServlet extends HttpServlet {
             boolean httpOK = UsuarioDAO.getLogin(uEmail, uSenha);
 
             if (httpOK) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas");
-                dispatcher.forward(request, response);
+                ArrayList<Usuario> infoSessao = UsuarioDAO.getInfoSessao(uEmail);
+
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("lista", infoSessao);
+
+                response.sendRedirect("../venda/cadastro_vendas");
             } else {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuário ou Senha não existem.");
