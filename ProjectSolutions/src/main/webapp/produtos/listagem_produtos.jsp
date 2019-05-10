@@ -91,7 +91,7 @@
                         <th scope="col">Filial</th>
                         <th scope="col">Estoque</th>
                         <th scope="col">Valor unidade</th>
-                        <th scope="col">Acoes</th>
+                        <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody>

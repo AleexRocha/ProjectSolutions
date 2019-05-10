@@ -90,7 +90,7 @@ Author     : nicolas.hgyoshioka
                         <th scope="col">Email</th>
                         <th scope="col">Filial</th>
                         <th scope="col">Setor</th>
-                        <th scope="col">Acoes</th>
+                        <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="teste">  
