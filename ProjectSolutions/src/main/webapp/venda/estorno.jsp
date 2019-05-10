@@ -25,10 +25,10 @@
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
                 <ul id="itensMenu" class="nav justify-content-center">
                     <li class="nav-item">
-                        <form action="../venda/cadastro_vendas">
+                        <form action="cadastro_vendas">
                             <button type="submit" class="btn nav-link nav-text">Vendas</button>
                         </form>                     
-                    </li>
+<!--                    </li>
                     <li class="nav-item">
                         <form action="../produtos/listagem_produtos" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Produtos</button>
@@ -43,7 +43,7 @@
                         <form action="../ti/listagem_usuarios" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
                         </form>
-                    </li>
+                    </li>-->
                 </ul>
             </nav>
             <h2 class="h2 text-center subtitulo">Estorno de compras</h2>

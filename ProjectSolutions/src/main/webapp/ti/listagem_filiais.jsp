@@ -39,7 +39,7 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <form action="carrega_relatorio" method="GET">
+                        <form action="../venda/carrega_relatorio" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Relatorio</button>
                         </form>
                     </li>

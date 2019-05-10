@@ -40,7 +40,7 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <form action="carrega_relatorio" method="GET">
+                        <form action="../venda/carrega_relatorio" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Relatorio</button>
                         </form>
                     </li>
@@ -172,7 +172,7 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="filial" name="codigoFilial">
                                         <option  disabled="" value="${cdFilialCadastrada}">${nomeFilialCadastrada}</option>
-                                        <c:forEach var="filiais" items="${listaFiliais}">
+                                        <c:forEach var="filiais" items="${listaFilial}">
                                             <option value="<c:out value="${filiais.codigo}"/>">
                                                 <c:out value="${filiais.nomeFilial}"/>
                                             </option>
@@ -183,7 +183,7 @@ Author     : nicolas.hgyoshioka
                                     <c:if test="${empty codigoFilialErro}">
                                         <select class="custom-select inputForm" id="filial" name="codigoFilial">
                                             <option disabled="" selected=""> Filial </option>
-                                            <c:forEach var="filiais" items="${listaFiliais}">
+                                            <c:forEach var="filiais" items="${listaFilial}">
                                                 <option value="<c:out value="${filiais.codigo}"/>">
                                                     <c:out value="${filiais.nomeFilial}"/>
                                                 </option>
@@ -193,7 +193,7 @@ Author     : nicolas.hgyoshioka
                                     <c:if test="${not empty codigoFilialErro}">
                                         <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
                                             <option disabled="" selected=""> <c:out value="${codigoFilialErro}"/> </option>
-                                            <c:forEach var="filiais" items="${listaFiliais}">
+                                            <c:forEach var="filiais" items="${listaFilial}">
                                                 <option value="<c:out value="${filiais.codigo}"/>">
                                                     <c:out value="${filiais.nomeFilial}"/>
                                                 </option>
@@ -220,26 +220,5 @@ Author     : nicolas.hgyoshioka
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
-        <script>
-                                            function valorProduto() {
-                                                var valorUnitario = document.getElementById('valorUnitario').value;
-                                                if (valorUnitario.length === 0) {
-                                                    document.getElementById('valorUnitario').value = 'R$';
-                                                } else if (valorUnitario.length === 4) {
-                                                    var maskValor = 'R$' + valorUnitario.substring(2, 5) + ',';
-                                                    document.getElementById('valorUnitario').value = maskValor;
-                                                } else if (valorUnitario.length === 7) {
-                                                    var maskValor = 'R$' + valorUnitario.substring(2, 4) +
-                                                            valorUnitario.substring(5, 6) + ',' +
-                                                            valorUnitario.substring(6, 7);
-                                                    document.getElementById('valorUnitario').value = maskValor;
-                                                } else if (valorUnitario.length === 8) {
-                                                    var maskValor = 'R$' + valorUnitario.substring(2, 5) +
-                                                            valorUnitario.substring(6, 7) + ',' +
-                                                            valorUnitario.substring(7, 8);
-                                                    document.getElementById('valorUnitario').value = maskValor;
-                                                }
-                                            }
-        </script>
     </body>
 </html>
