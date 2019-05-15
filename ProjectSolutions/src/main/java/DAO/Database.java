@@ -34,6 +34,7 @@ public class Database {
         nomeDB = "tades_bcd";
         url = "jdbc:mysql://instancia01.ctzk7iapnoiz.us-east-1.rds.amazonaws.com:3306/" + nomeDB + "?useTimezone=true&serverTimezone=UTC";
     }*/
+    
     public String getDriver() {
         return driver;
     }
