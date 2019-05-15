@@ -89,7 +89,7 @@ public class FilialEditarServlet extends HttpServlet {
 
             if (httpOK) {
                 ArrayList<Filial> filiais = FilialDAO.getFiliais();
-                request.setAttribute("listaFilial", filiais);
+                request.setAttribute("listaFiliais", filiais);
 
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Filial editada com sucesso.");

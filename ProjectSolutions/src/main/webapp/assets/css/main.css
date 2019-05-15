@@ -1,8 +1,11 @@
 body{
     background-color: #f3f3f3;
 }
-table{
+table *{
     text-align: center;
+}
+table .coluna{
+    vertical-align: middle !important;
 }
 
 .inputForm:focus{

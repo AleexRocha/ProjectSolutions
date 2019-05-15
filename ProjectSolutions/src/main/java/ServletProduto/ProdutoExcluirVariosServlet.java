@@ -34,14 +34,14 @@ public class ProdutoExcluirVariosServlet extends HttpServlet {
 
         if (httpOK) {
             ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-            request.setAttribute("listaProduto", produtos);
+            request.setAttribute("listaProdutos", produtos);
 
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Produtos excluidos com sucesso.");
             
         } else {
             ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-            request.setAttribute("listaProduto", produtos);
+            request.setAttribute("listaProdutos", produtos);
 
             request.setAttribute("varMsgErro", true);
             request.setAttribute("msg", "Erro ao excluir Produtos.");

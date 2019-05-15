@@ -35,7 +35,7 @@ public class ProdutoExcluirServlet extends HttpServlet {
 
         if (error) {
             ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-            request.setAttribute("listaProduto", produtos);
+            request.setAttribute("listaProdutos", produtos);
 
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Erro ao excluir o produto.");
@@ -48,7 +48,7 @@ public class ProdutoExcluirServlet extends HttpServlet {
             boolean httpOk = ProdutoDAO.excluirProduto(Integer.parseInt(pCodigo));
             if (httpOk) {
                 ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-                request.setAttribute("listaProduto", produtos);
+                request.setAttribute("listaProdutos", produtos);
 
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Produto excluido com sucesso.");
@@ -57,7 +57,7 @@ public class ProdutoExcluirServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             } else {
                 ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-                request.setAttribute("listaProduto", produtos);
+                request.setAttribute("listaProdutos", produtos);
 
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Erro ao excluir produto.");

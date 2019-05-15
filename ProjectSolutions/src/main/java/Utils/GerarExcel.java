@@ -30,10 +30,10 @@ public class GerarExcel {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheetAlunos = workbook.createSheet("Relatorio");
 
-        ArrayList<Relatorio> listaRelatorio = relatorio;
+        ArrayList<Relatorio> listaRelatorios = relatorio;
 
         int rowNum = 0;
-        for (Relatorio itemRelatorio : listaRelatorio) {
+        for (Relatorio itemRelatorio : listaRelatorios) {
             Row row = sheetAlunos.createRow(rowNum++);
             int cellNum = 0;
 

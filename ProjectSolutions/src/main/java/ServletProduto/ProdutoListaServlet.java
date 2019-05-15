@@ -22,7 +22,7 @@ public class ProdutoListaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-        request.setAttribute("listaProduto", produtos);
+        request.setAttribute("listaProdutos", produtos);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
         dispatcher.forward(request, response);

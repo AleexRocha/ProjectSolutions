@@ -10,6 +10,7 @@ Author     : nicolas.hgyoshioka
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Cadastro de Produtos</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
@@ -172,7 +173,7 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="filial" name="codigoFilial">
                                         <option  disabled="" value="${cdFilialCadastrada}">${nomeFilialCadastrada}</option>
-                                        <c:forEach var="filiais" items="${listaFilial}">
+                                        <c:forEach var="filiais" items="${listaFiliais}">
                                             <option value="<c:out value="${filiais.codigo}"/>">
                                                 <c:out value="${filiais.nomeFilial}"/>
                                             </option>
@@ -183,7 +184,7 @@ Author     : nicolas.hgyoshioka
                                     <c:if test="${empty codigoFilialErro}">
                                         <select class="custom-select inputForm" id="filial" name="codigoFilial">
                                             <option disabled="" selected=""> Filial </option>
-                                            <c:forEach var="filiais" items="${listaFilial}">
+                                            <c:forEach var="filiais" items="${listaFiliais}">
                                                 <option value="<c:out value="${filiais.codigo}"/>">
                                                     <c:out value="${filiais.nomeFilial}"/>
                                                 </option>
@@ -193,7 +194,7 @@ Author     : nicolas.hgyoshioka
                                     <c:if test="${not empty codigoFilialErro}">
                                         <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
                                             <option disabled="" selected=""> <c:out value="${codigoFilialErro}"/> </option>
-                                            <c:forEach var="filiais" items="${listaFilial}">
+                                            <c:forEach var="filiais" items="${listaFiliais}">
                                                 <option value="<c:out value="${filiais.codigo}"/>">
                                                     <c:out value="${filiais.nomeFilial}"/>
                                                 </option>

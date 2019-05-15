@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Relatório</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
@@ -93,7 +94,7 @@
                 <div class="col-md-12">
                     <hr>
                     <table class="table table-striped">
-                        <thead>
+                        <thead class="coluna" >
                             <tr>
                                 <th scope="col">Código da venda</th>
                                 <th scope="col">Código do produto</th>
@@ -105,7 +106,7 @@
                                 <th scope="col">Ação</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="coluna" >
                             <c:forEach var="relatorio" items="${listaEstorno}">
                                 <tr>
                                     <td name="codigoVenda" ><c:out value="${relatorio.codigoVenda}" /></td>

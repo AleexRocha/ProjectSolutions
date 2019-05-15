@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Produtos</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
@@ -83,30 +84,30 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th><input type="checkbox"></th>
-                        <th scope="col">Codigo</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Descricao</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Filial</th>
-                        <th scope="col">Estoque</th>
-                        <th scope="col">Valor unidade</th>
+                        <th class="coluna" ><input type="checkbox"></th>
+                        <th class="coluna" scope="col">Codigo</th>
+                        <th class="coluna" scope="col">Nome</th>
+                        <th class="coluna" scope="col">Descricao</th>
+                        <th class="coluna" scope="col">Tipo</th>
+                        <th class="coluna" scope="col">Filial</th>
+                        <th class="coluna" scope="col">Estoque</th>
+                        <th class="coluna" scope="col">Valor unidade</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <c:forEach var = "produtos"  items="${listaProduto}">
-                            <td>
+                        <c:forEach var = "produtos"  items="${listaProdutos}">
+                            <td class="coluna" >
                                 <input name="selected" value="${produtos.codigo}" type="checkbox"> 
                             </td>
-                            <td name="codigo"><c:out value ="${produtos.codigo}"/></td>
-                            <td name="nome"><c:out value ="${produtos.nome}"/></td>
-                            <td name="descricao"><c:out value ="${produtos.descricao}"/></td>
-                            <td name="tipo"><c:out value ="${produtos.tipo}"/></td>
-                            <td name="codigoFilialint"><c:out value ="${produtos.nomeFilial}"/></td>
-                            <td name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
-                            <td name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
+                            <td class="coluna" name="codigo"><c:out value ="${produtos.codigo}"/></td>
+                            <td class="coluna" name="nome"><c:out value ="${produtos.nome}"/></td>
+                            <td class="coluna" name="descricao"><c:out value ="${produtos.descricao}"/></td>
+                            <td class="coluna" name="tipo"><c:out value ="${produtos.tipo}"/></td>
+                            <td class="coluna" name="codigoFilialint"><c:out value ="${produtos.nomeFilial}"/></td>
+                            <td class="coluna" name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
+                            <td class="coluna" name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
                             <td class="btn-group">
                                 <form action="dados_produto" method="POST">
                                     <button name="editarID" value="${produtos.codigo}" type="submit" class="btn btn-success">

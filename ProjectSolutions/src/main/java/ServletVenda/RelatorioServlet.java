@@ -32,18 +32,18 @@ public class RelatorioServlet extends HttpServlet {
             String dataAteFormat = dataAte.concat(" 23:59:59");
             if (filial != 0) {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(filial, dataDeFormat, dataAteFormat);
-                request.setAttribute("listaRelatorio", relatorio);
+                request.setAttribute("listaRelatorios", relatorio);
             } else {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
-                request.setAttribute("listaRelatorio", relatorio);
+                request.setAttribute("listaRelatorios", relatorio);
             }
         } else {
             if (filial != 0) {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioFilial(filial);
-                request.setAttribute("listaRelatorio", relatorio);
+                request.setAttribute("listaRelatorios", relatorio);
             } else {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioGeral();
-                request.setAttribute("listaRelatorio", relatorio);
+                request.setAttribute("listaRelatorios", relatorio);
             }
         }
 
