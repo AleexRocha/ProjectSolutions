@@ -4,7 +4,7 @@ body{
 table *{
     text-align: center;
 }
-table .coluna{
+table td.coluna {
     vertical-align: middle !important;
 }
 
@@ -44,7 +44,6 @@ table .coluna{
     border-color: #dae0e5;
 }
 .btn-light:hover{
-    background: #f8f9fa;
     box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
     border: rgb(219, 92, 1);
 }
@@ -53,18 +52,16 @@ table .coluna{
     border-color: #398439;
 }
 .btn-success:hover{
-    border-color: #398439;
-    background: #419641;
     box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
+    border-color: #398439;
 }
 .btn-danger{
     background: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
     border-color: #b92c28;
 }
 .btn-danger:hover{
-    border-color: #ac2925;
-    background: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
     box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
+    border-color: #ac2925;
 }
 .btn-relatorio{
     margin-top: 30px;
