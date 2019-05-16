@@ -47,6 +47,10 @@ table td.coluna {
     box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
     border: rgb(219, 92, 1);
 }
+.btn-light:focus{
+    box-shadow: 0 0 0 0.2rem rgba(219, 92, 1, 0.5);
+    border: rgb(219, 92, 1);
+}
 .btn-success{
     background: linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
     border-color: #398439;

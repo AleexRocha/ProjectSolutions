@@ -80,7 +80,7 @@ Author     : nicolas.hgyoshioka
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th class="coluna" ><input type="checkbox" id="selectAll" onClick="selectAll()"></th>
+                        <th class="coluna"><input type="checkbox" id="selectAll" onClick="selectAll()"></th>
                         <th class="coluna" scope="col">Codigo</th>
                         <th class="coluna" scope="col">Logradouro</th>
                         <th class="coluna" scope="col">Numero</th>
@@ -99,14 +99,14 @@ Author     : nicolas.hgyoshioka
                                 <input name="selected" value="${filiais.codigo}" 
                                        id="chkFilial" type="checkbox"> 
                             </td>
-                            <td class="coluna" name="codigo" ><c:out value="${filiais.codigo}" /></td>
-                            <td class="coluna" name="logradouro" ><c:out value="${filiais.logradouro}" /></td>
-                            <td class="coluna" name="numero" ><c:out value="${filiais.numero}" /></td>
-                            <td class="coluna" name="cep" ><c:out value="${filiais.cep}" /></td>
-                            <td class="coluna" name="bairro" ><c:out value="${filiais.bairro}" /></td>
-                            <td class="coluna" name="cidade" ><c:out value="${filiais.cidade}" /></td>
-                            <td class="coluna" name="estado" ><c:out value="${filiais.estado}" /></td>
-                            <td class="coluna" name="telefone" ><c:out value="${filiais.telefone}" /></td>        
+                            <td class="coluna" name="codigo"><c:out value="${filiais.codigo}" /></td>
+                            <td class="coluna" name="logradouro"><c:out value="${filiais.logradouro}" /></td>
+                            <td class="coluna" name="numero"><c:out value="${filiais.numero}" /></td>
+                            <td class="coluna" name="cep"><c:out value="${filiais.cep}" /></td>
+                            <td class="coluna" name="bairro"><c:out value="${filiais.bairro}" /></td>
+                            <td class="coluna" name="cidade"><c:out value="${filiais.cidade}" /></td>
+                            <td class="coluna" name="estado"><c:out value="${filiais.estado}" /></td>
+                            <td class="coluna" name="telefone"><c:out value="${filiais.telefone}" /></td>        
                             <td class="btn-group">
                                 <form action="dados_filial" method="POST">
                                     <button name="editarID" value="${filiais.codigo}" type="submit" class="btn btn-success">
