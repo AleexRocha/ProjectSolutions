@@ -32,14 +32,14 @@ public class FilialExcluirVariosServlet extends HttpServlet {
 
         if (httpOK) {
             ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("listaFilial", filiais);
+            request.setAttribute("listaFiliais", filiais);
 
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Filiais excluidas com sucesso.");
             
         } else {
             ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("listaFilial", filiais);
+            request.setAttribute("listaFiliais", filiais);
 
             request.setAttribute("varMsgErro", true);
             request.setAttribute("msg", "Erro ao excluir filiais.");

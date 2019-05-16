@@ -10,6 +10,7 @@ Author     : nicolas.hgyoshioka
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Usuários</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
@@ -84,13 +85,13 @@ Author     : nicolas.hgyoshioka
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th><input type="checkbox"></th>
-                        <th scope="col">Codigo</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Filial</th>
-                        <th scope="col">Setor</th>
-                        <th scope="col">Ações</th>
+                        <th class="coluna"><input type="checkbox"></th>
+                        <th class="coluna" scope="col">Codigo</th>
+                        <th class="coluna" scope="col">Nome</th>
+                        <th class="coluna" scope="col">Email</th>
+                        <th class="coluna" scope="col">Filial</th>
+                        <th class="coluna" scope="col">Setor</th>
+                        <th class="coluna" scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="teste">  
@@ -99,11 +100,11 @@ Author     : nicolas.hgyoshioka
                             <td>
                                 <input name="selected" value="${usuarios.codigo}" type="checkbox"> 
                             </td>
-                            <td name="codigo" ><c:out value="${usuarios.codigo}" /></td>
-                            <td name="nome" ><c:out value="${usuarios.nome}" /></td>
-                            <td name="email" ><c:out value="${usuarios.email}" /></td>
-                            <td name="filial"><c:out value="${usuarios.nomeFilial}"/></td>
-                            <td name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
+                            <td class="coluna" name="codigo" ><c:out value="${usuarios.codigo}" /></td>
+                            <td class="coluna" name="nome" ><c:out value="${usuarios.nome}" /></td>
+                            <td class="coluna" name="email" ><c:out value="${usuarios.email}" /></td>
+                            <td class="coluna" name="filial"><c:out value="${usuarios.nomeFilial}"/></td>
+                            <td class="coluna" name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
                             <td class="btn-group">
                                 <form action="dados_usuario" method="POST">
                                     <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">

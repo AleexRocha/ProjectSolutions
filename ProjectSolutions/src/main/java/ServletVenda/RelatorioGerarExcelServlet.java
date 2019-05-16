@@ -33,21 +33,21 @@ public class RelatorioGerarExcelServlet extends HttpServlet {
             String dataAteFormat = dataAte.concat(" 23:59:59");
             if (filial != null) {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(Integer.parseInt(filial), dataDeFormat, dataAteFormat);
-                request.setAttribute("listaRelatorio", relatorio);
+                request.setAttribute("listaRelatorios", relatorio);
                 GerarExcel.GerarExcel(relatorio);
             } else {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
-                request.setAttribute("listaRelatorio", relatorio);
+                request.setAttribute("listaRelatorios", relatorio);
                 GerarExcel.GerarExcel(relatorio);
             }
         } else {
             if (filial != null) {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioFilial(Integer.parseInt(filial));
-                request.setAttribute("listaRelatorio", relatorio);
+                request.setAttribute("listaRelatorios", relatorio);
                 GerarExcel.GerarExcel(relatorio);
             } else {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioGeral();
-                request.setAttribute("listaRelatorio", relatorio);
+                request.setAttribute("listaRelatorios", relatorio);
                 GerarExcel.GerarExcel(relatorio);
             }
         }

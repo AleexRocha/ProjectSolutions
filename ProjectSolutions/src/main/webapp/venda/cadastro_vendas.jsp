@@ -10,6 +10,7 @@ Author     : nicolas.hgyoshioka
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Vendas</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
@@ -45,8 +46,8 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                 </ul>
-                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nome}"/> 
-                <form action="../venda/logout" method="POST">
+                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, Usuário -
+                <form action="/logout" method="POST">
                     <button type="submit" class="btn nav-link nav-text" >Sair</button>
                 </form>
             </nav>

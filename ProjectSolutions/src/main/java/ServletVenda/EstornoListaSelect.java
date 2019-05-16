@@ -27,13 +27,13 @@ public class EstornoListaSelect extends HttpServlet {
 
         if (eCodProduto != null) {
             ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoProduto(eCodProduto);
-            request.setAttribute("listaEstorno", estorno);
+            request.setAttribute("listaEstornos", estorno);
         } else if (eCodFilial  != null) {
             ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoFilial(eCodFilial);
-            request.setAttribute("listaEstorno", estorno);
+            request.setAttribute("listaEstornos", estorno);
         } else if (!eCpfCliente.equalsIgnoreCase("")) {
             ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoCpf(eCpfCliente);
-            request.setAttribute("listaEstorno", estorno);
+            request.setAttribute("listaEstornos", estorno);
         } else {
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Escolha um filtro para gerar o relátorio.");

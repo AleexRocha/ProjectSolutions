@@ -10,6 +10,7 @@ Author     : nicolas.hgyoshioka
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Cadastro de Usuários</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
@@ -144,9 +145,12 @@ Author     : nicolas.hgyoshioka
                                 <label for="setor" >Setor:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                        <option disabled="" value="${setor}">
+                                        <option disabled="" selected="" hidden="" value="${setor}">
                                             <c:out value="${nomeSetorCadastrado}"/>
-                                        </option>                               
+                                        </option>
+                                        <!--<option disabled="" value="${setor}">-->
+                                            <%--<c:out value="${nomeSetorCadastrado}"/>--%>
+                                        <!--</option>-->
                                         <c:forEach var="listaSetores" items="${listaSetores}">  
                                             <option value="<c:out value="${listaSetores.setor}"></c:out>">
                                                 <c:out value="${listaSetores.nomeSetor}"/> 
@@ -158,7 +162,7 @@ Author     : nicolas.hgyoshioka
                                     <!-- Validação se o campo Está Vazio na hora do cadastro/editar -->
                                     <c:if test="${empty setorErro}">
                                         <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                            <option disabled="" selected="" hidden="">Setor</option>                               
+                                            <option disabled="" selected="" hidden="">Setor</option>
                                             <c:forEach var="listaSetores" items="${listaSetores}">  
                                                 <option value="<c:out value="${listaSetores.setor}"></c:out>">
                                                     <c:out value="${listaSetores.nomeSetor}"/> 
@@ -181,7 +185,7 @@ Author     : nicolas.hgyoshioka
                                 <label for="tipo" >Filial:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="codigoFilial" name="filial">
-                                        <option disabled="" value="${filial}">
+                                        <option disabled="" selected="" hidden="" value="${filial}">
                                             <c:out value="${nomeFilialCadastrado}"/>
                                         </option>
                                         <c:forEach var="listaFiliais" items="${listaFiliais}">  

@@ -22,7 +22,7 @@ public class FilialListaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ArrayList<Filial> filiais = FilialDAO.getFiliais();
-        request.setAttribute("listaFilial", filiais);
+        request.setAttribute("listaFiliais", filiais);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_filiais.jsp");
         dispatcher.forward(request, response);

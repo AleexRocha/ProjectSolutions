@@ -9,6 +9,7 @@ Author     : nicolas.hgyoshioka
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Filiais</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
@@ -79,33 +80,33 @@ Author     : nicolas.hgyoshioka
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="selectAll" onClick="selectAll()"></th>
-                        <th scope="col">Codigo</th>
-                        <th scope="col">Logradouro</th>
-                        <th scope="col">Numero</th>
-                        <th scope="col">Cep</th>
-                        <th scope="col">Bairro</th>
-                        <th scope="col">Cidade</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Telefone</th>
+                        <th class="coluna" ><input type="checkbox" id="selectAll" onClick="selectAll()"></th>
+                        <th class="coluna" scope="col">Codigo</th>
+                        <th class="coluna" scope="col">Logradouro</th>
+                        <th class="coluna" scope="col">Numero</th>
+                        <th class="coluna" scope="col">Cep</th>
+                        <th class="coluna" scope="col">Bairro</th>
+                        <th class="coluna" scope="col">Cidade</th>
+                        <th class="coluna" scope="col">Estado</th>
+                        <th class="coluna" scope="col">Telefone</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>    
                 <tbody id="teste">  
-                    <c:forEach var="filiais" items="${listaFilial}">                
+                    <c:forEach var="filiais" items="${listaFiliais}">                
                         <tr>
                             <td>
                                 <input name="selected" value="${filiais.codigo}" 
                                        id="chkFilial" type="checkbox"> 
                             </td>
-                            <td name="codigo" ><c:out value="${filiais.codigo}" /></td>
-                            <td name="logradouro" ><c:out value="${filiais.logradouro}" /></td>
-                            <td name="numero" ><c:out value="${filiais.numero}" /></td>
-                            <td name="cep" ><c:out value="${filiais.cep}" /></td>
-                            <td name="bairro" ><c:out value="${filiais.bairro}" /></td>
-                            <td name="cidade" ><c:out value="${filiais.cidade}" /></td>
-                            <td name="estado" ><c:out value="${filiais.estado}" /></td>
-                            <td name="telefone" ><c:out value="${filiais.telefone}" /></td>        
+                            <td class="coluna" name="codigo" ><c:out value="${filiais.codigo}" /></td>
+                            <td class="coluna" name="logradouro" ><c:out value="${filiais.logradouro}" /></td>
+                            <td class="coluna" name="numero" ><c:out value="${filiais.numero}" /></td>
+                            <td class="coluna" name="cep" ><c:out value="${filiais.cep}" /></td>
+                            <td class="coluna" name="bairro" ><c:out value="${filiais.bairro}" /></td>
+                            <td class="coluna" name="cidade" ><c:out value="${filiais.cidade}" /></td>
+                            <td class="coluna" name="estado" ><c:out value="${filiais.estado}" /></td>
+                            <td class="coluna" name="telefone" ><c:out value="${filiais.telefone}" /></td>        
                             <td class="btn-group">
                                 <form action="dados_filial" method="POST">
                                     <button name="editarID" value="${filiais.codigo}" type="submit" class="btn btn-success">
