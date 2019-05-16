@@ -91,21 +91,21 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty logradouroErro}">
                                         <input type="text" class="form-control inputForm" id="logradouro" 
-                                               value="${logradouro}" name="logradouro">
+                                               value="${logradouro}" name="logradouro" minlength="0" maxlength="75">
                                     </c:if>
                                     <c:if test="${not empty logradouroErro}">                                
                                         <input type="text" class="form-control inputForm error" id="logradouro" 
-                                               placeholder="${logradouroErro}" name="logradouro">
+                                               placeholder="${logradouroErro}" name="logradouro" minlength="0" maxlength="75">
                                     </c:if>      
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty logradouroErro}">
                                         <input type="text" class="form-control inputForm" id="logradouro" 
-                                               placeholder="Logradouro" name="logradouro">
+                                               placeholder="Logradouro" name="logradouro" minlength="0" maxlength="75">
                                     </c:if>
                                     <c:if test="${not empty logradouroErro}">                                
                                         <input type="text" class="form-control inputForm error" id="logradouro" 
-                                               placeholder="${logradouroErro}" name="logradouro">
+                                               placeholder="${logradouroErro}" name="logradouro" minlength="0" maxlength="75">
                                     </c:if>    
                                 </c:if>
 
@@ -113,21 +113,21 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty numeroErro}">                                
                                         <input type="number" class="form-control inputForm" id="numero" 
-                                               value="${numero}" name="numero">
+                                               value="${numero}" name="numero" minlength="0" maxlength="11">
                                     </c:if>
                                     <c:if test="${not empty numeroErro}">                                
                                         <input type="number" class="form-control inputForm error" id="numero" 
-                                               placeholder="${numeroErro}" name="numero">
+                                               placeholder="${numeroErro}" name="numero" minlength="0" maxlength="11">
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty numeroErro}">                                
                                         <input type="number" class="form-control inputForm" id="numero" 
-                                               placeholder="Número" name="numero">
+                                               placeholder="Número" name="numero" minlength="0" maxlength="11">
                                     </c:if>
                                     <c:if test="${not empty numeroErro}">                                
                                         <input type="number" class="form-control inputForm error" id="numero" 
-                                               placeholder="${numeroErro}" name="numero">
+                                               placeholder="${numeroErro}" name="numero" minlength="0" maxlength="11">
                                     </c:if>
                                 </c:if>
 
@@ -135,21 +135,21 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty cepErro}">
                                         <input type="number" class="form-control inputForm" id="cep" 
-                                               value="${cep}" name="cep">
+                                               value="${cep}" name="cep" minlength="0" maxlength="10">
                                     </c:if>
                                     <c:if test="${not empty cepErro}">
                                         <input type="number" class="form-control inputForm error" id="cep" 
-                                               placeholder="${cepErro}" name="cep">
+                                               placeholder="${cepErro}" name="cep" minlength="0" maxlength="10">
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty cepErro}">
                                         <input type="number" class="form-control inputForm" id="cep" 
-                                               placeholder="CEP" name="cep">
+                                               placeholder="CEP" name="cep" minlength="0" maxlength="10">
                                     </c:if>
                                     <c:if test="${not empty cepErro}">
                                         <input type="number" class="form-control inputForm error" id="cep" 
-                                               placeholder="${cepErro}" name="cep">
+                                               placeholder="${cepErro}" name="cep" minlength="0" maxlength="10">
                                     </c:if>
                                 </c:if>
 
@@ -157,21 +157,21 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty bairroErro}">
                                         <input type="text" class="form-control inputForm" id="bairro" 
-                                               value="${bairro}" name="bairro">
+                                               value="${bairro}" name="bairro" minlength="0" maxlength="50">
                                     </c:if>
                                     <c:if test="${not empty bairroErro}">
                                         <input type="text" class="form-control inputForm error" id="bairro" 
-                                               placeholder="${bairroErro}" name="bairro">
+                                               placeholder="${bairroErro}" name="bairro" minlength="0" maxlength="50">
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty bairroErro}">
                                         <input type="text" class="form-control inputForm" id="bairro" 
-                                               placeholder="Bairro" name="bairro">
+                                               placeholder="Bairro" name="bairro" minlength="0" maxlength="50">
                                     </c:if>
                                     <c:if test="${not empty bairroErro}">
                                         <input type="text" class="form-control inputForm error" id="bairro" 
-                                               placeholder="${bairroErro}" name="bairro">
+                                               placeholder="${bairroErro}" name="bairro" minlength="0" maxlength="50">
                                     </c:if>
                                 </c:if>
 
@@ -179,21 +179,21 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty cidadeErro}">
                                         <input type="text" class="form-control inputForm" id="cidade" 
-                                               value="${cidade}" name="cidade">
+                                               value="${cidade}" name="cidade" minlength="0" maxlength="50">
                                     </c:if>
                                     <c:if test="${not empty cidadeErro}">
                                         <input type="text" class="form-control inputForm error" id="cidade" 
-                                               placeholder="${cidadeErro}" name="cidade">
+                                               placeholder="${cidadeErro}" name="cidade" minlength="0" maxlength="50">
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty cidadeErro}">
                                         <input type="text" class="form-control inputForm" id="cidade" 
-                                               placeholder="Cidade" name="cidade">
+                                               placeholder="Cidade" name="cidade" minlength="0" maxlength="50">
                                     </c:if>
                                     <c:if test="${not empty cidadeErro}">
                                         <input type="text" class="form-control inputForm error" id="cidade" 
-                                               placeholder="${cidadeErro}" name="cidade">
+                                               placeholder="${cidadeErro}" name="cidade" minlength="0" maxlength="50">
                                     </c:if>
                                 </c:if>
 
@@ -201,21 +201,21 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty estadoErro}">
                                         <input type="text" class="form-control inputForm" id="estado" 
-                                               value="${estado}" name="estado">
+                                               value="${estado}" name="estado" minlength="0" maxlength="50">
                                     </c:if>
                                     <c:if test="${not empty estadoErro}">
                                         <input type="text" class="form-control inputForm error" id="estado" 
-                                               placeholder="${estadoErro}" name="estado">
+                                               placeholder="${estadoErro}" name="estado" minlength="0" maxlength="50">
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty estadoErro}">
                                         <input type="text" class="form-control inputForm" id="estado" 
-                                               placeholder="Estado" name="estado">
+                                               placeholder="Estado" name="estado" minlength="0" maxlength="50">
                                     </c:if>
                                     <c:if test="${not empty estadoErro}">
                                         <input type="text" class="form-control inputForm error" id="estado" 
-                                               placeholder="${estadoErro}" name="estado">
+                                               placeholder="${estadoErro}" name="estado" minlength="0" maxlength="50">
                                     </c:if>
                                 </c:if>
 
@@ -223,21 +223,21 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty telefoneErro}">
                                         <input type="number" class="form-control inputForm" id="telefone" 
-                                               value="${telefone}" name="telefone">
+                                               value="${telefone}" name="telefone" minlength="0" maxlength="15">
                                     </c:if>
                                     <c:if test="${not empty telefoneErro}">
                                         <input type="number" class="form-control inputForm error" id="telefone" 
-                                               placeholder="${telefoneErro}" name="telefone">
+                                               placeholder="${telefoneErro}" name="telefone" minlength="0" maxlength="15">
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty telefoneErro}">
                                         <input type="number" class="form-control inputForm" id="telefone" 
-                                               placeholder="Telefone" name="telefone">
+                                               placeholder="Telefone" name="telefone" minlength="0" maxlength="15">
                                     </c:if>
                                     <c:if test="${not empty telefoneErro}">
                                         <input type="number" class="form-control inputForm error" id="telefone" 
-                                               placeholder="${telefoneErro}" name="telefone">
+                                               placeholder="${telefoneErro}" name="telefone" minlength="0" maxlength="15">
                                     </c:if>
                                 </c:if>  
                             </div>

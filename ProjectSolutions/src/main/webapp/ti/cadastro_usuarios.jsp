@@ -90,54 +90,54 @@ Author     : nicolas.hgyoshioka
                                 <label for="nome">Nome:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <input type="text" class="form-control inputForm" id="nome"
-                                           value="${nome}" name="nome">
+                                           value="${nome}" name="nome" minlength="0" maxlength="75">
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty nomeErro}">
                                         <input type="text" class="form-control inputForm" id="nome"
-                                               placeholder="Nome" name="nome">
+                                               placeholder="Nome" name="nome" minlength="0" maxlength="75">
                                     </c:if>
                                     <c:if test="${not empty nomeErro}">         
                                         <input type="text" class="form-control inputForm error" id="nome"
-                                               placeholder="${nomeErro}" name="nome">
+                                               placeholder="${nomeErro}" name="nome" minlength="0" maxlength="75">
                                     </c:if>                                   
                                 </c:if>
 
                                 <label for="email">E-mail:</label>                         
                                 <c:if test="${acao == 'editar'}">
                                     <input type="email" class="form-control inputForm" id="email"
-                                           value="${email}" name="email">
+                                           value="${email}" name="email" minlength="0" maxlength="50">
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty emailErro}">
                                         <input type="email" class="form-control inputForm" id="email"
-                                               placeholder="E-mail" name="email">
+                                               placeholder="E-mail" name="email" minlength="0" maxlength="50">
                                     </c:if>
                                     <c:if test="${not empty emailErro}">         
                                         <input type="email" class="form-control inputForm error" id="email"
-                                               placeholder="${emailErro}" name="email">
+                                               placeholder="${emailErro}" name="email" minlength="0" maxlength="50">
                                     </c:if>    
                                 </c:if>
 
                                 <label for="senha">Senha:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <input type="password" class="form-control inputForm" id="senha"
-                                           value="${senha}" name="senha">
+                                           value="${senha}" name="senha" minlength="0" maxlength="25">
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty senhaErro}">
                                         <input type="password" class="form-control inputForm" id="senha"
-                                               placeholder="Senha" name="senha">
+                                               placeholder="Senha" name="senha" minlength="0" maxlength="25">
                                     </c:if>
                                     <c:if test="${not empty senhaErro}">         
                                         <input type="password" class="form-control inputForm error" id="senha"
-                                               placeholder="${senhaErro}" name="senha">
+                                               placeholder="${senhaErro}" name="senha" minlength="0" maxlength="25">
                                     </c:if>  
                                 </c:if>
 
                                 <label for="confirmarSenha">Confirmar senha:</label>
                                 <input type="password" class="form-control inputForm" id="confirmarSenha" 
-                                       placeholder="Confirmar senha" name="confirmarSenha">
+                                       placeholder="Confirmar senha" name="confirmarSenha" minlength="0" maxlength="25">
 
                                 <label for="setor" >Setor:</label>
                                 <c:if test="${acao == 'editar'}">

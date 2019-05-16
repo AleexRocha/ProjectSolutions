@@ -130,7 +130,7 @@ Author     : nicolas.hgyoshioka
 
                             <label for="cpfCliente">CPF do cliente:</label>
                             <input type="number" class="form-control inputForm" id="cpfCliente"
-                                   placeholder="CPF do cliente" name="cpfCliente">
+                                   placeholder="CPF do cliente" name="cpfCliente"  minlength="0" maxlength="15">
 
                             <label for="codigoFilial">Código da filial:</label>
                             <c:choose>
