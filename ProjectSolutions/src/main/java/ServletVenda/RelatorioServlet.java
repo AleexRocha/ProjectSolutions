@@ -25,21 +25,21 @@ public class RelatorioServlet extends HttpServlet {
 
         String dataDe = request.getParameter("dataDe");
         String dataAte = request.getParameter("dataAte");
-        int filial = Integer.parseInt(request.getParameter("filial"));
+        String filial = request.getParameter("filial");
 
         if ((!dataDe.equalsIgnoreCase("")) && (!dataAte.equalsIgnoreCase(""))) {
             String dataDeFormat = dataDe.concat(" 00:00:00");
             String dataAteFormat = dataAte.concat(" 23:59:59");
-            if (filial != 0) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(filial, dataDeFormat, dataAteFormat);
+            if (Integer.parseInt(filial) != 0) {
+                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(Integer.parseInt(filial), dataDeFormat, dataAteFormat);
                 request.setAttribute("listaRelatorios", relatorio);
             } else {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
                 request.setAttribute("listaRelatorios", relatorio);
             }
         } else {
-            if (filial != 0) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioFilial(filial);
+            if ((filial != null) && (Integer.parseInt(filial) != 0)) {
+                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioFilial(Integer.parseInt(filial));
                 request.setAttribute("listaRelatorios", relatorio);
             } else {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioGeral();

@@ -19,7 +19,7 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO "
-                    + " tbl_usuario(nome, email, senha, status, fk_filial, fk_setor) "
+                    + " tbl_usuario(nome, email, senha, status, fk_filial, fk_setor, status) "
                     + "VALUES (?, ?, ?, ?, ?, ?);");
 
             query.setString(1, u.getNome());
@@ -28,6 +28,7 @@ public class UsuarioDAO {
             query.setInt(4, 0);
             query.setInt(5, u.getCodigoFilial());
             query.setInt(6, u.getSetor());
+            query.setInt(7, 0);
 
             int rs = query.executeUpdate();
 
@@ -44,7 +45,7 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE"
-                    + " tbl_usuario SET nome = ?, email = ?, senha = ?, fk_filial = ?, fk_setor = ? where id_usuario = ?;");
+                    + " tbl_usuario SET nome = ?, email = ?, senha = ?, fk_filial = ?, fk_setor = ? WHERE id_usuario = ?;");
 
             query.setString(1, u.getNome());
             query.setString(2, u.getEmail());
@@ -227,7 +228,7 @@ public class UsuarioDAO {
     public static boolean getLogin(String email, String senha) {
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario WHERE email= ? AND senha = ?;");
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario WHERE email= ? AND senha = ? AND status = 0;");
             query.setString(1, email);
             query.setString(2, senha);
             ResultSet rs = query.executeQuery();
