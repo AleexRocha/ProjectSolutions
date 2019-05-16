@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServletProduto;
 
-import DAO.FilialDAO;
 import DAO.ProdutoDAO;
-import Model.Filial;
 import Model.Produto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,7 +30,7 @@ public class ProdutoExcluirVariosServlet extends HttpServlet {
 
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Produtos excluidos com sucesso.");
-            
+
         } else {
             ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
             request.setAttribute("listaProdutos", produtos);
@@ -46,7 +38,7 @@ public class ProdutoExcluirVariosServlet extends HttpServlet {
             request.setAttribute("varMsgErro", true);
             request.setAttribute("msg", "Erro ao excluir Produtos.");
         }
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
         dispatcher.forward(request, response);
     }
