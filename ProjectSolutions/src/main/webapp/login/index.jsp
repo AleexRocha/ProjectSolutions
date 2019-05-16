@@ -38,19 +38,19 @@
                                         <c:when test="${empty loginError}">
                                             <input name="email" type="email" id="inputEmail" 
                                                    class="form-control inputForm" 
-                                                   placeholder="Digite seu e-mail" autofocus>
+                                                   placeholder="Digite seu e-mail" autofocus minlength="0" maxlength="50">
                                         </c:when>
                                         <c:otherwise>  
                                             <input name="email" type="email" id="inputEmail" 
                                                    class="form-control inputForm" 
-                                                   value="${loginError}" autofocus>
+                                                   value="${loginError}" autofocus  minlength="0" maxlength="50">
                                         </c:otherwise>
                                     </c:choose>
                                 </c:when>
                                 <c:otherwise>
                                     <input name="email" type="email" id="inputEmail" 
                                            class="form-control inputForm error" 
-                                           placeholder="${emailError}" autofocus>
+                                           placeholder="${emailError}" autofocus  minlength="0" maxlength="50">
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -61,18 +61,17 @@
                                 <c:when test="${empty senhaError}">
                                     <input name="password" type="password" id="inputPassword" 
                                            class="form-control inputForm" 
-                                           placeholder="Digite sua senha">
+                                           placeholder="Digite sua senha"  minlength="0" maxlength="25">
                                 </c:when>
                                 <c:otherwise>
                                     <input name="password" type="password" id="inputPassword" 
                                            class="form-control inputForm error" 
-                                           placeholder="${senhaError}">
+                                           placeholder="${senhaError}"  minlength="0" maxlength="25">
                                 </c:otherwise>
                             </c:choose>
                         </div>
 
                         <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
-                        <!--<a class="btn btn-warning btn-block btn-lg" href="venda/cadastro_vendas.jsp"> Sign in </a>-->
                         <p class="mt-5 mb-3 text-center subtitulo">&copy; Project Solutions - 2019</p>
                     </form>
                 </div>

@@ -83,7 +83,7 @@
                     </select>
                     <label for="cpfCliente">CPF do cliente:</label>
                     <input type="number" class="form-control inputForm" id="cpfCliente"
-                           placeholder="CPF do cliente" name="cpfCliente">
+                           placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="15">
                     <button class="btn btn-light">
                         <i class="far fa-file-alt"></i>
                         Buscar
