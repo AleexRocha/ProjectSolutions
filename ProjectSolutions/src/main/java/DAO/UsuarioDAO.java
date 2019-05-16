@@ -242,27 +242,24 @@ public class UsuarioDAO {
         return false;
     }
 
-    public static ArrayList<Usuario> getInfoSessao(String uEmail) {
-        ArrayList<Usuario> sessao = new ArrayList<>();
+    public static Usuario getInfoSessao(String uEmail) {
+        Usuario sessao = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.fk_filial, u.fk_setor "
-                    + "FROM tbl_usuario AS u WHERE u.email = ?;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, fk_filial, fk_setor "
+                    + "FROM tbl_usuario WHERE email = ?;");
+
             query.setString(1, uEmail);
+
             ResultSet rs = query.executeQuery();
+            if (rs.next()) {
+                sessao = new Usuario();
+                sessao.setCodigo(rs.getInt(1));
+                sessao.setNome(rs.getString(2));
+                sessao.setEmail(rs.getString(3));
+                sessao.setCodigoFilial(rs.getInt(4));
+                sessao.setSetor(rs.getInt(5));
 
-            if (rs != null) {
-                while (rs.next()) {
-                    Usuario user = new Usuario();
-
-                    user.setCodigo(rs.getInt(1));
-                    user.setNome(rs.getString(2));
-                    user.setEmail(rs.getString(3));
-                    user.setCodigoFilial(rs.getInt(4));
-                    user.setSetor(rs.getInt(5));
-                    
-                    sessao.add(user);
-                }
             }
 
             conn.close();

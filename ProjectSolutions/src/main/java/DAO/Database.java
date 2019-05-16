@@ -17,24 +17,23 @@ public class Database {
     private final String url;
     private Connection conexao;
 
-    public Database() {
+    /* public Database() {
         driver = "com.mysql.cj.jdbc.Driver";
         usuario = "root";
         senha = "";
         nomeDB = "TADES_BCD";
         url = "jdbc:mysql://127.0.0.1:3306/" + nomeDB + "?useTimezone=true&serverTimezone=UTC";
     }
-
+     */
     //Conexão com BD Amazon RDS(Nuvem Ativa)
-    /*
     public Database() {
         driver = "com.mysql.cj.jdbc.Driver";
         usuario = "admin";
         senha = "admin1234";
         nomeDB = "tades_bcd";
         url = "jdbc:mysql://instancia01.ctzk7iapnoiz.us-east-1.rds.amazonaws.com:3306/" + nomeDB + "?useTimezone=true&serverTimezone=UTC";
-    }*/
-    
+    }
+
     public String getDriver() {
         return driver;
     }

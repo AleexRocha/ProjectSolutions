@@ -45,6 +45,10 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                 </ul>
+                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nome}"/> 
+                <form action="../venda/logout" method="POST">
+                    <button type="submit" class="btn nav-link nav-text" >Sair</button>
+                </form>
             </nav>
         </header>
         <c:if test="${acao == 'editar'}"> 
