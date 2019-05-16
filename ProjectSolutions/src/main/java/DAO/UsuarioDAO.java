@@ -19,16 +19,15 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO "
-                    + " tbl_usuario(nome, email, senha, status, fk_filial, fk_setor, status) "
+                    + " tbl_usuario(nome, email, senha, fk_filial, fk_setor, status) "
                     + "VALUES (?, ?, ?, ?, ?, ?);");
 
             query.setString(1, u.getNome());
             query.setString(2, u.getEmail());
             query.setString(3, u.getSenha());
-            query.setInt(4, 0);
-            query.setInt(5, u.getCodigoFilial());
-            query.setInt(6, u.getSetor());
-            query.setInt(7, 0);
+            query.setInt(4, u.getCodigoFilial());
+            query.setInt(5, u.getSetor());
+            query.setInt(6, 0);
 
             int rs = query.executeUpdate();
 

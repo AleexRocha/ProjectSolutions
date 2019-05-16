@@ -20,10 +20,12 @@ public class UsuarioCadastroServlet extends HttpServlet {
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
+        String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
         String cFilial = request.getParameter("filial");
 
         boolean error = false;
+        boolean errorSenha = false;
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
@@ -44,16 +46,30 @@ public class UsuarioCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("filialErro", "Filial não informada");
         }
+        if (!error) {
+            if ((cSenha.length() == 0) || (cConfirmacaoSenha.length() == 0)) {
+                errorSenha = true;
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Campos de Senha ou Confirmação de Senha estão vazios");
+            }
+            if (!cSenha.equals(cConfirmacaoSenha)) {
+                errorSenha = true;
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Senha e Confirmação de Senha são diferentes");
+            }
+        }
 
-        if (error) {
+        if (error || errorSenha) {
             ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();
             request.setAttribute("listaSetores", setores);
 
             ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
             request.setAttribute("listaFiliais", filiais);
 
-            request.setAttribute("varMsg", true);
-            request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
+            if (!errorSenha) {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
+            }
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);

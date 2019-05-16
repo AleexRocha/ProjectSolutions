@@ -32,14 +32,13 @@ public class UsuarioSelectEditServlet extends HttpServlet {
         request.setAttribute("nome", usuario.getNome());
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("senha", usuario.getSenha());
-        request.setAttribute("setor", usuario.getSetor());
-        request.setAttribute("nomeSetorCadastrado", usuario.getNomeSetor());
-        request.setAttribute("listaSetores", setores);
-        request.setAttribute("filial", usuario.getCodigoFilial());
+        request.setAttribute("codigoFilial", usuario.getCodigoFilial());
+        request.setAttribute("nomeFilial", usuario.getNomeFilial());
         request.setAttribute("listaFiliais", filiais);
-        request.setAttribute("nomeFilialCadastrado", usuario.getNomeFilial());
+        request.setAttribute("setor", usuario.getSetor());
+        request.setAttribute("nomeSetor", usuario.getNomeSetor());
+        request.setAttribute("listaSetores", setores);
         
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);
     }

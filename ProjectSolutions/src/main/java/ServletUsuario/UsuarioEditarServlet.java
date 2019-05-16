@@ -25,10 +25,12 @@ public class UsuarioEditarServlet extends HttpServlet {
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
+        String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
-        String cFilial = request.getParameter("filial");
+        String cFilial = request.getParameter("codigoFilial");
 
         boolean error = false;
+        boolean errorSenha = false;
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
@@ -41,26 +43,44 @@ public class UsuarioEditarServlet extends HttpServlet {
             error = true;
             request.setAttribute("senhaErro", "Senha não informada");
         }
-        if (cSetor.length() == 0) {
+        if (cSetor == null) {
             error = true;
             request.setAttribute("setorErro", "Setor não informado");
         }
-        if (cFilial.length() == 0) {
+        if (cFilial == null) {
             error = true;
             request.setAttribute("filialErro", "Filial não informada");
+        }
+        if (!error) {
+            if ((cSenha.length() == 0) || (cConfirmacaoSenha.length() == 0)) {
+                errorSenha = true;
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Campos de Senha ou Confirmação de Senha estão vazios");
+            }
+            if (!cSenha.equals(cConfirmacaoSenha)) {
+                errorSenha = true;
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Senha e Confirmação de Senha são diferentes");
+            }
         }
 
         if (error) {
             Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
 
+            ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();
+            ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
+
             request.setAttribute("acao", "editar");
             request.setAttribute("codigo", usuario.getCodigo());
             request.setAttribute("nome", usuario.getNome());
             request.setAttribute("email", usuario.getEmail());
+            request.setAttribute("senha", usuario.getSenha());
+            request.setAttribute("codigoFilial", usuario.getCodigoFilial());
+            request.setAttribute("nomeFilial", usuario.getNomeFilial());
+            request.setAttribute("listaFiliais", filiais);
             request.setAttribute("setor", usuario.getSetor());
             request.setAttribute("nomeSetor", usuario.getNomeSetor());
-            request.setAttribute("filial", usuario.getCodigoFilial());
-            request.setAttribute("nomeFilial", usuario.getNomeFilial());
+            request.setAttribute("listaSetores", setores);
 
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Erro ao editar o usuário, verifique os campos e tente novamente.");

@@ -20,6 +20,7 @@ public class ProdutoEditarServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String fCodigo = request.getParameter("codigoProduto");
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
