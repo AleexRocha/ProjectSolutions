@@ -5,7 +5,7 @@ Author     : nicolas.hgyoshioka
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -48,12 +48,14 @@ Author     : nicolas.hgyoshioka
                 </ul>
             </nav>
         </header>
+
         <c:if test="${acao == 'editar'}"> 
             <h2 class='h2 text-center subtitulo'>Editar Filial</h2> 
         </c:if>
         <c:if test="${empty acao}">
             <h2 class='h2 text-center subtitulo'>Cadastrar Filial</h2>
         </c:if>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>

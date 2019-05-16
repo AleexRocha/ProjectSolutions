@@ -59,10 +59,6 @@ public class FilialEditarServlet extends HttpServlet {
             error = true;
             request.setAttribute("estadoErro", "Estado não informado");
         }
-        if (fTelefone.length() == 0) {
-            error = true;
-            request.setAttribute("telefoneErro", "Telefone não informado");
-        }
 
         if (error) {
             Filial filial = FilialDAO.getFilial(Integer.parseInt(fCodigo));
@@ -83,7 +79,10 @@ public class FilialEditarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_filiais.jsp");
             dispatcher.forward(request, response);
         } else {
-            Filial filial = new Filial(fLogradouro, Integer.parseInt(fNumero), fCep, fBairro, fCidade, fEstado, fTelefone);
+            Filial filial = new Filial(fLogradouro, Integer.parseInt(fNumero), fCep, fBairro, fCidade, fEstado);
+            if (fTelefone.length() != 0) {
+                filial.setTelefone(fTelefone);
+            }
             filial.setCodigo(Integer.parseInt(fCodigo));
             boolean httpOK = FilialDAO.atualizarFilial(filial);
 

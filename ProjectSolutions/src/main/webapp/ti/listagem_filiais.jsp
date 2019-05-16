@@ -3,6 +3,7 @@ Document   : listagem_filiais
 Created on : 08/04/2019, 21:42:40
 Author     : nicolas.hgyoshioka
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -49,6 +50,7 @@ Author     : nicolas.hgyoshioka
             <h2 class="h2 text-center subtitulo">Filiais</h2>
         </header>
         <div class="container">
+            
             <c:if test="${varMsg == true}">
                 <div class="alert alert-success" role="alert">
                     <c:out value="${msg}"/>
@@ -65,6 +67,7 @@ Author     : nicolas.hgyoshioka
                     </button>
                 </div>
             </c:if>
+            
             <a id="btn_cadastro" class="btn btn-light" href="cadastro_filiais.jsp">
                 <i class="far fa-building"></i>
                 Cadastrar filial
@@ -154,16 +157,16 @@ Author     : nicolas.hgyoshioka
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
         <script>
-                                function selectAll() {
-                                    var checkAll = document.getElementById('selectAll');
-                                    var otherChecked = document.getElementById('chkFilial');
+                            function selectAll() {
+                                var checkAll = document.getElementById('selectAll');
+                                var otherChecked = document.getElementById('chkFilial');
 
-                                    if (checkAll.checked == true) {
-                                        otherChecked.checked = true
-                                    } else {
-                                        otherChecked.checked = false;
-                                    }
+                                if (checkAll.checked == true) {
+                                    otherChecked.checked = true
+                                } else {
+                                    otherChecked.checked = false;
                                 }
+                            }
         </script>
     </body>
 </html>

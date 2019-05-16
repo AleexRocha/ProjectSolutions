@@ -37,10 +37,6 @@ public class ProdutoEditarServlet extends HttpServlet {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
         }
-        if (fDescricao.length() == 0) {
-            error = true;
-            request.setAttribute("descricaoErro", "Descrição não informado");
-        }
         if (fTipo.length() == 0) {
             error = true;
             request.setAttribute("TipoErro", "Tipo não informado");
@@ -82,7 +78,10 @@ public class ProdutoEditarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
         } else {
-            Produto produto = new Produto(fNome, fDescricao, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
+            Produto produto = new Produto(fNome, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
+            if (fDescricao.length() != 0) {
+                produto.setDescricao(fDescricao);
+            }
             produto.setCodigo(Integer.parseInt(fCodigo));
             boolean httpOK = ProdutoDAO.atualizarProduto(produto);
 
