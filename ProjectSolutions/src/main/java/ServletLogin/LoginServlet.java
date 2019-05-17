@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
             if (httpOK) {
                 Usuario infoSessao = UsuarioDAO.getInfoSessao(uEmail);
                 HttpSession sessao = request.getSession();
-                sessao.setAttribute("nome", infoSessao.getNome());
+                sessao.setAttribute("nomeUsuario", infoSessao.getNome());
 
                 response.sendRedirect("../venda/cadastro_vendas");
             } else {

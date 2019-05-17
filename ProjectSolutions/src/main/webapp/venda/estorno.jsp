@@ -29,23 +29,27 @@
                         <form action="cadastro_vendas">
                             <button type="submit" class="btn nav-link nav-text">Vendas</button>
                         </form>                     
-<!--                    </li>
-                    <li class="nav-item">
-                        <form action="../produtos/listagem_produtos" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form action="../ti/listagem_filiais" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form action="../ti/listagem_usuarios" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
-                        </form>
-                    </li>-->
+                        <!--                    </li>
+                                            <li class="nav-item">
+                                                <form action="../produtos/listagem_produtos" method="GET">
+                                                    <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                                                </form>
+                                            </li>
+                                            <li class="nav-item">
+                                                <form action="../ti/listagem_filiais" method="GET">
+                                                    <button type="submit" class="btn nav-link nav-text" >Filiais</button>
+                                                </form>
+                                            </li>
+                                            <li class="nav-item">
+                                                <form action="../ti/listagem_usuarios" method="GET">
+                                                    <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
+                                                </form>
+                                            </li>-->
                 </ul>
+                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nomeUsuario}"/> 
+                <form action="../venda/logout" method="POST">
+                    <button type="submit" class="btn nav-link nav-text" >Sair</button>
+                </form>
             </nav>
             <h2 class="h2 text-center subtitulo">Estorno de compras</h2>
             <form action="cadastro_vendas" method="GET" class="form-estorno-relatorio">

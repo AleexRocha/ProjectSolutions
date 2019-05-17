@@ -46,7 +46,7 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                 </ul>
-                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nome}"/> 
+                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nomeUsuario}"/> 
                 <form action="../venda/logout" method="POST">
                     <button type="submit" class="btn nav-link nav-text" >Sair</button>
                 </form>
