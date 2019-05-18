@@ -22,7 +22,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
         String cSenha = request.getParameter("senha");
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
-        String cFilial = request.getParameter("filial");
+        String cFilial = request.getParameter("codigoFilial");
 
         boolean error = false;
         boolean errorSenha = false;

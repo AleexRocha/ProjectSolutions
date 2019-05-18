@@ -58,7 +58,7 @@ Author     : nicolas.hgyoshioka
                 <form action="gerar_relatorio" method="get">
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="filial" name="filial">
-                        <option disabled="" selected="" hidden="">Filial</option>
+                        <option disabled="" hidden="">Filial</option>
                         <c:forEach var="filiais" items="${listaFiliais}">
                             <option value="<c:out value="${filiais.codigo}"></c:out>">
                                 <c:out value="${filiais.nomeFilial}"/>

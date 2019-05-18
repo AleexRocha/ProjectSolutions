@@ -146,7 +146,7 @@ Author     : nicolas.hgyoshioka
                                 <label for="setor" >Setor:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                        <option disabled="" selected="" hidden="" value="${setor}">${nomeSetor}</option>
+                                        <option hidden="" value="${setor}">${nomeSetor}</option>
                                         <c:forEach var="setores" items="${listaSetores}">
                                             <option value="<c:out value="${setores.setor}"></c:out>">
                                                 <c:out value="${setores.nomeSetor}"/>
@@ -157,7 +157,7 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty setorErro}">
                                         <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                            <option disabled="" selected="" hidden="">Setor</option>
+                                            <option disabled="" hidden="">Setor</option>
                                             <c:forEach var="setores" items="${listaSetores}">  
                                                 <option value="<c:out value="${setores.setor}"></c:out>">
                                                     <c:out value="${setores.nomeSetor}"/> 
@@ -167,7 +167,7 @@ Author     : nicolas.hgyoshioka
                                     </c:if>
                                     <c:if test="${not empty setorErro}">         
                                         <select class="custom-select form-control inputForm error" id="codigoSetor" name="codigoSetor">
-                                            <option disabled="" selected="" hidden=""><c:out value="${setorErro}"/></option>                               
+                                            <option disabled="" hidden=""><c:out value="${setorErro}"/></option>                               
                                             <c:forEach var="setores" items="${listaSetores}">  
                                                 <option value="<c:out value="${setores.setor}"></c:out>">
                                                     <c:out value="${setores.nomeSetor}"/> 
@@ -180,9 +180,9 @@ Author     : nicolas.hgyoshioka
                                 <label for="filial" >Filial:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                        <option disabled="" selected="" hidden=""value="${codigoFilial}">${nomeFilial}</option>
+                                        <option hidden=""value="${codigoFilial}">${nomeFilial}</option>
                                         <c:forEach var="filiais" items="${listaFiliais}">
-                                            <option value="<c:out value="${filiais.codigo}"/>">
+                                            <option value="<c:out value="${filiais.codigoFilial}"/>">
                                                 <c:out value="${filiais.nomeFilial}"/>
                                             </option>
                                         </c:forEach>
@@ -191,9 +191,9 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty codigoFilialErro}">
                                         <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                            <option disabled="" selected="" hidden="">Filial</option>
+                                            <option disabled="" hidden="">Filial</option>
                                             <c:forEach var="filiais" items="${listaFiliais}">
-                                                <option value="<c:out value="${filiais.codigo}"/>">
+                                                <option value="${filiais.codigoFilial}">
                                                     <c:out value="${filiais.nomeFilial}"/>
                                                 </option>
                                             </c:forEach>
@@ -201,9 +201,9 @@ Author     : nicolas.hgyoshioka
                                     </c:if>
                                     <c:if test="${not empty codigoFilialErro}">
                                         <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
-                                            <option disabled="" selected="" hidden=""><c:out value="${codigoFilialErro}"/></option>
+                                            <option disabled="" hidden=""><c:out value="${codigoFilialErro}"/></option>
                                             <c:forEach var="filiais" items="${listaFiliais}">
-                                                <option value="<c:out value="${filiais.codigo}"/>">
+                                                <option value="<c:out value="${filiais.codigoFilial}"/>">
                                                     <c:out value="${filiais.nomeFilial}"/>
                                                 </option>
                                             </c:forEach>

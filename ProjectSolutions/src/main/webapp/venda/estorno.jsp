@@ -69,7 +69,7 @@
                     </c:if>
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
-                        <option disabled="" selected="" hidden="">Filial</option>
+                        <option disabled="" hidden="">Filial</option>
                         <c:forEach var="filial" items="${listaFiliais}">
                             <option value="<c:out value="${filial.codigoFilial}"></c:out>">
                                 <c:out value="${filial.nomeFilial}"></c:out>
@@ -78,7 +78,7 @@
                     </select>
                     <label for="produto" >Produto:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
-                        <option disabled="" selected="" hidden="">Produto</option>
+                        <option disabled="" hidden="">Produto</option>
                         <c:forEach var="produto" items="${listaProdutos}">
                             <option value="<c:out value="${produto.codigoProduto}"></c:out>">
                                 <c:out value="${produto.nomeProduto}"></c:out>

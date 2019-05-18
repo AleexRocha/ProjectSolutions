@@ -158,7 +158,7 @@ Author     : nicolas.hgyoshioka
                                 <label for="tipo" >Tipo:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="tipo" name="tipo">
-                                        <option disabled="" selected="" hidden="" value="${tipoCadastrado}">${tipoCadastrado}</option>
+                                        <option hidden="" value="${tipoCadastrado}">${tipoCadastrado}</option>
                                         <option value="Produto">Produto</option>
                                         <option value="Serviço">Serviço</option>
                                     </select>
@@ -166,14 +166,14 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty tipoErro}">
                                         <select class="custom-select inputForm" id="tipo" name="tipo">
-                                            <option disabled="" selected="" hidden="">Tipo do produto</option>
+                                            <option disabled="" hidden="">Tipo do produto</option>
                                             <option value="Produto">Produto</option>
                                             <option value="Serviço">Serviço</option>
                                         </select>
                                     </c:if>
                                     <c:if test="${not empty tipoErro}">
                                         <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
-                                            <option disabled="" selected="" hidden=""><c:out value="${tipoErro}"/></option>
+                                            <option disabled="" hidden=""><c:out value="${tipoErro}"/></option>
                                             <option value="Produto">Produto</option>
                                             <option value="Serviço">Serviço</option>
                                         </select>
@@ -183,7 +183,7 @@ Author     : nicolas.hgyoshioka
                                 <label for="filial" >Filial:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                        <option disabled="" selected="" hidden=""value="${cdFilialCadastrada}">${nomeFilialCadastrada}</option>
+                                        <option hidden="" value="${cdFilialCadastrada}">${nomeFilialCadastrada}</option>
                                         <c:forEach var="filiais" items="${listaFiliais}">
                                             <option value="<c:out value="${filiais.codigo}"/>">
                                                 <c:out value="${filiais.nomeFilial}"/>
@@ -194,7 +194,7 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty codigoFilialErro}">
                                         <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                            <option disabled="" selected="" hidden="">Filial</option>
+                                            <option disabled="" hidden="">Filial</option>
                                             <c:forEach var="filiais" items="${listaFiliais}">
                                                 <option value="<c:out value="${filiais.codigo}"/>">
                                                     <c:out value="${filiais.nomeFilial}"/>
@@ -204,7 +204,7 @@ Author     : nicolas.hgyoshioka
                                     </c:if>
                                     <c:if test="${not empty codigoFilialErro}">
                                         <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
-                                            <option disabled="" selected="" hidden=""><c:out value="${codigoFilialErro}"/></option>
+                                            <option disabled="" hidden=""><c:out value="${codigoFilialErro}"/></option>
                                             <c:forEach var="filiais" items="${listaFiliais}">
                                                 <option value="<c:out value="${filiais.codigo}"/>">
                                                     <c:out value="${filiais.nomeFilial}"/>
