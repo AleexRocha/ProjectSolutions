@@ -246,9 +246,11 @@ public class UsuarioDAO {
         Usuario sessao = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_usuario, nome, email, fk_filial, fk_setor "
-                    + "FROM tbl_usuario WHERE email = ?;");
+            PreparedStatement query = conn.prepareStatement(" SELECT u.id_usuario, u.nome, u.email, u.fk_filial, u.fk_setor, \n"
+                    + " concat(f.cidade, \" - \", f.estado) FROM tbl_usuario as u \n"
+                    + " inner join tbl_filial as f on u.fk_filial = f.id_filial where email = ?;");
 
+         
             query.setString(1, uEmail);
 
             ResultSet rs = query.executeQuery();
@@ -259,9 +261,8 @@ public class UsuarioDAO {
                 sessao.setEmail(rs.getString(3));
                 sessao.setCodigoFilial(rs.getInt(4));
                 sessao.setSetor(rs.getInt(5));
-
+                sessao.setNomeFilial(rs.getString(6));
             }
-
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);

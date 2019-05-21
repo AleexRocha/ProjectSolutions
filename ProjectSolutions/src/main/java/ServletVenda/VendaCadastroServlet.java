@@ -110,7 +110,10 @@ public class VendaCadastroServlet extends HttpServlet {
             if (httpOK) {
                 request.setAttribute("varMsgS", true);
                 request.setAttribute("msg", "Venda realizada com sucesso.");
-
+                
+                ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
+                request.setAttribute("listaProdutos", produtosVenda);
+                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
                 dispatcher.forward(request, response);
             } else {

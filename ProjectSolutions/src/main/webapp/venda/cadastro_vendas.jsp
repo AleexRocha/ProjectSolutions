@@ -86,7 +86,7 @@ Author     : nicolas.hgyoshioka
                                     <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
                                         <option disabled="" hidden="">Código do produto</option>
                                         <c:forEach var="produto" items="${listaProdutos}">
-                                            <option value="<c:out value="${produto.codigoProduto}"></c:out>">
+                                            <option value="<c:out value="${produto.codigoProduto}"/>">
                                                 <c:out value="${produto.nomeProduto}"></c:out>
                                                 </option>
                                         </c:forEach>
@@ -108,17 +108,12 @@ Author     : nicolas.hgyoshioka
                             <c:choose>
                                 <c:when test="${empty idFuncErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="idFuncionario">
-                                        <option hidden="" value="${nomeUsuario}"><c:out value="${nomeUsuario}"/></option>
+                                        <option hidden="" value="${cdFuncionario}"><c:out value="${nomeUsuario}"/></option>
                                     </select>
                                 </c:when>
                                 <c:otherwise>
                                     <select class="custom-select inputForm error" id="codigoProduto" name="idFuncionario">
-                                        <option disabled="" hidden="">${idFuncErro}</option>
-                                        <c:forEach var="usuario" items="${listaUsuarios}">
-                                            <option value="<c:out value="${usuario.idFuncionario}"></c:out>">
-                                                <c:out value="${usuario.nomeFuncionario}"></c:out>
-                                                </option>
-                                        </c:forEach>
+                                        <option hidden="" value="${cdFuncionario}"><c:out value="${nomeUsuario}"/></option>
                                     </select>
                                 </c:otherwise>
                             </c:choose>
@@ -131,12 +126,7 @@ Author     : nicolas.hgyoshioka
                             <c:choose>
                                 <c:when test="${empty codFilialErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
-                                        <option disabled="" hidden="">Código da filial</option>
-                                        <c:forEach var="filial" items="${listaFiliais}">
-                                            <option value="<c:out value="${filial.codigoFilial}"></c:out>">
-                                                <c:out value="${filial.nomeFilial}"></c:out>
-                                                </option>
-                                        </c:forEach>
+                                        <option hidden="" value="${cdFilial}"><c:out value="${nomeFilial}"/></option>
                                     </select>
                                 </c:when>
                                 <c:otherwise>
