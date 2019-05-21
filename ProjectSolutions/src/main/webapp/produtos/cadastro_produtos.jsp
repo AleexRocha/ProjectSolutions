@@ -64,12 +64,14 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <c:if test="${acao == 'editar'}">
-                        <form action="editar_produto" method="POST">
-                        </c:if>
-                        <c:if test="${empty acao}">
-                            <form action="cadastro_produto" method="POST">
-                            </c:if>
+                    <c:choose>
+                        <c:when test="${acao == 'editar'}">
+                            <form action="editar_produto" method="POST">
+                            </c:when>
+                            <c:otherwise>
+                                <form action="cadastro_produto" method="POST">
+                                </c:otherwise>
+                            </c:choose>
 
                             <c:if test="${varMsg == true}">
                                 <div class="alert alert-danger" role="alert">
@@ -82,137 +84,154 @@ Author     : nicolas.hgyoshioka
 
                             <div class="form-group">
                                 <label for="codigoProduto" class="sr-only">Código:</label>
-                                <c:if test="${acao == 'editar'}">
-                                    <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
-                                           value="${codigo}" name="codigoProduto">
-                                </c:if>
-                                <c:if test="${empty acao}">   
-                                    <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
-                                           placeholder="Codigo do produto" name="codigoProduto">
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
+                                        <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
+                                               value="${codigo}" name="codigoProduto">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
+                                               placeholder="Codigo do produto" name="codigoProduto">
+                                    </c:otherwise>
+                                </c:choose>
 
                                 <label for="nomeProduto">Nome:</label>
-                                <c:if test="${acao == 'editar'}">
-                                    <input type="text" class="form-control inputForm" id="nome"
-                                           value="${nome}" name="nome" minlength="0" maxlength="50">
-                                </c:if>
-                                <c:if test="${empty acao}">
-                                    <c:if test="${empty nomeErro}">
-                                        <input type="text" class="form-control inputForm" id="nome"
-                                               placeholder="Nome do produto" name="nome" minlength="0" maxlength="50">
-                                    </c:if>
-                                    <c:if test="${not empty nomeErro}">         
-                                        <input type="text" class="form-control inputForm error" id="nome"
-                                               placeholder="${nomeErro}" name="nome" minlength="0" maxlength="50">                                  
-                                    </c:if>    
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
+                                        <c:if test="${empty nomeErro}">
+                                            <input type="text" class="form-control inputForm" id="nome"
+                                                   value="${nome}" name="nome" minlength="0" maxlength="50">                                            
+                                        </c:if>
+                                        <c:if test="${not empty nomeErro}">         
+                                            <input type="text" class="form-control inputForm error" id="nome"
+                                                   placeholder="${nomeErro}" name="nome" minlength="0" maxlength="50">                                  
+                                        </c:if>    
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:if test="${empty nomeErro}">
+                                            <input type="text" class="form-control inputForm" id="nome"
+                                                   placeholder="Nome do produto" name="nome" minlength="0" maxlength="50">
+                                        </c:if>
+                                        <c:if test="${not empty nomeErro}">         
+                                            <input type="text" class="form-control inputForm error" id="nome"
+                                                   placeholder="${nomeErro}" name="nome" minlength="0" maxlength="50">                                  
+                                        </c:if>    
+                                    </c:otherwise> 
+                                </c:choose>
 
                                 <label for="descricaoProduto">Descrição:</label>
-                                <c:if test="${acao == 'editar'}">
-                                    <input type="text" class="form-control inputForm" id="descricao"
-                                           value="${descricao}" name="descricao" minlength="0" maxlength="100">
-                                </c:if>
-                                <c:if test="${empty acao}">
-                                    <c:if test="${empty descricaoErro}">
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
+                                        <input type="text" class="form-control inputForm" id="descricao"
+                                               value="${descricao}" name="descricao" minlength="0" maxlength="100">
+                                    </c:when>
+                                    <c:otherwise>
                                         <input type="text" class="form-control inputForm" id="descricao"
                                                placeholder="Descrição do produto" name="descricao" minlength="0" maxlength="100">
-                                    </c:if>
-                                    <c:if test="${not empty descricaoErro}">         
-                                        <input type="text" class="form-control inputForm error" id="descricao"
-                                               placeholder="${descricaoErro}" name="descricao" minlength="0" maxlength="100">                            
-                                    </c:if> 
-                                </c:if>
+                                    </c:otherwise>
+                                </c:choose>
 
                                 <label for="quantidadeEstoque">Quantidade em estoque:</label>
-                                <c:if test="${acao == 'editar'}">
-                                    <input type="number" class="form-control inputForm" id="quantidadeEstoque"
-                                           value="${qtd_estoque}" name="quantidadeEstoque" min="0" minlength="0" maxlength="11">
-                                </c:if>
-                                <c:if test="${empty acao}">
-                                    <c:if test="${empty quantidadeEstoqueErro}">
-                                        <input type="number" class="form-control inputForm" id="quantidadeEstoque"
-                                               placeholder="Quantidade em estoque" name="quantidadeEstoque" min="0" minlength="0" maxlength="11">
-                                    </c:if>
-                                    <c:if test="${not empty quantidadeEstoqueErro}">        
-                                        <input type="number" class="form-control inputForm error" id="quantidadeEstoque"
-                                               placeholder="${quantidadeEstoqueErro}" name="quantidadeEstoque" min="0" minlength="0" maxlength="11">
-                                    </c:if> 
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
+                                        <c:if test="${empty quantidadeEstoqueErro}">
+                                            <input type="number" class="form-control inputForm" id="quantidadeEstoque"
+                                                   value="${qtd_estoque}" name="quantidadeEstoque" min="0" minlength="0" maxlength="11">
+                                        </c:if>
+                                        <c:if test="${not empty quantidadeEstoqueErro}">
+                                            <input type="number" class="form-control inputForm error" id="quantidadeEstoque"
+                                                   placeholder="${quantidadeEstoqueErro}" name="quantidadeEstoque" min="0" minlength="0" maxlength="11">
+                                        </c:if>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:if test="${empty quantidadeEstoqueErro}">
+                                            <input type="number" class="form-control inputForm" id="quantidadeEstoque"
+                                                   placeholder="Quantidade em estoque" name="quantidadeEstoque" min="0" minlength="0" maxlength="11">
+                                        </c:if>
+                                        <c:if test="${not empty quantidadeEstoqueErro}">        
+                                            <input type="number" class="form-control inputForm error" id="quantidadeEstoque"
+                                                   placeholder="${quantidadeEstoqueErro}" name="quantidadeEstoque" min="0" minlength="0" maxlength="11">
+                                        </c:if> 
+                                    </c:otherwise>
+                                </c:choose>
 
                                 <label for="valorProduto">Valor Unitário:</label>
-                                <c:if test="${acao == 'editar'}">                                  
-                                    <input onkeypress="valorProduto()" type="text" class="form-control inputForm" id="valorUnitario"
-                                           value="${valor_unidade}" name="valorUnitario" minlength="0" maxlength="9">
-                                </c:if>
-                                <c:if test="${empty acao}">
-                                    <c:if test="${empty valorUnitarioErro}">
-                                        <input onkeypress="valorProduto()" type="text" class="form-control inputForm" id="valorUnitario"
-                                               placeholder="Valor Unitário" name="valorUnitario" minlength="0" maxlength="9">
-                                    </c:if>
-                                    <c:if test="${not empty valorUnitarioErro}">         
-                                        <input onkeypress="valorProduto()" type="text" class="form-control inputForm error" id="valorUnitario"
-                                               placeholder="${valorUnitarioErro}" name="valorUnitario" min="0" minlength="0" maxlength="9">
-                                    </c:if> 
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
+                                        <c:if test="${empty valorUnitarioErro}">
+                                            <input onkeypress="valorProduto()" type="text" class="form-control inputForm" id="valorUnitario"
+                                                   value="${valor_unidade}" name="valorUnitario" minlength="0" maxlength="9">
+                                        </c:if>
+                                        <c:if test="${not empty valorUnitarioErro}">         
+                                            <input onkeypress="valorProduto()" type="text" class="form-control inputForm error" id="valorUnitario"
+                                                   placeholder="${valorUnitarioErro}" name="valorUnitario" min="0" minlength="0" maxlength="9">
+                                        </c:if> 
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:if test="${empty valorUnitarioErro}">
+                                            <input onkeypress="valorProduto()" type="text" class="form-control inputForm" id="valorUnitario"
+                                                   placeholder="Valor Unitário" name="valorUnitario" minlength="0" maxlength="9">
+                                        </c:if>
+                                        <c:if test="${not empty valorUnitarioErro}">         
+                                            <input onkeypress="valorProduto()" type="text" class="form-control inputForm error" id="valorUnitario"
+                                                   placeholder="${valorUnitarioErro}" name="valorUnitario" min="0" minlength="0" maxlength="9">
+                                        </c:if> 
+                                    </c:otherwise>
+                                </c:choose>                               
 
                                 <label for="tipo" >Tipo:</label>
-                                <c:if test="${acao == 'editar'}">
-                                    <select class="custom-select inputForm" id="tipo" name="tipo">
-                                        <option hidden="" value="${tipoCadastrado}">${tipoCadastrado}</option>
-                                        <option value="Produto">Produto</option>
-                                        <option value="Serviço">Serviço</option>
-                                    </select>
-                                </c:if>
-                                <c:if test="${empty acao}">
-                                    <c:if test="${empty tipoErro}">
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
                                         <select class="custom-select inputForm" id="tipo" name="tipo">
-                                            <option disabled="" hidden="">Tipo do produto</option>
+                                            <option hidden="" value="${tipoCadastrado}">${tipoCadastrado}</option>
                                             <option value="Produto">Produto</option>
                                             <option value="Serviço">Serviço</option>
                                         </select>
-                                    </c:if>
-                                    <c:if test="${not empty tipoErro}">
-                                        <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
-                                            <option disabled="" hidden=""><c:out value="${tipoErro}"/></option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <select class="custom-select inputForm" id="tipo" name="tipo">
+                                            <option disabled="" selected="" hidden="">Tipo do produto</option>
                                             <option value="Produto">Produto</option>
                                             <option value="Serviço">Serviço</option>
                                         </select>
-                                    </c:if>
-                                </c:if>
+                                    </c:otherwise>
+                                </c:choose>
 
                                 <label for="filial" >Filial:</label>
-                                <c:if test="${acao == 'editar'}">
-                                    <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                        <option hidden="" value="${cdFilialCadastrada}">${nomeFilialCadastrada}</option>
-                                        <c:forEach var="filiais" items="${listaFiliais}">
-                                            <option value="<c:out value="${filiais.codigo}"/>">
-                                                <c:out value="${filiais.nomeFilial}"/>
-                                            </option>
-                                        </c:forEach>
-                                    </select>
-                                </c:if>
-                                <c:if test="${empty acao}">
-                                    <c:if test="${empty codigoFilialErro}">
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
                                         <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                            <option disabled="" hidden="">Filial</option>
+                                            <option hidden="" value="${cdFilialCadastrada}">${nomeFilialCadastrada}</option>
                                             <c:forEach var="filiais" items="${listaFiliais}">
                                                 <option value="<c:out value="${filiais.codigo}"/>">
                                                     <c:out value="${filiais.nomeFilial}"/>
                                                 </option>
                                             </c:forEach>
                                         </select>
-                                    </c:if>
-                                    <c:if test="${not empty codigoFilialErro}">
-                                        <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
-                                            <option disabled="" hidden=""><c:out value="${codigoFilialErro}"/></option>
-                                            <c:forEach var="filiais" items="${listaFiliais}">
-                                                <option value="<c:out value="${filiais.codigo}"/>">
-                                                    <c:out value="${filiais.nomeFilial}"/>
-                                                </option>
-                                            </c:forEach>
-                                        </select>
-                                    </c:if>
-                                </c:if>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:if test="${empty codigoFilialErro}">
+                                            <select class="custom-select inputForm" id="filial" name="codigoFilial">
+                                                <option disabled="" hidden="">Filial</option>
+                                                <c:forEach var="filiais" items="${listaFiliais}">
+                                                    <option value="<c:out value="${filiais.codigo}"/>">
+                                                        <c:out value="${filiais.nomeFilial}"/>
+                                                    </option>
+                                                </c:forEach>
+                                            </select>
+                                        </c:if>
+                                        <c:if test="${not empty codigoFilialErro}">
+                                            <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
+                                                <option disabled="" hidden=""><c:out value="${codigoFilialErro}"/></option>
+                                                <c:forEach var="filiais" items="${listaFiliais}">
+                                                    <option value="<c:out value="${filiais.codigo}"/>">
+                                                        <c:out value="${filiais.nomeFilial}"/>
+                                                    </option>
+                                                </c:forEach>
+                                            </select>
+                                        </c:if>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="far fa-save"></i>

@@ -1,6 +1,8 @@
 package ServletProduto;
 
+import DAO.FilialDAO;
 import DAO.ProdutoDAO;
+import Model.Filial;
 import Model.Produto;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class ProdutoEditarServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String fCodigo = request.getParameter("codigoProduto");
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
@@ -63,15 +65,21 @@ public class ProdutoEditarServlet extends HttpServlet {
 
         if (error) {
             Produto produto = ProdutoDAO.getProduto(Integer.parseInt(fCodigo));
+            ArrayList<Filial> filiais = FilialDAO.getFiliais();
 
             request.setAttribute("acao", "editar");
             request.setAttribute("codigo", produto.getCodigo());
             request.setAttribute("nome", produto.getNome());
             request.setAttribute("descricao", produto.getDescricao());
             request.setAttribute("tipo", produto.getTipo());
-            request.setAttribute("codigoFilial", produto.getCodigoFilial());
-            request.setAttribute("quantidadeEstoque", produto.getQuantidadeEstoque());
-            request.setAttribute("valorUnitario", produto.getValorUnitario());
+            request.setAttribute("tipoCadastrado", produto.getTipo());
+            request.setAttribute("cdFilialCadastrada", produto.getCodigoFilial());
+            request.setAttribute("nomeFilialCadastrada", produto.getNomeFilial());
+            request.setAttribute("listaFiliais", filiais);
+            request.setAttribute("qtd_estoque", produto.getQuantidadeEstoque());
+            
+            String valor_unitario = String.valueOf(produto.getValorUnitario()).replace(".", ",");
+            request.setAttribute("valor_unidade", "R$" + valor_unitario);
 
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Erro ao editar o produto, verifique os campos e tente novamente.");
