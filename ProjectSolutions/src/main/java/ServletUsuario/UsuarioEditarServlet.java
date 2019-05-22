@@ -96,7 +96,7 @@ public class UsuarioEditarServlet extends HttpServlet {
                 request.setAttribute("listaUsuarios", usuarios);
 
                 request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Filial editada com sucesso.");
+                request.setAttribute("msg", "Usuario editado com sucesso.");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                 dispatcher.forward(request, response);
