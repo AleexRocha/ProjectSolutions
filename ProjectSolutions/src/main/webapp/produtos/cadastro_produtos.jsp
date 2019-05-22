@@ -212,7 +212,7 @@ Author     : nicolas.hgyoshioka
                                     <c:otherwise>
                                         <c:if test="${empty codigoFilialErro}">
                                             <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                                <option disabled="" hidden="">Filial</option>
+                                                <option selected = "" disabled="" hidden="">Filial</option>
                                                 <c:forEach var="filiais" items="${listaFiliais}">
                                                     <option value="<c:out value="${filiais.codigo}"/>">
                                                         <c:out value="${filiais.nomeFilial}"/>

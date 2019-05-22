@@ -157,7 +157,7 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty setorErro}">
                                         <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                            <option disabled="" hidden="">Setor</option>
+                                            <option selected = "" disabled="" hidden="">Setor</option>
                                             <c:forEach var="setores" items="${listaSetores}">  
                                                 <option value="<c:out value="${setores.setor}"></c:out>">
                                                     <c:out value="${setores.nomeSetor}"/> 
@@ -191,7 +191,7 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty codigoFilialErro}">
                                         <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                            <option disabled="" hidden="">Filial</option>
+                                            <option selected="" disabled="" hidden="">Filial</option>
                                             <c:forEach var="filiais" items="${listaFiliais}">
                                                 <option value="${filiais.codigoFilial}">
                                                     <c:out value="${filiais.nomeFilial}"/>

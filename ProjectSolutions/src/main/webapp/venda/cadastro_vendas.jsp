@@ -84,7 +84,7 @@ Author     : nicolas.hgyoshioka
                             <c:choose>
                                 <c:when test="${empty codProdutoErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
-                                        <option disabled="" hidden="">Código do produto</option>
+                                        <option selected ="" disabled="" hidden="">Código do produto</option>
                                         <c:forEach var="produto" items="${listaProdutos}">
                                             <option value="<c:out value="${produto.codigoProduto}"/>">
                                                 <c:out value="${produto.nomeProduto}"></c:out>
@@ -158,7 +158,7 @@ Author     : nicolas.hgyoshioka
                             <i class="far fa-save"></i>
                             Salvar venda
                         </button>
-                        <button type="submit" class="btn btn-light btn-block">
+                        <button type="reset" class="btn btn-light btn-block">
                             <i class="fas fa-ban"></i>
                             Cancelar
                         </button>
