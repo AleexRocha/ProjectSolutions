@@ -92,7 +92,7 @@ Author     : nicolas.hgyoshioka
                                             <c:forEach var="produto" items="${listaProdutos}">
                                                 <option value="<c:out value="${produto.codigoProduto}"/>">
                                                     <c:out value="${produto.nomeProduto}"></c:out>
-                                                    </option>
+                                                </option>
                                             </c:forEach>
                                         </select>
                                     </c:when>
@@ -108,8 +108,31 @@ Author     : nicolas.hgyoshioka
                                     </c:otherwise>
                                 </c:choose>
                                 <!--<input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">-->
-                            </span>
+                                <label for="quantidade">Quantidade:</label>
+                                <c:choose>
+                                    <c:when test="${empty quantidadeErro}">
+                                        <input type="number" class="form-control inputForm col-5" id="quantidade"
+                                               placeholder="Quantidade" name="quantidade" min="0">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="number" class="form-control inputForm error" id="quantidade"
+                                               placeholder="${quantidadeErro}" name="quantidade" min="0">
+                                    </c:otherwise>
+                                </c:choose>
 
+                                <label for="valor">Valor:</label>
+                                <c:choose>
+                                    <c:when test="${empty quantidadeErro}">
+                                        <input type="number" class="form-control inputForm col-5" id="valor"
+                                               placeholder="Valor do Produto" name="valor" min="0">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="number" class="form-control inputForm error" id="quantidade"
+                                               placeholder="${quantidadeErro}" name="quantidade" min="0">
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
+                            
                             <label for="idFuncionario">ID do Funcionário:</label>
                             <c:choose>
                                 <c:when test="${empty idFuncErro}">

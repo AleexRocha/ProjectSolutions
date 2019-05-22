@@ -35,10 +35,21 @@ $(function () {
         $('<p>' +
                 '<label for="codigoProduto">Código do produto:</label>' +
                 '<a href="javascript:void(0)" id="removerInput" style="float: right;">' +
-                '<span><i class="far fa-trash-alt"></i> Remover produto </span>' +
+                    '<span><i class="far fa-trash-alt"></i> Remover produto </span>' +
                 '</a>' +
-                '<input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">' +
-                '</p>').appendTo(container);
+                '<select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">' +
+                    '<option selected ="" disabled="" hidden="">Código do produto</option>' +
+                    '<c:forEach var="produto" items="${listaProdutos}">' +
+                        '<option value="<c:out value="${produto.codigoProduto}"/>">' +
+                            '<c:out value="${produto.nomeProduto}"></c:out>' +
+                        '</option>' +
+                    '</c:forEach>' +
+                '</select>' +
+                '<label for="quantidade">Quantidade:</label>' + 
+                '<input type="number" class="form-control inputForm col-5" id="quantidade" placeholder="Quantidade" name="quantidade" min="0">' + 
+                '<label for="valor">Valor:</label>' + 
+                '<input type="number" class="form-control inputForm col-5" id="valor" placeholder="Valor do Produto" name="valor" min="0">' +
+        '</p>').appendTo(container);
         return false;
     });
     $(document).on('click', '#removerInput', function () {
