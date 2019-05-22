@@ -180,8 +180,17 @@ Author     : nicolas.hgyoshioka
                                 </c:choose>
 
                                 <label for="confirmarSenha">Confirmar senha:</label>
-                                <input type="password" class="form-control inputForm" id="confirmarSenha" 
-                                       placeholder="Confirmar senha" name="confirmarSenha" minlength="0" maxlength="25">
+                                <c:choose>
+                                    <c:when test="${empty cSenhaError}">
+                                        <input type="password" class="form-control inputForm" id="confirmarSenha" 
+                                            placeholder="Confirmar senha" name="confirmarSenha" minlength="0" maxlength="25">
+                                    </c:when>
+                                    <c:otherwise>
+                                         <input type="password" class="form-control inputForm error" id="confirmarSenha" 
+                                            placeholder="${cSenhaError}" name="confirmarSenha" minlength="0" maxlength="25">
+                                    </c:otherwise>
+                                </c:choose>
+                                
 
                                 <label for="setor" >Setor:</label>
                                 <c:choose>
