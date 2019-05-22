@@ -1,4 +1,4 @@
-//Fecha os alerts de sucesso e erro 
+// Fecha os alerts de sucesso e erro 
 $(function () {
     $(".close").click(function (e) {
         e.preventDefault();
@@ -7,7 +7,7 @@ $(function () {
     });
 });
 
-//Mascara para os campos de valor
+// Mascara para os campos de valor
 function valorProduto() {
     var valorUnitario = document.getElementById('valorUnitario').value;
     if (valorUnitario.length === 0) {
@@ -27,3 +27,22 @@ function valorProduto() {
         document.getElementById('valorUnitario').value = maskValor;
     }
 }
+
+// Adiciona e remove o input de produto
+$(function () {
+    var container = $('#divProduto');
+    $(document).on('click', '#addInput', function () {
+        $('<p>' +
+                '<label for="codigoProduto">Código do produto:</label>' +
+                '<a href="javascript:void(0)" id="removerInput" style="float: right;">' +
+                '<span><i class="far fa-trash-alt"></i> Remover produto </span>' +
+                '</a>' +
+                '<input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">' +
+                '</p>').appendTo(container);
+        return false;
+    });
+    $(document).on('click', '#removerInput', function () {
+        $(this).parents('p').remove();
+        return false;
+    });
+});

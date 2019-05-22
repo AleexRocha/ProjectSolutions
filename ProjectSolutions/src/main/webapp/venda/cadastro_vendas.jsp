@@ -80,29 +80,35 @@ Author     : nicolas.hgyoshioka
                         </c:if>
 
                         <div class="form-group">
-                            <label for="codigoProduto">Código do produto:</label>
-                            <c:choose>
-                                <c:when test="${empty codProdutoErro}">
-                                    <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
-                                        <option selected ="" disabled="" hidden="">Código do produto</option>
-                                        <c:forEach var="produto" items="${listaProdutos}">
-                                            <option value="<c:out value="${produto.codigoProduto}"/>">
-                                                <c:out value="${produto.nomeProduto}"></c:out>
-                                                </option>
-                                        </c:forEach>
-                                    </select>
-                                </c:when>
-                                <c:otherwise>
-                                    <select class="custom-select inputForm error" id="codigoProduto" name="codigoProduto">
-                                        <option disabled="" hidden="">${codProdutoErro}</option>
-                                        <c:forEach var="produto" items="${listaProdutos}">
-                                            <option value="<c:out value="${produto.codigoProduto}"></c:out>">
-                                                <c:out value="${produto.nomeProduto}"></c:out>
-                                                </option>
-                                        </c:forEach>
-                                    </select>
-                                </c:otherwise>
-                            </c:choose>
+                            <span id="divProduto">
+                                <label for="codigoProduto">Código do produto:</label>
+                                <a href="javascript:void(0)" id="addInput" style="float: right; text-decoration: none;">
+                                    <span><i class="fas fa-plus"></i> Adicionar novo produto </span>
+                                </a>
+                                <c:choose>
+                                    <c:when test="${empty codProdutoErro}">
+                                        <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
+                                            <option selected ="" disabled="" hidden="">Código do produto</option>
+                                            <c:forEach var="produto" items="${listaProdutos}">
+                                                <option value="<c:out value="${produto.codigoProduto}"/>">
+                                                    <c:out value="${produto.nomeProduto}"></c:out>
+                                                    </option>
+                                            </c:forEach>
+                                        </select>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <select class="custom-select inputForm error" id="codigoProduto" name="codigoProduto">
+                                            <option disabled="" hidden="">${codProdutoErro}</option>
+                                            <c:forEach var="produto" items="${listaProdutos}">
+                                                <option value="<c:out value="${produto.codigoProduto}"></c:out>">
+                                                    <c:out value="${produto.nomeProduto}"></c:out>
+                                                    </option>
+                                            </c:forEach>
+                                        </select>
+                                    </c:otherwise>
+                                </c:choose>
+                                <!--<input type="number" class="form-control inputForm" id="codigoProduto" placeholder="Código do produto" name="codigoProduto">-->
+                            </span>
 
                             <label for="idFuncionario">ID do Funcionário:</label>
                             <c:choose>
