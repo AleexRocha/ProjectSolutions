@@ -86,3 +86,16 @@ table td.coluna {
     float: right;
     margin: -38px 32px 0px 0px;
 }
+
+footer {
+    /*position:absolute;*/
+    bottom:0;
+    width:100%;
+}
+.title-footer{
+    margin-top: 30px;
+    color: #fa5c00!important;
+}
+.footer-border-top{
+    border-top: 1px solid #ffc107 !important;
+}

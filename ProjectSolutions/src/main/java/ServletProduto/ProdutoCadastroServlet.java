@@ -22,7 +22,8 @@ public class ProdutoCadastroServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        request.setCharacterEncoding("UTF-8");
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");

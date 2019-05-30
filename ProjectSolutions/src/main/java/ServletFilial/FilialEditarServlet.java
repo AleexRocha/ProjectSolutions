@@ -21,6 +21,7 @@ public class FilialEditarServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
         String fCodigo = request.getParameter("codigoFilial");
         String fLogradouro = request.getParameter("logradouro");
         String fNumero = request.getParameter("numero");

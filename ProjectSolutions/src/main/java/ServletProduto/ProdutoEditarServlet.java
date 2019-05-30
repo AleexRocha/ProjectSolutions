@@ -22,7 +22,8 @@ public class ProdutoEditarServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        request.setCharacterEncoding("UTF-8");
         String fCodigo = request.getParameter("codigoProduto");
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
@@ -77,7 +78,7 @@ public class ProdutoEditarServlet extends HttpServlet {
             request.setAttribute("nomeFilialCadastrada", produto.getNomeFilial());
             request.setAttribute("listaFiliais", filiais);
             request.setAttribute("qtd_estoque", produto.getQuantidadeEstoque());
-            
+
             String valor_unitario = String.valueOf(produto.getValorUnitario()).replace(".", ",");
             request.setAttribute("valor_unidade", "R$" + valor_unitario);
 

@@ -13,7 +13,6 @@ Author     : nicolas.hgyoshioka
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Relatório</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../assets/css/navbar-top.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
@@ -118,7 +117,24 @@ Author     : nicolas.hgyoshioka
                     </table>
                 </div>
             </div>
+            <footer class="pt-4 my-md-5 pt-md-5 footer-border-top">
+                <div class="row text-center">
+                    <div class="col-12 col-md">
+                        <img class="mb-2" src="../assets/img/logo.png" alt="">
+                        <small class="d-block mb-3 text-muted">&copy; Project Solutions - 2019</small>
+                    </div>
+                    <div class="col-12 col-md">
+                        <h5 class="title-footer">Project Solutions</h5>
+                        <ul class="list-unstyled text-small">
+                            <li class="text-muted">Alexsander Medeiros</li>
+                            <li class="text-muted">Daniel Morais</li>
+                            <li class="text-muted">Guilherme Ricardo</li>
+                            <li class="text-muted">Guilherme Pereira</li>
+                            <li class="text-muted">Nicolas Yoshioka</li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </div>
-</body>
+    </body>
 </html>

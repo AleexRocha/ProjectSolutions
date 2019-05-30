@@ -21,6 +21,7 @@ public class UsuarioEditarServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
         String cCodigo = request.getParameter("codigoUsuario");
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");

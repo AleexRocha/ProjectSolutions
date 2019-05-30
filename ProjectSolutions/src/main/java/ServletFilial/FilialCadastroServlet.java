@@ -21,6 +21,7 @@ public class FilialCadastroServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
         String fLogradouro = request.getParameter("logradouro");
         String fNumero = request.getParameter("numero");
         String fCep = request.getParameter("cep");

@@ -17,6 +17,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
