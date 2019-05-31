@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Relatório</title>
+        <title>Estorno</title>
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -41,41 +41,53 @@
         </header>
         <div class="container">
             <div class="row">
-                <form action="select_estorno" method="post">
-                    <c:if test="${varMsg == true}">
-                        <div class="alert alert-danger" role="alert">
-                            <c:out value="${msg}"/>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                <div class="col-12">
+                    <form action="select_estorno" method="post">
+                        <c:if test="${varMsg == true}">
+                            <div class="alert alert-danger" role="alert">
+                                <c:out value="${msg}"/>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </c:if>
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="filial" >Filial:</label>
+                                <select class="custom-select inputForm" id="codigoFilial" name="codigoFilial">
+                                    <option disabled="" selected="" hidden="">Filial</option>
+                                    <c:forEach var="filial" items="${listaFiliais}">
+                                        <option value="<c:out value="${filial.codigoFilial}"></c:out>">
+                                            <c:out value="${filial.nomeFilial}"></c:out>
+                                            </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="produto" >Produto:</label>
+                                <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
+                                    <option disabled="" selected="" hidden="">Produto</option>
+                                    <c:forEach var="produto" items="${listaProdutos}">
+                                        <option value="<c:out value="${produto.codigoProduto}"></c:out>">
+                                            <c:out value="${produto.nomeProduto}"></c:out>
+                                            </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="cpfCliente">CPF do cliente:</label>
+                                <input type="number" class="form-control inputForm" id="cpfCliente"
+                                       placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="15">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-light" style="margin: 32px 0 0 0;">
+                                    <i class="far fa-file-alt"></i>
+                                    Buscar compra
+                                </button>
+                            </div>
                         </div>
-                    </c:if>
-                    <label for="filial" >Filial:</label>
-                    <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
-                        <option disabled="" selected="" hidden="">Filial</option>
-                        <c:forEach var="filial" items="${listaFiliais}">
-                            <option value="<c:out value="${filial.codigoFilial}"></c:out>">
-                                <c:out value="${filial.nomeFilial}"></c:out>
-                                </option>
-                        </c:forEach>
-                    </select>
-                    <label for="produto" >Produto:</label>
-                    <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
-                        <option disabled="" selected="" hidden="">Produto</option>
-                        <c:forEach var="produto" items="${listaProdutos}">
-                            <option value="<c:out value="${produto.codigoProduto}"></c:out>">
-                                <c:out value="${produto.nomeProduto}"></c:out>
-                                </option>
-                        </c:forEach>
-                    </select>
-                    <label for="cpfCliente">CPF do cliente:</label>
-                    <input type="number" class="form-control inputForm" id="cpfCliente"
-                           placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="15">
-                    <button class="btn btn-light">
-                        <i class="far fa-file-alt"></i>
-                        Buscar
-                    </button>
-                </form>
+                    </form>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
