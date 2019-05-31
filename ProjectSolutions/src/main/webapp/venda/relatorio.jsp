@@ -60,7 +60,7 @@ Author     : nicolas.hgyoshioka
                             <div class="col-md-3">
                                 <label for="filial" >Filial:</label>
                                 <select class="custom-select inputForm" id="filial" name="filial">
-                                    <option disabled="" hidden="">Filial</option>
+                                    <option disabled="" selected="" hidden="">Filial</option>
                                     <c:forEach var="filiais" items="${listaFiliais}">
                                         <option value="<c:out value="${filiais.codigo}"></c:out>">
                                             <c:out value="${filiais.nomeFilial}"/>

@@ -28,22 +28,6 @@
                         <form action="cadastro_vendas">
                             <button type="submit" class="btn nav-link nav-text">Vendas</button>
                         </form>                     
-                        <!--                    </li>
-                                            <li class="nav-item">
-                                                <form action="../produtos/listagem_produtos" method="GET">
-                                                    <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                                                </form>
-                                            </li>
-                                            <li class="nav-item">
-                                                <form action="../ti/listagem_filiais" method="GET">
-                                                    <button type="submit" class="btn nav-link nav-text" >Filiais</button>
-                                                </form>
-                                            </li>
-                                            <li class="nav-item">
-                                                <form action="../ti/listagem_usuarios" method="GET">
-                                                    <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
-                                                </form>
-                                            </li>-->
                 </ul>
                 <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nomeUsuario}"/> 
                 <form action="../venda/logout" method="POST">
@@ -68,7 +52,7 @@
                     </c:if>
                     <label for="filial" >Filial:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
-                        <option disabled="" hidden="">Filial</option>
+                        <option disabled="" selected="" hidden="">Filial</option>
                         <c:forEach var="filial" items="${listaFiliais}">
                             <option value="<c:out value="${filial.codigoFilial}"></c:out>">
                                 <c:out value="${filial.nomeFilial}"></c:out>
@@ -77,7 +61,7 @@
                     </select>
                     <label for="produto" >Produto:</label>
                     <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
-                        <option disabled="" hidden="">Produto</option>
+                        <option disabled="" selected="" hidden="">Produto</option>
                         <c:forEach var="produto" items="${listaProdutos}">
                             <option value="<c:out value="${produto.codigoProduto}"></c:out>">
                                 <c:out value="${produto.nomeProduto}"></c:out>
