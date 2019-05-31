@@ -54,31 +54,47 @@ Author     : nicolas.hgyoshioka
         </header>
         <div class="container">
             <div class="row">
-                <form action="gerar_relatorio" method="get">
-                    <label for="filial" >Filial:</label>
-                    <select class="custom-select inputForm" id="filial" name="filial">
-                        <option disabled="" hidden="">Filial</option>
-                        <c:forEach var="filiais" items="${listaFiliais}">
-                            <option value="<c:out value="${filiais.codigo}"></c:out>">
-                                <c:out value="${filiais.nomeFilial}"/>
-                            </option>
-                        </c:forEach>
-                    </select>
-                    <label for="dataDe">De:</label>
-                    <input type="date" class="form-control inputForm" id="dataDe" name="dataDe">
-                    <label for="dataAte">Ate:</label>
-                    <input type="date" class="form-control inputForm" id="dataAte" name="dataAte">
-                    <button class="btn btn-light">
-                        <i class="far fa-file-alt"></i>
-                        Gerar relatorio
-                    </button>
-                </form>
-                <form action="gerar_excel" method="get">
-                    <button class="btn btn-success">
-                        <i class="far fa-file-excel"></i>
-                        Exportar
-                    </button>
-                </form>
+                <div class="col-12">
+                    <form action="gerar_relatorio" method="get">
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="filial" >Filial:</label>
+                                <select class="custom-select inputForm" id="filial" name="filial">
+                                    <option disabled="" hidden="">Filial</option>
+                                    <c:forEach var="filiais" items="${listaFiliais}">
+                                        <option value="<c:out value="${filiais.codigo}"></c:out>">
+                                            <c:out value="${filiais.nomeFilial}"/>
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="form-row col-md-5">
+                                <div class="col-md-6">
+                                    <label for="dataDe">De:</label>
+                                    <input type="date" class="form-control inputForm" id="dataDe" name="dataDe">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="dataAte">Ate:</label>
+                                    <input type="date" class="form-control inputForm" id="dataAte" name="dataAte">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-light" style="margin: 32px 176px 0 0; float: right">
+                                    <i class="far fa-file-alt"></i>
+                                    Gerar relatorio
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-md-12">
+                        <form action="gerar_excel" method="get" style="float: right; margin:-39px -15px 0 0;">
+                            <button class="btn btn-success">
+                                <i class="far fa-file-excel"></i>
+                                Exportar Para Excel
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -86,15 +102,15 @@ Author     : nicolas.hgyoshioka
                     <table class="table table-striped">
                         <thead class="coluna" >
                             <tr>
-                                <th scope="col">Código da venda</th>
+                                <th scope="col" style="width: 1px">Código da venda</th>
                                 <th scope="col">Nome do produto</th>
-                                <th scope="col">Código do produto</th>
-                                <th scope="col">Quantidade vendida</th>
-                                <th scope="col">Valor total</th>
+                                <th scope="col" style="width: 1px">Código do produto</th>
+                                <th scope="col" style="width: 1px">Quantidade vendida</th>
+                                <th scope="col" style="width: 1px">Valor total</th>
                                 <th scope="col">CPF do cliente</th>
-                                <th scope="col">Código da filial</th>
+                                <th scope="col" style="width: 1px">Código da filial</th>
                                 <th scope="col">Nome da filial</th>
-                                <th scope="col">ID do funcionário</th>
+                                <th scope="col" style="width: 1px">ID do funcionário</th>
                                 <th scope="col">Data da venda</th>
                             </tr>
                         </thead>
