@@ -86,12 +86,13 @@ Author     : nicolas.hgyoshioka
                                 </a>
                                 <c:choose>
                                     <c:when test="${empty codProdutoErro}">
-                                        <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
+                                        <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto" onchange="setValor()">
                                             <option selected ="" disabled="" hidden="">Produto</option>
                                             <c:forEach var="produto" items="${listaProdutos}">
+                                                <option id="valorUnitario" value="${produto.valorUnidade}" hidden=""></option> 
                                                 <option value="<c:out value="${produto.codigoProduto}"/>">
                                                     <c:out value="${produto.nomeProduto}"></c:out>
-                                                    </option>
+                                                </option>
                                             </c:forEach>
                                         </select>
                                     </c:when>
@@ -111,8 +112,8 @@ Author     : nicolas.hgyoshioka
                                         <label for="quantidade">Quantidade:</label>
                                         <c:choose>
                                             <c:when test="${empty quantidadeErro}">
-                                                <input type="number" class="form-control inputForm" id="quantidade"
-                                                       placeholder="Quantidade" name="quantidade" min="0">
+                                                <input id="fieldQtd" type="number" class="form-control inputForm" id="quantidade"
+                                                       placeholder="Quantidade" name="quantidade" min="1" onchange="setValor2()">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="number" class="form-control inputForm error" id="quantidade"
@@ -124,7 +125,7 @@ Author     : nicolas.hgyoshioka
                                         <label for="valor">Valor:</label>
                                         <c:choose>
                                             <c:when test="${empty quantidadeErro}">
-                                                <input type="number" class="form-control inputForm" id="valor"
+                                                <input id="fieldValorTotal" type="number" class="form-control inputForm" id="valor"
                                                        placeholder="Valor do Produto" name="valor" min="0">
                                             </c:when>
                                             <c:otherwise>
@@ -220,5 +221,18 @@ Author     : nicolas.hgyoshioka
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
+        <script>
+            function setValor(){            
+               var valor = document.getElementById("valorUnitario").value;
+               document.getElementById("fieldValorTotal").value = valor;
+               document.getElementById("fieldQtd").value = 1;
+            }
+            function setValor2(){            
+               var valor = document.getElementById("valorUnitario").value;
+               var qtd = document.getElementById("fieldQtd").value;
+               
+               document.getElementById("fieldValorTotal").value = qtd * valor;
+            }
+        </script>
     </body>
 </html>
