@@ -80,14 +80,14 @@ Author     : nicolas.hgyoshioka
 
                         <div class="form-group">
                             <span id="divProduto">
-                                <label for="codigoProduto">Código do produto:</label>
+                                <label for="codigoProduto">Produto:</label>
                                 <a href="javascript:void(0)" id="addInput" style="float: right; text-decoration: none;">
                                     <span><i class="fas fa-plus"></i> Adicionar novo produto </span>
                                 </a>
                                 <c:choose>
                                     <c:when test="${empty codProdutoErro}">
                                         <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto">
-                                            <option selected ="" disabled="" hidden="">Código do produto</option>
+                                            <option selected ="" disabled="" hidden="">Produto</option>
                                             <c:forEach var="produto" items="${listaProdutos}">
                                                 <option value="<c:out value="${produto.codigoProduto}"/>">
                                                     <c:out value="${produto.nomeProduto}"></c:out>
@@ -136,7 +136,7 @@ Author     : nicolas.hgyoshioka
                                 </div>
                             </span>
 
-                            <label for="idFuncionario">ID do Funcionário:</label>
+                            <label for="idFuncionario">Funcionário:</label>
                             <c:choose>
                                 <c:when test="${empty idFuncErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="idFuncionario">
@@ -154,7 +154,7 @@ Author     : nicolas.hgyoshioka
                             <input type="number" class="form-control inputForm" id="cpfCliente"
                                    placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="15">
 
-                            <label for="codigoFilial">Código da filial:</label>
+                            <label for="codigoFilial">Filial:</label>
                             <c:choose>
                                 <c:when test="${empty codFilialErro}">
                                     <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
@@ -173,11 +173,11 @@ Author     : nicolas.hgyoshioka
                                 </c:otherwise>
                             </c:choose>
 
-                            <label for="quantidade">Quantidade vendida:</label>
+                            <label for="quantidade">Valor Total:</label>
                             <c:choose>
                                 <c:when test="${empty quantidadeErro}">
                                     <input type="number" class="form-control inputForm" id="quantidade"
-                                           placeholder="Quantidade" name="quantidade" min="0">
+                                           placeholder="Valor Total" name="quantidade" min="0">
                                 </c:when>
                                 <c:otherwise>
                                     <input type="number" class="form-control inputForm error" id="quantidade"
