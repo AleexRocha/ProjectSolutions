@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServletVenda;
 
 import DAO.VendaDAO;
 import Model.Venda;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "EstornoExcluirServlet", urlPatterns = {"/EstornoExcluirServlet"})
+@WebServlet(name = "EstornoExcluirServlet", urlPatterns = {"/venda/delete_venda"})
 public class EstornoExcluirServlet extends HttpServlet {
 
     protected void processaRequisicao(String HttpMethod, HttpServletRequest request, HttpServletResponse response)

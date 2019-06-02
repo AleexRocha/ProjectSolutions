@@ -106,7 +106,7 @@
                             </tr>
                         </thead>
                         <tbody class="coluna" >
-                            <c:forEach var="relatorio" items="${listaEstorno}">
+                            <c:forEach var="relatorio" items="${listaEstornos}">
                                 <tr>
                                     <td name="codigoVenda" ><c:out value="${relatorio.codigoVenda}" /></td>
                                     <td name="codigoProduto" ><c:out value="${relatorio.codigoProduto}" /></td>
@@ -119,7 +119,7 @@
                                         <!-- Button que chama a modal -->
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
                                             <i class="far fa-trash-alt"></i>
-                                            <c:set var="codigoProduto" value="${produtos.codigo}"/>
+                                            <c:set var="codigoVenda" value="${relatorio.codigoVenda}"/>
                                         </button>
                                     </td>
 
@@ -141,8 +141,8 @@
                                     <p>Tem certeza que deseja estornar está venda?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="excluir_produto" method="POST" name ="deletarProduto">
-                                        <button name="excluirID" value="${codigoProduto}" type="submit" class="btn btn-danger">
+                                    <form action="delete_venda" method="POST" name ="deletarVenda">
+                                        <button name="excluirID" value="${codigoVenda}" type="submit" class="btn btn-danger">
                                             <i class="far fa-trash-alt"></i> Sim
                                         </button>
                                     </form>

@@ -32,7 +32,7 @@ public class VendaDAO {
             int rs = query.executeUpdate();
 
             if (rs != 0) {
-                atualizaEstoque(v.getQuantidadeVenda(), v.getCodigoProduto());
+                atualizaEstoque(v.getQuantidadeVenda(), v.getCodigoProduto(), "-");
             }
 
             conn.close();
@@ -45,13 +45,26 @@ public class VendaDAO {
     }
 
     public static boolean excluirVenda(int vCodigo) {
+        Venda v = new Venda();
         Connection conn = db.obterConexao();
         try {
+            PreparedStatement select = conn.prepareStatement("SELECT id_produto, qtd_itens FROM tbl_venda WHERE id_venda = ?");
             PreparedStatement query = conn.prepareStatement("UPDATE tbl_venda SET status = 1 WHERE id_venda = ?");
 
             query.setInt(1, vCodigo);
-            ResultSet linhasAfetadas = query.executeQuery();
-            
+            int rs = query.executeUpdate();
+
+            if (rs != 0) {
+                select.setInt(1, vCodigo);
+                ResultSet result = select.executeQuery();
+
+                while (result.next()) {
+                    v.setCodigoProduto(result.getInt(1));
+                    v.setQuantidadeVenda(result.getInt(2));
+                }
+                atualizaEstoque(v.getQuantidadeVenda(), v.getCodigoProduto(), "+");
+            }
+
             conn.close();
         } catch (SQLException e) {
             System.out.println("SQL Exception" + e);
@@ -138,14 +151,14 @@ public class VendaDAO {
         return venda;
     }
 
-    public static void atualizaEstoque(int quantidadeVendida, int codigProduto) {
+    public static void atualizaEstoque(int quantidadeVendida, int codigoProduto, String acao) {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE tbl_produtos AS p "
-                    + " SET p.qtd_estoque = (p.qtd_estoque - ?) WHERE p.id_produto = ?;");
+                    + " SET p.qtd_estoque = (p.qtd_estoque " + acao + " ?) WHERE p.id_produto = ?;");
 
             query.setInt(1, quantidadeVendida);
-            query.setInt(2, codigProduto);
+            query.setInt(2, codigoProduto);
 
             int rs = query.executeUpdate();
 
