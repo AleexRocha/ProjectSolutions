@@ -31,7 +31,7 @@ public class Database {
         driver = "com.mysql.cj.jdbc.Driver";
         usuario = "admin";
         senha = "admin1234";
-        nomeDB = "tades_bcd";
+        nomeDB = "TADES_BCD";
         url = "jdbc:mysql://instancia01.ctzk7iapnoiz.us-east-1.rds.amazonaws.com:3306/" + nomeDB + "?useTimezone=true&serverTimezone=UTC";
     }
      */

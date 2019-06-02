@@ -65,7 +65,7 @@ public class VendaDAO {
         ArrayList<Venda> venda = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome FROM tbl_produtos WHERE status = 0;");
+            PreparedStatement query = conn.prepareStatement("SELECT id_produto, nome, valor_unidade FROM tbl_produtos WHERE status = 0 order by nome;");
 
             ResultSet rs = query.executeQuery();
 
@@ -74,6 +74,7 @@ public class VendaDAO {
                     Venda v = new Venda();
                     v.setCodigoProduto(rs.getInt(1));
                     v.setNomeProduto(rs.getString(2));
+                    v.setValorUnidade(rs.getDouble(3));
 
                     venda.add(v);
                 }

@@ -8,6 +8,7 @@ public class Venda {
 
     private int codigoProduto;
     private String nomeProduto;
+    private double valorUnidade;
     private int idFuncionario;
     private String nomeFuncionario;
     private String nomeFilial;
@@ -93,6 +94,14 @@ public class Venda {
 
     public void setNomeFilial(String nomeFilial) {
         this.nomeFilial = nomeFilial;
+    }
+
+    public double getValorUnidade() {
+        return valorUnidade;
+    }
+
+    public void setValorUnidade(double valorUnidade) {
+        this.valorUnidade = valorUnidade;
     }
 
     
