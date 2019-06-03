@@ -22,17 +22,18 @@ public class VendaDAO {
                     + " tbl_venda(id_produto, id_usuario, id_filial, qtd_itens, cpf_cliente, status, data_venda)"
                     + "VALUES (?, ?, ?, ?, ?, ?, NOW());");
 
-            query.setInt(1, v.getCodigoProduto());
-            query.setInt(2, v.getIdFuncionario());
-            query.setInt(3, v.getCodigoFilial());
-            query.setInt(4, v.getQuantidadeVenda());
-            query.setString(5, v.getCpfCliente());
-            query.setInt(6, 0);
-
-            int rs = query.executeUpdate();
-
-            if (rs != 0) {
-                atualizaEstoque(v.getQuantidadeVenda(), v.getCodigoProduto(), "-");
+            int rs;
+            for (int i = 0; i < v.getProdutoArray().length; i++) {
+                query.setInt(1, v.getProdutoArrayPosition(i));
+                query.setInt(2, v.getIdFuncionario());
+                query.setInt(3, v.getCodigoFilial());
+                query.setInt(4, v.getProdutoQtdArrayPosition(i));
+                query.setString(5, v.getCpfCliente());
+                query.setInt(6, 0);
+                rs = query.executeUpdate();
+                if (rs != 0) {
+                    atualizaEstoque(v.getProdutoQtdArrayPosition(i), v.getProdutoArrayPosition(i), "-");
+                }
             }
 
             conn.close();
