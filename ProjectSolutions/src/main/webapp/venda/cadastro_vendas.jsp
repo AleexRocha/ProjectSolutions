@@ -92,7 +92,7 @@ Author     : nicolas.hgyoshioka
                                                 <option id="valorUnitario" value="${produto.valorUnidade}" hidden=""></option> 
                                                 <option value="<c:out value="${produto.codigoProduto}"/>">
                                                     <c:out value="${produto.nomeProduto}"></c:out>
-                                                </option>
+                                                    </option>
                                             </c:forEach>
                                         </select>
                                     </c:when>
@@ -112,7 +112,7 @@ Author     : nicolas.hgyoshioka
                                         <label for="quantidade">Quantidade:</label>
                                         <c:choose>
                                             <c:when test="${empty quantidadeErro}">
-                                                <input id="fieldQtd" type="number" class="form-control inputForm" id="quantidade"
+                                                <input type="number" class="form-control inputForm" id="quantidade"
                                                        placeholder="Quantidade" name="quantidade" min="1" onchange="setValor2()">
                                             </c:when>
                                             <c:otherwise>
@@ -124,13 +124,13 @@ Author     : nicolas.hgyoshioka
                                     <div class="col-6">
                                         <label for="valor">Valor:</label>
                                         <c:choose>
-                                            <c:when test="${empty quantidadeErro}">
-                                                <input id="fieldValorTotal" type="number" class="form-control inputForm" id="valor"
+                                            <c:when test="${empty valorErro}">
+                                                <input type="text" class="form-control inputForm" id="valor"
                                                        placeholder="Valor do Produto" name="valor" min="0">
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="number" class="form-control inputForm error" id="quantidade"
-                                                       placeholder="${quantidadeErro}" name="quantidade" min="0">
+                                                <input type="text" class="form-control inputForm error" id="valor"
+                                                       placeholder="${valorErro}" name="valor" min="0">
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
@@ -152,8 +152,8 @@ Author     : nicolas.hgyoshioka
                             </c:choose>
 
                             <label for="cpfCliente">CPF do cliente:</label>
-                            <input type="number" class="form-control inputForm" id="cpfCliente"
-                                   placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="15">
+                            <input type="text" class="form-control inputForm" id="cpfCliente"
+                                   placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="11">
 
                             <label for="codigoFilial">Filial:</label>
                             <c:choose>
@@ -177,11 +177,11 @@ Author     : nicolas.hgyoshioka
                             <label for="quantidade">Valor Total:</label>
                             <c:choose>
                                 <c:when test="${empty quantidadeErro}">
-                                    <input type="number" class="form-control inputForm" id="quantidade"
+                                    <input type="text" class="form-control inputForm" id="valorTotal"
                                            placeholder="Valor Total" name="quantidade" min="0">
                                 </c:when>
                                 <c:otherwise>
-                                    <input type="number" class="form-control inputForm error" id="quantidade"
+                                    <input type="text" class="form-control inputForm error" id="valorTotal"
                                            placeholder="${quantidadeErro}" name="quantidade" min="0">
                                 </c:otherwise>
                             </c:choose>
@@ -219,20 +219,22 @@ Author     : nicolas.hgyoshioka
             </footer>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
         <script>
-            function setValor(){            
-               var valor = document.getElementById("valorUnitario").value;
-               document.getElementById("fieldValorTotal").value = valor;
-               document.getElementById("fieldQtd").value = 1;
-            }
-            function setValor2(){            
-               var valor = document.getElementById("valorUnitario").value;
-               var qtd = document.getElementById("fieldQtd").value;
-               
-               document.getElementById("fieldValorTotal").value = qtd * valor;
-            }
+                                                           function setValor() {
+                                                               var valor = document.getElementById("valorUnitario").value;
+                                                               document.getElementById("fieldValorTotal").value = valor;
+                                                               document.getElementById("fieldQtd").value = 1;
+                                                           }
+                                                           function setValor2() {
+                                                               var valor = document.getElementById("valorUnitario").value;
+                                                               var qtd = document.getElementById("fieldQtd").value;
+
+                                                               document.getElementById("fieldValorTotal").value = qtd * valor;
+                                                           }
+
         </script>
     </body>
 </html>

@@ -76,8 +76,8 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="cpfCliente">CPF do cliente:</label>
-                                <input type="number" class="form-control inputForm" id="cpfCliente"
-                                       placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="15">
+                                <input type="text" class="form-control inputForm" id="cpfCliente"
+                                       placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="11">
                             </div>
                             <div class="col-md-3">
                                 <button class="btn btn-light" style="margin: 32px 0 0 0;">
@@ -175,6 +175,7 @@
             </footer>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
     </body>

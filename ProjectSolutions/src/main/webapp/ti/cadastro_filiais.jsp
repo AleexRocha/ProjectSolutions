@@ -45,7 +45,7 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                 </ul>
-                 <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nomeUsuario}"/> 
+                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nomeUsuario}"/> 
                 <form action="../venda/logout" method="POST">
                     <button type="submit" class="btn nav-link nav-text" >Sair</button>
                 </form>
@@ -137,21 +137,21 @@ Author     : nicolas.hgyoshioka
                                 <label for="cep">CEP:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty cepErro}">
-                                        <input type="number" class="form-control inputForm" id="cep" 
+                                        <input type="text" class="form-control inputForm" id="cep" 
                                                value="${cep}" name="cep" min="0" minlength="0" maxlength="10">
                                     </c:if>
                                     <c:if test="${not empty cepErro}">
-                                        <input type="number" class="form-control inputForm error" id="cep" 
+                                        <input type="text" class="form-control inputForm error" id="cep" 
                                                placeholder="${cepErro}" name="cep" min="0" minlength="0" maxlength="10">
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty cepErro}">
-                                        <input type="number" class="form-control inputForm" id="cep" 
+                                        <input type="text" class="form-control inputForm" id="cep" 
                                                placeholder="CEP" name="cep" min="0" minlength="0" maxlength="10">
                                     </c:if>
                                     <c:if test="${not empty cepErro}">
-                                        <input type="number" class="form-control inputForm error" id="cep" 
+                                        <input type="text" class="form-control inputForm error" id="cep" 
                                                placeholder="${cepErro}" name="cep" min="0" minlength="0" maxlength="10">
                                     </c:if>
                                 </c:if>
@@ -278,6 +278,7 @@ Author     : nicolas.hgyoshioka
             </footer>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
     </body>
