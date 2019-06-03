@@ -58,7 +58,7 @@ public class RelatorioDAO {
         try {
             PreparedStatement query = conn.prepareStatement("SELECT v.id_venda, p.nome, v.id_produto, v.qtd_itens, "
                     + "(v.qtd_itens*p.valor_unidade) AS valor_total, v.cpf_cliente, v.id_filial, "
-                    + "CONCAT(f.cidade, ' - ', f.estado) AS nome_filial, v.id_usuario, v.data_venda "
+                    + "CONCAT(f.cidade, ' - ', f.estado) AS nome_filial, v.id_usuario, v.data_venda, v.status "
                     + "FROM tbl_venda AS v INNER JOIN tbl_produtos AS p ON v.id_produto = p.id_produto "
                     + "INNER JOIN tbl_filial AS f ON v.id_filial = f.id_filial WHERE v.id_filial = ?;");
 
@@ -77,7 +77,8 @@ public class RelatorioDAO {
                             rs.getInt(7),
                             rs.getString(8),
                             rs.getInt(9),
-                            rs.getString(10)
+                            rs.getString(10),
+                            rs.getInt(11)
                     ));
                 }
             }

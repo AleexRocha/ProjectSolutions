@@ -113,6 +113,7 @@ Author     : nicolas.hgyoshioka
                                 <th scope="col">Nome da filial</th>
                                 <th scope="col" style="width: 1px">ID do funcionário</th>
                                 <th scope="col">Data da venda</th>
+                                <th scope="col" style="width: 1px">Status</th>
                             </tr>
                         </thead>
                         <tbody class="coluna" >
@@ -128,6 +129,14 @@ Author     : nicolas.hgyoshioka
                                     <td name="nomeFilial" ><c:out value="${relatorio.nomeFilial}" /></td>   
                                     <td name="idUsuario" ><c:out value="${relatorio.idUsuario}" /></td>   
                                     <td name="dataVenda" ><c:out value="${relatorio.dataVenda}" /></td>   
+                                    <c:choose>
+                                        <c:when test="${relatorio.status == 0}">
+                                            <td name="dataVenda" >Ativa</td>  
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td name="dataVenda" >Estornada</td>  
+                                        </c:otherwise>
+                                    </c:choose>
                                 </tr>
                             </c:forEach>
                         </tbody>

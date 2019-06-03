@@ -16,6 +16,7 @@ public class Relatorio {
     private String nomeFilial;
     private int idUsuario;
     private String dataVenda;
+    private int status;
 
     public Relatorio() {
     }
@@ -41,6 +42,20 @@ public class Relatorio {
         this.nomeFilial = nomeFilial;
         this.idUsuario = idUsuario;
         this.dataVenda = dataVenda;
+    }
+    
+    public Relatorio(int codigoVenda, String nomeProduto, int codigoProduto, int quantidadeProduto, double valorTotal, String cpfCliente, int idFilial, String nomeFilial, int idUsuario, String dataVenda, int status) {
+        this.codigoVenda = codigoVenda;
+        this.nomeProduto = nomeProduto;
+        this.codigoProduto = codigoProduto;
+        this.quantidadeProduto = quantidadeProduto;
+        this.valorTotal = valorTotal;
+        this.cpfCliente = cpfCliente;
+        this.idFilial = idFilial;
+        this.nomeFilial = nomeFilial;
+        this.idUsuario = idUsuario;
+        this.dataVenda = dataVenda;
+        this.status = status;
     }
 
     public int getCodigoVenda() {
@@ -123,4 +138,13 @@ public class Relatorio {
         this.dataVenda = dataVenda;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    
 }
