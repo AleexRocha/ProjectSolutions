@@ -79,21 +79,22 @@ Author     : nicolas.hgyoshioka
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn btn-light" style="margin: 32px 176px 0 0; float: right">
+                                <!--<button class="btn btn-light" style="margin: 32px 176px 0 0; float: right">-->
+                                <button class="btn btn-light" style="margin: 32px 217px 0 0; float: right">
                                     <i class="far fa-file-alt"></i>
                                     Gerar relatorio
                                 </button>
                             </div>
                         </div>
                     </form>
-                    <div class="col-md-12">
-                        <form action="gerar_excel" method="get" style="float: right; margin:-39px -15px 0 0;">
-                            <button class="btn btn-success">
-                                <i class="far fa-file-excel"></i>
-                                Exportar Para Excel
-                            </button>
-                        </form>
-                    </div>
+                    <!--                    <div class="col-md-12">
+                                            <form action="gerar_excel" method="get" style="float: right; margin:-39px -15px 0 0;">
+                                                <button class="btn btn-success">
+                                                    <i class="far fa-file-excel"></i>
+                                                    Exportar Para Excel
+                                                </button>
+                                            </form>
+                                        </div>-->
                 </div>
             </div>
             <div class="row">

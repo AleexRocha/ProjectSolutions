@@ -81,9 +81,9 @@ Author     : nicolas.hgyoshioka
                         <div class="form-group">
                             <span id="divProduto">
                                 <label for="codigoProduto">Produto:</label>
-                                <a href="javascript:void(0)" id="addInput" style="float: right; text-decoration: none;">
+<!--                                <a href="javascript:void(0)" id="addInput" style="float: right; text-decoration: none;">
                                     <span><i class="fas fa-plus"></i> Adicionar novo produto </span>
-                                </a>
+                                </a>-->
                                 <c:choose>
                                     <c:when test="${empty codProdutoErro}">
                                         <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto" onchange="setValor()">
