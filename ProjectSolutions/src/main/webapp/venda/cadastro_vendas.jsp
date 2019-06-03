@@ -88,13 +88,12 @@ Author     : nicolas.hgyoshioka
                                     <c:when test="${empty codProdutoErro}">
                                         <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto" onchange="setValor()">
                                             <option selected ="" disabled="" hidden="">Produto</option>
-                                            <c:forEach var="produto" items="${listaProdutos}">
-                                                <option value="${produto.codigoProduto}" ${produto.codigoProduto == selectedProduto ? 'selected' : ''}>
-                                                    <c:out value="${produto.nomeProduto}"/>
-                                                    <c:set var="valorUnitarioI" value="${produto.valorUnidade}"/>
+                                            <c:forEach var="produto" items="${listaProdutos}" varStatus="id">
+                                                <option value="${produto.codigoProduto}">
+                                                    <c:out value="${produto.nomeProduto}"/> - R$<c:out value="${produto.valorUnidade}"/>                                                     
                                                 </option>
-                                                <option id="valorUnitario" value="${valorUnitarioI}" hidden=""/>
                                             </c:forEach>
+
                                         </select>
                                     </c:when>
                                     <c:otherwise>
@@ -220,17 +219,19 @@ Author     : nicolas.hgyoshioka
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
         <script>
-                                                           function setValor() {
-                                                               var valor = document.getElementById("valorUnitario").value;
-                                                               document.getElementById("valor").value = valor;
-                                                               document.getElementById("quantidade").value = 1;
-                                                           }
-                                                           function setValor2() {
-                                                               var valor = document.getElementById("valorUnitario").value;
-                                                               var qtd = document.getElementById("quantidade").value;
+            function setValor() {
+                document.getElementById("quantidade").value = 1;
+                document.getElementById("valor").value = null;
+            }
+            function setValor2() {
+                var valor = document.getElementById("valor").value.toString().replace(",", ".");
+                var split = valor.split("$");
+                var qtd = document.getElementById("quantidade").value;
 
-                                                               document.getElementById("valor").value = qtd * valor;
-                                                           }
+                var totalUnitario = document.getElementById("valor").value = qtd * split[1];
+                document.getElementById("valorTotal").value = "R$" + totalUnitario;
+                document.getElementById("valor").value =  "R$" + totalUnitario;;
+            }
         </script>
     </body>
 </html>
