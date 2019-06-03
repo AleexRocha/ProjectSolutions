@@ -154,25 +154,25 @@ Author     : nicolas.hgyoshioka
                                     </c:otherwise>
                                 </c:choose>
 
-                                <label for="valorProduto">Valor Unitário:</label>
+                                <label for="valor">Valor Unitário:</label>
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
                                         <c:if test="${empty valorUnitarioErro}">
-                                            <input onkeypress="valorProduto()" type="text" class="form-control inputForm" id="valorUnitario"
+                                            <input type="text" class="form-control inputForm" id="valor"
                                                    value="${valor_unidade}" name="valorUnitario" minlength="0" maxlength="9">
                                         </c:if>
                                         <c:if test="${not empty valorUnitarioErro}">         
-                                            <input onkeypress="valorProduto()" type="text" class="form-control inputForm error" id="valorUnitario"
+                                            <input type="text" class="form-control inputForm error" id="valor"
                                                    placeholder="${valorUnitarioErro}" name="valorUnitario" min="0" minlength="0" maxlength="9">
                                         </c:if> 
                                     </c:when>
                                     <c:otherwise>
                                         <c:if test="${empty valorUnitarioErro}">
-                                            <input onkeypress="valorProduto()" type="text" class="form-control inputForm" id="valorUnitario"
+                                            <input type="text" class="form-control inputForm" id="valor"
                                                    placeholder="Valor Unitário" name="valorUnitario" minlength="0" maxlength="9">
                                         </c:if>
                                         <c:if test="${not empty valorUnitarioErro}">         
-                                            <input onkeypress="valorProduto()" type="text" class="form-control inputForm error" id="valorUnitario"
+                                            <input type="text" class="form-control inputForm error" id="valor"
                                                    placeholder="${valorUnitarioErro}" name="valorUnitario" min="0" minlength="0" maxlength="9">
                                         </c:if> 
                                     </c:otherwise>
@@ -266,6 +266,7 @@ Author     : nicolas.hgyoshioka
             </footer>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
     </body>

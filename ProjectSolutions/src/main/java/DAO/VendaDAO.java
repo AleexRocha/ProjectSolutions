@@ -22,18 +22,17 @@ public class VendaDAO {
                     + " tbl_venda(id_produto, id_usuario, id_filial, qtd_itens, cpf_cliente, status, data_venda)"
                     + "VALUES (?, ?, ?, ?, ?, ?, NOW());");
 
-            int rs;
-            for (int i = 0; i < v.getProdutoArray().length; i++) {
-                query.setInt(1, v.getProdutoArrayPosition(i));
-                query.setInt(2, v.getIdFuncionario());
-                query.setInt(3, v.getCodigoFilial());
-                query.setInt(4, v.getProdutoQtdArrayPosition(i));
-                query.setString(5, v.getCpfCliente());
-                query.setInt(6, 0);
-                rs = query.executeUpdate();
-                if (rs != 0) {
-                    atualizaEstoque(v.getProdutoQtdArrayPosition(i), v.getProdutoArrayPosition(i));
-                }
+            query.setInt(1, v.getCodigoProduto());
+            query.setInt(2, v.getIdFuncionario());
+            query.setInt(3, v.getCodigoFilial());
+            query.setInt(4, v.getQuantidadeVenda());
+            query.setString(5, v.getCpfCliente());
+            query.setInt(6, 0);
+
+            int rs = query.executeUpdate();
+
+            if (rs != 0) {
+                atualizaEstoque(v.getQuantidadeVenda(), v.getCodigoProduto(), "-");
             }
 
             conn.close();
@@ -46,12 +45,25 @@ public class VendaDAO {
     }
 
     public static boolean excluirVenda(int vCodigo) {
+        Venda v = new Venda();
         Connection conn = db.obterConexao();
         try {
+            PreparedStatement select = conn.prepareStatement("SELECT id_produto, qtd_itens FROM tbl_venda WHERE id_venda = ?");
             PreparedStatement query = conn.prepareStatement("UPDATE tbl_venda SET status = 1 WHERE id_venda = ?");
 
             query.setInt(1, vCodigo);
-            ResultSet linhasAfetadas = query.executeQuery();
+            int rs = query.executeUpdate();
+
+            if (rs != 0) {
+                select.setInt(1, vCodigo);
+                ResultSet result = select.executeQuery();
+
+                while (result.next()) {
+                    v.setCodigoProduto(result.getInt(1));
+                    v.setQuantidadeVenda(result.getInt(2));
+                }
+                atualizaEstoque(v.getQuantidadeVenda(), v.getCodigoProduto(), "+");
+            }
 
             conn.close();
         } catch (SQLException e) {
@@ -139,14 +151,14 @@ public class VendaDAO {
         return venda;
     }
 
-    public static void atualizaEstoque(int quantidadeVendida, int codigProduto) {
+    public static void atualizaEstoque(int quantidadeVendida, int codigoProduto, String acao) {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE tbl_produtos AS p "
-                    + " SET p.qtd_estoque = (p.qtd_estoque - ?) WHERE p.id_produto = ?;");
+                    + " SET p.qtd_estoque = (p.qtd_estoque " + acao + " ?) WHERE p.id_produto = ?;");
 
             query.setInt(1, quantidadeVendida);
-            query.setInt(2, codigProduto);
+            query.setInt(2, codigoProduto);
 
             int rs = query.executeUpdate();
 

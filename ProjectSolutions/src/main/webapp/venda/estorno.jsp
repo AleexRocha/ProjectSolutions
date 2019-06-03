@@ -76,8 +76,8 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="cpfCliente">CPF do cliente:</label>
-                                <input type="number" class="form-control inputForm" id="cpfCliente"
-                                       placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="15">
+                                <input type="text" class="form-control inputForm" id="cpfCliente"
+                                       placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="11">
                             </div>
                             <div class="col-md-3">
                                 <button class="btn btn-light" style="margin: 32px 0 0 0;">
@@ -106,7 +106,7 @@
                             </tr>
                         </thead>
                         <tbody class="coluna" >
-                            <c:forEach var="relatorio" items="${listaEstorno}">
+                            <c:forEach var="relatorio" items="${listaEstornos}">
                                 <tr>
                                     <td name="codigoVenda" ><c:out value="${relatorio.codigoVenda}" /></td>
                                     <td name="codigoProduto" ><c:out value="${relatorio.codigoProduto}" /></td>
@@ -119,7 +119,7 @@
                                         <!-- Button que chama a modal -->
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
                                             <i class="far fa-trash-alt"></i>
-                                            <c:set var="codigoProduto" value="${produtos.codigo}"/>
+                                            <c:set var="codigoVenda" value="${relatorio.codigoVenda}"/>
                                         </button>
                                     </td>
 
@@ -141,8 +141,8 @@
                                     <p>Tem certeza que deseja estornar está venda?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="excluir_produto" method="POST" name ="deletarProduto">
-                                        <button name="excluirID" value="${codigoProduto}" type="submit" class="btn btn-danger">
+                                    <form action="delete_venda" method="POST" name ="deletarVenda">
+                                        <button name="excluirID" value="${codigoVenda}" type="submit" class="btn btn-danger">
                                             <i class="far fa-trash-alt"></i> Sim
                                         </button>
                                     </form>
@@ -175,6 +175,7 @@
             </footer>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
     </body>
