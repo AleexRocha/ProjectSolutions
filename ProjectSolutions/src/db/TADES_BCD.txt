@@ -1,6 +1,6 @@
-create database TADES_BCD;
+create database tades_bcd;
 
-use TADES_BCD;
+use tades_bcd;
 
 create table tbl_filial (
     id_filial int not null primary key auto_increment,

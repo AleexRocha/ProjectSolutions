@@ -6,6 +6,8 @@ package Model;
  */
 public class Venda {
 
+    private int[] ProdutoArray;
+    private int[] qtdProdutoArray;
     private int codigoProduto;
     private String nomeProduto;
     private double valorUnidade;
@@ -25,19 +27,27 @@ public class Venda {
         this.codigoFilial = codigoFilial;
     }
     
-    public Venda(int codigoProduto, int idFuncionario, int codigoFilial, int quantidadeVenda) {
-        this.codigoProduto = codigoProduto;
+    public Venda(int[] ProdutoArray, int idFuncionario, int codigoFilial, int[] qtdProdutoArray) {
+        this.ProdutoArray = ProdutoArray;
         this.idFuncionario = idFuncionario;
         this.codigoFilial = codigoFilial;
-        this.quantidadeVenda = quantidadeVenda;
+        this.qtdProdutoArray = qtdProdutoArray;
     }
 
-    public int getCodigoProduto() {
-        return codigoProduto;
+    public int getProdutoArrayPosition(int position) {
+        return ProdutoArray[position];
+    }
+    
+    public int getProdutoQtdArrayPosition(int position) {
+        return qtdProdutoArray[position];
+    }
+    
+    public int[] getProdutoArray() {
+        return ProdutoArray;
     }
 
-    public void setCodigoProduto(int codigoProduto) {
-        this.codigoProduto = codigoProduto;
+    public void setProdutoArray(int[] codigoProdutoArray) {
+        this.ProdutoArray = codigoProdutoArray;
     }
 
     public int getQuantidadeVenda() {
@@ -104,5 +114,11 @@ public class Venda {
         this.valorUnidade = valorUnidade;
     }
 
-    
+    public int getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(int codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
 }

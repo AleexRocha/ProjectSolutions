@@ -89,10 +89,11 @@ Author     : nicolas.hgyoshioka
                                         <select class="custom-select inputForm" id="codigoProduto" name="codigoProduto" onchange="setValor()">
                                             <option selected ="" disabled="" hidden="">Produto</option>
                                             <c:forEach var="produto" items="${listaProdutos}">
-                                                <option id="valorUnitario" value="${produto.valorUnidade}" hidden=""></option> 
-                                                <option value="<c:out value="${produto.codigoProduto}"/>">
-                                                    <c:out value="${produto.nomeProduto}"></c:out>
+                                                <option value="${produto.codigoProduto}" ${produto.codigoProduto == selectedProduto ? 'selected' : ''}>
+                                                    <c:out value="${produto.nomeProduto}"/>
+                                                    <c:set var="valorUnitarioI" value="${produto.valorUnidade}"/>
                                                 </option>
+                                                <option id="valorUnitario" value="${valorUnitarioI}" hidden=""/>
                                             </c:forEach>
                                         </select>
                                     </c:when>
@@ -178,11 +179,11 @@ Author     : nicolas.hgyoshioka
                             <c:choose>
                                 <c:when test="${empty quantidadeErro}">
                                     <input type="number" class="form-control inputForm" id="quantidade"
-                                           placeholder="Valor Total" name="quantidade" min="0">
+                                           placeholder="Valor Total" name="valorTotal" min="0">
                                 </c:when>
                                 <c:otherwise>
                                     <input type="number" class="form-control inputForm error" id="quantidade"
-                                           placeholder="${quantidadeErro}" name="quantidade" min="0">
+                                           placeholder="${quantidadeErro}" name="valorTotal" min="0">
                                 </c:otherwise>
                             </c:choose>
 

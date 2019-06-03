@@ -4,6 +4,7 @@ import DAO.VendaDAO;
 import Model.Venda;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,17 +22,17 @@ public class VendaCadastroServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String vCodProduto = request.getParameter("codigoProduto");
+        String vCodProduto[] = (String[]) request.getParameterValues("codigoProduto");
         String vIdFuncionario = request.getParameter("idFuncionario");
         String vCpfCliente = request.getParameter("cpfCliente");
         String vCodFilial = request.getParameter("codigoFilial");
-        String vQuantidade = request.getParameter("quantidade");
+        String vQuantidade[] = (String[]) request.getParameterValues("quantidade");
 
         boolean error = false;
         if (vCodProduto == null) {
             error = true;
             request.setAttribute("codProdutoErro", "Não há produto cadastrado para realizar a venda");
-        } else if (vCodProduto.equalsIgnoreCase("0")) {
+        } else if (vCodProduto.equals("")) {
             error = true;
             request.setAttribute("codProdutoErro", "Não há produto cadastrado para realizar a venda");
         }
@@ -49,10 +50,10 @@ public class VendaCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("codFilialErro", "Não há filial cadastrado para realizar a venda");
         }
-        if (vQuantidade.equalsIgnoreCase("")) {
+        if (vQuantidade == null) {
             error = true;
             request.setAttribute("quantidadeErro", "A quantidade deve ser informada");
-        } else if ((vQuantidade.equalsIgnoreCase("0"))) {
+        } else if (vQuantidade.equals("")) {
             error = true;
             request.setAttribute("quantidadeErro", "Quantidade invalida, valor deve ser maior que 0");
         }
@@ -101,7 +102,9 @@ public class VendaCadastroServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
             dispatcher.forward(request, response);
         } else {
-            Venda venda = new Venda(Integer.parseInt(vCodProduto), Integer.parseInt(vIdFuncionario), Integer.parseInt(vCodFilial), Integer.parseInt(vQuantidade));
+            int[] cdProd = Arrays.stream(vCodProduto).mapToInt(Integer::parseInt).toArray();
+            int[] qtdVenda = Arrays.stream(vQuantidade).mapToInt(Integer::parseInt).toArray();
+            Venda venda = new Venda(cdProd, Integer.parseInt(vIdFuncionario), Integer.parseInt(vCodFilial), qtdVenda);
             if (vCpfCliente.length() != 0) {
                 venda.setCpfCliente(vCpfCliente);
             }
@@ -110,10 +113,10 @@ public class VendaCadastroServlet extends HttpServlet {
             if (httpOK) {
                 request.setAttribute("varMsgS", true);
                 request.setAttribute("msg", "Venda realizada com sucesso.");
-                
+
                 ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
                 request.setAttribute("listaProdutos", produtosVenda);
-                
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
                 dispatcher.forward(request, response);
             } else {
