@@ -90,7 +90,7 @@ Author     : nicolas.hgyoshioka
                                             <option selected ="" disabled="" hidden="">Produto</option>
                                             <c:forEach var="produto" items="${listaProdutos}" varStatus="id">
                                                 <option value="${produto.codigoProduto}">
-                                                    <c:out value="${produto.nomeProduto}"/> - R$<c:out value="${produto.valorUnidade}"/>                                                     
+                                                    <c:out value="${produto.nomeProduto}"/> - R$<c:out value="${produto.valorUnidade}"/>
                                                 </option>
                                             </c:forEach>
 
@@ -98,17 +98,17 @@ Author     : nicolas.hgyoshioka
                                     </c:when>
                                     <c:otherwise>
                                         <select class="custom-select inputForm error" id="codigoProduto" name="codigoProduto">
-                                            <option disabled="" hidden="">${codProdutoErro}</option>
+                                            <option disabled="" selected="" hidden="">${codProdutoErro}</option>
                                             <c:forEach var="produto" items="${listaProdutos}">
                                                 <option value="<c:out value="${produto.codigoProduto}"></c:out>">
-                                                    <c:out value="${produto.nomeProduto}"></c:out>
+                                                    <c:out value="${produto.nomeProduto}"/> - R$<c:out value="${produto.valorUnidade}"/>
                                                     </option>
                                             </c:forEach>
                                         </select>
                                     </c:otherwise>
                                 </c:choose>
                                 <div class="form-row">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <label for="quantidade">Quantidade:</label>
                                         <c:choose>
                                             <c:when test="${empty quantidadeErro}">
@@ -121,7 +121,7 @@ Author     : nicolas.hgyoshioka
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-6">
+<!--                                    <div class="col-6">
                                         <label for="valor">Valor:</label>
                                         <c:choose>
                                             <c:when test="${empty quantidadeErro}">
@@ -133,7 +133,7 @@ Author     : nicolas.hgyoshioka
                                                        placeholder="${valorErro}" name="valor" min="0">
                                             </c:otherwise>
                                         </c:choose>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </span>
 

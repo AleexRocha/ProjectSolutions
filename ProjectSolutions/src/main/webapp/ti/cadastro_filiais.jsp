@@ -225,21 +225,21 @@ Author     : nicolas.hgyoshioka
                                 <label for="telefone">Telefone:</label>
                                 <c:if test="${acao == 'editar'}">
                                     <c:if test="${empty telefoneErro}">
-                                        <input type="number" class="form-control inputForm" id="telefone" 
+                                        <input type="text" class="form-control inputForm" id="telefone" 
                                                value="${telefone}" name="telefone" min="0" minlength="0" maxlength="15">
                                     </c:if>
                                     <c:if test="${not empty telefoneErro}">
-                                        <input type="number" class="form-control inputForm error" id="telefone" 
+                                        <input type="text" class="form-control inputForm error" id="telefone" 
                                                placeholder="${telefoneErro}" name="telefone" min="0" minlength="0" maxlength="15">
                                     </c:if>
                                 </c:if>
                                 <c:if test="${empty acao}">
                                     <c:if test="${empty telefoneErro}">
-                                        <input type="number" class="form-control inputForm" id="telefone" 
+                                        <input type="text" class="form-control inputForm" id="telefone" 
                                                placeholder="Telefone" name="telefone" min="0" minlength="0" maxlength="15">
                                     </c:if>
                                     <c:if test="${not empty telefoneErro}">
-                                        <input type="number" class="form-control inputForm error" id="telefone" 
+                                        <input type="text" class="form-control inputForm error" id="telefone" 
                                                placeholder="${telefoneErro}" name="telefone" min="0" minlength="0" maxlength="15">
                                     </c:if>
                                 </c:if>  

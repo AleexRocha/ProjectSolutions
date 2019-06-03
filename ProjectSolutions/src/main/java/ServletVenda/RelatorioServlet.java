@@ -30,7 +30,7 @@ public class RelatorioServlet extends HttpServlet {
         if ((!dataDe.equalsIgnoreCase("")) && (!dataAte.equalsIgnoreCase(""))) {
             String dataDeFormat = dataDe.concat(" 00:00:00");
             String dataAteFormat = dataAte.concat(" 23:59:59");
-            if (Integer.parseInt(filial) != 0) {
+            if (filial != null) {
                 ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(Integer.parseInt(filial), dataDeFormat, dataAteFormat);
                 request.setAttribute("listaRelatorios", relatorio);
             } else {

@@ -31,31 +31,31 @@ public class VendaCadastroServlet extends HttpServlet {
         boolean error = false;
         if (vCodProduto == null) {
             error = true;
-            request.setAttribute("codProdutoErro", "Não há produto cadastrado para realizar a venda");
+            request.setAttribute("codProdutoErro", "Produto invalido!");
         } else if (vCodProduto.equals("")) {
             error = true;
-            request.setAttribute("codProdutoErro", "Não há produto cadastrado para realizar a venda");
+            request.setAttribute("codProdutoErro", "Produto invalido!");
         }
         if (vIdFuncionario == null) {
             error = true;
-            request.setAttribute("idFuncErro", "Não há usuario cadastrado para realizar a venda");
+            request.setAttribute("idFuncErro", "Usuario invalido");
         } else if (vIdFuncionario.equalsIgnoreCase("0")) {
             error = true;
-            request.setAttribute("idFuncErro", "Não há usuario cadastrado para realizar a venda");
+            request.setAttribute("idFuncErro", "Usuario invalido");
         }
         if (vCodFilial == null) {
             error = true;
-            request.setAttribute("codFilialErro", "Não há filial cadastrado para realizar a venda");
+            request.setAttribute("codFilialErro", "Filial invalida");
         } else if (vCodFilial.equalsIgnoreCase("0")) {
             error = true;
-            request.setAttribute("codFilialErro", "Não há filial cadastrado para realizar a venda");
+            request.setAttribute("codFilialErro", "Filial invalida");
         }
         if (vQuantidade == null) {
             error = true;
-            request.setAttribute("quantidadeErro", "A quantidade deve ser informada");
+            request.setAttribute("quantidadeErro", "Quantidade invalida");
         } else if (vQuantidade.equals("")) {
             error = true;
-            request.setAttribute("quantidadeErro", "Quantidade invalida, valor deve ser maior que 0");
+            request.setAttribute("quantidadeErro", "Quantidade invalida");
         }
 
         if (error) {

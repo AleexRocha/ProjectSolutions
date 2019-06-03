@@ -8,6 +8,9 @@ $('#valorTotal').mask('R$000,00');
 // Mascara de CEP
 $('#cep').mask('00.000-000');
 
+// Mascara de Telefone
+$('#telefone').mask('(00) 0000-0000');
+
 // Fecha os alerts de sucesso e erro 
 $(function () {
     $(".close").click(function (e) {
