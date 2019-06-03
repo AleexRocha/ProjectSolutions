@@ -2,8 +2,8 @@
 $('#cpfCliente').mask('000.000.000-00');
 
 // Mascara de Valor
-$('#valor').mask('R$ 000000,00');
-$('#valorTotal').mask('R$ 000000,00');
+$('#valor').mask('R$ 0000,00');
+$('#valorTotal').mask('R$ 0000,00');
 
 // Mascara de CEP
 $('#cep').mask('00.000-000');

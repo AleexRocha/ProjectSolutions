@@ -113,7 +113,7 @@ Author     : nicolas.hgyoshioka
                                         <label for="quantidade">Quantidade:</label>
                                         <c:choose>
                                             <c:when test="${empty quantidadeErro}">
-                                                <input id="fieldQtd" type="number" class="form-control inputForm" id="quantidade"
+                                                <input type="number" class="form-control inputForm" id="quantidade"
                                                        placeholder="Quantidade" name="quantidade" min="1" onchange="setValor2()">
                                             </c:when>
                                             <c:otherwise>
@@ -126,7 +126,7 @@ Author     : nicolas.hgyoshioka
                                         <label for="valor">Valor:</label>
                                         <c:choose>
                                             <c:when test="${empty quantidadeErro}">
-                                                <input id="fieldValorTotal" type="text" class="form-control inputForm" id="valor"
+                                                <input type="text" class="form-control inputForm" id="valor"
                                                        placeholder="Valor do Produto" name="valor" min="0">
                                             </c:when>
                                             <c:otherwise>
@@ -175,10 +175,10 @@ Author     : nicolas.hgyoshioka
                                 </c:otherwise>
                             </c:choose>
 
-                            <label for="quantidade">Valor Total:</label>
+                            <label for="valorTotal">Valor Total:</label>
                             <c:choose>
                                 <c:when test="${empty quantidadeErro}">
-                                    <input type="number" class="form-control inputForm" id="quantidade"
+                                    <input type="text" class="form-control inputForm" id="valorTotal"
                                            placeholder="Valor Total" name="valorTotal" min="0">
                                 </c:when>               
                             </c:choose>
@@ -220,16 +220,16 @@ Author     : nicolas.hgyoshioka
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
         <script>
-            function setValor(){            
+                                                           function setValor() {
                                                                var valor = document.getElementById("valorUnitario").value;
-                                                               document.getElementById("fieldValorTotal").value = valor;
-                                                               document.getElementById("fieldQtd").value = 1;
+                                                               document.getElementById("valor").value = valor;
+                                                               document.getElementById("quantidade").value = 1;
                                                            }
-            function setValor2(){            
+                                                           function setValor2() {
                                                                var valor = document.getElementById("valorUnitario").value;
-                                                               var qtd = document.getElementById("fieldQtd").value;
+                                                               var qtd = document.getElementById("quantidade").value;
 
-                                                               document.getElementById("fieldValorTotal").value = qtd * valor;
+                                                               document.getElementById("valor").value = qtd * valor;
                                                            }
         </script>
     </body>
