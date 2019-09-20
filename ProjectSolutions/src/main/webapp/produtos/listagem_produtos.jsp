@@ -119,7 +119,7 @@
                                 </form>
                                 <form action="descricao" method="GET">
                                     <button name="consultarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
-                                        <i class="fas fa-search"></i>
+                                        <i class="far fa-eye"></i>
                                     </button>
                                 </form>
                                 <!-- Button que chama a modal -->
