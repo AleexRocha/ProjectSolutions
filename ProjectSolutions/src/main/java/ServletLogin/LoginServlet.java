@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuário ou Senha não existem.");
 
-                request.setAttribute("loginError", uEmail);
+                request.setAttribute(" loginError", uEmail);
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.jsp");
                 dispatcher.forward(request, response);

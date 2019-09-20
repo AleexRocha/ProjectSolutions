@@ -117,6 +117,11 @@
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </form>
+                                <form action="descricao" method="GET">
+                                    <button name="consultarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
                                 <!-- Button que chama a modal -->
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
                                     <i class="far fa-trash-alt"></i>
