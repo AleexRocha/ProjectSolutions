@@ -39,6 +39,7 @@ create table tbl_produtos(
     fk_filial int not null,
     qtd_estoque int not null,
     valor_unidade double not null,
+    imagem varchar(250) not null,
     status int not null,
     foreign key (fk_filial) references tbl_filial(id_filial)
 );
@@ -65,7 +66,7 @@ INSERT INTO tbl_setor(nome_setor) VALUES ('Gerente global');
 INSERT INTO tbl_setor(nome_setor) VALUES ('Diretor');
 
 INSERT INTO tbl_filial(logradouro, numero, cep, bairro, cidade, estado, telefone, status)
-	VALUES ('Av. Eng. Eusebio Stevaux', 823, '04696000', 'Santo Amaro', 'São Paulo', 'SP', '1156827300', 0);
+	VALUES ('Av. Eng. Eusebio Stevaux', 823, '04696000', 'Santo Amaro', 'Sï¿½o Paulo', 'SP', '1156827300', 0);
 
 INSERT INTO tbl_usuario(nome, email, senha, status, fk_filial, fk_setor)
 	VALUES ('Milena Flores', 'diretoria@email.com','123', 0, 1, 5);

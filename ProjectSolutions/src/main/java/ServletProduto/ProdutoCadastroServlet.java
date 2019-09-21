@@ -2,27 +2,42 @@ package ServletProduto;
 
 import DAO.FilialDAO;
 import DAO.ProdutoDAO;
+
 import Model.Filial;
 import Model.Produto;
+
+import java.io.File;
 import java.io.IOException;
+
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 /**
  *
  * @author guilher.rsvieira
  */
+@MultipartConfig
 @WebServlet(name = "ProdutoCadastroServlet", urlPatterns = {"/produtos/cadastro_produto"})
 public class ProdutoCadastroServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
@@ -30,6 +45,10 @@ public class ProdutoCadastroServlet extends HttpServlet {
         String fCodigoFilial = request.getParameter("codigoFilial");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
+//        String fimagem = fcaminhoImagem;
+
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+        String fcaminhoImagem = uploadImagem(isMultipart, request);
 
         boolean error = false;
         if (fNome.length() == 0) {
@@ -51,7 +70,11 @@ public class ProdutoCadastroServlet extends HttpServlet {
         if (fValorUnitario.length() == 0) {
             error = true;
             request.setAttribute("valorUnitarioErro", "Valor unitário não informado");
-        } else {
+        } //        if (fimagem.length() == 0) {
+        //            error = true;
+        //            request.setAttribute("caminhoImagemErro", "Imagem não informada");
+        //        }
+        else {
             String valorReplace;
             valorReplace = fValorUnitario.replace("R$", "");
             valorReplace = valorReplace.replace(",", ".");
@@ -70,6 +93,8 @@ public class ProdutoCadastroServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             Produto produtos = new Produto(fNome, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
+
+//            produtos.setImagem(fimagem);
             if (fDescricao.length() != 0) {
                 produtos.setDescricao(fDescricao);
             }
@@ -92,6 +117,46 @@ public class ProdutoCadastroServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         }
+    }
+
+    private String uploadImagem(boolean isMultipart, HttpServletRequest request) {
+        String caminhoSalvo = null;
+
+        if (isMultipart) {
+            // Create a factory for disk-based file items
+            FileItemFactory factory = new DiskFileItemFactory();
+
+            // Create a new file upload handler
+            ServletFileUpload upload = new ServletFileUpload(factory);
+
+            try {
+                // Parse the request
+                List items = upload.parseRequest(request);
+                Iterator iterator = items.iterator();
+                while (iterator.hasNext()) {
+                    FileItem item = (FileItem) iterator.next();
+                    if (!item.isFormField()) {
+                        String fileName = item.getName();
+                        String root = getServletContext().getRealPath("/");
+                        File path = new File(root + "../../src/main/uploads/images");
+                        System.out.println();
+                        if (!path.exists()) {
+                            boolean status = path.mkdirs();
+                        }
+
+                        File uploadedFile = new File(path + "/" + fileName);
+                        caminhoSalvo = uploadedFile.getCanonicalPath();
+                        System.out.println(caminhoSalvo);
+                        item.write(uploadedFile);
+                    }
+                }
+            } catch (FileUploadException e) {
+                e.printStackTrace();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return caminhoSalvo;
     }
 
     @Override

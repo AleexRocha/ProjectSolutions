@@ -51,3 +51,19 @@ $(function () {
         });
     });
 });
+
+//AJAX de upload de imagens
+let botao = document.querySelector("#upload-button");
+botao.addEventListener("click", function (ev) {
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '/produtos/upload', true);
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            alert("File has been uploaded successfully");
+        } else {
+            $("#upload-error").text("Couldn't upload file");
+        }
+    };
+    xhr.send();
+});

@@ -14,18 +14,19 @@ public class Produto {
     private String nomeFilial;
     private int quantidadeEstoque;
     private double valorUnitario;
+    private String imagem;
 
     public Produto() {
     }
 
-    public Produto(String nome,String tipo, int codigoFilialint, int quantidadeEstoque, double valorUnitario) {
+    public Produto(String nome, String tipo, int codigoFilialint, int quantidadeEstoque, double valorUnitario) {
         this.nome = nome;
         this.codigoFilial = codigoFilialint;
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
         this.tipo = tipo;
     }
-    
+
     public Produto(String nome, String descricao, String tipo, int codigoFilialint, int quantidadeEstoque, double valorUnitario) {
         this.nome = nome;
         this.descricao = descricao;
@@ -107,6 +108,14 @@ public class Produto {
 
     public void setCodigoFilial(int codigoFilial) {
         this.codigoFilial = codigoFilial;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
 }

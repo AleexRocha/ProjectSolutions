@@ -65,10 +65,10 @@ Author     : nicolas.hgyoshioka
                 <div class="col-md-6">
                     <c:choose>
                         <c:when test="${acao == 'editar'}">
-                            <form action="editar_produto" method="POST">
+                            <form action="editar_produto" method="POST" enctype="multipart/form-data">
                             </c:when>
                             <c:otherwise>
-                                <form action="cadastro_produto" method="POST">
+                                <form action="cadastro_produto" method="POST" enctype="multipart/form-data">
                                 </c:otherwise>
                             </c:choose>
 
@@ -93,6 +93,9 @@ Author     : nicolas.hgyoshioka
                                                placeholder="Codigo do produto" name="codigoProduto">
                                     </c:otherwise>
                                 </c:choose>
+
+                                <label for="imagemProduto">Imagem do produto:</label>
+                                <input type="file" class="form-control-file inputForm" id="file" name="file1"/>       
 
                                 <label for="nomeProduto">Nome:</label>
                                 <c:choose>
@@ -243,6 +246,13 @@ Author     : nicolas.hgyoshioka
                                 Cancelar
                             </button>
                         </form>
+                        <!--
+                        <form id="upload-form" class="upload-box" action="upload" method="POST" enctype="multipart/form-data">
+                                                    <input type="file" id="file" name="file1" />
+                                                    <span id="upload-error" class="error">${uploadError}</span>
+                                                    <input type="submit" id="upload-button" value="upload" />
+                                                </form>
+                        -->
                 </div>
                 <div class="col-md-3"></div>
             </div>

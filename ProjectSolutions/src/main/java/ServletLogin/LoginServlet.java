@@ -53,7 +53,8 @@ public class LoginServlet extends HttpServlet {
                 sessao.setAttribute("cdFilial", infoSessao.getCodigoFilial());
                 sessao.setAttribute("nomeFilial", infoSessao.getNomeFilial());
 
-                response.sendRedirect("../venda/cadastro_vendas");
+//                response.sendRedirect("../venda/cadastro_vendas");
+                response.sendRedirect("../produtos/listagem_produtos");
             } else {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuário ou Senha não existem.");
