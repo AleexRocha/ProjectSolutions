@@ -53,17 +53,26 @@ $(function () {
 });
 
 //AJAX de upload de imagens
-let botao = document.querySelector("#upload-button");
-botao.addEventListener("click", function (ev) {
+function preview() {
+    let image = document.getElementById("preview-image");
+    let file = document.querySelector("input[type=file]").files[0];
 
+    let reader = new FileReader();
+    reader.onloadend = function () {
+        image.src = reader.result;
+    };
+    if (file) {
+        reader.readAsDataURL(file);
+        image.classList.remove("sr-only");
+    } else {
+        image.src = "";
+    }
+}
+function salvarImagem() {
+//    let botao = document.querySelector("#upload-button");
+//    botao.addEventListener("click", function (ev) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', '/produtos/upload', true);
-    xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 400) {
-            alert("File has been uploaded successfully");
-        } else {
-            $("#upload-error").text("Couldn't upload file");
-        }
-    };
     xhr.send();
-});
+//    });
+}

@@ -45,10 +45,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
         String fCodigoFilial = request.getParameter("codigoFilial");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
-//        String fimagem = fcaminhoImagem;
-
-        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-        String fcaminhoImagem = uploadImagem(isMultipart, request);
 
         boolean error = false;
         if (fNome.length() == 0) {
@@ -70,11 +66,7 @@ public class ProdutoCadastroServlet extends HttpServlet {
         if (fValorUnitario.length() == 0) {
             error = true;
             request.setAttribute("valorUnitarioErro", "Valor unitário não informado");
-        } //        if (fimagem.length() == 0) {
-        //            error = true;
-        //            request.setAttribute("caminhoImagemErro", "Imagem não informada");
-        //        }
-        else {
+        } else {
             String valorReplace;
             valorReplace = fValorUnitario.replace("R$", "");
             valorReplace = valorReplace.replace(",", ".");
@@ -93,13 +85,23 @@ public class ProdutoCadastroServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             Produto produtos = new Produto(fNome, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
-
-//            produtos.setImagem(fimagem);
             if (fDescricao.length() != 0) {
                 produtos.setDescricao(fDescricao);
             }
             boolean httpOK = ProdutoDAO.salvarProduto(produtos);
-
+//            int idProduto = ProdutoDAO.salvarProduto(produtos);
+//
+//            if (idProduto > 0) {
+//                Produto produto = ProdutoDAO.getProduto(idProduto);
+//                request.setAttribute("listaProdutos", produto);
+//
+//                request.setAttribute("varMsg", true);
+//                request.setAttribute("msg", "Cadastro realizado com sucesso.");
+//
+//                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_imagem_produto.jsp");
+//                dispatcher.forward(request, response);
+//
+//            }
             if (httpOK) {
                 ArrayList<Produto> produto = ProdutoDAO.getProdutos();
                 request.setAttribute("listaProdutos", produto);
@@ -119,7 +121,8 @@ public class ProdutoCadastroServlet extends HttpServlet {
         }
     }
 
-    private String uploadImagem(boolean isMultipart, HttpServletRequest request) {
+    private String uploadImagem(HttpServletRequest request) {
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         String caminhoSalvo = null;
 
         if (isMultipart) {

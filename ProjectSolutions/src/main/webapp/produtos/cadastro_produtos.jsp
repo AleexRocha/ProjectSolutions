@@ -61,7 +61,38 @@ Author     : nicolas.hgyoshioka
 
         <div class="container">
             <div class="row">
-                <div class="col-md-3"></div>
+                <div class="col-md-12">
+                    <c:if test="${varMsg == true}">
+                        <div class="alert alert-success" role="alert">
+                            <c:out value="${msg}"/>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </c:if>
+                </div>
+                <div class="col-md-6">
+                    <form id="upload-form" class="upload-box" action="upload" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="imagemProduto">Imagem do produto:</label>
+                                <input type="file" class="form-control-file inputForm" id="file" name="file1" onchange="preview();"/>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success" id="upload-button" style="margin-top: 24px;" onclick="salvarImagem();">
+                                    <i class="far fa-save"></i>
+                                    Salvar Imagem
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="text-center subtitulo">
+                        <span class="h4">Preview da Imagem</span>
+                    <p class="text-center">
+                        <img src="" id="preview-image" class="sr-only" alt="Imagem do Produto" width="380">                        
+                    </p>
+                    </p>
+                </div>
                 <div class="col-md-6">
                     <c:choose>
                         <c:when test="${acao == 'editar'}">
@@ -92,10 +123,7 @@ Author     : nicolas.hgyoshioka
                                         <input type="number" class="form-control inputForm sr-only" id="codigoProduto"
                                                placeholder="Codigo do produto" name="codigoProduto">
                                     </c:otherwise>
-                                </c:choose>
-
-                                <label for="imagemProduto">Imagem do produto:</label>
-                                <input type="file" class="form-control-file inputForm" id="file" name="file1"/>       
+                                </c:choose>    
 
                                 <label for="nomeProduto">Nome:</label>
                                 <c:choose>
@@ -246,17 +274,9 @@ Author     : nicolas.hgyoshioka
                                 Cancelar
                             </button>
                         </form>
-                        <!--
-                        <form id="upload-form" class="upload-box" action="upload" method="POST" enctype="multipart/form-data">
-                                                    <input type="file" id="file" name="file1" />
-                                                    <span id="upload-error" class="error">${uploadError}</span>
-                                                    <input type="submit" id="upload-button" value="upload" />
-                                                </form>
-                        -->
                 </div>
-                <div class="col-md-3"></div>
+                <%@include file="../WEB-INF/footer.jsp" %>
             </div>
-            <%@include file="../WEB-INF/footer.jsp" %>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/jquery.mask.min.js"></script>
