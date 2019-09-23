@@ -93,7 +93,7 @@
 									<h5> R$<c:out value="${produtos.valorUnitario}"/> </h5>
 									<p class="card-text">
 										<button type="button" class="btn btn-outline-success">Comprar</button>
-										<form action="visualizar_descricao" method="GET">
+										<form action="../produtos/visualizar_descricao" method="GET">
 											<button name="visualizarPorId" type="submit" value ="${produtos.codigo}" class="btn btn-outline-success">Saiba	mais</button>
 										</form>
 								</div>
