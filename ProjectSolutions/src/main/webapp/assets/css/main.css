@@ -102,3 +102,45 @@ footer {
 .tituloProdutoCliente{
 	color:#d85600;
 }
+
+#text-qtd{
+	width: 40px;
+  padding-bottom: 5px;
+	text-align: center;
+}
+#contentDescricao{
+  margin-top: 5%;
+}
+#imgProduto{
+  margin-bottom: 25px;
+}
+#desc-product{
+  text-align: justify;
+  text-align-last: center;
+}
+#modelos{
+  margin-bottom: 25px
+}
+#rowOptionsProduto{
+  padding: 6px 5px;
+}
+#add-to-cart{
+  margin: 5px;
+  width: 100%;
+}
+#dropdown_opcoes{
+  text-align: center;
+  margin-top: 20%;
+}
+#btn_cadastro{
+    float: left;
+    margin-right: 5px;
+}
+#itensMenu{
+    margin-left: auto;
+    margin-right: auto;
+}
+#price-product{
+	font-size: 40px;
+  padding-left: 6px;
+}

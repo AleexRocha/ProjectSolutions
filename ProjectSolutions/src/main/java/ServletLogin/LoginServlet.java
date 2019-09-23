@@ -1,6 +1,7 @@
 package ServletLogin;
 
 import DAO.UsuarioDAO;
+import Model.Produto;
 import Model.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,6 +51,8 @@ public class LoginServlet extends HttpServlet {
                   if (!sessao.getAttribute("nomeSetor").equals("Cliente")) {
                 	  dispatcher = request.getRequestDispatcher("../venda/cadastro_vendas.jsp");
           		  }else {
+          			  ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
+          			  request.setAttribute("listaProdutos", produtos);
           			  dispatcher = request.getRequestDispatcher("../produtos/cliente_listagem_produtos.jsp");
           		  }
               } else {
