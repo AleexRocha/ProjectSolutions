@@ -246,9 +246,10 @@ public class UsuarioDAO {
         Usuario sessao = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement(" SELECT u.id_usuario, u.nome, u.email, u.fk_filial, u.fk_setor, \n"
+            PreparedStatement query = conn.prepareStatement(" SELECT u.id_usuario, u.nome, u.email, u.fk_filial, s.nome_setor, \n"
                     + " concat(f.cidade, \" - \", f.estado) FROM tbl_usuario as u \n"
-                    + " inner join tbl_filial as f on u.fk_filial = f.id_filial where email = ?;");
+                    + " inner join tbl_filial as f on u.fk_filial = f.id_filial "
+                    + " inner join tbl_setor as s on u.fk_setor = s.id_setor where email = ?;");
 
          
             query.setString(1, uEmail);
@@ -260,7 +261,7 @@ public class UsuarioDAO {
                 sessao.setNome(rs.getString(2));
                 sessao.setEmail(rs.getString(3));
                 sessao.setCodigoFilial(rs.getInt(4));
-                sessao.setSetor(rs.getInt(5));
+                sessao.setNomeSetor(rs.getString(5));
                 sessao.setNomeFilial(rs.getString(6));
             }
             conn.close();
