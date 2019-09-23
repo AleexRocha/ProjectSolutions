@@ -91,11 +91,19 @@
 										<h4 class="tituloProdutoCliente" href="#"> <c:out value="${produtos.nome}"/> </h4>
 									</h4>
 									<h5> R$<c:out value="${produtos.valorUnitario}"/> </h5>
-									<p class="card-text">
-										<button type="button" class="btn btn-outline-success">Comprar</button>
-										<form action="../produtos/visualizar_descricao" method="GET">
-											<button name="visualizarPorId" type="submit" value ="${produtos.codigo}" class="btn btn-outline-success">Saiba	mais</button>
-										</form>
+									<p class="card-text"></p>
+									<div class="row">
+										<div class="col-lg-4"> 
+											<button type="button" class="btn btn-outline-success">Comprar</button> 
+										</div>
+										<div class="col-lg-6"> 
+											<form action="../produtos/visualizar_descricao" method="GET">
+												<button name="visualizarPorId" type="submit" value ="${produtos.codigo}" class="btn btn-outline-success">Saiba	mais</button>
+											</form> 
+										</div>
+										<div class="col-lg-2"></div>
+									</div>
+									
 								</div>
 							</div>
 						</div>
