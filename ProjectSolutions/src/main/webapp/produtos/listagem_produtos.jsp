@@ -112,8 +112,8 @@
                             <td class="coluna" name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
                             <td class="coluna" name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
                             <td class="btn-group">
-                                <form action="descricao" method="GET">
-                                    <button name="consultarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
+                                <form action="visualizar_descricao" method="GET">
+                                    <button name="visualizarPorId" value="${produtos.codigo}" type="submit" class="btn btn-success">
                                         <i class="far fa-eye"></i>
                                     </button>
                                 </form>
