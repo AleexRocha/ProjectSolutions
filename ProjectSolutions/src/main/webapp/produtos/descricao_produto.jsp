@@ -1,9 +1,10 @@
 <%-- 
     Document   : descricao_produto
     Created on : 19/09/2019, 21:00:41
-    Author     : guilherme.psilva103
+    Author     : Nicolas Yoshioka/Guilherme Pereira
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

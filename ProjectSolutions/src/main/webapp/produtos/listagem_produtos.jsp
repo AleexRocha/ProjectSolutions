@@ -112,14 +112,14 @@
                             <td class="coluna" name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
                             <td class="coluna" name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
                             <td class="btn-group">
-                                <form action="dados_produto" method="POST">
-                                    <button name="editarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
-                                        <i class="fas fa-pen"></i>
-                                    </button>
-                                </form>
                                 <form action="descricao" method="GET">
                                     <button name="consultarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
                                         <i class="far fa-eye"></i>
+                                    </button>
+                                </form>
+                                <form action="dados_produto" method="POST">
+                                    <button name="editarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
+                                        <i class="fas fa-pen"></i>
                                     </button>
                                 </form>
                                 <!-- Button que chama a modal -->
