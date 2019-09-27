@@ -31,6 +31,12 @@ create table tbl_usuario(
     foreign key (fk_setor) references tbl_setor(id_setor)
 );
 
+CREATE TABLE tbl_imagem(
+    id_imagem int not null primary key auto_increment,
+    caminho varchar(250),
+    nome_arquivo varchar(100)
+);
+
 create table tbl_produtos(
     id_produto int not null primary key auto_increment,
     nome varchar(50) not null,
@@ -39,9 +45,10 @@ create table tbl_produtos(
     fk_filial int not null,
     qtd_estoque int not null,
     valor_unidade double not null,
-    imagem varchar(250) not null,
+    fk_imagem int not null,
     status int not null,
-    foreign key (fk_filial) references tbl_filial(id_filial)
+    foreign key (fk_filial) references tbl_filial(id_filial),
+    foreign key (fk_imagem) references tbl_imagem(id_imagem)
 );
 
 create table tbl_venda(
@@ -65,7 +72,7 @@ INSERT INTO tbl_setor(nome_setor) VALUES ('Estoquista');
 INSERT INTO tbl_setor(nome_setor) VALUES ('Cliente');
 
 INSERT INTO tbl_filial(logradouro, numero, cep, bairro, cidade, estado, telefone, status)
-	VALUES ('Av. Eng. Eusebio Stevaux', 823, '04696000', 'Santo Amaro', 'S�o Paulo', 'SP', '1156827300', 0);
+	VALUES ('Av. Eng. Eusebio Stevaux', 823, '04696000', 'Santo Amaro', 'Sao Paulo', 'SP', '1156827300', 0);
 
 INSERT INTO tbl_usuario(nome, email, senha, status, fk_filial, fk_setor)
 	VALUES ('Milena Flores', 'diretoria@email.com','123', 0, 1, 1);
