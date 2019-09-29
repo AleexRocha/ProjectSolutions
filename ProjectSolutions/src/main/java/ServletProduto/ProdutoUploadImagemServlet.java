@@ -1,9 +1,14 @@
 package ServletProduto;
 
+import DAO.ProdutoDAO;
+import Model.Imagem;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -35,6 +40,10 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        boolean error = false;
+        ArrayList caminhos = new ArrayList();
+        ArrayList nomesArquivos = new ArrayList();
+
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
         if (isMultipart) {
@@ -54,21 +63,55 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
                         String fileName = item.getName();
                         String root = getServletContext().getRealPath("/");
                         File path = new File(root + "../../src/main/uploads/images");
-                        System.out.println();
+
                         if (!path.exists()) {
                             boolean status = path.mkdirs();
                         }
 
                         File uploadedFile = new File(path + "/" + fileName);
-                        String caminho = uploadedFile.getCanonicalPath();
-                        System.out.println(caminho);
                         item.write(uploadedFile);
+                        caminhos.add(uploadedFile.getCanonicalPath());
+                        nomesArquivos.add(fileName);
                     }
                 }
             } catch (FileUploadException e) {
-                e.printStackTrace();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                System.out.println(e);
+                error = true;
+            } catch (Exception e) {
+                System.out.println(e);
+                error = true;
+            }
+        } else {
+            error = true;
+        }
+
+        if (error) {
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Erro ao salvar a imagem.");
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            int id = 0;
+            if (caminhos.size() > 0 && nomesArquivos.size() > 0) {
+                for (int i = 0; i < caminhos.size(); i++) {
+                    Imagem imagem = new Imagem(nomesArquivos.get(i).toString(), caminhos.get(i).toString());
+                    id = ProdutoDAO.salvarImagem(imagem);
+                    if (id == 0) {
+                        request.setAttribute("varMsg", true);
+                        request.setAttribute("msg", "Erro ao salvar a imagem.");
+
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                    request.setAttribute("listaImagens", id);
+                    request.setAttribute("id", id);
+                }
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Imagem salva com sucesso!");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
+                dispatcher.forward(request, response);
             }
         }
     }
