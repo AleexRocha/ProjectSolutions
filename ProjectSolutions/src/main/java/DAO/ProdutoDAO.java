@@ -1,10 +1,12 @@
 package DAO;
 
+import Model.Imagem;
 import Model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 //import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -16,61 +18,37 @@ public class ProdutoDAO {
 
     private static final Database db = new Database();
 
-    public static boolean salvarProduto(Produto p) {
+    public static int salvarProduto(Produto p) {
         Connection conn = db.obterConexao();
+        int idProduto = 0;
+
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " tbl_produtos(nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade, imagem, status)"
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+                    + " tbl_produtos(nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade, status)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
             query.setString(1, p.getNome());
             query.setString(2, p.getDescricao());
             query.setString(3, p.getTipo());
             query.setInt(4, p.getCodigoFilial());
             query.setInt(5, p.getQuantidadeEstoque());
             query.setDouble(6, p.getValorUnitario());
-            query.setString(7, p.getImagem());
-            query.setInt(8, 0);
+            query.setInt(7, 0);
 
-            int rs = query.executeUpdate();
+            query.executeUpdate();
+
+            ResultSet rs = query.getGeneratedKeys();
+            if (rs.next()) {
+                idProduto = rs.getInt(1);
+            }
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+            return idProduto;
         }
 
-        return true;
+        return idProduto;
     }
 
-//    public static int salvarProduto(Produto p) {
-//        Connection conn = db.obterConexao();
-//        int lastId = 0;
-//
-//        try {
-//            PreparedStatement query = conn.prepareStatement("INSERT INTO"
-//                    + " tbl_produtos(nome, descricao, tipo, fk_filial, qtd_estoque, valor_unidade, status)"
-//                    + "VALUES (?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
-//            query.setString(1, p.getNome());
-//            query.setString(2, p.getDescricao());
-//            query.setString(3, p.getTipo());
-//            query.setInt(4, p.getCodigoFilial());
-//            query.setInt(5, p.getQuantidadeEstoque());
-//            query.setDouble(6, p.getValorUnitario());
-//            query.setInt(7, 0);
-//
-//            query.executeUpdate();
-//
-//            ResultSet rs = query.getGeneratedKeys();
-//            if (rs.next()) {
-//                lastId = rs.getInt(1);
-//            }
-//            conn.close();
-//        } catch (SQLException e) {
-//            System.out.println(e);
-//            return lastId;
-//        }
-//
-//        return lastId;
-//    }
     public static boolean atualizarProduto(Produto produto) {
         Connection conn = db.obterConexao();
         try {

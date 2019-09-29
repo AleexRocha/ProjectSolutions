@@ -39,7 +39,24 @@ public class ImagemDAO {
         }
         return id;
     }
-    
-    
-    
+
+    public static boolean atualizaProdutoImagem(Imagem i) {
+        Connection conn = db.obterConexao();
+
+        try {
+            PreparedStatement query = conn.prepareStatement("UPDATE tbl_imagem SET "
+                    + "fk_produto = ? "
+                    + "WHERE id_imagem = ?");
+            query.setInt(1, i.getFkProduto());
+            query.setInt(1, i.getIdImagem());
+
+            query.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
 }

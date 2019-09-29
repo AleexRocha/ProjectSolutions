@@ -92,20 +92,20 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
         } else {
-            int id = 0;
+            int fIdImagem = 0;
             if (caminhos.size() > 0 && nomesArquivos.size() > 0) {
                 for (int i = 0; i < caminhos.size(); i++) {
                     Imagem imagem = new Imagem(nomesArquivos.get(i).toString(), caminhos.get(i).toString());
-                    id = ImagemDAO.salvarImagem(imagem);
-                    if (id == 0) {
+                    fIdImagem = ImagemDAO.salvarImagem(imagem);
+                    if (fIdImagem == 0) {
                         request.setAttribute("varMsg", true);
                         request.setAttribute("msg", "Erro ao salvar a imagem.");
 
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                         dispatcher.forward(request, response);
                     }
-                    request.setAttribute("listaImagens", id);
-                    request.setAttribute("id", id);
+                    request.setAttribute("listaImagens", fIdImagem);
+                    request.setAttribute("id", fIdImagem);
                 }
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Imagem salva com sucesso!");

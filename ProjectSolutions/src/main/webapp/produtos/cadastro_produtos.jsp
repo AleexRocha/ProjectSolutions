@@ -118,7 +118,7 @@ Author     : nicolas.hgyoshioka
                                 <c:if test="${not empty listaImagens}">
                                     <label for="codigoImagem" class="sr-only">Código da imagem:</label>
                                     <input type="number" class="form-control inputForm sr-only" id="codigoImagem"
-                                           value="${id}" name="codigoImagem">
+                                           value="${fIdImagem}" name="codigoImagem">
                                 </c:if>
 
                                 <label for="nomeProduto">Nome:</label>
