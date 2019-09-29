@@ -1,6 +1,6 @@
 package ServletProduto;
 
-import DAO.ProdutoDAO;
+import DAO.ImagemDAO;
 import Model.Imagem;
 
 import java.io.File;
@@ -96,7 +96,7 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
             if (caminhos.size() > 0 && nomesArquivos.size() > 0) {
                 for (int i = 0; i < caminhos.size(); i++) {
                     Imagem imagem = new Imagem(nomesArquivos.get(i).toString(), caminhos.get(i).toString());
-                    id = ProdutoDAO.salvarImagem(imagem);
+                    id = ImagemDAO.salvarImagem(imagem);
                     if (id == 0) {
                         request.setAttribute("varMsg", true);
                         request.setAttribute("msg", "Erro ao salvar a imagem.");

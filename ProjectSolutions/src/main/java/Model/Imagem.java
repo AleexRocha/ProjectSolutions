@@ -19,6 +19,11 @@ public class Imagem {
         this.caminho = caminho;
     }
 
+    public Imagem(int idImagem, int fkProduto) {
+        this.idImagem = idImagem;
+        this.fkProduto = fkProduto;
+    }
+
     public Imagem(int idImagem, String nome, String caminho, int fkProduto) {
         this.idImagem = idImagem;
         this.nome = nome;
