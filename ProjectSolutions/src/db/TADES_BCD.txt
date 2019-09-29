@@ -46,7 +46,7 @@ create table tbl_produtos(
 create table tbl_imagem(
     id_imagem int not null primary key auto_increment,
     caminho varchar(250),
-    nome_arquivo varchar(100)
+    nome_arquivo varchar(100),
     fk_produto int,
     foreign key (fk_produto) references tbl_produtos(id_produto)
 );
