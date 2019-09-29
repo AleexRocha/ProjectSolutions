@@ -31,12 +31,6 @@ create table tbl_usuario(
     foreign key (fk_setor) references tbl_setor(id_setor)
 );
 
-CREATE TABLE tbl_imagem(
-    id_imagem int not null primary key auto_increment,
-    caminho varchar(250),
-    nome_arquivo varchar(100)
-);
-
 create table tbl_produtos(
     id_produto int not null primary key auto_increment,
     nome varchar(50) not null,
@@ -45,10 +39,16 @@ create table tbl_produtos(
     fk_filial int not null,
     qtd_estoque int not null,
     valor_unidade double not null,
-    fk_imagem int not null,
     status int not null,
-    foreign key (fk_filial) references tbl_filial(id_filial),
-    foreign key (fk_imagem) references tbl_imagem(id_imagem)
+    foreign key (fk_filial) references tbl_filial(id_filial)
+);
+
+create table tbl_imagem(
+    id_imagem int not null primary key auto_increment,
+    caminho varchar(250),
+    nome_arquivo varchar(100)
+    fk_produto int,
+    foreign key (fk_produto) references tbl_produtos(id_produto)
 );
 
 create table tbl_venda(
