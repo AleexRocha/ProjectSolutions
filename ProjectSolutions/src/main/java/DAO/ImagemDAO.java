@@ -48,7 +48,7 @@ public class ImagemDAO {
                     + "fk_produto = ? "
                     + "WHERE id_imagem = ?");
             query.setInt(1, i.getFkProduto());
-            query.setInt(1, i.getIdImagem());
+            query.setInt(2, i.getIdImagem());
 
             query.executeUpdate();
             conn.close();

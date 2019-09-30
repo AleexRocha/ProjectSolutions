@@ -31,8 +31,21 @@ public class ProdutoCadastroServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        boolean error = false;
         request.setCharacterEncoding("UTF-8");
         String fIdImagem = request.getParameter("codigoImagem");
+
+        if (fIdImagem == null) {
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Salve uma imagem para cadastrar um produto");
+
+            ArrayList<Filial> filiais = FilialDAO.getFiliais();
+            request.setAttribute("listaFiliais", filiais);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
+            dispatcher.forward(request, response);
+        }
+
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");
@@ -40,11 +53,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
 
-        boolean error = false;
-        if (fIdImagem.length() == 0) {
-            error = true;
-            request.setAttribute("idImagemErro", "Salve a imagem para cdastrar um produto");
-        }
         if (fNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
@@ -75,6 +83,9 @@ public class ProdutoCadastroServlet extends HttpServlet {
         if (error) {
             ArrayList<Filial> filiais = FilialDAO.getFiliais();
             request.setAttribute("listaFiliais", filiais);
+
+            request.setAttribute("listaImagens", fIdImagem);
+            request.setAttribute("id", fIdImagem);
 
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
@@ -107,12 +118,15 @@ public class ProdutoCadastroServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
             } else {
+                ArrayList<Filial> filiais = FilialDAO.getFiliais();
+                request.setAttribute("listaFiliais", filiais);
+
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
 
                 request.setAttribute("listaImagens", fIdImagem);
                 request.setAttribute("id", fIdImagem);
-                
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                 dispatcher.forward(request, response);
             }

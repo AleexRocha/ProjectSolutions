@@ -63,7 +63,7 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-12">
                     <c:if test="${varMsg == true}">
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-danger" role="alert">
                             <c:out value="${msg}"/>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -75,11 +75,11 @@ Author     : nicolas.hgyoshioka
                     <form action="upload" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-8">
-                                <label for="imagemProduto">Imagem do produto:</label>
-                                <input type="file" class="form-control-file inputForm" id="imagemProduto" name="imagemProduto" onchange="preview();"/>
+                                <label for="inputImagemProduto">Imagem do produto:</label>
+                                <input type="file" class="form-control-file inputForm" id="inputImagemProduto" name="imagemProduto" onchange="preview();"/>
                             </div>
-                            <div class="col-md-4">
-                                <button type="submit" class="btn btn-success" id="upload-button" style="margin-top: 24px;" onclick="salvarImagem();">
+                            <div class="col-md-4 btn-upload">
+                                <button type="submit" class="btn btn-block btn-success" id="upload-button" onclick="salvarImagem();">
                                     <i class="far fa-save"></i>
                                     Salvar Imagem
                                 </button>
@@ -117,8 +117,8 @@ Author     : nicolas.hgyoshioka
 
                                 <c:if test="${not empty listaImagens}">
                                     <label for="codigoImagem" class="sr-only">Código da imagem:</label>
-                                    <input type="number" class="form-control inputForm sr-only" id="codigoImagem"
-                                           value="${fIdImagem}" name="codigoImagem">
+                                    <input type="number" class="form-control inputForm sr-only" id="codigoImagem" 
+                                           value="${id}" name="codigoImagem">
                                 </c:if>
 
                                 <label for="nomeProduto">Nome:</label>

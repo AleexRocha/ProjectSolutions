@@ -1,6 +1,8 @@
 package ServletProduto;
 
+import DAO.FilialDAO;
 import DAO.ImagemDAO;
+import Model.Filial;
 import Model.Imagem;
 
 import java.io.File;
@@ -86,6 +88,9 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
         }
 
         if (error) {
+            ArrayList<Filial> filiais = FilialDAO.getFiliais();
+            request.setAttribute("listaFiliais", filiais);
+
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Erro ao salvar a imagem.");
 
@@ -104,9 +109,13 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                         dispatcher.forward(request, response);
                     }
-                    request.setAttribute("listaImagens", fIdImagem);
-                    request.setAttribute("id", fIdImagem);
                 }
+                request.setAttribute("listaImagens", fIdImagem);
+                request.setAttribute("id", fIdImagem);
+
+                ArrayList<Filial> filiais = FilialDAO.getFiliais();
+                request.setAttribute("listaFiliais", filiais);
+
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Imagem salva com sucesso!");
 

@@ -52,7 +52,7 @@ $(function () {
     });
 });
 
-//AJAX de upload de imagens
+//Função de preview ao selecionar um arquivo
 function preview() {
     let image = document.getElementById("preview-image");
     let file = document.querySelector("input[type=file]").files[0];
@@ -68,11 +68,22 @@ function preview() {
         image.src = "";
     }
 }
+
+//AJAX de upload de imagens
 function salvarImagem() {
-//    let botao = document.querySelector("#upload-button");
-//    botao.addEventListener("click", function (ev) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', '/produtos/upload', true);
+    xhr.onloadstart = function (e) {
+        console.log("start");
+    };
+    xhr.onprogress = function (e) {
+        if (e.lengthComputable) {
+            console.log(e.loaded + " / " + e.total);
+        }
+    };
+    xhr.onloadend = function (e) {
+        console.log("end");
+    };
     xhr.send();
 //    });
 }
