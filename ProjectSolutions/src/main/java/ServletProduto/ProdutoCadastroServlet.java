@@ -11,6 +11,7 @@ import Model.Produto;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,7 +32,7 @@ public class ProdutoCadastroServlet extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean error = false;
+        boolean formularioOK = validaCamposForm(request);
         request.setCharacterEncoding("UTF-8");
         String fIdImagem = request.getParameter("codigoImagem");
 
@@ -52,35 +53,29 @@ public class ProdutoCadastroServlet extends HttpServlet {
         String fCodigoFilial = request.getParameter("codigoFilial");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
+        String valorReplace;
+        valorReplace = fValorUnitario.replace("R$", "");
+        valorReplace = valorReplace.replace(",", ".");
+        fValorUnitario = valorReplace;
 
-        if (fNome.length() == 0) {
-            error = true;
-            request.setAttribute("nomeErro", "Nome não informado");
-        }
-        if (fTipo == null) {
-            error = true;
-            request.setAttribute("tipoErro", "Tipo não informado");
-        }
-        if (fCodigoFilial == null) {
-            error = true;
-            request.setAttribute("codigoFilialErro", "Filial não informada");
-        }
-        if (fQuantidadeEstoque.length() == 0) {
-            error = true;
-            request.setAttribute("quantidadeEstoqueErro", "Quantidade em estoque não informada");
-        }
-        if (fValorUnitario.length() == 0) {
-            error = true;
-            request.setAttribute("valorUnitarioErro", "Valor unitário não informado");
-        } else {
-            String valorReplace;
-            valorReplace = fValorUnitario.replace("R$", "");
-            valorReplace = valorReplace.replace(",", ".");
+        if (!formularioOK) {
+            HashMap<String, String> camposInvalidos = informaCamposIncorretos(request);
+            if (camposInvalidos.get("nomeErro") != null) {
+                request.setAttribute("nomeErro", camposInvalidos.get("nomeErro"));
+            }
+            if (camposInvalidos.get("tipoErro") != null) {
+                request.setAttribute("tipoErro", camposInvalidos.get("tipoErro"));
+            }
+            if (camposInvalidos.get("CodigoFilialErro") != null) {
+                request.setAttribute("codigoFilialErro", camposInvalidos.get("codigoFilialErro"));
+            }
+            if (camposInvalidos.get("quantidadeEstoqueErro") != null) {
+                request.setAttribute("quantidadeEstoqueErro", camposInvalidos.get("quantidadeEstoqueErro"));
+            }
+            if (camposInvalidos.get("valorUnitarioErro") != null) {
+                request.setAttribute("valorUnitarioErro", camposInvalidos.get("valorUnitarioErro"));
+            }
 
-            fValorUnitario = valorReplace;
-        }
-
-        if (error) {
             ArrayList<Filial> filiais = FilialDAO.getFiliais();
             request.setAttribute("listaFiliais", filiais);
 
@@ -102,7 +97,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
             }
 //            boolean httpOK = ProdutoDAO.salvarProduto(produtos);
             idProduto = ProdutoDAO.salvarProduto(produtos);
-//
             if (idProduto > 0) {
                 Imagem imagem = new Imagem(Integer.parseInt(fIdImagem), idProduto);
                 httpOK = ImagemDAO.atualizaProdutoImagem(imagem);
@@ -141,6 +135,59 @@ public class ProdutoCadastroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processaRequisicao("POST", req, resp);
+    }
+
+    private boolean validaCamposForm(HttpServletRequest request) {
+        String fNome = request.getParameter("nome");
+        String fTipo = request.getParameter("tipo");
+        String fCodigoFilial = request.getParameter("codigoFilial");
+        String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
+        String fValorUnitario = request.getParameter("valorUnitario");
+
+        if (fNome.length() == 0) {
+            return false;
+        }
+        if (fTipo == null) {
+            return false;
+        }
+        if (fCodigoFilial == null) {
+            return false;
+        }
+        if (fQuantidadeEstoque.length() == 0) {
+            return false;
+        }
+        if (fValorUnitario.length() == 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private HashMap<String, String> informaCamposIncorretos(HttpServletRequest request) {
+        HashMap<String, String> camposInvalidos = new HashMap();
+        String fNome = request.getParameter("nome");
+        String fTipo = request.getParameter("tipo");
+        String fCodigoFilial = request.getParameter("codigoFilial");
+        String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
+        String fValorUnitario = request.getParameter("valorUnitario");
+
+        if (fNome.length() == 0) {
+            camposInvalidos.put("nomeErro", "Nome não informado");
+        }
+        if (fTipo == null) {
+            camposInvalidos.put("tipoErro", "Tipo não informado");
+        }
+        if (fCodigoFilial == null) {
+            camposInvalidos.put("codigoFilialErro", "Filial não informada");
+        }
+        if (fQuantidadeEstoque.length() == 0) {
+            camposInvalidos.put("quantidadeEstoqueErro", "Quantidade em estoque não informada");
+        }
+        if (fValorUnitario.length() == 0) {
+            camposInvalidos.put("valorUnitarioErro", "Valor unitário não informado");
+        }
+
+        return camposInvalidos;
     }
 
 }
