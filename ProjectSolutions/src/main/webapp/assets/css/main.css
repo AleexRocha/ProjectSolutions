@@ -116,17 +116,29 @@ footer {
 .titulo-produto-descricao{
     padding: 15px;
 }
+#details-product{
+    margin: 20px 0px;
+}
 #imgProduto{
     margin-bottom: 25px;
 }
-#desc-product{
-    text-align: justify;
-}
 #title-desc-produto{
     font-weight: bolder;
+    font-size: 20px;
 }
-#modelos{
-    margin-right: 25px;
+#desc-product{
+    text-align: justify;
+    font-size: 22px;
+    font-weight: lighter;
+}
+.opcoes-produto{
+    margin: 5px 5px 10px 10px;
+}
+.opcoes-produto select{
+    width: 150px;
+}
+.opcoes-produto #dropdown-cor{
+    margin-left: 56px;
 }
 #rowOptionsProduto{
     padding: 6px 5px;

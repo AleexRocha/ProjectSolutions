@@ -47,8 +47,8 @@
         </header>
         <div class="container" id="contentDescricao">
             <h2 class="text-center subtitulo titulo-produto-descricao">Produto: <c:out value="${produto.nome}"/></h2>
-            <div class="row">
-                <div class="col-md-7 details-product">
+            <div class="row" id="details-product">
+                <div class="col-md-7">
                     <div class="text-center" id="imgProduto">
                         <img id="img-product" src="../assets/img/flor_teste.jpg" alt="">
                     </div>
@@ -62,16 +62,26 @@
                         <p id="price-product">
                             Valor unitario: R$<c:out value="${produto.valorUnitario}"/>
                         </p>
-                        <select class="border btn" id="modelos" name="tipo">
-                            <option disabled="" selected="" hidden="">Cores</option>
-                            <option value="Produto">Vermelho</option>
-                            <option value="Serviço">Rosa</option>
-                        </select>
-                        <span>
-                            <button type="button" class="btn btn-outline-danger">-</button>
-                            <input type="text" disabled="" value="1" name="qtd" id="text-qtd">
-                            <button type="button" class="btn btn-outline-success">+</button>
-                        </span>
+                        <div class="opcoes-produto">
+                            <span id="dropdown-cor">Cor:</span>
+                            <select class="border btn dropdown-toggle" name="cor">
+                                <option disabled="" selected="" hidden="">Cores</option>
+                                <option value="Produto">Vermelho</option>
+                                <option value="Serviço">Rosa</option>
+                            </select>
+                        </div>
+                        <div class="opcoes-produto">
+                            <span>Quantidade:</span>
+                            <select class="border btn dropdown-toggle" name="quantidade">
+                                <option disabled="" selected="" hidden="">Quantidade</option>
+                                <option value="1">1 produto</option>
+                                <option value="2">2 produtos</option>
+                                <option value="3">3 produtos</option>
+                                <option value="4">4 produtos</option>
+                                <option value="5">5 produtos</option>
+                                <option disabled="">Para quantidades maiores, entre em contato com o FAQ</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col">
                         <button id="add-to-cart" type="button" class="btn btn-success btn-block">Comprar</button>
