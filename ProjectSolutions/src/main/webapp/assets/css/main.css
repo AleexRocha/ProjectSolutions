@@ -111,24 +111,28 @@ footer {
     text-align: center;
 }
 #contentDescricao{
-    margin-top: 5%;
+    margin-top: 15px;
+}
+.titulo-produto-descricao{
+    padding: 15px;
 }
 #imgProduto{
     margin-bottom: 25px;
 }
 #desc-product{
     text-align: justify;
-    text-align-last: center;
+}
+#title-desc-produto{
+    font-weight: bolder;
 }
 #modelos{
-    margin-bottom: 25px
+    margin-right: 25px;
 }
 #rowOptionsProduto{
     padding: 6px 5px;
 }
 #add-to-cart{
-    margin: 5px;
-    width: 100%;
+    margin: 20px 5px 5px 5px;
 }
 #dropdown_opcoes{
     text-align: center;
@@ -145,8 +149,7 @@ footer {
     padding-left: 10px;
 }
 #price-product{
-    font-size: 40px;
-    padding-left: 6px;
+    font-size: 30px;
 }
 
 #inputImagemProduto{
@@ -156,4 +159,21 @@ footer {
 }
 .btn-upload{
     margin-top: 41px;
+}
+
+.nomeFaq{
+    font-size: 25px;
+    text-align: center;
+    margin: 15px 0px;
+}
+.perguntaFaq{
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: justify;
+    margin: 15px 0px;
+}
+.respostaFaq{
+    font-size: 16px;
+    text-align: justify;
+    margin: 0px 15px;
 }
