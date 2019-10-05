@@ -35,10 +35,6 @@ table td.coluna {
     float: left;
     margin-right: 5px;
 }
-#itensMenu{
-    margin-left: auto; 
-    margin-right: auto; 
-}
 .btn-light{
     background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
     border-color: #dae0e5;
@@ -100,8 +96,15 @@ footer {
 }
 .tituloProdutoCliente{
     color:#d85600;
+    padding-left: 10px;
 }
-
+.precoProdutoCliente{
+    padding-right: 10px;
+    float: right;
+}
+.descricaoProdutoCliente{
+    text-align: justify;
+}
 #text-qtd{
     width: 40px;
     padding-bottom: 5px;
@@ -136,8 +139,10 @@ footer {
     margin-right: 5px;
 }
 #itensMenu{
-    margin-left: auto;
     margin-right: auto;
+}
+#nav-saudacao{
+    padding-left: 10px;
 }
 #price-product{
     font-size: 40px;
