@@ -72,88 +72,90 @@
                 </div>
                 <div class="col-md-1 col-xl-1"></div>
                 <div class="col-md-10 col-sm-10 col-xl-10">
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="coluna" scope="col">Código</th>
-                                    <th class="coluna" scope="col">Produto</th>
-                                    <th class="coluna" scope="col">Preço</th>
-                                    <th class="coluna" scope="col">Quantidade</th>
-                                    <th>Total</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="coluna" name="codigo">0001</td>
-                                    <td class="coluna" name="produto">Girasol amarelo</td>
-                                    <td class="coluna" name="preco">R$ 50,00</td>
-                                    <td class="coluna" name="quantidade">2</td>
-                                    <td class="coluna" name="valorTotal">R$ 100,00</td>
-                                    <td class="btn-group">
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
-                                            <i class="far fa-trash-alt"></i>
-                                            <c:set var="codigoProduto" value="${produtos.codigo}"/>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="coluna" name="codigo">0002</td>
-                                    <td class="coluna" name="produto">Rosas vermelhas</td>
-                                    <td class="coluna" name="preco">R$ 25,00</td>
-                                    <td class="coluna" name="quantidade">5</td>
-                                    <td class="coluna" name="valorTotal">R$ 125,00</td>
-                                    <td class="btn-group">
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
-                                            <i class="far fa-trash-alt"></i>
-                                            <c:set var="codigoProduto" value="${produtos.codigo}"/>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="coluna" name="codigo">0003</td>
-                                    <td class="coluna" name="produto">Ypê Roxo</td>
-                                    <td class="coluna" name="preco">R$ 75,00</td>
-                                    <td class="coluna" name="quantidade">6</td>
-                                    <td class="coluna" name="valorTotal">R$ 450.00</td>
-                                    <td class="btn-group">
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
-                                            <i class="far fa-trash-alt"></i>
-                                            <c:set var="codigoProduto" value="${produtos.codigo}"/>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6">
-                        <h2 class="h2 text-center subtitulo" style="padding: 20px;">Resumo da Compra</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <th class="coluna" scope="col">Subtotal</th>
-                                    <td class="coluna" name="subtotal">RS 625,00</td>
-                                </tr>
-                                <tr>
-                                    <th class="coluna" scope="col">Frete</th>
-                                    <td class="coluna" name="frete">
-                                        <p>Digite o CEP:</p>
-                                        <input type="text" class="form-control inputForm" id="cep"
-                                               placeholder="CEP" name="cep" min="0">
-                                        <a href="#">
-                                            Calcular frete
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="coluna" scope="col">Total</th>
-                                    <td class="coluna" name="total">R$ 650,00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="coluna" scope="col">Código</th>
+                                        <th class="coluna" scope="col">Produto</th>
+                                        <th class="coluna" scope="col">Preço</th>
+                                        <th class="coluna" scope="col">Quantidade</th>
+                                        <th>Total</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="coluna" name="codigo">0001</td>
+                                        <td class="coluna" name="produto">Girasol amarelo</td>
+                                        <td class="coluna" name="preco">R$ 50,00</td>
+                                        <td class="coluna" name="quantidade">2</td>
+                                        <td class="coluna" name="valorTotal">R$ 100,00</td>
+                                        <td class="btn-group">
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
+                                                <i class="far fa-trash-alt"></i>
+                                                <c:set var="codigoProduto" value="${produtos.codigo}"/>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="coluna" name="codigo">0002</td>
+                                        <td class="coluna" name="produto">Rosas vermelhas</td>
+                                        <td class="coluna" name="preco">R$ 25,00</td>
+                                        <td class="coluna" name="quantidade">5</td>
+                                        <td class="coluna" name="valorTotal">R$ 125,00</td>
+                                        <td class="btn-group">
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
+                                                <i class="far fa-trash-alt"></i>
+                                                <c:set var="codigoProduto" value="${produtos.codigo}"/>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="coluna" name="codigo">0003</td>
+                                        <td class="coluna" name="produto">Ypê Roxo</td>
+                                        <td class="coluna" name="preco">R$ 75,00</td>
+                                        <td class="coluna" name="quantidade">6</td>
+                                        <td class="coluna" name="valorTotal">R$ 450.00</td>
+                                        <td class="btn-group">
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
+                                                <i class="far fa-trash-alt"></i>
+                                                <c:set var="codigoProduto" value="${produtos.codigo}"/>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <h2 class="h2 text-center subtitulo" style="padding: 20px;">Resumo da Compra</h2>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th class="coluna" scope="col">Subtotal</th>
+                                        <td class="coluna" name="subtotal">RS 625,00</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="coluna" scope="col">Frete</th>
+                                        <td class="coluna" name="frete">
+                                            <p>Digite o CEP:</p>
+                                            <input type="text" class="form-control inputForm" id="cep"
+                                                   placeholder="CEP" name="cep" min="0">
+                                            <a href="#">
+                                                Calcular frete
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="coluna" scope="col">Total</th>
+                                        <td class="coluna" name="total">R$ 650,00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-1 col-xl-1"></div>
