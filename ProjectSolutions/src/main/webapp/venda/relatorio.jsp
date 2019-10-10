@@ -35,11 +35,6 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <form action="../ti/listagem_filiais" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
                         <form action="../ti/listagem_usuarios" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
                         </form>
@@ -58,15 +53,6 @@ Author     : nicolas.hgyoshioka
                     <form action="gerar_relatorio" method="get">
                         <div class="form-row">
                             <div class="col-md-3">
-                                <label for="filial" >Filial:</label>
-                                <select class="custom-select inputForm" id="filial" name="filial">
-                                    <option disabled="" selected="" hidden="">Filial</option>
-                                    <c:forEach var="filiais" items="${listaFiliais}">
-                                        <option value="<c:out value="${filiais.codigo}"></c:out>">
-                                            <c:out value="${filiais.nomeFilial}"/>
-                                        </option>
-                                    </c:forEach>
-                                </select>
                             </div>
                             <div class="form-row col-md-5">
                                 <div class="col-md-6">
@@ -109,8 +95,6 @@ Author     : nicolas.hgyoshioka
                                 <th scope="col" style="width: 1px">Quantidade vendida</th>
                                 <th scope="col" style="width: 1px">Valor total</th>
                                 <th scope="col">CPF do cliente</th>
-                                <th scope="col" style="width: 1px">Código da filial</th>
-                                <th scope="col">Nome da filial</th>
                                 <th scope="col" style="width: 1px">ID do funcionário</th>
                                 <th scope="col">Data da venda</th>
                                 <th scope="col" style="width: 1px">Status</th>
@@ -125,8 +109,6 @@ Author     : nicolas.hgyoshioka
                                     <td name="quantidadeProduto" ><c:out value="${relatorio.quantidadeProduto}" /></td>
                                     <td name="valorTotal" ><c:out value="${relatorio.valorTotal}" /></td>
                                     <td name="cpfCliente" ><c:out value="${relatorio.cpfCliente}" /></td>
-                                    <td name="idFilial" ><c:out value="${relatorio.idFilial}" /></td>
-                                    <td name="nomeFilial" ><c:out value="${relatorio.nomeFilial}" /></td>   
                                     <td name="idUsuario" ><c:out value="${relatorio.idUsuario}" /></td>   
                                     <td name="dataVenda" ><c:out value="${relatorio.dataVenda}" /></td>   
                                     <c:choose>

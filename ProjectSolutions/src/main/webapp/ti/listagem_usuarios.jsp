@@ -92,7 +92,6 @@ Author     : nicolas.hgyoshioka
                         <th class="coluna" scope="col">Codigo</th>
                         <th class="coluna" scope="col">Nome</th>
                         <th class="coluna" scope="col">Email</th>
-                        <th class="coluna" scope="col">Filial</th>
                         <th class="coluna" scope="col">Setor</th>
                         <th class="coluna" scope="col">Ações</th>
                     </tr>
@@ -106,7 +105,6 @@ Author     : nicolas.hgyoshioka
                             <td class="coluna" name="codigo" ><c:out value="${usuarios.codigo}" /></td>
                             <td class="coluna" name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.email}" /></td>
-                            <td class="coluna" name="filial"><c:out value="${usuarios.nomeFilial}"/></td>
                             <td class="coluna" name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
                             <td class="btn-group">
                                 <form action="dados_usuario" method="POST">

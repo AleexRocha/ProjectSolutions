@@ -53,15 +53,6 @@
                         </c:if>
                         <div class="form-row">
                             <div class="col-md-3">
-                                <label for="filial" >Filial:</label>
-                                <select class="custom-select inputForm" id="codigoFilial" name="codigoFilial">
-                                    <option disabled="" selected="" hidden="">Filial</option>
-                                    <c:forEach var="filial" items="${listaFiliais}">
-                                        <option value="<c:out value="${filial.codigoFilial}"></c:out>">
-                                            <c:out value="${filial.nomeFilial}"></c:out>
-                                            </option>
-                                    </c:forEach>
-                                </select>
                             </div>
                             <div class="col-md-3">
                                 <label for="produto" >Produto:</label>
@@ -99,7 +90,6 @@
                                 <th scope="col">Código do produto</th>
                                 <th scope="col">ID do funcionário</th>
                                 <th scope="col">CPF do cliente</th>
-                                <th scope="col">Código da filial</th>
                                 <th scope="col">Quantidade vendida</th>
                                 <th scope="col">Data da venda</th>
                                 <th scope="col">Ação</th>
@@ -112,7 +102,6 @@
                                     <td name="codigoProduto" ><c:out value="${relatorio.codigoProduto}" /></td>
                                     <td name="idUsuario" ><c:out value="${relatorio.idUsuario}" /></td>
                                     <td name="cpfCliente" ><c:out value="${relatorio.cpfCliente}" /></td>
-                                    <td name="idFilial" ><c:out value="${relatorio.idFilial}" /></td>
                                     <td name="quantidadeProduto" ><c:out value="${relatorio.quantidadeProduto}" /></td>
                                     <td name="dataVenda" ><c:out value="${relatorio.dataVenda}" /></td>
                                     <td name="acao" >

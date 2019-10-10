@@ -30,11 +30,6 @@
                         </form>                     
                     </li>
                     <li class="nav-item">
-                        <form action="../ti/listagem_filiais" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
                         <form action="../ti/listagem_usuarios" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
                         </form>
@@ -92,7 +87,6 @@
                         <th class="coluna" scope="col">Nome</th>
                         <th class="coluna" scope="col">Descricao</th>
                         <th class="coluna" scope="col">Tipo</th>
-                        <th class="coluna" scope="col">Filial</th>
                         <th class="coluna" scope="col">Estoque</th>
                         <th class="coluna" scope="col">Valor unidade</th>
                         <th scope="col">Ações</th>
@@ -108,7 +102,6 @@
                             <td class="coluna" name="nome"><c:out value ="${produtos.nome}"/></td>
                             <td class="coluna" name="descricao"><c:out value ="${produtos.descricao}"/></td>
                             <td class="coluna" name="tipo"><c:out value ="${produtos.tipo}"/></td>
-                            <td class="coluna" name="codigoFilialint"><c:out value ="${produtos.nomeFilial}"/></td>
                             <td class="coluna" name="quantidadeEstoque"><c:out value ="${produtos.quantidadeEstoque}"/></td>
                             <td class="coluna" name="valorUnitario"><c:out value ="${produtos.valorUnitario}"/></td>
                             <td class="btn-group">

@@ -41,11 +41,6 @@
                                 </form>                     
                             </li>
                             <li class="nav-item">
-                                <form action="../ti/listagem_filiais" method="GET">
-                                    <button type="submit" class="btn nav-link nav-text" >Filiais</button>
-                                </form>
-                            </li>
-                            <li class="nav-item">
                                 <form action="../ti/listagem_usuarios" method="GET">
                                     <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
                                 </form>

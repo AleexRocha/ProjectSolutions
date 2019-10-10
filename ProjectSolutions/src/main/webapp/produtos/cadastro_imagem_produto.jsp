@@ -24,11 +24,6 @@
                         </form>                     
                     </li>
                     <li class="nav-item">
-                        <form action="../ti/listagem_filiais" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
                         <form action="../ti/listagem_usuarios" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
                         </form>
@@ -112,10 +107,6 @@
                     <label for="tipo" >Tipo:</label>
                     <input type="text" class="form-control inputForm" id="valor"
                            value="${listaProdutos.tipo}" name="valorUnitario" readonly="readonly">
-
-                    <label for="filial" >Filial:</label>
-                    <input type="text" class="form-control inputForm" id="valor"
-                           value="${listaProdutos.nomeFilial}" name="valorUnitario" readonly="readonly">
                 </div>
             </div>
             <%@include file="../WEB-INF/footer.jsp" %>

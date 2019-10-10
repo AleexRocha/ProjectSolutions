@@ -30,11 +30,6 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <form action="../ti/listagem_filiais" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
                         <form action="../ti/listagem_usuarios" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
                         </form>
@@ -154,25 +149,6 @@ Author     : nicolas.hgyoshioka
                             <label for="cpfCliente">CPF do cliente:</label>
                             <input type="text" class="form-control inputForm" id="cpfCliente"
                                    placeholder="CPF do cliente" name="cpfCliente" min="0" minlength="0" maxlength="11">
-
-                            <label for="codigoFilial">Filial:</label>
-                            <c:choose>
-                                <c:when test="${empty codFilialErro}">
-                                    <select class="custom-select inputForm" id="codigoProduto" name="codigoFilial">
-                                        <option hidden="" value="${cdFilial}"><c:out value="${nomeFilial}"/></option>
-                                    </select>
-                                </c:when>
-                                <c:otherwise>
-                                    <select class="custom-select inputForm error" id="codigoProduto" name="codigoFilial">
-                                        <option disabled="" hidden="">${codFilialErro}</option>
-                                        <c:forEach var="filial" items="${listaFiliais}">  
-                                            <option value="<c:out value="${filial.codigoFilial}"></c:out>">
-                                                <c:out value="${filial.nomeFilial}"></c:out>
-                                                </option>  
-                                        </c:forEach>  
-                                    </select>
-                                </c:otherwise>
-                            </c:choose>
 
                             <label for="valorTotal">Valor Total:</label>
                             <c:choose>
