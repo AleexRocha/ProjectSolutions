@@ -30,6 +30,9 @@ public class UsuarioCadastroServlet extends HttpServlet {
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
+        }else if (cNome.length() < 5){
+            error = true;
+            request.setAttribute("nomeErro", "Nome deve conter 5 caracteres");
         }
         if (cEmail.length() == 0) {
             error = true;
