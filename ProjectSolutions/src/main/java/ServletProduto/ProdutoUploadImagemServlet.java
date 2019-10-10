@@ -1,8 +1,6 @@
 package ServletProduto;
 
-import DAO.FilialDAO;
 import DAO.ImagemDAO;
-import Model.Filial;
 import Model.Imagem;
 
 import java.io.File;
@@ -88,9 +86,6 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
         }
 
         if (error) {
-            ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("listaFiliais", filiais);
-
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Erro ao salvar a imagem.");
 
@@ -112,9 +107,6 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
                 }
                 request.setAttribute("listaImagens", fIdImagem);
                 request.setAttribute("id", fIdImagem);
-
-                ArrayList<Filial> filiais = FilialDAO.getFiliais();
-                request.setAttribute("listaFiliais", filiais);
 
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Imagem salva com sucesso!");

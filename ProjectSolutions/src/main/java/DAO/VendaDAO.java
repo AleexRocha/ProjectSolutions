@@ -19,17 +19,16 @@ public class VendaDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " tbl_venda(id_produto, id_usuario, id_filial, qtd_itens, cpf_cliente, status, data_venda)"
-                    + "VALUES (?, ?, ?, ?, ?, ?, NOW());");
+                    + " tbl_venda(id_produto, id_usuario, qtd_itens, cpf_cliente, status, data_venda)"
+                    + "VALUES (?, ?, ?, ?, ?, NOW());");
 
             int rs;
             for (int i = 0; i < v.getProdutoArray().length; i++) {
                 query.setInt(1, v.getProdutoArrayPosition(i));
                 query.setInt(2, v.getIdFuncionario());
-                query.setInt(3, v.getCodigoFilial());
-                query.setInt(4, v.getProdutoQtdArrayPosition(i));
-                query.setString(5, v.getCpfCliente());
-                query.setInt(6, 0);
+                query.setInt(3, v.getProdutoQtdArrayPosition(i));
+                query.setString(4, v.getCpfCliente());
+                query.setInt(5, 0);
                 rs = query.executeUpdate();
                 if (rs != 0) {
                     atualizaEstoque(v.getProdutoQtdArrayPosition(i), v.getProdutoArrayPosition(i), "-");
@@ -114,32 +113,6 @@ public class VendaDAO {
                     Venda v = new Venda();
                     v.setIdFuncionario(rs.getInt(1));
                     v.setNomeFuncionario(rs.getString(2));
-
-                    venda.add(v);
-                }
-            }
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-        return venda;
-    }
-
-    public static ArrayList<Venda> getFiliaisVenda() {
-        ArrayList<Venda> venda = new ArrayList<>();
-        Connection conn = db.obterConexao();
-        try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_filial, concat(cidade, \" - \",estado) AS nome_filial "
-                    + " FROM tbl_filial WHERE status = 0;");
-
-            ResultSet rs = query.executeQuery();
-
-            if (rs != null) {
-                while (rs.next()) {
-                    Venda v = new Venda();
-                    v.setCodigoFilial(rs.getInt(1));
-                    v.setNomeFilial(rs.getString(2));
 
                     venda.add(v);
                 }

@@ -1,10 +1,8 @@
 package ServletProduto;
 
-import DAO.FilialDAO;
 import DAO.ImagemDAO;
 import DAO.ProdutoDAO;
 
-import Model.Filial;
 import Model.Imagem;
 import Model.Produto;
 
@@ -40,9 +38,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Salve uma imagem para cadastrar um produto");
 
-            ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("listaFiliais", filiais);
-
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
         }
@@ -50,7 +45,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");
-        String fCodigoFilial = request.getParameter("codigoFilial");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
         String valorReplace;
@@ -66,18 +60,12 @@ public class ProdutoCadastroServlet extends HttpServlet {
             if (camposInvalidos.get("tipoErro") != null) {
                 request.setAttribute("tipoErro", camposInvalidos.get("tipoErro"));
             }
-            if (camposInvalidos.get("CodigoFilialErro") != null) {
-                request.setAttribute("codigoFilialErro", camposInvalidos.get("codigoFilialErro"));
-            }
             if (camposInvalidos.get("quantidadeEstoqueErro") != null) {
                 request.setAttribute("quantidadeEstoqueErro", camposInvalidos.get("quantidadeEstoqueErro"));
             }
             if (camposInvalidos.get("valorUnitarioErro") != null) {
                 request.setAttribute("valorUnitarioErro", camposInvalidos.get("valorUnitarioErro"));
             }
-
-            ArrayList<Filial> filiais = FilialDAO.getFiliais();
-            request.setAttribute("listaFiliais", filiais);
 
             request.setAttribute("listaImagens", fIdImagem);
             request.setAttribute("id", fIdImagem);
@@ -91,7 +79,7 @@ public class ProdutoCadastroServlet extends HttpServlet {
             int idProduto = 0;
             boolean httpOK = false;
 
-            Produto produtos = new Produto(fNome, fTipo, Integer.parseInt(fCodigoFilial), Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
+            Produto produtos = new Produto(fNome, fTipo, Integer.parseInt(fQuantidadeEstoque), Double.parseDouble(fValorUnitario));
             if (fDescricao.length() != 0) {
                 produtos.setDescricao(fDescricao);
             }
@@ -112,8 +100,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
                 dispatcher.forward(request, response);
             } else {
-                ArrayList<Filial> filiais = FilialDAO.getFiliais();
-                request.setAttribute("listaFiliais", filiais);
 
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
@@ -140,7 +126,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
     private boolean validaCamposForm(HttpServletRequest request) {
         String fNome = request.getParameter("nome");
         String fTipo = request.getParameter("tipo");
-        String fCodigoFilial = request.getParameter("codigoFilial");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
 
@@ -148,9 +133,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
             return false;
         }
         if (fTipo == null) {
-            return false;
-        }
-        if (fCodigoFilial == null) {
             return false;
         }
         if (fQuantidadeEstoque.length() == 0) {
@@ -167,7 +149,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
         HashMap<String, String> camposInvalidos = new HashMap();
         String fNome = request.getParameter("nome");
         String fTipo = request.getParameter("tipo");
-        String fCodigoFilial = request.getParameter("codigoFilial");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
 
@@ -176,9 +157,6 @@ public class ProdutoCadastroServlet extends HttpServlet {
         }
         if (fTipo == null) {
             camposInvalidos.put("tipoErro", "Tipo não informado");
-        }
-        if (fCodigoFilial == null) {
-            camposInvalidos.put("codigoFilialErro", "Filial não informada");
         }
         if (fQuantidadeEstoque.length() == 0) {
             camposInvalidos.put("quantidadeEstoqueErro", "Quantidade em estoque não informada");

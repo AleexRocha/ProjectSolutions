@@ -1,11 +1,11 @@
 package ServletVenda;
 
-import DAO.FilialDAO;
 import DAO.RelatorioDAO;
-import Model.Filial;
 import Model.Relatorio;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,30 +25,17 @@ public class RelatorioServlet extends HttpServlet {
 
         String dataDe = request.getParameter("dataDe");
         String dataAte = request.getParameter("dataAte");
-        String filial = request.getParameter("filial");
 
         if ((!dataDe.equalsIgnoreCase("")) && (!dataAte.equalsIgnoreCase(""))) {
             String dataDeFormat = dataDe.concat(" 00:00:00");
             String dataAteFormat = dataAte.concat(" 23:59:59");
-            if (filial != null) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(Integer.parseInt(filial), dataDeFormat, dataAteFormat);
-                request.setAttribute("listaRelatorios", relatorio);
-            } else {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
-                request.setAttribute("listaRelatorios", relatorio);
-            }
-        } else {
-            if ((filial != null) && (Integer.parseInt(filial) != 0)) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioFilial(Integer.parseInt(filial));
-                request.setAttribute("listaRelatorios", relatorio);
-            } else {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioGeral();
-                request.setAttribute("listaRelatorios", relatorio);
-            }
-        }
 
-        ArrayList<Filial> filiais = FilialDAO.getFiliais();
-        request.setAttribute("listaFiliais", filiais);
+            ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
+            request.setAttribute("listaRelatorios", relatorio);
+        } else {
+            ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioGeral();
+            request.setAttribute("listaRelatorios", relatorio);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/relatorio.jsp");
         dispatcher.forward(request, response);

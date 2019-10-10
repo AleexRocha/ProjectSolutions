@@ -1,11 +1,11 @@
 package ServletProduto;
 
-import DAO.FilialDAO;
 import DAO.ProdutoDAO;
-import Model.Filial;
 import Model.Produto;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,8 +27,6 @@ public class ProdutoSelectEditServlet extends HttpServlet {
         String valor_unitario;
         
         Produto produto = ProdutoDAO.getProduto(Integer.parseInt(pCodigo));
-        ArrayList<Filial> filiais = FilialDAO.getFiliais();
-        request.setAttribute("listaFiliais", filiais);
         
         request.setAttribute("acao", "editar");
         request.setAttribute("codigo", produto.getCodigo());
@@ -36,9 +34,6 @@ public class ProdutoSelectEditServlet extends HttpServlet {
         request.setAttribute("descricao", produto.getDescricao());
         request.setAttribute("tipo", produto.getTipo());
         request.setAttribute("tipoCadastrado", produto.getTipo());
-        request.setAttribute("cdFilialCadastrada", produto.getCodigoFilial());
-        request.setAttribute("nomeFilialCadastrada", produto.getNomeFilial());
-        request.setAttribute("listaFiliais", filiais);
         request.setAttribute("qtd_estoque", produto.getQuantidadeEstoque());   
         
         valor_unitario = String.valueOf(produto.getValorUnitario()).replace(".", ",");            

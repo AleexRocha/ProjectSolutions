@@ -22,17 +22,13 @@ public class EstornoListaSelect extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String eCodProduto = request.getParameter("codigoProduto");
-        String eCodFilial = request.getParameter("codigoFilial");
         String eCpfCliente = request.getParameter("cpfCliente");
 
         boolean error = false;
         if (eCodProduto != null) {
             ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoProduto(eCodProduto);
-            request.setAttribute("listaEstornos", estorno);
-        } else if (eCodFilial != null) {
-            ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoFilial(eCodFilial);
             request.setAttribute("listaEstornos", estorno);
         } else if (!eCpfCliente.equalsIgnoreCase("")) {
             ArrayList<Relatorio> estorno = RelatorioDAO.getEstornoCpf(eCpfCliente);
@@ -43,7 +39,6 @@ public class EstornoListaSelect extends HttpServlet {
 
         if (error) {
             ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-            ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
 
             if (produtosVenda.isEmpty()) {
                 Venda uv = new Venda();
@@ -54,24 +49,12 @@ public class EstornoListaSelect extends HttpServlet {
                 request.setAttribute("listaProdutos", produtosVenda);
             } else {
                 request.setAttribute("listaProdutos", produtosVenda);
-            }
-
-            if (filiaisVenda.isEmpty()) {
-                Venda uv = new Venda();
-
-                uv.setNomeFilial("Não há filiais cadastradas");
-                filiaisVenda.add(uv);
-
-                request.setAttribute("listaFiliais", filiaisVenda);
-            } else {
-                request.setAttribute("listaFiliais", filiaisVenda);
             }
 
             request.setAttribute("varMsg", true);
             request.setAttribute("msg", "Escolha um filtro para gerar o relátorio.");
         } else {
             ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-            ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
 
             if (produtosVenda.isEmpty()) {
                 Venda uv = new Venda();
@@ -84,16 +67,6 @@ public class EstornoListaSelect extends HttpServlet {
                 request.setAttribute("listaProdutos", produtosVenda);
             }
 
-            if (filiaisVenda.isEmpty()) {
-                Venda uv = new Venda();
-
-                uv.setNomeFilial("Não há filiais cadastradas");
-                filiaisVenda.add(uv);
-
-                request.setAttribute("listaFiliais", filiaisVenda);
-            } else {
-                request.setAttribute("listaFiliais", filiaisVenda);
-            }
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/estorno.jsp");

@@ -1,9 +1,7 @@
 package ServletProduto;
 
-import DAO.FilialDAO;
-import Model.Filial;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,9 +19,6 @@ public class ProdutoSelectItensCadastro extends HttpServlet {
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Filial> filiais = FilialDAO.getFiliais();
-        request.setAttribute("listaFiliais", filiais);
-        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
         dispatcher.forward(request, response);
         

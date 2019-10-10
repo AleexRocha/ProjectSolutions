@@ -1,18 +1,19 @@
 package ServletVenda;
 
-import DAO.FilialDAO;
 import DAO.RelatorioDAO;
-import Model.Filial;
 import Model.Relatorio;
 import Utils.GerarExcel;
+
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.Date;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -33,41 +34,25 @@ public class RelatorioGerarExcelServlet extends HttpServlet {
 
         String dataDe = request.getParameter("dataDe");
         String dataAte = request.getParameter("dataAte");
-        String filial = request.getParameter("filial");
 
         if (((dataDe != null) && dataAte != null)) {
             String dataDeFormat = dataDe.concat(" 00:00:00");
             String dataAteFormat = dataAte.concat(" 23:59:59");
-            if (filial != null) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioCompleto(Integer.parseInt(filial), dataDeFormat, dataAteFormat);
-                request.setAttribute("listaRelatorios", relatorio);
-                GerarExcel ge = new GerarExcel(relatorio);
-            } else {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
-                request.setAttribute("listaRelatorios", relatorio);
-                GerarExcel ge = new GerarExcel(relatorio);
-            }
+            ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioData(dataDeFormat, dataAteFormat);
+            request.setAttribute("listaRelatorios", relatorio);
+            GerarExcel ge = new GerarExcel(relatorio);
         } else {
-            if (filial != null) {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioFilial(Integer.parseInt(filial));
-                request.setAttribute("listaRelatorios", relatorio);
-                GerarExcel ge = new GerarExcel(relatorio);
-            } else {
-                ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioGeral();
+            ArrayList<Relatorio> relatorio = RelatorioDAO.getRelatorioGeral();
 //                request.setAttribute("listaRelatorios", relatorio);
 //                GerarExcel ge = new GerarExcel(relatorio);
 
-                DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm");
-                Date now = new Date(System.currentTimeMillis());
-                String hora = dateFormat.format(now);
-                String fileName = "relatorio_" + hora + ".xls";
-                
-                this.sendStringWithName(relatorio, fileName, response);
-            }
-        }
+            DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm");
+            Date now = new Date(System.currentTimeMillis());
+            String hora = dateFormat.format(now);
+            String fileName = "relatorio_" + hora + ".xls";
 
-        ArrayList<Filial> filiais = FilialDAO.getFiliais();
-        request.setAttribute("listaFiliais", filiais);
+            this.sendStringWithName(relatorio, fileName, response);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/relatorio.jsp");
         dispatcher.forward(request, response);

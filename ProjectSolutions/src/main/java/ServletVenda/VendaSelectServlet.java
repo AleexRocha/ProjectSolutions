@@ -2,8 +2,10 @@ package ServletVenda;
 
 import DAO.VendaDAO;
 import Model.Venda;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +25,6 @@ public class VendaSelectServlet extends HttpServlet {
 
         ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
         ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
-        ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
 
         if (produtosVenda.isEmpty()) {
             Venda uv = new Venda();
@@ -45,17 +46,6 @@ public class VendaSelectServlet extends HttpServlet {
             request.setAttribute("listaUsuarios", usuariosVenda);
         } else {
             request.setAttribute("listaUsuarios", usuariosVenda);
-        }
-
-        if (filiaisVenda.isEmpty()) {
-            Venda uv = new Venda();
-
-            uv.setNomeFilial("Não há filiais cadastradas");
-            filiaisVenda.add(uv);
-
-            request.setAttribute("listaFiliais", filiaisVenda);
-        } else {
-            request.setAttribute("listaFiliais", filiaisVenda);
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");

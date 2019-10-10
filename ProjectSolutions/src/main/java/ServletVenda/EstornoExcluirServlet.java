@@ -2,8 +2,10 @@ package ServletVenda;
 
 import DAO.VendaDAO;
 import Model.Venda;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +33,6 @@ public class EstornoExcluirServlet extends HttpServlet {
 
         if (error) {
             ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-            ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
 
             if (produtosVenda.isEmpty()) {
                 Venda uv = new Venda();
@@ -44,17 +45,6 @@ public class EstornoExcluirServlet extends HttpServlet {
                 request.setAttribute("listaProdutos", produtosVenda);
             }
 
-            if (filiaisVenda.isEmpty()) {
-                Venda uv = new Venda();
-
-                uv.setNomeFilial("Não há filiais cadastradas");
-                filiaisVenda.add(uv);
-
-                request.setAttribute("listaFiliais", filiaisVenda);
-            } else {
-                request.setAttribute("listaFiliais", filiaisVenda);
-            }
-
             request.setAttribute("varMsgErro", true);
             request.setAttribute("msg", "Erro ao estornar a venda, selecione uma venda.");
 
@@ -64,7 +54,6 @@ public class EstornoExcluirServlet extends HttpServlet {
             boolean httpOk = VendaDAO.excluirVenda(Integer.parseInt(fCodigo));
             if (httpOk) {
                 ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-                ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
 
                 if (produtosVenda.isEmpty()) {
                     Venda uv = new Venda();
@@ -75,17 +64,6 @@ public class EstornoExcluirServlet extends HttpServlet {
                     request.setAttribute("listaProdutos", produtosVenda);
                 } else {
                     request.setAttribute("listaProdutos", produtosVenda);
-                }
-
-                if (filiaisVenda.isEmpty()) {
-                    Venda uv = new Venda();
-
-                    uv.setNomeFilial("Não há filiais cadastradas");
-                    filiaisVenda.add(uv);
-
-                    request.setAttribute("listaFiliais", filiaisVenda);
-                } else {
-                    request.setAttribute("listaFiliais", filiaisVenda);
                 }
 
                 request.setAttribute("varMsgErro", true);
@@ -95,7 +73,6 @@ public class EstornoExcluirServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             } else {
                 ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-                ArrayList<Venda> filiaisVenda = VendaDAO.getFiliaisVenda();
 
                 if (produtosVenda.isEmpty()) {
                     Venda uv = new Venda();
@@ -106,17 +83,6 @@ public class EstornoExcluirServlet extends HttpServlet {
                     request.setAttribute("listaProdutos", produtosVenda);
                 } else {
                     request.setAttribute("listaProdutos", produtosVenda);
-                }
-
-                if (filiaisVenda.isEmpty()) {
-                    Venda uv = new Venda();
-
-                    uv.setNomeFilial("Não há filiais cadastradas");
-                    filiaisVenda.add(uv);
-
-                    request.setAttribute("listaFiliais", filiaisVenda);
-                } else {
-                    request.setAttribute("listaFiliais", filiaisVenda);
                 }
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/estorno.jsp");

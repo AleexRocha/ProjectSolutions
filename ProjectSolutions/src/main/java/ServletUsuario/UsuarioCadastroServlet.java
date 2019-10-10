@@ -2,8 +2,10 @@ package ServletUsuario;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +25,6 @@ public class UsuarioCadastroServlet extends HttpServlet {
         String cSenha = request.getParameter("senha");
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
-        String cFilial = request.getParameter("codigoFilial");
 
         boolean error = false;
         if (cNome.length() == 0) {
@@ -46,10 +47,6 @@ public class UsuarioCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("setorErro", "Setor não informado");
         }
-        if (cFilial == null) {
-            error = true;
-            request.setAttribute("filialErro", "Filial não informada");
-        }
         if (!error) {        
             if (!cConfirmacaoSenha.equals(cSenha)) {
                 error = true;
@@ -63,13 +60,10 @@ public class UsuarioCadastroServlet extends HttpServlet {
             ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();
             request.setAttribute("listaSetores", setores);
 
-            ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
-            request.setAttribute("listaFiliais", filiais);
-          
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cFilial), Integer.parseInt(cSetor));
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor));
             boolean httpOK = UsuarioDAO.salvarUsuario(usuario);
 
             if (httpOK) {

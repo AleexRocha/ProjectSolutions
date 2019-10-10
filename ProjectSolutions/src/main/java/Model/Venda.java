@@ -13,24 +13,20 @@ public class Venda {
     private double valorUnidade;
     private int idFuncionario;
     private String nomeFuncionario;
-    private String nomeFilial;
-    private int codigoFilial;
     private int quantidadeVenda;
     private String cpfCliente;
 
     public Venda(){
     }
     
-    public Venda(int codigoProduto, int idFuncionario, int codigoFilial) {
+    public Venda(int codigoProduto, int idFuncionario) {
         this.codigoProduto = codigoProduto;
         this.idFuncionario = idFuncionario;
-        this.codigoFilial = codigoFilial;
     }
     
-    public Venda(int[] ProdutoArray, int idFuncionario, int codigoFilial, int[] qtdProdutoArray) {
+    public Venda(int[] ProdutoArray, int idFuncionario, int[] qtdProdutoArray) {
         this.ProdutoArray = ProdutoArray;
         this.idFuncionario = idFuncionario;
-        this.codigoFilial = codigoFilial;
         this.qtdProdutoArray = qtdProdutoArray;
     }
 
@@ -66,14 +62,6 @@ public class Venda {
         this.idFuncionario = idFuncionario;
     }
 
-    public int getCodigoFilial() {
-        return codigoFilial;
-    }
-
-    public void setCodigoFilial(int codigoFilial) {
-        this.codigoFilial = codigoFilial;
-    }
-
     public String getCpfCliente() {
         return cpfCliente;
     }
@@ -96,14 +84,6 @@ public class Venda {
 
     public void setNomeFuncionario(String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
-    }
-
-    public String getNomeFilial() {
-        return nomeFilial;
-    }
-
-    public void setNomeFilial(String nomeFilial) {
-        this.nomeFilial = nomeFilial;
     }
 
     public double getValorUnidade() {

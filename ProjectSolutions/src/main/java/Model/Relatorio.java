@@ -12,8 +12,6 @@ public class Relatorio {
     private int quantidadeProduto;
     private double valorTotal;
     private String cpfCliente;
-    private int idFilial;
-    private String nomeFilial;
     private int idUsuario;
     private String dataVenda;
     private int status;
@@ -21,38 +19,33 @@ public class Relatorio {
     public Relatorio() {
     }
 
-    public Relatorio(int codigoVenda, int codigoProduto, int idUsuario, int idFilial, int quantidadeProduto, String cpfCliente, String dataVenda) {
+    public Relatorio(int codigoVenda, int codigoProduto, int idUsuario, int quantidadeProduto, String cpfCliente, String dataVenda) {
         this.codigoVenda = codigoVenda;
         this.codigoProduto = codigoProduto;
         this.quantidadeProduto = quantidadeProduto;
-        this.idFilial = idFilial;
         this.idUsuario = idUsuario;
         this.cpfCliente = cpfCliente;
         this.dataVenda = dataVenda;
     }
 
-    public Relatorio(int codigoVenda, String nomeProduto, int codigoProduto, int quantidadeProduto, double valorTotal, String cpfCliente, int idFilial, String nomeFilial, int idUsuario, String dataVenda) {
+    public Relatorio(int codigoVenda, String nomeProduto, int codigoProduto, int quantidadeProduto, double valorTotal, String cpfCliente, int idUsuario, String dataVenda) {
         this.codigoVenda = codigoVenda;
         this.nomeProduto = nomeProduto;
         this.codigoProduto = codigoProduto;
         this.quantidadeProduto = quantidadeProduto;
         this.valorTotal = valorTotal;
         this.cpfCliente = cpfCliente;
-        this.idFilial = idFilial;
-        this.nomeFilial = nomeFilial;
         this.idUsuario = idUsuario;
         this.dataVenda = dataVenda;
     }
     
-    public Relatorio(int codigoVenda, String nomeProduto, int codigoProduto, int quantidadeProduto, double valorTotal, String cpfCliente, int idFilial, String nomeFilial, int idUsuario, String dataVenda, int status) {
+    public Relatorio(int codigoVenda, String nomeProduto, int codigoProduto, int quantidadeProduto, double valorTotal, String cpfCliente, int idUsuario, String dataVenda, int status) {
         this.codigoVenda = codigoVenda;
         this.nomeProduto = nomeProduto;
         this.codigoProduto = codigoProduto;
         this.quantidadeProduto = quantidadeProduto;
         this.valorTotal = valorTotal;
         this.cpfCliente = cpfCliente;
-        this.idFilial = idFilial;
-        this.nomeFilial = nomeFilial;
         this.idUsuario = idUsuario;
         this.dataVenda = dataVenda;
         this.status = status;
@@ -105,23 +98,7 @@ public class Relatorio {
     public void setCpfCliente(String cpfCliente) {
         this.cpfCliente = cpfCliente;
     }
-
-    public int getIdFilial() {
-        return idFilial;
-    }
-
-    public void setIdFilial(int idFilial) {
-        this.idFilial = idFilial;
-    }
-
-    public String getNomeFilial() {
-        return nomeFilial;
-    }
-
-    public void setNomeFilial(String nomeFilial) {
-        this.nomeFilial = nomeFilial;
-    }
-
+    
     public int getIdUsuario() {
         return idUsuario;
     }

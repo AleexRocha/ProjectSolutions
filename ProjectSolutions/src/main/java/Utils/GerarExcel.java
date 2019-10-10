@@ -1,17 +1,19 @@
 package Utils;
 
-import DAO.RelatorioDAO;
 import Model.Relatorio;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
-import javax.servlet.ServletOutputStream;
+
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -96,16 +98,6 @@ public class GerarExcel {
         row = sheet.createRow(rownum++);
         cell = row.createCell(cellnum++);
         cell.setCellStyle(headerStyle);
-        cell.setCellValue("Codigo da Filial");
-
-        row = sheet.createRow(rownum++);
-        cell = row.createCell(cellnum++);
-        cell.setCellStyle(headerStyle);
-        cell.setCellValue("Nome da Filial");
-
-        row = sheet.createRow(rownum++);
-        cell = row.createCell(cellnum++);
-        cell.setCellStyle(headerStyle);
         cell.setCellValue("ID do Funcionario");
 
         row = sheet.createRow(rownum++);
@@ -141,15 +133,7 @@ public class GerarExcel {
             cell = row.createCell(cellnum++);
             cell.setCellStyle(numberStyle);
             cell.setCellValue(info.getCpfCliente());
-
-            cell = row.createCell(cellnum++);
-            cell.setCellStyle(numberStyle);
-            cell.setCellValue(info.getIdFilial());
-
-            cell = row.createCell(cellnum++);
-            cell.setCellStyle(textStyle);
-            cell.setCellValue(info.getNomeFilial());
-
+            
             cell = row.createCell(cellnum++);
             cell.setCellStyle(numberStyle);
             cell.setCellValue(info.getIdUsuario());

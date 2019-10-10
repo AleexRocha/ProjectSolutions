@@ -49,10 +49,6 @@ public class GerarExcelTeste {
             cellValorTotal.setCellValue(itemRelatorio.getValorTotal());
             Cell cellCpfCliente = row.createCell(cellNum++);
             cellCpfCliente.setCellValue(itemRelatorio.getCpfCliente());
-            Cell cellIdFilial = row.createCell(cellNum++);
-            cellIdFilial.setCellValue(itemRelatorio.getIdFilial());
-            Cell cellNomeFilial = row.createCell(cellNum++);
-            cellNomeFilial.setCellValue(itemRelatorio.getNomeFilial());
             Cell cellIdUsuario = row.createCell(cellNum++);
             cellIdUsuario.setCellValue(itemRelatorio.getIdUsuario());
             Cell cellDataVenda = row.createCell(cellNum++);

@@ -113,8 +113,6 @@ public class LoginServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
         sessao.setAttribute("cdFuncionario", infoSessao.getCodigo());
         sessao.setAttribute("nomeUsuario", infoSessao.getNome());
-        sessao.setAttribute("cdFilial", infoSessao.getCodigoFilial());
-        sessao.setAttribute("nomeFilial", infoSessao.getNomeFilial());
         sessao.setAttribute("nomeSetor", infoSessao.getNomeSetor());
         
         return sessao;
