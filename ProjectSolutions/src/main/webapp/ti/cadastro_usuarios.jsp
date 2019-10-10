@@ -68,7 +68,7 @@ Author     : nicolas.hgyoshioka
                             <form action="editar_usuario" method="post">
                             </c:when>
                             <c:otherwise>
-                                <form action="cadastro_usuario" method="post">
+                                <form action="create_usuario" method="post">
                                 </c:otherwise>
                             </c:choose>
 
@@ -190,78 +190,83 @@ Author     : nicolas.hgyoshioka
                                     </c:otherwise>
                                 </c:choose>
 
-
-                                <label for="setor" >Setor:</label>
-                                <c:choose>
-                                    <c:when test="${acao == 'editar'}">
-                                        <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                            <option hidden="" value="${setor}">${nomeSetor}</option>
-                                            <c:forEach var="setores" items="${listaSetores}">
-                                                <option value="<c:out value="${setores.setor}"></c:out>">
-                                                    <c:out value="${setores.nomeSetor}"/>
-                                                </option>
-                                            </c:forEach>
-                                        </select>    
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:if test="${empty setorErro}">
+                                <c:if test="${cliente == false}">
+                                    <label for="setor" >Setor:</label>
+                                    <c:choose>
+                                        <c:when test="${acao == 'editar'}">
                                             <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                                <option selected = "" disabled="" hidden="">Setor</option>
-                                                <c:forEach var="setores" items="${listaSetores}">  
+                                                <option hidden="" value="${setor}">${nomeSetor}</option>
+                                                <c:forEach var="setores" items="${listaSetores}">
                                                     <option value="<c:out value="${setores.setor}"></c:out>">
-                                                        <c:out value="${setores.nomeSetor}"/> 
-                                                    </option>  
-                                                </c:forEach>       
-                                            </select>
-                                        </c:if>
-                                        <c:if test="${not empty setorErro}">         
-                                            <select class="custom-select form-control inputForm error" id="codigoSetor" name="codigoSetor">
-                                                <option selected ="" disabled="" hidden=""><c:out value="${setorErro}"/></option>                               
-                                                <c:forEach var="setores" items="${listaSetores}">  
-                                                    <option value="<c:out value="${setores.setor}"></c:out>">
-                                                        <c:out value="${setores.nomeSetor}"/> 
-                                                    </option>  
-                                                </c:forEach>       
-                                            </select>
-                                        </c:if>  
-                                    </c:otherwise>
-                                </c:choose>
-
-                                <label for="filial" >Filial:</label>
-                                <c:choose>
-                                    <c:when test="${acao == 'editar'}">
-                                        <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                            <option hidden=""value="${codigoFilial}">${nomeFilial}</option>
-                                            <c:forEach var="filiais" items="${listaFiliais}">
-                                                <option value="<c:out value="${filiais.codigoFilial}"/>">
-                                                    <c:out value="${filiais.nomeFilial}"/>
-                                                </option>
-                                            </c:forEach>
-                                        </select>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:if test="${empty filialErro}">
-                                            <select class="custom-select inputForm" id="filial" name="codigoFilial">
-                                                <option selected="" disabled="" hidden="">Filial</option>
-                                                <c:forEach var="filiais" items="${listaFiliais}">
-                                                    <option value="${filiais.codigoFilial}">
-                                                        <c:out value="${filiais.nomeFilial}"/>
+                                                        <c:out value="${setores.nomeSetor}"/>
                                                     </option>
                                                 </c:forEach>
-                                            </select>
-                                        </c:if>
-                                        <c:if test="${not empty filialErro}">
-                                            <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
-                                                <option selected="" disabled="" hidden=""><c:out value="${filialErro}"/></option>
+                                            </select>    
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${empty setorErro}">
+                                                <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
+                                                    <option selected = "" disabled="" hidden="">Setor</option>
+                                                    <c:forEach var="setores" items="${listaSetores}">  
+                                                        <option value="<c:out value="${setores.setor}"></c:out>">
+                                                            <c:out value="${setores.nomeSetor}"/> 
+                                                        </option>  
+                                                    </c:forEach>       
+                                                </select>
+                                            </c:if>
+                                            <c:if test="${not empty setorErro}">         
+                                                <select class="custom-select form-control inputForm error" id="codigoSetor" name="codigoSetor">
+                                                    <option selected ="" disabled="" hidden=""><c:out value="${setorErro}"/></option>                               
+                                                    <c:forEach var="setores" items="${listaSetores}">  
+                                                        <option value="<c:out value="${setores.setor}"></c:out>">
+                                                            <c:out value="${setores.nomeSetor}"/> 
+                                                        </option>  
+                                                    </c:forEach>       
+                                                </select>
+                                            </c:if>  
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                    <label for="filial" >Filial:</label>
+                                    <c:choose>
+                                        <c:when test="${acao == 'editar'}">
+                                            <select class="custom-select inputForm" id="filial" name="codigoFilial">
+                                                <option hidden=""value="${codigoFilial}">${nomeFilial}</option>
                                                 <c:forEach var="filiais" items="${listaFiliais}">
                                                     <option value="<c:out value="${filiais.codigoFilial}"/>">
                                                         <c:out value="${filiais.nomeFilial}"/>
                                                     </option>
                                                 </c:forEach>
                                             </select>
-                                        </c:if>
-                                    </c:otherwise>
-                                </c:choose>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${empty filialErro}">
+                                                <select class="custom-select inputForm" id="filial" name="codigoFilial">
+                                                    <option selected="" disabled="" hidden="">Filial</option>
+                                                    <c:forEach var="filiais" items="${listaFiliais}">
+                                                        <option value="${filiais.codigoFilial}">
+                                                            <c:out value="${filiais.nomeFilial}"/>
+                                                        </option>
+                                                    </c:forEach>
+                                                </select>
+                                            </c:if>
+                                            <c:if test="${not empty filialErro}">
+                                                <select class="custom-select form-control inputForm error" id="filial" name="codigoFilial">
+                                                    <option selected="" disabled="" hidden=""><c:out value="${filialErro}"/></option>
+                                                    <c:forEach var="filiais" items="${listaFiliais}">
+                                                        <option value="<c:out value="${filiais.codigoFilial}"/>">
+                                                            <c:out value="${filiais.nomeFilial}"/>
+                                                        </option>
+                                                    </c:forEach>
+                                                </select>
+                                            </c:if>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:if>
+                                <c:if test="${cliente == true}">
+                                    <input type="text" class="form-control inputForm sr-only"
+                                           placeholder="Confirmar senha" name="cliente" value="cliente">
+                                </c:if>
                             </div>
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="far fa-save"></i>

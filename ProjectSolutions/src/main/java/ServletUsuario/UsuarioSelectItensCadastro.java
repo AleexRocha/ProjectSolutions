@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,12 +21,22 @@ public class UsuarioSelectItensCadastro extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        ArrayList<Usuario> setores  = UsuarioDAO.getSetoresCadastro();
-        request.setAttribute("listaSetores", setores);
-        
-        ArrayList<Usuario> filiais  = UsuarioDAO.getFiliaisCadastro();
-        request.setAttribute("listaFiliais", filiais);
+
+        boolean cliente = true;
+        HttpSession sessao = request.getSession();
+
+        if (sessao == null) {
+            request.setAttribute("cliente", cliente);
+        } else {
+            cliente = false;
+            request.setAttribute("cliente", cliente);
+
+            ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();
+            request.setAttribute("listaSetores", setores);
+
+            ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
+            request.setAttribute("listaFiliais", filiais);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);

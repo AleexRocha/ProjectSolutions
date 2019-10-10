@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "UsuarioCadastroServlet", urlPatterns = {"/ti/cadastro_usuario"})
+@WebServlet(name = "UsuarioCadastroServlet", urlPatterns = {"/ti/create_usuario"})
 public class UsuarioCadastroServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
@@ -24,6 +24,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
         String cFilial = request.getParameter("codigoFilial");
+        String cCliente = request.getParameter("cliente");
 
         boolean error = false;
         if (cNome.length() == 0) {
@@ -42,15 +43,21 @@ public class UsuarioCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("cSenhaError", "Por Favor, Confirme a Senha digitada acima");
         }
-        if (cSetor == null) {
-            error = true;
-            request.setAttribute("setorErro", "Setor não informado");
+        if ((cCliente == null) || (cCliente.length() == 0)) {
+            if (cSetor == null) {
+                error = true;
+                request.setAttribute("setorErro", "Setor não informado");
+            }
+            if (cFilial == null) {
+                error = true;
+                request.setAttribute("filialErro", "Filial não informada");
+            }
+        } else {
+            cSetor = "4";
+            cFilial = "1";
         }
-        if (cFilial == null) {
-            error = true;
-            request.setAttribute("filialErro", "Filial não informada");
-        }
-        if (!error) {        
+
+        if (!error) {
             if (!cConfirmacaoSenha.equals(cSenha)) {
                 error = true;
                 request.setAttribute("varMsg", true);
@@ -65,7 +72,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
 
             ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
             request.setAttribute("listaFiliais", filiais);
-          
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -73,14 +80,22 @@ public class UsuarioCadastroServlet extends HttpServlet {
             boolean httpOK = UsuarioDAO.salvarUsuario(usuario);
 
             if (httpOK) {
-                ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
-                request.setAttribute("listaUsuarios", usuarios);
+                if ((cCliente == null) || (cCliente.length() == 0)) {
+                    ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+                    request.setAttribute("listaUsuarios", usuarios);
 
-                request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Cadastro realizado com sucesso.");
+                    request.setAttribute("varMsg", true);
+                    request.setAttribute("msg", "Cadastro realizado com sucesso.");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
-                dispatcher.forward(request, response);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    request.setAttribute("varMsg", true);
+                    request.setAttribute("msg", "Cadastro realizado com sucesso.");
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("../login/index.jsp");
+                    dispatcher.forward(request, response);
+                }
             } else {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");

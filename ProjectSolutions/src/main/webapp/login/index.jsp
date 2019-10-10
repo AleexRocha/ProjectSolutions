@@ -72,6 +72,10 @@
                         </div>
 
                         <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
+                    </form>
+                    <form action ="../ti/valida_usuarios" method="post" >
+                        <br>
+                        <button class="btn btn-link btn-block" type="submit">Não tem um cadastro? Crie uma conta aqui!</button>
                         <p class="mt-5 mb-3 text-center subtitulo">&copy; Project Solutions - 2019</p>
                     </form>
                 </div>
