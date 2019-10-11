@@ -28,6 +28,12 @@ public class UsuarioSelectEditServlet extends HttpServlet {
         ArrayList<Usuario> filiais = UsuarioDAO.getFiliaisCadastro();
         
         request.setAttribute("acao", "editar");
+        if (usuario.getNomeSetor().equalsIgnoreCase("Cliente")) {
+            request.setAttribute("cliente", true);
+        }
+        else{
+            request.setAttribute("cliente", false);
+        }
         request.setAttribute("codigo", usuario.getCodigo());
         request.setAttribute("nome", usuario.getNome());
         request.setAttribute("email", usuario.getEmail());
