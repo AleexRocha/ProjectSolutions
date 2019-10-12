@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ProdutoConsultarServlet", urlPatterns = {"/produtos/descricao"})
 public class ProdutoConsultaServlet extends HttpServlet {
 
-    private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
+    private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String codigoProuto = request.getParameter("consultarID");
@@ -42,12 +42,12 @@ public class ProdutoConsultaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp);
+        processaRequisicao(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp);
+        processaRequisicao(req, resp);
     }
 
 }

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ProdutoExcluirServlet", urlPatterns = {"/produtos/excluir_produto"})
 public class ProdutoExcluirServlet extends HttpServlet {
 
-    protected void processaRequisicao(String HttpMethod, HttpServletRequest request, HttpServletResponse response)
+    protected void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String pCodigo = request.getParameter("excluirID");
@@ -43,9 +43,9 @@ public class ProdutoExcluirServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
             dispatcher.forward(request, response);
-            
+
         } else {
-            
+
             boolean httpOk = ProdutoDAO.excluirProduto(Integer.parseInt(pCodigo));
             if (httpOk) {
                 ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
@@ -72,12 +72,12 @@ public class ProdutoExcluirServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processaRequisicao("GET", request, response);
+        processaRequisicao(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processaRequisicao("POST", request, response);
+        processaRequisicao(request, response);
     }
 }
