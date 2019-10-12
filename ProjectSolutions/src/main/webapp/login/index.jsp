@@ -23,6 +23,14 @@
                             </h1>
                         </div>
                         <c:if test="${varMsg == true}">
+                            <div class="alert alert-success" role="alert">
+                                <c:out value="${msg}"/>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </c:if>
+                        <c:if test="${varMsgError == true}">
                             <div class="alert alert-danger" role="alert">
                                 <c:out value="${msg}"/>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -36,14 +44,12 @@
                                 <c:when test="${empty emailError}">
                                     <c:choose>
                                         <c:when test="${empty loginError}">
-                                            <input name="email" type="email" id="inputEmail" 
-                                                   class="form-control inputForm" 
-                                                   placeholder="Digite seu e-mail" autofocus minlength="0" maxlength="50">
+                                            <input type="email" id="inputEmail" class="form-control inputForm" 
+                                                   placeholder="Digite seu e-mail" name="email" autofocus minlength="0" maxlength="50">
                                         </c:when>
                                         <c:otherwise>  
-                                            <input name="email" type="email" id="inputEmail" 
-                                                   class="form-control inputForm" 
-                                                   value="${loginError}" autofocus  minlength="0" maxlength="50">
+                                            <input type="email" id="inputEmail" class="form-control inputForm" 
+                                                   value="${loginError}" name="email" autofocus  minlength="0" maxlength="50">
                                         </c:otherwise>
                                     </c:choose>
                                 </c:when>
@@ -70,7 +76,7 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
-                        
+
                         <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
                     </form>
                     <form action ="../ti/valida_usuarios" method="post" >

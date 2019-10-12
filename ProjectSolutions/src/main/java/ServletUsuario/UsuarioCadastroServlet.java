@@ -47,22 +47,16 @@ public class UsuarioCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("cSenhaError", "Por Favor, Confirme a Senha digitada acima");
         }
-        if (cSetor == null) {
-            error = true;
-            request.setAttribute("setorErro", "Setor não informado");
-        }
         if ((cCliente == null) || (cCliente.length() == 0)) {
             if (cSetor == null) {
                 error = true;
                 request.setAttribute("setorErro", "Setor não informado");
             }
-        } else {
-            cSetor = "4";
         }
         if (!error) {
             if (!cConfirmacaoSenha.equals(cSenha)) {
                 error = true;
-                request.setAttribute("varMsg", true);
+                request.setAttribute("varMsgError", true);
                 request.setAttribute("cSenhaError", "Senhas não Coincidem");
                 request.setAttribute("msg", "Senha e Confirmação de Senha são diferentes");
             }
@@ -96,11 +90,19 @@ public class UsuarioCadastroServlet extends HttpServlet {
                     dispatcher.forward(request, response);
                 }
             } else {
-                request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
+                if ((cCliente == null) || (cCliente.length() == 0)) {
+                    request.setAttribute("varMsgError", true);
+                    request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
-                dispatcher.forward(request, response);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    request.setAttribute("varMsgError", true);
+                    request.setAttribute("msg", "Erro ao realizar o cadastro, tente novamente.");
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("../login/index.jsp");
+                    dispatcher.forward(request, response);
+                }
             }
         }
     }

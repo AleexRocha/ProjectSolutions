@@ -18,8 +18,9 @@ public class ProdutoDAO {
     private static final Database db = new Database();
 
     public static int salvarProduto(Produto p) {
-        Connection conn = db.obterConexao();
         int idProduto = 0;
+        
+        Connection conn = db.obterConexao();
 
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"

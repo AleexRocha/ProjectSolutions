@@ -21,7 +21,6 @@ public class LogoutServlet extends HttpServlet {
         sessao.invalidate();
 
         response.sendRedirect("../login/index.jsp");
-
     }
 
     @Override

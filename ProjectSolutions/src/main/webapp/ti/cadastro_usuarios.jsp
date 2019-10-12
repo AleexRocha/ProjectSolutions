@@ -63,7 +63,7 @@ Author     : nicolas.hgyoshioka
                             <form action="editar_usuario" method="post">
                             </c:when>
                             <c:otherwise>
-                                <form action="cadastro_usuario" method="post">
+                                <form action="create_usuario" method="post">
                                 </c:otherwise>
                             </c:choose>
 
@@ -229,6 +229,14 @@ Author     : nicolas.hgyoshioka
                                             </c:if>  
                                         </c:otherwise>
                                     </c:choose>
+                                </c:if>
+                                <c:if test="${cliente == true}">
+                                    <label for="setor" class="sr-only">Setor:</label>
+                                    <input type="hidden" class="form-control inputForm"
+                                           placeholder="Este campo serve para informar o setor do cliente sem cadastro" name="codigoSetor" value="4">
+                                    
+                                    <input type="hidden" class="form-control inputForm"
+                                           placeholder="Este campo serve para confirmar que o usuario é um cliente ao  salvar" name="cliente" value="cliente">
                                 </c:if>
                             </div>
                             <button type="submit" class="btn btn-light btn-block">

@@ -86,7 +86,7 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
         }
 
         if (error) {
-            request.setAttribute("varMsg", true);
+            request.setAttribute("varMsgError", true);
             request.setAttribute("msg", "Erro ao salvar a imagem.");
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");

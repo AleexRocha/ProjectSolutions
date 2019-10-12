@@ -32,13 +32,13 @@ public class LoginServlet extends HttpServlet {
         if (!formularioOK) {
             HashMap<String, String> camposInvalidos = InformaCamposIncorretos(request);
             if (camposInvalidos.get("emailError") != null) {
-                request.setAttribute("emailErro", camposInvalidos.get("emailError"));
+                request.setAttribute("emailError", camposInvalidos.get("emailError"));
             }
             if (camposInvalidos.get("senhaError") != null) {
                 request.setAttribute("senhaError", camposInvalidos.get("senhaError"));
                 request.setAttribute("loginError", camposInvalidos.get("loginError"));
             }
-            request.setAttribute("varMsg", true);
+            request.setAttribute("varMsgError", true);
             request.setAttribute("msg", "Campo de E-mail ou Senha inválidos");
             dispatcher = request.getRequestDispatcher("/login/index.jsp");
         } else {
@@ -93,6 +93,7 @@ public class LoginServlet extends HttpServlet {
 
         if (uEmail.length() == 0) {
             camposInvalidos.put("emailError", "O e-mail é obrigatório");
+            return camposInvalidos;
         }
         if (uSenha.length() == 0) {
             camposInvalidos.put("senhaError", "A senha é obrigatória");

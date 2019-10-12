@@ -25,7 +25,6 @@ public class UsuarioValidaSessao extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);
-
     }
 
     @Override
