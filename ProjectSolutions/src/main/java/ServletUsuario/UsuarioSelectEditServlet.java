@@ -2,8 +2,10 @@ package ServletUsuario;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UsuarioSelectEditServlet", urlPatterns = {"/ti/dados_usuario"})
 public class UsuarioSelectEditServlet extends HttpServlet {
 
-    private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
+    private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cCodigo = request.getParameter("editarID");
+        String cCodigo = request.getParameter("idUsuario");
         Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
        
         ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();   
@@ -41,12 +43,12 @@ public class UsuarioSelectEditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp);
+        processaRequisicao(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp);
+        processaRequisicao(req, resp);
     }
 
 }

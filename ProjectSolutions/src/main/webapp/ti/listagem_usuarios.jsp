@@ -35,11 +35,6 @@ Author     : nicolas.hgyoshioka
                         </form>
                     </li>
                     <li class="nav-item">
-                        <form action="../ti/listagem_filiais" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Filiais</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
                         <form action="../venda/carrega_relatorio" method="GET">
                             <button type="submit" class="btn nav-link nav-text" >Relatorio</button>
                         </form>
@@ -108,7 +103,7 @@ Author     : nicolas.hgyoshioka
                             <td class="coluna" name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
                             <td class="btn-group">
                                 <form action="dados_usuario" method="POST">
-                                    <button name="editarID" value="${usuarios.codigo}" type="submit" class="btn btn-success">
+                                    <button name="idUsuario" value="${usuarios.codigo}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </form>

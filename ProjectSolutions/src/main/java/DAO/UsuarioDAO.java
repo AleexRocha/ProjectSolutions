@@ -28,7 +28,7 @@ public class UsuarioDAO {
             query.setInt(4, u.getSetor());
             query.setInt(5, 0);
 
-            int rs = query.executeUpdate();
+            query.executeUpdate();
 
             conn.close();
         } catch (SQLException e) {
@@ -51,7 +51,7 @@ public class UsuarioDAO {
             query.setInt(4, u.getSetor());
             query.setInt(5, u.getCodigo());
 
-            int rs = query.executeUpdate();
+            query.executeUpdate();
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);
@@ -123,7 +123,6 @@ public class UsuarioDAO {
                     );
                     user.setNomeSetor(rs.getString(6));
                     usuarios.add(user);
-
                 }
             }
             conn.close();
@@ -138,7 +137,10 @@ public class UsuarioDAO {
         Usuario usuarios = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("");
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.fk_setor, s.nome_setor"
+                    + " FROM tbl_usuario AS u"
+                    + " INNER JOIN tbl_setor AS s ON u.fk_setor = s.id_setor"
+                    + " WHERE u.id_usuario  = ? AND u.status = 0 ;");
 
             query.setInt(1, codigoUsuario);
             ResultSet rs = query.executeQuery();
@@ -155,6 +157,7 @@ public class UsuarioDAO {
                     usuarios = user;
                 }
             }
+            
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);
@@ -220,7 +223,7 @@ public class UsuarioDAO {
             if (rs.next()) {
                 sessao = new Usuario();
                 sessao.setCodigo(rs.getInt(1));
-                sessao.setNome(rs.getString(2));                
+                sessao.setNome(rs.getString(2));
                 sessao.setNomeSetor(rs.getString(3));
             }
             conn.close();

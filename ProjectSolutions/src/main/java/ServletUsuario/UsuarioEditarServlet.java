@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UsuarioEditarServlet", urlPatterns = {"/ti/editar_usuario"})
 public class UsuarioEditarServlet extends HttpServlet {
 
-    private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
+    private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -52,7 +52,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             error = true;
             request.setAttribute("setorErro", "Setor não informado");
         }
-        if (!error) {        
+        if (!error) {
             if (!cConfirmacaoSenha.equals(cSenha)) {
                 error = true;
                 request.setAttribute("varMsg", true);
@@ -102,17 +102,16 @@ public class UsuarioEditarServlet extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         }
-
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp);
+        processaRequisicao(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp);
+        processaRequisicao(req, resp);
     }
 
 }
