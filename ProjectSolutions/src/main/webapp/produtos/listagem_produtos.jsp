@@ -66,7 +66,7 @@
                 </div>
             </c:if>
 
-            <form id="btn_cadastro" action="select_cadastro" method="GET">
+            <form id="btn_cadastro" action="cadastro_produtos.jsp" method="GET">
                 <Button type="submit" class="btn btn-light">
                     <i class="fas fa-box"></i>
                     Cadastrar Produto
@@ -111,7 +111,7 @@
                                     </button>
                                 </form>
                                 <form action="dados_produto" method="POST">
-                                    <button name="editarID" value="${produtos.codigo}" type="submit" class="btn btn-success">
+                                    <button name="idProduto" value="${produtos.codigo}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </form>

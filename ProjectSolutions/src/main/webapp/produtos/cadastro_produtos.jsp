@@ -58,6 +58,14 @@ Author     : nicolas.hgyoshioka
             <div class="row">
                 <div class="col-md-12">
                     <c:if test="${varMsg == true}">
+                        <div class="alert alert-success" role="alert">
+                            <c:out value="${msg}"/>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </c:if>
+                    <c:if test="${varMsgError == true}">
                         <div class="alert alert-danger" role="alert">
                             <c:out value="${msg}"/>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

@@ -142,7 +142,6 @@ public class ProdutoDAO {
                             rs.getInt(5),
                             rs.getDouble(6));;
                     produtos.add(produto);
-
                 }
             }
 
@@ -165,7 +164,7 @@ public class ProdutoDAO {
                     + " p.descricao,"
                     + " p.tipo,"
                     + " p.qtd_estoque,"
-                    + " p.valor_unidade,"
+                    + " p.valor_unidade"
                     + " FROM tbl_produtos AS p"
                     + " WHERE p.id_produto = ? AND p.status = 0;");
 

@@ -195,9 +195,9 @@ public class UsuarioDAO {
             query.setString(2, senha);
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
+                conn.close();
                 return true;
             }
-            conn.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -209,21 +209,19 @@ public class UsuarioDAO {
         Usuario sessao = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement(" SELECT u.id_usuario, u.nome, u.email, s.nome_setor"
+            PreparedStatement query = conn.prepareStatement(" SELECT u.id_usuario, u.nome, s.nome_setor"
                     + " FROM tbl_usuario AS u"
                     + " INNER JOIN tbl_setor AS s ON u.fk_setor = s.id_setor"
                     + " WHERE email = ?;");
 
-         
             query.setString(1, uEmail);
 
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
                 sessao = new Usuario();
                 sessao.setCodigo(rs.getInt(1));
-                sessao.setNome(rs.getString(2));
-                sessao.setEmail(rs.getString(3));
-                sessao.setNomeSetor(rs.getString(4));
+                sessao.setNome(rs.getString(2));                
+                sessao.setNomeSetor(rs.getString(3));
             }
             conn.close();
         } catch (SQLException e) {

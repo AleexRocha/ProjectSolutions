@@ -83,8 +83,9 @@ public class ProdutoCadastroServlet extends HttpServlet {
                 if (fDescricao.length() != 0) {
                     produtos.setDescricao(fDescricao);
                 }
-//            boolean httpOK = ProdutoDAO.salvarProduto(produtos);
+
                 idProduto = ProdutoDAO.salvarProduto(produtos);
+
                 if (idProduto > 0) {
                     Imagem imagem = new Imagem(Integer.parseInt(fIdImagem), idProduto);
                     httpOK = ImagemDAO.atualizaProdutoImagem(imagem);
@@ -101,7 +102,7 @@ public class ProdutoCadastroServlet extends HttpServlet {
                     dispatcher.forward(request, response);
                 } else {
 
-                    request.setAttribute("varMsg", true);
+                    request.setAttribute("varMsgError", true);
                     request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
 
                     request.setAttribute("listaImagens", fIdImagem);

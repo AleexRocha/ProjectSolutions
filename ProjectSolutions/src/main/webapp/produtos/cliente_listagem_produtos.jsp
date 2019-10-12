@@ -30,11 +30,11 @@
 
                     <div class="collapse navbar-collapse" id="navbarsExample08">
                         <ul id="itensMenu" class="navbar-nav justify-content-center">
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <form action="../produtos/listagem_produtos" method="GET">
                                     <button type="submit" class="btn nav-link nav-text">Produtos</button>
                                 </form>
-                            </li>
+                            </li>-->
                         </ul>
                         <i class="fas fa-user-tie"></i>
                         <span id="nav-saudacao"> Olá, <c:out value="${nomeUsuario}" /></span>

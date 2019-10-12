@@ -23,7 +23,7 @@ public class ProdutoSelectEditServlet extends HttpServlet {
     private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String pCodigo = request.getParameter("editarID");
+        String pCodigo = request.getParameter("idProduto");
 
         Produto produto = ProdutoDAO.getProduto(Integer.parseInt(pCodigo));
 

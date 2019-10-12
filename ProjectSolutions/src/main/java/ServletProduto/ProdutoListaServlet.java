@@ -27,15 +27,8 @@ public class ProdutoListaServlet extends HttpServlet {
         ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
         request.setAttribute("listaProdutos", produtos);
 
-        HttpSession sessao = request.getSession();
-
-        if (!sessao.getAttribute("nomeSetor").equals("Cliente")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cliente_listagem_produtos.jsp");
-            dispatcher.forward(request, response);
-        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
