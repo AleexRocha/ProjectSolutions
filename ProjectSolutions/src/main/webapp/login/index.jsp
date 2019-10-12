@@ -70,7 +70,7 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
-
+                        
                         <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
                     </form>
                     <form action ="../ti/valida_usuarios" method="post" >
