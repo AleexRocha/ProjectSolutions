@@ -68,6 +68,14 @@ Author     : nicolas.hgyoshioka
                             </c:choose>
 
                             <c:if test="${varMsg == true}">
+                                <div class="alert alert-success" role="alert">
+                                    <c:out value="${msg}"/>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </c:if>
+                            <c:if test="${varMsgError == true}">
                                 <div class="alert alert-danger" role="alert">
                                     <c:out value="${msg}"/>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -185,42 +193,43 @@ Author     : nicolas.hgyoshioka
                                     </c:otherwise>
                                 </c:choose>
 
-
-                                <label for="setor" >Setor:</label>
-                                <c:choose>
-                                    <c:when test="${acao == 'editar'}">
-                                        <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                            <option hidden="" value="${setor}">${nomeSetor}</option>
-                                            <c:forEach var="setores" items="${listaSetores}">
-                                                <option value="<c:out value="${setores.setor}"></c:out>">
-                                                    <c:out value="${setores.nomeSetor}"/>
-                                                </option>
-                                            </c:forEach>
-                                        </select>    
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:if test="${empty setorErro}">
+                                <c:if test="${cliente == false}">
+                                    <label for="setor" >Setor:</label>
+                                    <c:choose>
+                                        <c:when test="${acao == 'editar'}">
                                             <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
-                                                <option selected = "" disabled="" hidden="">Setor</option>
-                                                <c:forEach var="setores" items="${listaSetores}">  
+                                                <option hidden="" value="${setor}">${nomeSetor}</option>
+                                                <c:forEach var="setores" items="${listaSetores}">
                                                     <option value="<c:out value="${setores.setor}"></c:out>">
-                                                        <c:out value="${setores.nomeSetor}"/> 
-                                                    </option>  
-                                                </c:forEach>       
-                                            </select>
-                                        </c:if>
-                                        <c:if test="${not empty setorErro}">         
-                                            <select class="custom-select form-control inputForm error" id="codigoSetor" name="codigoSetor">
-                                                <option selected ="" disabled="" hidden=""><c:out value="${setorErro}"/></option>                               
-                                                <c:forEach var="setores" items="${listaSetores}">  
-                                                    <option value="<c:out value="${setores.setor}"></c:out>">
-                                                        <c:out value="${setores.nomeSetor}"/> 
-                                                    </option>  
-                                                </c:forEach>       
-                                            </select>
-                                        </c:if>  
-                                    </c:otherwise>
-                                </c:choose>
+                                                        <c:out value="${setores.nomeSetor}"/>
+                                                    </option>
+                                                </c:forEach>
+                                            </select>    
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${empty setorErro}">
+                                                <select class="custom-select inputForm" id="codigoSetor" name="codigoSetor">
+                                                    <option selected = "" disabled="" hidden="">Setor</option>
+                                                    <c:forEach var="setores" items="${listaSetores}">  
+                                                        <option value="<c:out value="${setores.setor}"></c:out>">
+                                                            <c:out value="${setores.nomeSetor}"/> 
+                                                        </option>  
+                                                    </c:forEach>       
+                                                </select>
+                                            </c:if>
+                                            <c:if test="${not empty setorErro}">         
+                                                <select class="custom-select form-control inputForm error" id="codigoSetor" name="codigoSetor">
+                                                    <option selected ="" disabled="" hidden=""><c:out value="${setorErro}"/></option>                               
+                                                    <c:forEach var="setores" items="${listaSetores}">  
+                                                        <option value="<c:out value="${setores.setor}"></c:out>">
+                                                            <c:out value="${setores.nomeSetor}"/> 
+                                                        </option>  
+                                                    </c:forEach>       
+                                                </select>
+                                            </c:if>  
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:if>
                             </div>
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="far fa-save"></i>

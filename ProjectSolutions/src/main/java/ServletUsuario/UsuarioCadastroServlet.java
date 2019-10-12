@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "UsuarioCadastroServlet", urlPatterns = {"/ti/cadastro_usuario"})
+@WebServlet(name = "UsuarioCadastroServlet", urlPatterns = {"/ti/create_usuario"})
 public class UsuarioCadastroServlet extends HttpServlet {
 
     private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
@@ -25,11 +25,15 @@ public class UsuarioCadastroServlet extends HttpServlet {
         String cSenha = request.getParameter("senha");
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
+        String cCliente = request.getParameter("cliente");
 
         boolean error = false;
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
+        } else if (cNome.length() < 5) {
+            error = true;
+            request.setAttribute("nomeErro", "Nome deve conter 5 caracteres");
         }
         if (cEmail.length() == 0) {
             error = true;
@@ -46,6 +50,14 @@ public class UsuarioCadastroServlet extends HttpServlet {
         if (cSetor == null) {
             error = true;
             request.setAttribute("setorErro", "Setor não informado");
+        }
+        if ((cCliente == null) || (cCliente.length() == 0)) {
+            if (cSetor == null) {
+                error = true;
+                request.setAttribute("setorErro", "Setor não informado");
+            }
+        } else {
+            cSetor = "4";
         }
         if (!error) {
             if (!cConfirmacaoSenha.equals(cSenha)) {
@@ -67,14 +79,22 @@ public class UsuarioCadastroServlet extends HttpServlet {
             boolean httpOK = UsuarioDAO.salvarUsuario(usuario);
 
             if (httpOK) {
-                ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
-                request.setAttribute("listaUsuarios", usuarios);
+                if ((cCliente == null) || (cCliente.length() == 0)) {
+                    ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+                    request.setAttribute("listaUsuarios", usuarios);
 
-                request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Cadastro realizado com sucesso.");
+                    request.setAttribute("varMsg", true);
+                    request.setAttribute("msg", "Cadastro realizado com sucesso.");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
-                dispatcher.forward(request, response);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    request.setAttribute("varMsg", true);
+                    request.setAttribute("msg", "Cadastro realizado com sucesso.");
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("../login/index.jsp");
+                    dispatcher.forward(request, response);
+                }
             } else {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");

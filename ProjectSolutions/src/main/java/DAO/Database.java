@@ -21,7 +21,7 @@ public class Database {
         driver = "com.mysql.cj.jdbc.Driver";
         usuario = "root";
         senha = "";
-        nomeDB = "TADES_BCD_NOFILIAL";
+        nomeDB = "TADES_BCD";
         url = "jdbc:mysql://127.0.0.1:3306/" + nomeDB + "?useTimezone=true&serverTimezone=UTC";
     }
 
