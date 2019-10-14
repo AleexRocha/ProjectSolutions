@@ -12,6 +12,7 @@ public class Produto {
     private String tipo;
     private int quantidadeEstoque;
     private double valorUnitario;
+    private String srcImagem;
 
     public Produto() {
     }
@@ -40,6 +41,15 @@ public class Produto {
         this.tipo = tipo;
     }
 
+    public Produto(int codigo, String nome, String descricao, String tipo, int quantidadeEstoque, double valorUnitario, String srcImagem) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.quantidadeEstoque = quantidadeEstoque;
+        this.valorUnitario = valorUnitario;
+        this.tipo = tipo;
+        this.srcImagem = srcImagem;
+    }
     public int getCodigo() {
         return codigo;
     }
@@ -88,4 +98,11 @@ public class Produto {
         this.tipo = tipo;
     }
 
+    public String getSrcImagem() {
+    	return srcImagem;
+    }
+    
+    public void setSrcImagem(String srcImagem) {
+    	this.srcImagem = srcImagem;
+    }
 }

@@ -50,7 +50,7 @@
             <div class="row" id="details-product">
                 <div class="col-md-7">
                     <div class="text-center" id="imgProduto">
-                        <img id="img-product" src="../assets/img/flor_teste.jpg" alt="">
+                        <img id="img-product" src="${produto.srcImagem}" alt="">
                     </div>
                     <span id="title-desc-produto">Descrição do Produto:</span>
                     <p id="desc-product">

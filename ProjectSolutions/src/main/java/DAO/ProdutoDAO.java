@@ -166,8 +166,10 @@ public class ProdutoDAO {
                     + " p.tipo,"
                     + " p.qtd_estoque,"
                     + " p.valor_unidade"
+                    + " caminho"
                     + " FROM tbl_produtos AS p"
-                    + " WHERE p.id_produto = ? AND p.status = 0;");
+                    + " INNER JOIN tbl_imagem ON p.id_produto = tbl_imagem.fk_produto"
+                    + " WHERE tbl_imagem.fk_produto = ? AND p.status = 0;");
 
             query.setInt(1, codigo);
             ResultSet rs = query.executeQuery();
@@ -180,7 +182,8 @@ public class ProdutoDAO {
                             rs.getString(3),
                             rs.getString(4),
                             rs.getInt(5),
-                            rs.getDouble(6)
+                            rs.getDouble(6),
+                            rs.getString(7)
                     );
                     produto = prod;
                 }
