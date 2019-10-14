@@ -90,7 +90,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-3">
                         <div class="card h-100">
                             <a href="#">
-                                <img class="card-img-top" src="../assets/img/girassol.jpg" alt="Arranjo de Girassol">
+                                <img class="card-img-top" src="${produtos.srcImagem}" alt="Arranjo de Girassol">
                             </a>
                             <div class="card-body">
                                 <p class="card-title">

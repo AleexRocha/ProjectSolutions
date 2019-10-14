@@ -127,10 +127,13 @@ public class ProdutoDAO {
                     + " p.descricao,"
                     + " p.tipo,"
                     + " p.qtd_estoque,"
-                    + " p.valor_unidade "
+                    + " p.valor_unidade,"
+                    + " caminho "
                     + " FROM tbl_produtos AS p"
+                    + " inner join tbl_imagem on"
+                    + " p.id_produto = tbl_imagem.fk_produto"
                     + " WHERE p.status = 0;");
-
+            
             ResultSet rs = query.executeQuery();
 
             if (rs != null) {
@@ -141,7 +144,8 @@ public class ProdutoDAO {
                             rs.getString(3),
                             rs.getString(4),
                             rs.getInt(5),
-                            rs.getDouble(6));;
+                            rs.getDouble(6),
+                            rs.getString(7));
                     produtos.add(produto);
                 }
             }
