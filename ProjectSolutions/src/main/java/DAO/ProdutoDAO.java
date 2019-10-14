@@ -165,7 +165,7 @@ public class ProdutoDAO {
                     + " p.descricao,"
                     + " p.tipo,"
                     + " p.qtd_estoque,"
-                    + " p.valor_unidade"
+                    + " p.valor_unidade,"
                     + " caminho"
                     + " FROM tbl_produtos AS p"
                     + " INNER JOIN tbl_imagem ON p.id_produto = tbl_imagem.fk_produto"
