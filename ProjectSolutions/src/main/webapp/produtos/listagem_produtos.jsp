@@ -78,15 +78,11 @@
 				<i class="fas fa-box"></i> Cadastrar Produto
 			</Button>
 		</form>
-		<button type="submit" class="btn btn-danger">
-			<i class="far fa-trash-alt"></i> Excluir Selecionado(s)
-		</button>
 		<br> <br>
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th class="coluna"><input type="checkbox"></th>
 					<th class="coluna" scope="col">Codigo</th>
 					<th class="coluna" scope="col">Nome</th>
 					<th class="coluna" scope="col">Descricao</th>
@@ -99,8 +95,6 @@
 			<tbody>
 				<tr>
 					<c:forEach var="produtos" items="${listaProdutos}">
-						<td class="coluna"><input name="selected"
-							value="${produtos.codigo}" type="checkbox"></td>
 						<td class="coluna" name="codigo"><c:out
 								value="${produtos.codigo}" /></td>
 						<td class="coluna" name="nome"><c:out
