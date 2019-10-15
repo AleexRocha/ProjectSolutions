@@ -70,7 +70,7 @@ public class ProdutoCadastroServlet extends HttpServlet {
                 request.setAttribute("listaImagens", fIdImagem);
                 request.setAttribute("id", fIdImagem);
 
-                request.setAttribute("varMsg", true);
+                request.setAttribute("varMsgError", true);
                 request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");

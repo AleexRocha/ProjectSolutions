@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
                     dispatcher = request.getRequestDispatcher("../produtos/cliente_listagem_produtos.jsp");
                 }
             } else {
-                request.setAttribute("varMsg", true);
+                request.setAttribute("varMsgError", true);
                 request.setAttribute("msg", "Usuário ou Senha não existem.");
 
                 request.setAttribute("loginError", uEmail);
