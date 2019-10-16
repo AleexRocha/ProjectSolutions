@@ -36,7 +36,7 @@ public class ProdutoCadastroServlet extends HttpServlet {
         String fIdImagem = request.getParameter("codigoImagem");
 
         if (fIdImagem == null) {
-            request.setAttribute("varMsg", true);
+            request.setAttribute("varMsgError", true);
             request.setAttribute("msg", "Salve uma imagem para cadastrar um produto");
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");

@@ -90,7 +90,10 @@
                     <div class="col-lg-4 col-md-6 col-sm-3">
                         <div class="card h-100">
                             <a href="#">
-                                <img class="card-img-top" src="${produtos.srcImagem}" alt="Arranjo de Girassol">
+                            <%--  <img class="card-img-top" src="${produtos.srcImagem}" alt="Arranjo de Girassol"> --%>
+							<!-- Web Server for Chrome --> 
+							<!-- Adicionar extensão ao chrome que simula um servidor na pasta de imagens / caminho está sendo bloqueado -->
+			              	<img class="card-img-top" src="http://127.0.0.1:8887/${produtos.srcImagem}" alt="Arranjo de Girassol"/>
                             </a>
                             <div class="card-body">
                                 <p class="card-title">

@@ -128,7 +128,7 @@ public class ProdutoDAO {
                     + " p.tipo,"
                     + " p.qtd_estoque,"
                     + " p.valor_unidade,"
-                    + " caminho "
+                    + " nome_arquivo "
                     + " FROM tbl_produtos AS p"
                     + " inner join tbl_imagem on"
                     + " p.id_produto = tbl_imagem.fk_produto"
@@ -170,7 +170,7 @@ public class ProdutoDAO {
                     + " p.tipo,"
                     + " p.qtd_estoque,"
                     + " p.valor_unidade,"
-                    + " caminho"
+                    + " nome_arquivo"
                     + " FROM tbl_produtos AS p"
                     + " INNER JOIN tbl_imagem ON p.id_produto = tbl_imagem.fk_produto"
                     + " WHERE tbl_imagem.fk_produto = ? AND p.status = 0;");
