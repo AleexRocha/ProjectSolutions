@@ -24,7 +24,7 @@ public class ProdutoGetDescricaoServlet extends HttpServlet {
 
         request.setAttribute("produto", produto);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/descricao_produto2.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/descricao_produto.jsp");
         dispatcher.forward(request, response);
     }
 
