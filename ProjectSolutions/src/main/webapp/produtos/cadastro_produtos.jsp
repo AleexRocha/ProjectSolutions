@@ -79,10 +79,10 @@ Author     : nicolas.hgyoshioka
                         <div class="row">
                             <div class="col-md-8">
                                 <label for="inputImagemProduto">Imagem do produto:</label>
-                                <input type="file" class="form-control-file inputForm" id="inputImagemProduto" name="imagemProduto" onchange="preview();"/>
+                                <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="file" class="form-control-file inputForm" id="inputImagemProduto" name="imagemProduto" onchange="preview();"/>
                             </div>
                             <div class="col-md-4 btn-upload">
-                                <button type="submit" class="btn btn-block btn-success" id="upload-button" onclick="salvarImagem();">
+                                <button <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="submit" class="btn btn-block btn-success" id="upload-button" onclick="salvarImagem();">
                                     <i class="far fa-save"></i>
                                     Salvar Imagem
                                 </button>
@@ -128,7 +128,7 @@ Author     : nicolas.hgyoshioka
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
                                         <c:if test="${empty nomeErro}">
-                                            <input type="text" class="form-control inputForm" id="nome"
+                                            <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="text" class="form-control inputForm" id="nome"
                                                    value="${nome}" name="nome" minlength="0" maxlength="50">                                            
                                         </c:if>
                                         <c:if test="${not empty nomeErro}">         
@@ -151,7 +151,7 @@ Author     : nicolas.hgyoshioka
                                 <label for="descricaoProduto">Descrição:</label>
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
-                                        <input type="text" class="form-control inputForm" id="descricao"
+                                        <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="text" class="form-control inputForm" id="descricao"
                                                value="${descricao}" name="descricao" minlength="0" maxlength="100">
                                     </c:when>
                                     <c:otherwise>
@@ -188,7 +188,7 @@ Author     : nicolas.hgyoshioka
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
                                         <c:if test="${empty valorUnitarioErro}">
-                                            <input type="text" class="form-control inputForm" id="valor"
+                                            <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="text" class="form-control inputForm" id="valor"
                                                    value="${valor_unidade}" name="valorUnitario" minlength="0" maxlength="9">
                                         </c:if>
                                         <c:if test="${not empty valorUnitarioErro}">         
@@ -211,7 +211,7 @@ Author     : nicolas.hgyoshioka
                                 <label for="tipo" >Tipo:</label>
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
-                                        <select class="custom-select inputForm" id="tipo" name="tipo">
+                                        <select <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> class="custom-select inputForm" id="tipo" name="tipo">
                                             <option hidden="" value="${tipoCadastrado}">${tipoCadastrado}</option>
                                             <option value="Produto">Produto</option>
                                             <option value="Serviço">Serviço</option>

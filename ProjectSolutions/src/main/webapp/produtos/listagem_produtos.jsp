@@ -74,7 +74,7 @@
 		</c:if>
 
 		<form id="btn_cadastro" action="cadastro_produtos.jsp" method="GET">
-			<Button type="submit" class="btn btn-light">
+			<Button <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="submit" class="btn btn-light">
 				<i class="fas fa-box"></i> Cadastrar Produto
 			</Button>
 		</form>
@@ -108,19 +108,19 @@
 						<td class="coluna" name="valorUnitario"><c:out
 								value="${produtos.valorUnitario}" /></td>
 						<td class="btn-group">
-							<form action="visualizar_descricao" method="GET">
+							<form action="../produtos/visualizar_descricao" method="GET">
 								<button name="visualizarPorId" value="${produtos.codigo}"
 									type="submit" class="btn btn-success">
 									<i class="far fa-eye"></i>
 								</button>
 							</form>
-							<form action="dados_produto" method="POST">
+							<form action="../produtos/dados_produto" method="POST">
 								<button name="idProduto" value="${produtos.codigo}"
 									type="submit" class="btn btn-success">
 									<i class="fas fa-pen"></i>
 								</button>
 							</form> <!-- Button que chama a modal -->
-							<button type="button" class="btn btn-danger" data-toggle="modal"
+                                                        <button <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="button" class="btn btn-danger" data-toggle="modal"
 								data-target="#deleteProduto">
 								<i class="far fa-trash-alt"></i>
 								<c:set var="codigoProduto" value="${produtos.codigo}" />

@@ -82,14 +82,14 @@
 			            </p>
 			            <c:if test="${produto.tipo == 'Produto'}">
 			              <div class="product_count d-inline-block">
-			                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+			                <span class="inumber-decrement"> <i class="fas fa-minus"></i></span>
 			                <input readonly class="input-number" type="text" value="1" min="0" max="10">
-			                <span class="number-increment"> <i class="ti-plus"></i></span>
+			                <span class="number-increment"> <i class="fas fa-plus"></i></span>
 			              </div>
 			            </c:if>
 			            <div class="card_area">
 			              <div class="add_to_cart">
-			                  <a href="#" class="btn_3">Adicionar ao Carrinho</a>
+                                          <c:if test="${!sessionScope.nomeSetor == 'Estoquista'}">  <a  href="#" class="btn_3">Adicionar ao Carrinho</a> </c:if>    
 			              </div>
 			            </div>
 			          </div>
