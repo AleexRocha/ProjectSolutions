@@ -124,6 +124,10 @@ Author     : nicolas.hgyoshioka
                                         </c:choose>                                    
                                     </c:otherwise>
                                 </c:choose>
+                                                
+                                     <label for="cpf">CPF:</label>
+                                                 <input type="text" class="form-control inputForm" id="cpf"
+                                                       placeholder="CPF" name="cpf" minlength="0" maxlength="9">
 
                                 <label for="email">E-mail:</label>        
                                 <c:choose>
