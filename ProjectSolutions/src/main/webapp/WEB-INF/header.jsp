@@ -43,39 +43,61 @@
                 </form>
             </nav>
         </c:when>
-            <c:when test="${sessionScope.nomeSetor == 'Estoquista'}">
-                <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                    <ul id="itensMenu" class="nav justify-content-center">
-                        <li class="nav-item">
-                            <form action="../produtos/listagem_produtos" method="GET">
-                                <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                            </form>
-                        </li>
-                    </ul>
-                    <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
-                    &nbsp;&nbsp; Olá,
-                    <c:out value="${nomeUsuario}" />
-                    <form action="../venda/logout" method="POST">
-                        <button type="submit" class="btn nav-link nav-text">Sair</button>
-                    </form>
-                </nav>
-            </c:when>
-            <c:otherwise>
-                <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                    <ul id="itensMenu" class="nav justify-content-center">
-                        <li class="nav-item">
-                            <form action="../produtos/listagem_produtos" method="GET">
-                                <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                            </form>
-                        </li>
-                    </ul>
-                    <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
-                    &nbsp;&nbsp; Olá,
-                    <c:out value="${nomeUsuario}" />
-                    <form action="../venda/logout" method="POST">
-                        <button type="submit" class="btn nav-link nav-text">Sair</button>
-                    </form>
-                </nav>
-            </c:otherwise>
+        <c:when test="${sessionScope.nomeSetor == 'Estoquista'}">
+            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
+                <ul id="itensMenu" class="nav justify-content-center">
+                    <li class="nav-item">
+                        <form action="../produtos/listagem_produtos" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                        </form>
+                    </li>
+                </ul>
+                <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
+                &nbsp;&nbsp; Olá,
+                <c:out value="${nomeUsuario}" />
+                <form action="../venda/logout" method="POST">
+                    <button type="submit" class="btn nav-link nav-text">Sair</button>
+                </form>
+            </nav>
+        </c:when>
+        <c:otherwise>
+            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
+                <ul id="itensMenu" class="nav justify-content-center">
+                    <li class="nav-item">
+                        <form action="../produtos/listagem_produtos" method="GET">
+                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                        </form>
+                    </li>
+                </ul>
+                <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
+                &nbsp;&nbsp; Olá,
+                <c:out value="${nomeUsuario}" />
+                <button type="button" data-toggle="modal" data-target="#logout"> <i class="fas fa-sign-out-alt"></i> Sair</button>
+            </nav>
+        </c:otherwise>
     </c:choose>
+
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ATENÇÃO!!</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja fazer Logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <form action="../venda/logout" method="POST">
+                        <button name="logout" type="submit"> <i class="fas fa-sign-out-alt"></i> Sim </button>
+                    </form>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"> <i class="fas fa-ban"></i> Não </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
