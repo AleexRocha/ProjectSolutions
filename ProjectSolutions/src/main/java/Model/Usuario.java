@@ -12,24 +12,27 @@ public class Usuario {
     private String senha;
     private int setor;
     private String nomeSetor;
+    private String cpf;
 
     public Usuario() {
 
     }
 
-    public Usuario(String nome, String email, String senha, int setor) {
+    public Usuario(String nome, String email, String senha, int setor, String cpf) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.setor = setor;
+        this.cpf = cpf;
     }
 
-    public Usuario(int codigo, String nome, String email, String senha, int setor) {
+    public Usuario(int codigo, String nome, String email, String senha, int setor, String cpf) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.setor = setor;
+        this.cpf = cpf;
     }
 
     public int getCodigo() {
@@ -78,5 +81,13 @@ public class Usuario {
 
     public void setNomeSetor(String nomeSetor) {
         this.nomeSetor = nomeSetor;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

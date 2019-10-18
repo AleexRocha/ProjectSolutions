@@ -30,6 +30,7 @@ public class UsuarioEditarServlet extends HttpServlet {
         String cSenha = request.getParameter("senha");
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
+        String cCpf = request.getParameter("cpf");
 
         boolean error = false;
         if (cNome.length() == 0) {
@@ -39,6 +40,10 @@ public class UsuarioEditarServlet extends HttpServlet {
         if (cEmail.length() == 0) {
             error = true;
             request.setAttribute("emailErro", "Email não informado");
+        }
+        if (cCpf.length() == 0) {
+            error = true;
+            request.setAttribute("cpfErro", "CPF não informado");
         }
         if (cSenha.length() == 0) {
             error = true;
@@ -72,6 +77,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             request.setAttribute("email", usuario.getEmail());
             request.setAttribute("senha", usuario.getSenha());
             request.setAttribute("setor", usuario.getSetor());
+            request.setAttribute("cpf", usuario.getCpf());
             request.setAttribute("nomeSetor", usuario.getNomeSetor());
             request.setAttribute("listaSetores", setores);
 
@@ -81,7 +87,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor));
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor), cCpf);
             usuario.setCodigo(Integer.parseInt(cCodigo));
             boolean httpOK = UsuarioDAO.alterarUsuario(usuario);
 

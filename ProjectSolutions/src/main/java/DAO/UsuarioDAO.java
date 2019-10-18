@@ -19,15 +19,15 @@ public class UsuarioDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO "
-                    + " tbl_usuario(nome, email, senha, fk_setor, status) "
-                    + "VALUES (?, ?, ?, ?, ?);");
+                    + " tbl_usuario(nome, email, senha, fk_setor, status, cpf) "
+                    + "VALUES (?, ?, ?, ?, ?, ?);");
 
             query.setString(1, u.getNome());
             query.setString(2, u.getEmail());
             query.setString(3, u.getSenha());
             query.setInt(4, u.getSetor());
             query.setInt(5, 0);
-
+            query.setString(6, u.getCpf());
             query.executeUpdate();
 
             conn.close();
@@ -105,7 +105,7 @@ public class UsuarioDAO {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.fk_setor, s.nome_setor"
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.fk_setor, s.nome_setor, u.cpf"
                     + " FROM tbl_usuario AS u"
                     + " INNER JOIN tbl_setor AS s ON u.fk_setor = s.id_setor"
                     + " WHERE u.status = 0;");
@@ -119,9 +119,10 @@ public class UsuarioDAO {
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
-                            rs.getInt(5)
+                            rs.getInt(5),
+                            rs.getString(6)
                     );
-                    user.setNomeSetor(rs.getString(6));
+                    user.setNomeSetor(rs.getString(7));
                     usuarios.add(user);
                 }
             }
@@ -137,7 +138,7 @@ public class UsuarioDAO {
         Usuario usuarios = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.fk_setor, s.nome_setor"
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.fk_setor, s.nome_setor, u.cpf"
                     + " FROM tbl_usuario AS u"
                     + " INNER JOIN tbl_setor AS s ON u.fk_setor = s.id_setor"
                     + " WHERE u.id_usuario  = ? AND u.status = 0 ;");
@@ -152,12 +153,13 @@ public class UsuarioDAO {
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
-                            rs.getInt(5));
-                    user.setNomeSetor(rs.getString(6));
+                            rs.getInt(5),
+                            rs.getString(6));
+                    user.setNomeSetor(rs.getString(7));
                     usuarios = user;
                 }
             }
-            
+
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);

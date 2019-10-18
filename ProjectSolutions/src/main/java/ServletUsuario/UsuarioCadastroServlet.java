@@ -2,6 +2,7 @@ package ServletUsuario;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
+import Utils.CpfValidator;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
         String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
+        String cCpf = request.getParameter("cpf");
         String cSetor = request.getParameter("codigoSetor");
         String cCliente = request.getParameter("cliente");
 
@@ -35,6 +37,14 @@ public class UsuarioCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("nomeErro", "Nome deve conter 5 caracteres");
         }
+//         if (cCpf.length() == 0) {
+//            error = true;
+//            request.setAttribute("cpfErro", "CPF não informado");
+//        } 
+//         if(!CpfValidator.validaCpf(cCpf)){
+//             error = true;
+//             request.setAttribute("cpfErro", "CPF inválido!");
+//         }
         if (cEmail.length() == 0) {
             error = true;
             request.setAttribute("emailErro", "Email não informado");
@@ -69,7 +79,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor));
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor), cCpf);
             boolean httpOK = UsuarioDAO.salvarUsuario(usuario);
 
             if (httpOK) {

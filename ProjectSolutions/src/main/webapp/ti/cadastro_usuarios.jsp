@@ -126,9 +126,33 @@ Author     : nicolas.hgyoshioka
                                 </c:choose>
                                                 
                                      <label for="cpf">CPF:</label>
-                                                 <input type="text" class="form-control inputForm" id="cpf"
-                                                       placeholder="CPF" name="cpf" minlength="0" maxlength="9">
-
+                                     <c:choose>
+                                    <c:when test="${acao == 'editar'}">
+                                        <c:choose>
+                                            <c:when test="${empty cpfErro}">
+                                                <input type="text" class="form-control inputForm" id="cpf"
+                                                       value="${cpf}" name="cpf" minlength="0" maxlength="11">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="text" class="form-control inputForm error" id="cpf"
+                                                       placeholder="${cpfErro}" name="nome" minlength="0" maxlength="11">
+                                            </c:otherwise>
+                                        </c:choose>                                      
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:choose>
+                                            <c:when test="${empty cpfErro}">
+                                                <input type="text" class="form-control inputForm" id="cpf"
+                                                       placeholder="CPF" name="cpf" minlength="0" maxlength="11">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="text" class="form-control inputForm error" id="cpf"
+                                                       placeholder="${cpfErro}" name="cpf" minlength="0" maxlength="11">
+                                            </c:otherwise>
+                                        </c:choose>                                    
+                                    </c:otherwise>
+                                </c:choose>
+                                                
                                 <label for="email">E-mail:</label>        
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
