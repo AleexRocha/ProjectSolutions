@@ -21,42 +21,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
-        <header>
-            <h1 style="text-align: center;">
-                <span class="sr-only">Floricultura TADES</span>
-                <img src="../assets/img/logo.png">
-            </h1>
-            <c:choose>
-                <c:when test="${variavel.nomeSetor == 'Cliente'}">
-                    <nav class="navbar navbar-expand-md navbar-light bg-warning">
-                        <div class="container">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-
-                            <div class="collapse navbar-collapse" id="navbarsExample08">
-                                <ul id="itensMenu" class="navbar-nav justify-content-center">
-                                    <li class="nav-item">
-                                        <form action="../produtos/listagem_produtos" method="GET">
-                                            <button type="submit" class="btn nav-link nav-text">Produtos</button>
-                                        </form>
-                                    </li>
-                                </ul>
-                                <i class="fas fa-user-tie"></i>
-                                <span id="nav-saudacao"> Olá, <c:out value="${nomeUsuario}"/> </span>
-                                <form action="../venda/logout" method="POST">
-                                    <button type="submit" class="btn nav-link nav-text">Sair</button>
-                                </form>
-                            </div>
-                        </div>
-                    </nav>
-                </c:when>
-                <c:otherwise>
-                    <p>FOn fon fon</p>
-                </c:otherwise>
-            </c:choose>
-
-        </header>
+        <%@include file="../WEB-INF/header.jsp"%>
+        <h2 class="h2 text-center subtitulo">Produtos</h2>
         <div class="container">
             <br>
             <h2 class="text-center subtitulo titulo-produto-descricao"><c:out value="${produto.nome}"/></h2>        

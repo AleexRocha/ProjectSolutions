@@ -17,28 +17,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
-        <header>
-            <h1 style="text-align: center;">
-                <span class="sr-only">Floricultura TADES</span>
-                <img src="../assets/img/logo.png">
-            </h1>
-            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <ul id="itensMenu" class="nav justify-content-center">
-                    <li class="nav-item">
-                        <form action="cadastro_vendas">
-                            <button type="submit" class="btn nav-link nav-text">Vendas</button>
-                        </form>                     
-                </ul>
-                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nomeUsuario}"/> 
-                <form action="../venda/logout" method="POST">
-                    <button type="submit" class="btn nav-link nav-text" >Sair</button>
-                </form>
-            </nav>
-            <h2 class="h2 text-center subtitulo">Estorno de compras</h2>
-            <form action="cadastro_vendas" method="GET" class="form-estorno-relatorio">
-                <button type="submit" class="btn btn-success" >Cadastrar Vendas</button>
-            </form>
-        </header>
+        <%@include file="../WEB-INF/header.jsp"%>
         <div class="container">
             <div class="row">
                 <div class="col-12">
