@@ -1,5 +1,6 @@
 package ServletProduto;
 
+import DAO.UsuarioDAO;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.Produto;
+import Model.Usuario;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ProdutoGetDescricaoServlet
@@ -23,7 +26,6 @@ public class ProdutoGetDescricaoServlet extends HttpServlet {
         Produto produto = DAO.ProdutoDAO.getProduto(codigoProduto);
 
         request.setAttribute("produto", produto);
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/descricao_produto.jsp");
         dispatcher.forward(request, response);
     }

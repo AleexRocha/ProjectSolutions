@@ -17,49 +17,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
-        <header>
-            <h1 style="text-align: center;">
-                <span class="sr-only">Floricultura TADES</span>
-                <img src="../assets/img/logo.png">
-            </h1>
-            <nav class="navbar navbar-expand-md navbar-light bg-warning">
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarsExample08">
-                        <ul id="itensMenu" class="navbar-nav justify-content-center">
-                            <li class="nav-item">
-                                <form action="../produtos/listagem_produtos" method="GET">
-                                    <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                                </form>
-                            </li>
-                            <li class="nav-item">
-                                <form action="/cadastro_vendas">
-                                    <button type="submit" class="btn nav-link nav-text">Vendas</button>
-                                </form>                     
-                            </li>
-                            <li class="nav-item">
-                                <form action="../ti/listagem_usuarios" method="GET">
-                                    <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
-                                </form>
-                            </li>
-                            <li class="nav-item">
-                                <form action="../venda/carrega_relatorio" method="GET">
-                                    <button type="submit" class="btn nav-link nav-text" >Relatorio</button>
-                                </form>
-                            </li>
-                        </ul>
-                        <i class="fas fa-user-tie"></i>
-                        <span id="nav-saudacao"> Olá, <c:out value="${nomeUsuario}" /></span>
-                        <form action="../venda/logout" method="POST">
-                            <button type="submit" class="btn nav-link nav-text">Sair</button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </header>
+        <%@include file="../WEB-INF/header.jsp"%>
         <div class="container">
             <div class="row">
                 <div class="col-12">

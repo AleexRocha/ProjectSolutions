@@ -17,36 +17,7 @@ Author     : nicolas.hgyoshioka
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
-        <header>
-            <h1 style="text-align: center;">
-                <span class="sr-only">Floricultura TADES</span>
-                <img src="../assets/img/logo.png">
-            </h1>
-            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <ul id="itensMenu" class="nav justify-content-center">
-                    <li class="nav-item">
-                        <form action="../venda/cadastro_vendas">
-                            <button type="submit" class="btn nav-link nav-text">Vendas</button>
-                        </form>                     
-                    </li>
-                    <li class="nav-item">
-                        <form action="../produtos/listagem_produtos" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form action="../ti/listagem_usuarios" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Usuarios</button>
-                        </form>
-                    </li>
-                </ul>
-                <i class="fas fa-user-tie" style="margin-left: -189px;"></i> &nbsp;&nbsp; Olá, <c:out value="${nomeUsuario}"/> 
-                <form action="../venda/logout" method="POST">
-                    <button type="submit" class="btn nav-link nav-text" >Sair</button>
-                </form>
-            </nav>
-            <h2 class="h2 text-center subtitulo">Relatório</h2>
-        </header>
+        <%@include file="../WEB-INF/header.jsp"%>
         <div class="container">
             <div class="row">
                 <div class="col-12">

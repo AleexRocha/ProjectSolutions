@@ -2,6 +2,7 @@ package ServletProduto;
 
 import DAO.ProdutoDAO;
 import Model.Produto;
+import Model.Usuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,8 +28,18 @@ public class ProdutoListaServlet extends HttpServlet {
         ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
         request.setAttribute("listaProdutos", produtos);
 
+        HttpSession sessao = request.getSession();
+        
+        Usuario userTeste = new Usuario();
+        userTeste.setNomeSetor(String.valueOf(sessao.getAttribute("nomeSetor")));
+        if (userTeste.getNomeSetor().equalsIgnoreCase("Cliente")) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cliente_listagem_produtos.jsp");
+        dispatcher.forward(request, response);
+        }else{
         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
         dispatcher.forward(request, response);
+        }
+        
     }
 
     @Override
