@@ -4104,7 +4104,7 @@ ul {
 
 /* line 820, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
 .product_description_area {
-  padding-bottom: 120px;
+  padding-bottom: 47px;
   margin-top: 60px;
 }
 
@@ -4166,7 +4166,10 @@ ul {
 
 /* line 871, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
 .product_description_area .tab-content {
-  padding-top: 30px;
+  padding-top: 3px;
+}
+.tituloFaq{
+    
 }
 
 /* line 876, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
