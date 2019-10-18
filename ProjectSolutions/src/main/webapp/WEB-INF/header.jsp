@@ -93,9 +93,9 @@
                 </div>
                 <div class="modal-footer">
                     <form action="../venda/logout" method="POST">
-                        <button name="logout" type="submit"> <i class="fas fa-sign-out-alt"></i> Sim </button>
+                        <button name="logout" type="submit" class="btn btn-success"> <i class="fas fa-sign-out-alt"></i> Sim </button>
                     </form>
-                    <button type="button" class="btn btn-success" data-dismiss="modal"> <i class="fas fa-ban"></i> Não </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-ban"></i> Não </button>
                 </div>
             </div>
         </div>
