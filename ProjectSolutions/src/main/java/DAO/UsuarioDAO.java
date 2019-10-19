@@ -105,7 +105,7 @@ public class UsuarioDAO {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.fk_setor, s.nome_setor, u.cpf"
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.cpf, u.fk_setor, s.nome_setor"
                     + " FROM tbl_usuario AS u"
                     + " INNER JOIN tbl_setor AS s ON u.fk_setor = s.id_setor"
                     + " WHERE u.status = 0;");
