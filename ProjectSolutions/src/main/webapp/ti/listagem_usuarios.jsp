@@ -43,7 +43,7 @@ Author     : nicolas.hgyoshioka
                     Cadastrar Usuário
                 </button>
             </form>
-            
+
             <br>
             <br>
 
@@ -71,9 +71,9 @@ Author     : nicolas.hgyoshioka
                                     </button>
                                 </form>
                                 <!-- Button que chama a modal -->
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario"
+                                        value="${usuarios.codigo}" onclick="defineCodigo(this.value)">
                                     <i class="far fa-trash-alt"></i>
-                                    <c:set var="codigoUsuario" value="${usuarios.codigo}"/>
                                 </button>
                             </td>
                         </tr>
@@ -95,7 +95,7 @@ Author     : nicolas.hgyoshioka
                         </div>
                         <div class="modal-footer">
                             <form action="excluir_usuario" method="POST" name ="deletarUsuario">
-                                <button name="excluirID" value="${codigoUsuario}" type="submit" class="btn btn-danger">
+                                <button name="excluirID" id="destino" type="submit" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i> Sim
                                 </button>
                             </form>
