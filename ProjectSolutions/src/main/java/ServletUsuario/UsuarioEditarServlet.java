@@ -87,7 +87,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor), cCpf);
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha, cCpf, Integer.parseInt(cSetor));
             usuario.setCodigo(Integer.parseInt(cCodigo));
             boolean httpOK = UsuarioDAO.alterarUsuario(usuario);
 

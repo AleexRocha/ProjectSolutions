@@ -39,9 +39,13 @@
                             </form>
                         </li>
                     </ul>
-                    <i class="fas fa-user-tie"></i>
-                    &nbsp;&nbsp; Olá,
-                    <c:out value="${nomeUsuario}" />
+                    <form action="../ti/perfil" method="POST">
+                        <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            &nbsp;&nbsp; Olá,
+                            <c:out value="${nomeUsuario}" />
+                        </button>
+                    </form>
                     <form action="../venda/logout" method="POST">
                         <button type="submit" class="btn nav-link nav-text">Sair</button>
                     </form>
@@ -61,9 +65,13 @@
                             </form>
                         </li>
                     </ul>
-                    <i class="fas fa-user-tie"></i>
-                    &nbsp;&nbsp; Olá,
-                    <c:out value="${nomeUsuario}" />
+                    <form action="../ti/perfil" method="POST">
+                        <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            &nbsp;&nbsp; Olá,
+                            <c:out value="${nomeUsuario}" />
+                        </button>
+                    </form>
                     <form action="../venda/logout" method="POST">
                         <button type="submit" class="btn nav-link nav-text">Sair</button>
                     </form>
@@ -83,9 +91,13 @@
                             </form>
                         </li>
                     </ul>
-                    <i class="fas fa-user-tie"></i>
-                    &nbsp;&nbsp; Olá,
-                    <c:out value="${nomeUsuario}" />
+                    <form action="../ti/perfil" method="POST">
+                        <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            &nbsp;&nbsp; Olá,
+                            <c:out value="${nomeUsuario}" />
+                        </button>
+                    </form>
                     <form action="../venda/logout" method="POST">
                         <button type="submit" class="btn nav-link nav-text">Sair</button>
                     </form>

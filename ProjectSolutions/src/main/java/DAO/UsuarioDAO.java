@@ -119,8 +119,8 @@ public class UsuarioDAO {
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
-                            rs.getInt(5),
-                            rs.getString(6)
+                            rs.getString(5),
+                            rs.getInt(6)
                     );
                     user.setNomeSetor(rs.getString(7));
                     usuarios.add(user);
@@ -138,7 +138,7 @@ public class UsuarioDAO {
         Usuario usuarios = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.fk_setor, s.nome_setor, u.cpf"
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.email, u.senha, u.cpf, u.fk_setor, s.nome_setor"
                     + " FROM tbl_usuario AS u"
                     + " INNER JOIN tbl_setor AS s ON u.fk_setor = s.id_setor"
                     + " WHERE u.id_usuario  = ? AND u.status = 0 ;");
@@ -153,8 +153,8 @@ public class UsuarioDAO {
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
-                            rs.getInt(5),
-                            rs.getString(6));
+                            rs.getString(5),
+                            rs.getInt(6));
                     user.setNomeSetor(rs.getString(7));
                     usuarios = user;
                 }

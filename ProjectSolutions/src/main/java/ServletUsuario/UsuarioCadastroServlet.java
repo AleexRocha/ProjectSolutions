@@ -79,7 +79,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha, Integer.parseInt(cSetor), cCpf);
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha, cCpf, Integer.parseInt(cSetor));
             boolean httpOK = UsuarioDAO.salvarUsuario(usuario);
 
             if (httpOK) {

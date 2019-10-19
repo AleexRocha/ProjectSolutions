@@ -11,28 +11,28 @@ public class Usuario {
     private String email;
     private String senha;
     private int setor;
-    private String nomeSetor;
     private String cpf;
+    private String nomeSetor;
 
     public Usuario() {
 
     }
 
-    public Usuario(String nome, String email, String senha, int setor, String cpf) {
+    public Usuario(String nome, String email, String senha, String cpf, int setor) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.setor = setor;
         this.cpf = cpf;
+        this.setor = setor;
     }
 
-    public Usuario(int codigo, String nome, String email, String senha, int setor, String cpf) {
+    public Usuario(int codigo, String nome, String email, String senha, String cpf, int setor) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.setor = setor;
         this.cpf = cpf;
+        this.setor = setor;
     }
 
     public int getCodigo() {
