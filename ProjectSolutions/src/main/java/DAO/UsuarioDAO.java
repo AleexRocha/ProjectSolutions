@@ -78,29 +78,6 @@ public class UsuarioDAO {
         return true;
     }
 
-    public static boolean excluirUsuarios(String[] codigos) {
-        Connection conn = db.obterConexao();
-        try {
-            PreparedStatement query = conn.prepareStatement("UPDATE tbl_usuario SET status = 1 WHERE id_usuario = ?");
-
-            for (String codigo : codigos) {
-                query.setInt(1, Integer.parseInt(codigo));
-                query.execute();
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-            return false;
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                System.out.println(e);
-            }
-        }
-
-        return true;
-    }
-
     public static ArrayList<Usuario> getUsuarios() {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         Connection conn = db.obterConexao();
