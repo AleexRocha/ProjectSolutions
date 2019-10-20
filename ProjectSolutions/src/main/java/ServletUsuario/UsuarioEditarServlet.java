@@ -2,6 +2,7 @@ package ServletUsuario;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
+import Utils.CpfValidator;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,9 +42,12 @@ public class UsuarioEditarServlet extends HttpServlet {
             error = true;
             request.setAttribute("emailErro", "Email não informado");
         }
-        if (cCpf.length() == 0) {
+        if (cCpf.length() == 0 || cCpf.length() < 11) {
             error = true;
-            request.setAttribute("cpfErro", "CPF não informado");
+            request.setAttribute("cpfErro", "O CPF deve conter 11 dígitos!");
+        } else if (!CpfValidator.validaCpf(cCpf)) {
+            error = true;
+            request.setAttribute("cpfErro", "CPF inválido!");
         }
         if (cSenha.length() == 0) {
             error = true;

@@ -25,9 +25,9 @@ public class UsuarioSelectEditServlet extends HttpServlet {
 
         String cCodigo = request.getParameter("idUsuario");
         Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
-       
-        ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();   
-        
+
+        ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();
+
         request.setAttribute("acao", "editar");
         if (usuario.getNomeSetor().equalsIgnoreCase("Cliente")) {
             request.setAttribute("cliente", true);
@@ -40,9 +40,10 @@ public class UsuarioSelectEditServlet extends HttpServlet {
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("senha", usuario.getSenha());
         request.setAttribute("setor", usuario.getSetor());
+        request.setAttribute("cpf", usuario.getCpf());
         request.setAttribute("nomeSetor", usuario.getNomeSetor());
         request.setAttribute("listaSetores", setores);
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
         dispatcher.forward(request, response);
     }

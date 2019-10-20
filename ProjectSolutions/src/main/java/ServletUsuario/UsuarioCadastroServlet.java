@@ -37,14 +37,13 @@ public class UsuarioCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("nomeErro", "Nome deve conter 5 caracteres");
         }
-//         if (cCpf.length() == 0) {
-//            error = true;
-//            request.setAttribute("cpfErro", "CPF não informado");
-//        } 
-//         if(!CpfValidator.validaCpf(cCpf)){
-//             error = true;
-//             request.setAttribute("cpfErro", "CPF inválido!");
-//         }
+        if (cCpf.length() == 0 || cCpf.length() < 11) {
+            error = true;
+            request.setAttribute("cpfErro", "O CPF deve conter 11 dígitos!");
+        } else if (!CpfValidator.validaCpf(cCpf)) {
+            error = true;
+            request.setAttribute("cpfErro", "CPF inválido!");
+        } 
         if (cEmail.length() == 0) {
             error = true;
             request.setAttribute("emailErro", "Email não informado");
