@@ -25,6 +25,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
+
         String cCodigo = request.getParameter("codigoUsuario");
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");
@@ -67,6 +68,19 @@ public class UsuarioEditarServlet extends HttpServlet {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("cSenhaError", "Senhas não Coincidem");
                 request.setAttribute("msg", "Senha e Confirmação de Senha são diferentes");
+            }
+
+            ArrayList<Usuario> infoBd = UsuarioDAO.getUsuarios();
+            for (Usuario u : infoBd) {
+                if (u.getEmail().equalsIgnoreCase(cEmail)) {
+                    error = true;
+                    request.setAttribute("emailErro", "O Email já foi cadastrado");
+                    break;
+                } else if (u.getCpf().equalsIgnoreCase(cCpf)) {
+                    error = true;
+                    request.setAttribute("cpfErro", "O CPF já foi cadastrado");
+                    break;
+                }
             }
         }
 

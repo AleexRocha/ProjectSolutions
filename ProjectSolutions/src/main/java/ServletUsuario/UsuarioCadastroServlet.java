@@ -21,6 +21,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
+
         String cNome = request.getParameter("nome");
         String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
@@ -33,17 +34,14 @@ public class UsuarioCadastroServlet extends HttpServlet {
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
-        } else if (cNome.length() < 5) {
-            error = true;
-            request.setAttribute("nomeErro", "Nome deve conter 5 caracteres");
         }
-        if (cCpf.length() == 0 || cCpf.length() < 11) {
+        if (cCpf.length() == 0 || !(cCpf.length() == 11)) {
             error = true;
             request.setAttribute("cpfErro", "O CPF deve conter 11 dígitos!");
         } else if (!CpfValidator.validaCpf(cCpf)) {
             error = true;
-            request.setAttribute("cpfErro", "CPF inválido!");
-        } 
+            request.setAttribute("cpfErro", "CPF contem caracteres inválidos!");
+        }
         if (cEmail.length() == 0) {
             error = true;
             request.setAttribute("emailErro", "Email não informado");
@@ -69,12 +67,26 @@ public class UsuarioCadastroServlet extends HttpServlet {
                 request.setAttribute("cSenhaError", "Senhas não Coincidem");
                 request.setAttribute("msg", "Senha e Confirmação de Senha são diferentes");
             }
+
+            ArrayList<Usuario> infoBd = UsuarioDAO.getUsuarios();
+            for (Usuario u : infoBd) {
+                if (u.getEmail().equalsIgnoreCase(cEmail)) {
+                    error = true;
+                    request.setAttribute("emailErro", "O Email já foi cadastrado");
+                    break;
+                } else if (u.getCpf().equalsIgnoreCase(cCpf)) {
+                    error = true;
+                    request.setAttribute("cpfErro", "O CPF já foi cadastrado");
+                    break;
+                }
+            }
         }
 
         if (error) {
             ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();
             request.setAttribute("listaSetores", setores);
 
+            request.setAttribute("cliente", false);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -103,6 +115,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
                     request.setAttribute("varMsgError", true);
                     request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
 
+                    request.setAttribute("cliente", false);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
                     dispatcher.forward(request, response);
                 } else {
