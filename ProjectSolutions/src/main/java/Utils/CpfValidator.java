@@ -24,12 +24,18 @@ public class CpfValidator {
     }
 
     public static boolean validaCpf(String cpf) {
-        if ((cpf == null) || (cpf.length() != 11)) {
+        if (!cpf.matches("[0-9]+")) {
             return false;
+        } else {
+            Integer digito1 = calculaDigitos(cpf.substring(0, 9), pesoCPF);
+            Integer digito2 = calculaDigitos(cpf.substring(0, 9) + digito1, pesoCPF);
+            if (cpf.equals(cpf.substring(0, 9) + digito1.toString() + digito2.toString())) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
-        Integer digito1 = calculaDigitos(cpf.substring(0, 9), pesoCPF);
-        Integer digito2 = calculaDigitos(cpf.substring(0, 9) + digito1, pesoCPF);
-        return cpf.equals(cpf.substring(0, 9) + digito1.toString() + digito2.toString());
     }
+
 }

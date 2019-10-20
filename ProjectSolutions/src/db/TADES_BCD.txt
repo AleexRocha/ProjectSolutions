@@ -12,7 +12,7 @@ CREATE TABLE tbl_usuario(
     nome varchar(75) not null,
     email varchar(50) not null,
     senha varchar(25) not null,
-    cpf varchar(9) not null,
+    cpf varchar(11) not null,
     fk_setor int not null,
     status int not null,
     foreign key (fk_setor) references tbl_setor(id_setor)
