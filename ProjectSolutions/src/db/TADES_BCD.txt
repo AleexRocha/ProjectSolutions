@@ -18,6 +18,24 @@ CREATE TABLE tbl_usuario(
     foreign key (fk_setor) references tbl_setor(id_setor)
 );
 
+CREATE TABLE tbl_endereco(
+    id_endereco int not null primary key auto_increment,
+    tipo varchar(50) not null,
+    logradouro varchar(250) not null,
+    numero int not null,
+    bairro varchar(250),
+    cidade varchar(250),
+    estado varchar(50),
+    cep varchar(8)
+);
+
+CREATE TABLE tbl_endereco_usuario(
+    id_usuario int not null,
+    id_endereco int not null,
+    foreign key (id_usuario) references tbl_usuario(id_usuario),
+    foreign key (id_endereco) references tbl_endereco(id_endereco)
+);
+
 CREATE TABLE tbl_produtos(
     id_produto int not null primary key auto_increment,
     nome varchar(50) not null,
