@@ -13,62 +13,68 @@
     <c:choose>
         <c:when test="${sessionScope.nomeSetor == 'Diretor'}">
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <ul id="itensMenu" class="nav justify-content-center">
-                    <li class="nav-item">
-                        <form action="../venda/cadastro_vendas">
-                            <button type="submit" class="btn nav-link nav-text">Vendas</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form action="../produtos/listagem_produtos" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form action="../ti/listagem_usuarios" method="GET">
-                            <button type="submit" class="btn nav-link nav-text">Usuarios</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form action="../venda/carrega_relatorio" method="GET">
-                            <button type="submit" class="btn nav-link nav-text">Relatorio</button>
-                        </form>
-                    </li>
-                </ul>
-                <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
-                &nbsp;&nbsp; Olá,
-                <c:out value="${nomeUsuario}" />
-                <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
+                <c:if test="${sessionScope.nomeSetor != null}">
+                    <ul id="itensMenu" class="nav justify-content-center">
+                        <li class="nav-item">
+                            <form action="../venda/cadastro_vendas">
+                                <button type="submit" class="btn nav-link nav-text">Vendas</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form action="../produtos/listagem_produtos" method="GET">
+                                <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form action="../ti/listagem_usuarios" method="GET">
+                                <button type="submit" class="btn nav-link nav-text">Usuarios</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form action="../venda/carrega_relatorio" method="GET">
+                                <button type="submit" class="btn nav-link nav-text">Relatorio</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
+                    &nbsp;&nbsp; Olá,
+                    <c:out value="${nomeUsuario}" />
+                    <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
+                </c:if>
             </nav>
         </c:when>
         <c:when test="${sessionScope.nomeSetor == 'Estoquista'}">
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <ul id="itensMenu" class="nav justify-content-center">
-                    <li class="nav-item">
-                        <form action="../produtos/listagem_produtos" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                        </form>
-                    </li>
-                </ul>
-                <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
-                &nbsp;&nbsp; Olá,
-                <c:out value="${nomeUsuario}" />
-                <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
+                <c:if test="${sessionScope.nomeSetor != null}">
+                    <ul id="itensMenu" class="nav justify-content-center">
+                        <li class="nav-item">
+                            <form action="../produtos/listagem_produtos" method="GET">
+                                <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
+                    &nbsp;&nbsp; Olá,
+                    <c:out value="${nomeUsuario}" />
+                    <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
+                </c:if>
             </nav>
         </c:when>
         <c:otherwise>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <ul id="itensMenu" class="nav justify-content-center">
-                    <li class="nav-item">
-                        <form action="../produtos/listagem_produtos" method="GET">
-                            <button type="submit" class="btn nav-link nav-text" >Produtos</button>
-                        </form>
-                    </li>
-                </ul>
-                <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
-                &nbsp;&nbsp; Olá,
-                <c:out value="${nomeUsuario}" />
-                <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
+                <c:if test="${sessionScope.nomeSetor != null}">
+                    <ul id="itensMenu" class="nav justify-content-center">
+                        <li class="nav-item">
+                            <form action="../produtos/listagem_produtos" method="GET">
+                                <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
+                    &nbsp;&nbsp; Olá,
+                    <c:out value="${nomeUsuario}" />
+                    <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
+                </c:if>
             </nav> 
         </c:otherwise>
     </c:choose>
