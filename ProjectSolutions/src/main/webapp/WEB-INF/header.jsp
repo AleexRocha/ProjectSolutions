@@ -38,9 +38,7 @@
                 <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
                 &nbsp;&nbsp; Olá,
                 <c:out value="${nomeUsuario}" />
-                <form action="../venda/logout" method="POST">
-                    <button type="submit" class="btn nav-link nav-text">Sair</button>
-                </form>
+                <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
             </nav>
         </c:when>
         <c:when test="${sessionScope.nomeSetor == 'Estoquista'}">
@@ -55,9 +53,7 @@
                 <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
                 &nbsp;&nbsp; Olá,
                 <c:out value="${nomeUsuario}" />
-                <form action="../venda/logout" method="POST">
-                    <button type="submit" class="btn nav-link nav-text">Sair</button>
-                </form>
+                <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
             </nav>
         </c:when>
         <c:otherwise>
@@ -72,8 +68,8 @@
                 <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
                 &nbsp;&nbsp; Olá,
                 <c:out value="${nomeUsuario}" />
-                <button type="button" data-toggle="modal" data-target="#logout"> <i class="fas fa-sign-out-alt"></i> Sair</button>
-            </nav>
+                <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
+            </nav> 
         </c:otherwise>
     </c:choose>
 
