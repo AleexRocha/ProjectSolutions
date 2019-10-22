@@ -90,26 +90,17 @@ public class UsuarioCadastroServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
+            int eIdUsuario;
             Usuario usuario = new Usuario(cNome, cEmail, cSenha, cCpf, Integer.parseInt(cSetor));
-            boolean httpOK = UsuarioDAO.salvarUsuario(usuario);
+            eIdUsuario = UsuarioDAO.salvarUsuario(usuario);
 
-            if (httpOK) {
-                if ((cCliente == null) || (cCliente.length() == 0)) {
-                    ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
-                    request.setAttribute("listaUsuarios", usuarios);
+            if (eIdUsuario > 0) {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Usuário cadastrado com sucesso! Cadastre agora um endereço.");
 
-                    request.setAttribute("varMsg", true);
-                    request.setAttribute("msg", "Cadastro realizado com sucesso.");
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
-                    dispatcher.forward(request, response);
-                } else {
-                    request.setAttribute("varMsg", true);
-                    request.setAttribute("msg", "Cadastro realizado com sucesso.");
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("../login/index.jsp");
-                    dispatcher.forward(request, response);
-                }
+                request.setAttribute("codigo", eIdUsuario);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
+                dispatcher.forward(request, response);
             } else {
                 if ((cCliente == null) || (cCliente.length() == 0)) {
                     request.setAttribute("varMsgError", true);
@@ -122,7 +113,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
                     request.setAttribute("varMsgError", true);
                     request.setAttribute("msg", "Erro ao realizar o cadastro, tente novamente.");
 
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("../login/index.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
                     dispatcher.forward(request, response);
                 }
             }
