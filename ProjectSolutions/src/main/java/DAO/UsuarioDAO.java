@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -15,12 +16,14 @@ public class UsuarioDAO {
 
     private static final Database db = new Database();
 
-    public static boolean salvarUsuario(Usuario u) {
+    public static int salvarUsuario(Usuario u) {
+        int id = 0;
+
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO "
                     + " tbl_usuario(nome, email, senha, cpf, fk_setor, status) "
-                    + "VALUES (?, ?, ?, ?, ?, ?);");
+                    + "VALUES (?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
 
             query.setString(1, u.getNome());
             query.setString(2, u.getEmail());
@@ -31,13 +34,18 @@ public class UsuarioDAO {
 
             query.executeUpdate();
 
+            ResultSet rs = query.getGeneratedKeys();
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+            return id;
         }
 
-        return true;
+        return id;
     }
 
     public static boolean alterarUsuario(Usuario u) {
@@ -177,6 +185,7 @@ public class UsuarioDAO {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_usuario WHERE email= ? AND senha = ? AND status = 0;");
             query.setString(1, email);
             query.setString(2, senha);
+
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
                 conn.close();
@@ -213,5 +222,61 @@ public class UsuarioDAO {
         }
 
         return sessao;
+    }
+
+    public static int salvarEndereco(Usuario u) {
+        int id = 0;
+
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("INSERT INTO"
+                    + " tbl_endereco(logradouro, numero, bairro, cidade, estado, cep, tipo)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+
+            query.setString(1, u.getLogradouro());
+            query.setInt(2, u.getNumero());
+            query.setString(3, u.getBairro());
+            query.setString(4, u.getCidade());
+            query.setString(5, u.getEstado());
+            query.setString(6, u.getCep());
+            query.setString(7, u.getTipoEndereco());
+
+            query.executeUpdate();
+
+            ResultSet rs = query.getGeneratedKeys();
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return id;
+        }
+
+        return id;
+    }
+
+    public static boolean salvarRelacaoEnderecoUsuario(Usuario u) {
+        int id = 0;
+
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("INSERT INTO"
+                    + " tbl_endereco_usuario(id_usuario, id_endereco)"
+                    + " VALUES (?, ?);");
+
+            query.setInt(1, u.getCodigo());
+            query.setInt(2, u.getCodigoEndereco());
+
+            query.executeUpdate();
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+
+        return true;
     }
 }

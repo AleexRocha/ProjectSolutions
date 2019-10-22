@@ -1,17 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServletUsuario;
 
+import DAO.UsuarioDAO;
+import Model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,69 +19,122 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "EnderecoCadastroServlet", urlPatterns = {"/ti/create_endereco"})
 public class EnderecoCadastroServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EnderecoCadastroServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EnderecoCadastroServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        request.setCharacterEncoding("UTF-8");
+
+        String eUsuario = request.getParameter("codigoUsuario");
+        String eCep = request.getParameter("cep");
+        String eLogradouro = request.getParameter("logradouro");
+        String eNumero = request.getParameter("numero");
+        String eBairro = request.getParameter("bairro");
+        String eCidade = request.getParameter("cidade");
+        String eEstado = request.getParameter("estado");
+        String eTipo = request.getParameter("tipoEndereco");
+
+        boolean error = false;
+        if (eUsuario.length() == 0) {
+            error = true;
+            request.setAttribute("codigoErro", "Codigo do usuario não informado!");
+        }
+        if (eCep.length() == 0 || !(eCep.length() == 8)) {
+            error = true;
+            request.setAttribute("cepErro", "CEP não informado ou fora do padrão de 8 digitos!");
+        }
+        if (eLogradouro.length() == 0) {
+            error = true;
+            request.setAttribute("logradouroErro", "Logradouro não informado!");
+        }
+        if (eNumero.length() == 0) {
+            error = true;
+            request.setAttribute("numeroErro", "Número não informado!");
+        }
+        if (eBairro.length() == 0) {
+            error = true;
+            request.setAttribute("bairroErro", "Bairro não informado!");
+        }
+        if (eCidade.length() == 0) {
+            error = true;
+            request.setAttribute("cidadeErro", "Cidade não informada!");
+        }
+        if (eEstado.length() == 0) {
+            error = true;
+            request.setAttribute("estadoErro", "Estado não informado!");
+        }
+        if (eTipo == null) {
+            error = true;
+            request.setAttribute("tipoErro", "Tipo do endereço não informado!");
+        }
+
+        if (error) {
+            request.setAttribute("varMsgError", true);
+            request.setAttribute("msg", "Erro ao recuperar os dados, verifique os campos e tente novamente");
+
+            request.setAttribute("codigo", eUsuario);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            int eIdEndereco;
+
+            Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eTipo, eLogradouro, Integer.parseInt(eNumero), eBairro, eCep, eEstado, eCep);
+            eIdEndereco = UsuarioDAO.salvarEndereco(usuario);
+
+            if (eIdEndereco > 0) {
+                Usuario relacao = new Usuario();
+                relacao.setCodigo(Integer.parseInt(eUsuario));
+                relacao.setCodigo(eIdEndereco);
+
+                boolean httpOk = UsuarioDAO.salvarRelacaoEnderecoUsuario(relacao);
+                if (httpOk) {
+                    HttpSession sessao = request.getSession();
+                    if (sessao != null) {
+                        ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+                        request.setAttribute("listaUsuarios", usuarios);
+
+                        request.setAttribute("varMsg", true);
+                        request.setAttribute("msg", "Cadastro de usuário realizado com sucesso!");
+
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+                        dispatcher.forward(request, response);
+                    } else {
+                        request.setAttribute("varMsg", true);
+                        request.setAttribute("msg", "Cadastro realizado com sucesso!");
+
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("../login/index.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                } else {
+                    request.setAttribute("codigo", eUsuario);
+
+                    request.setAttribute("varMsgErro", true);
+                    request.setAttribute("msg", "Erro ao salvar a relação entre usuario e endereço!");
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
+                    dispatcher.forward(request, response);
+                }
+            } else {
+                request.setAttribute("codigo", eUsuario);
+
+                request.setAttribute("varMsgErro", true);
+                request.setAttribute("msg", "Erro ao salvar os dados de endereço");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processaRequisicao(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processaRequisicao(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
