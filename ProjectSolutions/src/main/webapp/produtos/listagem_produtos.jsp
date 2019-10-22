@@ -10,14 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport"
-              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Produtos</title>
-        <link rel="stylesheet" type="text/css"
-              href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css"href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
-        <link rel="stylesheet"
-              href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <link rel="stylesheet"href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
         <%@include file="../WEB-INF/header.jsp"%>

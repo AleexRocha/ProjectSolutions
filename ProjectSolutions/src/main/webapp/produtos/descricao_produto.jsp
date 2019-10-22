@@ -21,34 +21,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
-        <header>
-            <h1 style="text-align: center;">
-                <span class="sr-only">Floricultura TADES</span>
-                <img src="../assets/img/logo.png">
-            </h1>
-            <nav class="navbar navbar-expand-md navbar-light bg-warning">
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarsExample08">
-                        <ul id="itensMenu" class="navbar-nav justify-content-center">
-                            <li class="nav-item">
-                                <form action="../produtos/listagem_produtos" method="GET">
-                                    <button type="submit" class="btn nav-link nav-text">Produtos</button>
-                                </form>
-                            </li>
-                        </ul>
-                        <i class="fas fa-user-tie"></i>
-                        <span id="nav-saudacao"> Olá, <c:out value="${nomeUsuario}"/> </span>
-                        <form action="../venda/logout" method="POST">
-                            <button type="submit" class="btn nav-link nav-text">Sair</button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </header>
+       <%@include file="../WEB-INF/header.jsp"%>
         <div class="container">
             <br>
             <h2 class="text-center subtitulo titulo-produto-descricao"><c:out value="${produto.nome}"/></h2>        
@@ -82,9 +55,9 @@
                                 </p>
                                 <c:if test="${produto.tipo == 'Produto'}">
                                     <div class="product_count d-inline-block">
-                                        <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                                        <span class="inumber-decrement"> <i class="fas fa-plus"></i></span>
                                         <input readonly class="input-number" type="text" value="1" min="0" max="10">
-                                        <span class="number-increment"> <i class="ti-plus"></i></span>
+                                        <span class="number-increment"> <i class="fas fa-minus"></i></span>
                                     </div>
                                 </c:if>
                                 <div class="card_area">
