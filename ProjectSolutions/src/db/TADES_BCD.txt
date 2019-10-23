@@ -20,13 +20,13 @@ CREATE TABLE tbl_usuario(
 
 CREATE TABLE tbl_endereco(
     id_endereco int not null primary key auto_increment,
-    tipo varchar(50) not null,
     logradouro varchar(250) not null,
     numero int not null,
     bairro varchar(250),
     cidade varchar(250),
     estado varchar(50),
-    cep varchar(8)
+    cep varchar(8),
+    tipo varchar(50) not null
 );
 
 CREATE TABLE tbl_endereco_usuario(
@@ -74,3 +74,8 @@ INSERT INTO tbl_setor(nome_setor) VALUES ('Cliente');
 
 INSERT INTO tbl_usuario(nome, email, senha, cpf, fk_setor, status)
     VALUES ('Milena Flores', 'diretoria@email.com','123','12345678900', 1, 0);
+
+INSERT INTO tbl_endereco(logradouro, numero, bairro, cidade, estado, cep, tipo)
+	VALUES ('Av. Eng. Eusébio Stevaux',823,'Santo Amaro','São Paulo','SP','04696000','cobranca');
+
+INSERT INTO tbl_endereco_usuario(id_usuario, id_endereco) VALUES (1,1);
