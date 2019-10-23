@@ -57,17 +57,9 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label for="codigoUsuario" class="">Código:</label>
-                                <c:choose>
-                                    <c:when test="${acao == 'editar'}">
-                                        <input type="number" class="form-control inputForm" id="codigoUsuario"
-                                               value="${codigo}" name="codigoUsuario">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <input type="number" class="form-control inputForm" id="codigoUsuario"
-                                               value="${codigo}" name="codigoUsuario">
-                                    </c:otherwise>
-                                </c:choose>
+                                <label for="codigoUsuario" class="sr-only">Código:</label>
+                                <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
+                                       value="${codigo}" name="codigoUsuario">
 
                                 <label for="cep">CEP:</label>
                                 <c:choose>
@@ -242,15 +234,15 @@
                                     <c:when test="${empty tipoErro}">
                                         <select class="custom-select inputForm" id="tipoEndereco" name="tipoEndereco">
                                             <option selected = "" disabled="" hidden="">Tipo de Endereço</option>
-                                            <option value="entrega">Endereço de Entrega</option>
                                             <option value="cobranca">Endereço de Cobrança</option>
+                                            <option value="entrega">Endereço de Entrega</option>
                                         </select>
                                     </c:when>
                                     <c:otherwise>
                                         <select class="custom-select inputForm error" id="tipoEndereco" name="tipoEndereco">
                                             <option selected = "" disabled="" hidden="">${tipoErro}</option>
-                                            <option value="entrega">Endereço de Entrega</option>
                                             <option value="cobranca">Endereço de Cobrança</option>
+                                            <option value="entrega">Endereço de Entrega</option>
                                         </select>
                                     </c:otherwise>
                                 </c:choose>

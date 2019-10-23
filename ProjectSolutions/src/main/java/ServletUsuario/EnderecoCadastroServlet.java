@@ -84,12 +84,12 @@ public class EnderecoCadastroServlet extends HttpServlet {
             if (eIdEndereco > 0) {
                 Usuario relacao = new Usuario();
                 relacao.setCodigo(Integer.parseInt(eUsuario));
-                relacao.setCodigo(eIdEndereco);
+                relacao.setCodigoEndereco(eIdEndereco);
 
                 boolean httpOk = UsuarioDAO.salvarRelacaoEnderecoUsuario(relacao);
                 if (httpOk) {
                     HttpSession sessao = request.getSession();
-                    if (sessao != null) {
+                    if (sessao.getAttribute("email") != null) {
                         ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
                         request.setAttribute("listaUsuarios", usuarios);
 
