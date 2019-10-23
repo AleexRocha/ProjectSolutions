@@ -1,4 +1,4 @@
-package ServletUsuario;
+package ServletEndereco;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
@@ -78,7 +78,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
         } else {
             int eIdEndereco;
 
-            Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eTipo, eLogradouro, Integer.parseInt(eNumero), eBairro, eCep, eEstado, eCep);
+            Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eLogradouro, Integer.parseInt(eNumero), eBairro, eCep, eEstado, eCep, eTipo);
             eIdEndereco = UsuarioDAO.salvarEndereco(usuario);
 
             if (eIdEndereco > 0) {

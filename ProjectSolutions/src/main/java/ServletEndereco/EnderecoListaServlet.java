@@ -1,10 +1,8 @@
-package ServletUsuario;
+package ServletEndereco;
 
 import DAO.UsuarioDAO;
 import Model.Usuario;
-
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,22 +14,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "UsuarioPerfilServlet", urlPatterns = {"/ti/perfil"})
-public class UsuarioPerfilServlet extends HttpServlet {
+@WebServlet(name = "EnderecoListaServlet", urlPatterns = {"/ti/get_endereco"})
+public class EnderecoListaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cCodigo = request.getParameter("perfil");
+        String cCodigo = request.getParameter("idUsuario");
 
-        Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
+        Usuario usuario = UsuarioDAO.getEnderecoUser(Integer.parseInt(cCodigo));
 
-        request.setAttribute("codigoUsuario", usuario.getCodigo());
-        request.setAttribute("nome", usuario.getNome());
-        request.setAttribute("cpf", usuario.getCpf());
-        request.setAttribute("email", usuario.getEmail());
-        request.setAttribute("nomeSetor", usuario.getNomeSetor());
-        request.setAttribute("perfil", "pessoal");
+        request.setAttribute("codigoUsuario", cCodigo);
+        request.setAttribute("codigoEndereco", usuario.getCodigoEndereco());
+        request.setAttribute("cep", usuario.getCep());
+        request.setAttribute("numero", usuario.getNumero());
+        request.setAttribute("logradouro", usuario.getLogradouro());
+        request.setAttribute("bairro", usuario.getBairro());
+        request.setAttribute("cidade", usuario.getCidade());
+        request.setAttribute("estado", usuario.getEstado());
+        request.setAttribute("tipoEndereco", usuario.getTipoEndereco());
+
+        request.setAttribute("perfil", "endereco");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
         dispatcher.forward(request, response);
@@ -48,5 +51,4 @@ public class UsuarioPerfilServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
 }

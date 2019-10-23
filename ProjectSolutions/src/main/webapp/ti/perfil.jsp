@@ -22,9 +22,22 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-3"></div>
+                <div class="col-md-3 text-center">
+                    <nav class="nav nav-pills nav-fill flex-column">
+                        <c:choose>
+                            <c:when test="${perfil == 'endereco'}">
+                                <form action="get_endereco" method="POST">
+                                    <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn nav-link subtitulo">
+                                        Ver endereços cadastrados
+                                    </button>
+                                </form>
+                            </c:when>
+                        </c:choose>
+                        <a class="nav-link subtitulo" href="#">Pedidos em andamento</a>
+                        <a class="nav-link subtitulo" href="#">Pedidos finalizados</a>
+                    </nav>
+                </div>
                 <div class="col-md-6 col-sm-12">
-
                     <c:if test="${varMsg == true}">
                         <div class="alert alert-success" role="alert">
                             <c:out value="${msg}"/>
@@ -42,36 +55,83 @@
                         </div>
                     </c:if>
 
-                    <label for="codigoUsuario">Seu código de usuário:</label>
-                    <input type="number" class="form-control inputFormPerfil" id="codigoUsuario"
-                           placeholder="Código do usuário" value="${codigo}" name="codigoUsuario" disabled="">
+                    <c:choose>
+                        <c:when test="${perfil == 'pessoal'}">
+                            <label for="codigoUsuario">Seu código de usuário:</label>
+                            <input type="number" class="form-control inputFormPerfil" id="codigoUsuario"
+                                   placeholder="Código do usuário" value="${codigoUsuario}" name="codigoUsuario" disabled="">
 
-                    <label for="nome">Seu nome:</label>
-                    <input type="text" class="form-control inputFormPerfil" id="nome"
-                           placeholder="Seu Nome" value="${nome}" name="nome" minlength="0" maxlength="75" disabled="">
+                            <label for="nome">Seu nome:</label>
+                            <input type="text" class="form-control inputFormPerfil" id="nome"
+                                   placeholder="Seu Nome" value="${nome}" name="nome" disabled="">
 
-                    <label for="cpf">Seu CPF:</label>
-                    <input type="text" class="form-control inputFormPerfil" id="cpf"
-                           placeholder="Seu CPF" value="${cpf}" name="cpf" minlength="0" maxlength="11" disabled="">
+                            <label for="cpf">Seu CPF:</label>
+                            <input type="text" class="form-control inputFormPerfil" id="cpf"
+                                   placeholder="Seu CPF" value="${cpf}" name="cpf" disabled="">
 
-                    <label for="email">Seu E-mail:</label>        
-                    <input type="email" class="form-control inputFormPerfil" id="email"
-                           placeholder="Seu E-mail" value="${email}" name="email" minlength="0" maxlength="50" disabled="">
+                            <label for="email">Seu E-mail:</label>        
+                            <input type="email" class="form-control inputFormPerfil" id="email"
+                                   placeholder="Seu E-mail" value="${email}" name="email" disabled="">
 
-                    <label for="setor" >Você é um:</label>
-                    <input type="text" class="form-control inputFormPerfil" id="setor"
-                           placeholder="Setor" value="${nomeSetor}" name="senha" minlength="0" maxlength="25" disabled="">
+                            <label for="setor" >Você é um:</label>
+                            <input type="text" class="form-control inputFormPerfil" id="setor"
+                                   placeholder="Setor" value="${nomeSetor}" name="senha" disabled="">
 
-                    <form action="dados_usuario" method="POST">
-                        <button type="submit" name="idUsuario" value="${codigo}" class="btn btn-success btn-block col-12" style="margin-top: 10px;">
-                            <i class="fas fa-pen"></i>
-                            Edite suas informações
-                        </button>
-                    </form>
+                            <form action="dados_usuario" method="POST">
+                                <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn btn-success btn-block col-12" style="margin-top: 10px;">
+                                    <i class="fas fa-pen"></i>
+                                    Edite suas informações
+                                </button>
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                            <label for="codigoEndereco">Código do endereço:</label>
+                            <input type="number" class="form-control inputFormPerfil" id="codigoEndereco"
+                                   placeholder="Código do endereço" value="${codigoEndereco}" name="codigoEndereco" disabled="">
+
+                            <label for="cep" >Seu CEP:</label>
+                            <input type="text" class="form-control inputFormPerfil" id="cep"
+                                   placeholder="Seu CEP" value="${cep}" name="cep" disabled="">
+
+                            <label for="numero">Seu Número:</label>
+                            <input type="number" class="form-control inputFormPerfil" id="numero"
+                                   placeholder="Seu Número" value="${numero}" name="numero" disabled="">
+
+                            <label for="logradouro">Seu Logradouro:</label>
+                            <input type="text" class="form-control inputFormPerfil" id="logradouro"
+                                   placeholder="Seu Logradouro" value="${logradouro}" name="logradouro" disabled="">
+
+                            <label for="email">Seu Bairro:</label>        
+                            <input type="bairro" class="form-control inputFormPerfil" id="bairro"
+                                   placeholder="Seu Bairro" value="${bairro}" name="bairro" disabled="">
+
+                            <label for="cidade" >Sua Cidade:</label>
+                            <input type="text" class="form-control inputFormPerfil" id="cidade"
+                                   placeholder="Sua Cidade" value="${cidade}" name="cidade" disabled="">
+
+                            <label for="estado" >Seu Estado:</label>
+                            <input type="text" class="form-control inputFormPerfil" id="estado"
+                                   placeholder="Seu Estado" value="${estado}" name="estado" disabled="">
+
+                            <label for="tipoEndereco" >Este endereço é de</label>
+                            <input type="text" class="form-control inputFormPerfil" id="tipoEndereco"
+                                   placeholder="Este endereço é de" value="${tipoEndereco}" name="tipoEndereco" disabled="">
+
+                            <form action="" method="POST">
+                                <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn btn-success btn-block col-12" style="margin-top: 10px;">
+                                    <i class="fas fa-pen"></i>
+                                    Edite suas informações
+                                </button>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="col-md-3"></div>
             </div>
             <%@include file="../WEB-INF/footer.jsp" %>
         </div>
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/main.js"></script>
     </body>
 </html>

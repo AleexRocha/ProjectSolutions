@@ -44,15 +44,15 @@ public class Usuario {
         this.setor = setor;
     }
 
-    public Usuario(int codigo, String tipoEndereco, String logradouro, int numero, String bairro, String cidade, String estado, String cep) {
+    public Usuario(int codigo, String logradouro, int numero, String bairro, String cidade, String estado, String cep, String tipoEndereco) {
         this.codigo = codigo;
-        this.tipoEndereco = tipoEndereco;
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
+        this.tipoEndereco = tipoEndereco;
     }
 
     public int getCodigo() {
