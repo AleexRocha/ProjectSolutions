@@ -18,7 +18,12 @@
     <body>
         <%@include file="../WEB-INF/header.jsp"%>
         <h2 class="h2 text-center subtitulo">Olá, ${sessionScope.nomeUsuario}</h2>
-        <h4 class="h4 text-center subtitulo">Esse são seus dados:</h4>
+        <c:if test="${perfil == 'pessoal'}">
+            <h4 class="h4 text-center subtitulo">Esse são seus dados:</h4>
+        </c:if>
+        <c:if test="${perfil == 'endereco'}">
+            <h4 class="h4 text-center subtitulo">Esse são seus endereços:</h4>
+        </c:if>
 
         <div class="container">
             <div class="row">
