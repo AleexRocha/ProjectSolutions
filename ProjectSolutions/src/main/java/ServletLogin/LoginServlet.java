@@ -3,6 +3,7 @@ package ServletLogin;
 import DAO.UsuarioDAO;
 import Model.Produto;
 import Model.Usuario;
+import static Utils.Criptografia.criptografar;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +43,9 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("msg", "Campo de E-mail ou Senha inválidos");
             dispatcher = request.getRequestDispatcher("/login/index.jsp");
         } else {
-            boolean httpOK = UsuarioDAO.getLogin(uEmail, uSenha);
+            String senhaCriptografada = criptografar(uSenha);
+
+            boolean httpOK = UsuarioDAO.getLogin(uEmail, senhaCriptografada);
 
             if (httpOK) {
                 HttpSession sessao = setSessao(request.getParameter("email"), request);

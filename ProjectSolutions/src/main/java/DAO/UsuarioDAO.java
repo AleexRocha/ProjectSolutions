@@ -49,17 +49,29 @@ public class UsuarioDAO {
     }
 
     public static boolean alterarUsuario(Usuario u) {
+        String senha = "";
         Connection conn = db.obterConexao();
         try {
+            if (u.getSenha() != null) {
+                senha = "senha = ?,";
+            }
+
             PreparedStatement query = conn.prepareStatement("UPDATE"
-                    + " tbl_usuario SET nome = ?, email = ?, senha = ?, cpf = ?, fk_setor = ? WHERE id_usuario = ?;");
+                    + " tbl_usuario SET nome = ?, email = ?, " + senha + " cpf = ?, fk_setor = ?"
+                    + " WHERE id_usuario = ?;");
 
             query.setString(1, u.getNome());
             query.setString(2, u.getEmail());
-            query.setString(3, u.getSenha());
-            query.setString(4, u.getCpf());
-            query.setInt(5, u.getSetor());
-            query.setInt(6, u.getCodigo());
+            if (u.getSenha() != null) {
+                query.setString(3, u.getSenha());
+                query.setString(4, u.getCpf());
+                query.setInt(5, u.getSetor());
+                query.setInt(6, u.getCodigo());
+            } else {
+                query.setString(3, u.getCpf());
+                query.setInt(4, u.getSetor());
+                query.setInt(5, u.getCodigo());
+            }
 
             query.executeUpdate();
             conn.close();

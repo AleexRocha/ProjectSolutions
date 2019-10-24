@@ -159,7 +159,7 @@ Author     : nicolas.hgyoshioka
                                         <c:choose>
                                             <c:when test="${empty senhaErro}">
                                                 <input type="password" class="form-control inputForm" id="senha"
-                                                       value="${senha}" name="senha" minlength="0" maxlength="25">
+                                                       placeholder="Senha" name="senha" minlength="0" maxlength="25">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="password" class="form-control inputForm error" id="senha"
@@ -171,11 +171,11 @@ Author     : nicolas.hgyoshioka
                                         <c:choose>
                                             <c:when test="${empty senhaErro}">
                                                 <input type="password" class="form-control inputForm" id="senha"
-                                                       placeholder="Senha" name="senha" minlength="0" maxlength="25">
+                                                       placeholder="Senha" name="senha" minlength="0" maxlength="25" required="">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="password" class="form-control inputForm error" id="senha"
-                                                       placeholder="${senhaErro}" name="senha" minlength="0" maxlength="25">
+                                                       placeholder="${senhaErro}" name="senha" minlength="0" maxlength="25" required="">
                                             </c:otherwise>
                                         </c:choose>                                      
                                     </c:otherwise>

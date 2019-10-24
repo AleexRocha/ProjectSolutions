@@ -3,6 +3,7 @@ package ServletUsuario;
 import DAO.UsuarioDAO;
 import Model.Usuario;
 import Utils.CpfValidator;
+import static Utils.Criptografia.criptografar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -91,7 +92,10 @@ public class UsuarioCadastroServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             int eIdUsuario;
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha, cCpf, Integer.parseInt(cSetor));
+
+            String senhaCriptografada = criptografar(cSenha);
+
+            Usuario usuario = new Usuario(cNome, cEmail, senhaCriptografada, cCpf, Integer.parseInt(cSetor));
             eIdUsuario = UsuarioDAO.salvarUsuario(usuario);
 
             if (eIdUsuario > 0) {
