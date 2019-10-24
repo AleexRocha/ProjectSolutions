@@ -32,7 +32,7 @@
                 <div class="col-md-6">
                     <c:choose>
                         <c:when test="${acao == 'editar'}">
-                            <form action="editar_usuario" method="post">
+                            <form action="update_endereco" method="post">
                             </c:when>
                             <c:otherwise>
                                 <form action="create_endereco" method="post">
@@ -57,9 +57,13 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label for="codigoUsuario" class="sr-only">Código:</label>
+                                <label for="codigoUsuario" class="sr-only">Código do usuario:</label>
                                 <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
-                                       value="${codigo}" name="codigoUsuario">
+                                       value="${codigoUsuario}" name="codigoUsuario">
+
+                                <label for="codigoEndereco" class="sr-only">Código do endereco:</label>
+                                <input type="number" class="form-control inputForm sr-only" id="codigoEndereco"
+                                       value="${codigoEndereco}" name="codigoEndereco">
 
                                 <label for="cep">CEP:</label>
                                 <c:choose>
@@ -231,22 +235,43 @@
 
                                 <label for="tipoEndereco" >Tipo de Endereço:</label>
                                 <c:choose>
-                                    <c:when test="${empty tipoErro}">
-                                        <select class="custom-select inputForm" id="tipoEndereco" name="tipoEndereco">
-                                            <option selected = "" disabled="" hidden="">Tipo de Endereço</option>
-                                            <option value="cobranca">Endereço de Cobrança</option>
-                                            <option value="entrega">Endereço de Entrega</option>
-                                        </select>
+                                    <c:when test="${acao == 'editar'}">
+                                        <c:choose>
+                                            <c:when test="${empty tipoErro}">
+                                                <select class="custom-select inputForm" id="tipoEndereco" name="tipoEndereco">
+                                                    <option selected = "" disabled="" hidden="" value="${tipoEndereco}">${tipoEndereco}</option>
+                                                    <option value="cobranca">Endereço de Cobrança</option>
+                                                    <option value="entrega">Endereço de Entrega</option>
+                                                </select>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <select class="custom-select inputForm" id="tipoEndereco" name="tipoEndereco">
+                                                    <option selected = "" disabled="" hidden="" value="${tipoEndereco}">${tipoErro}</option>
+                                                    <option value="cobranca">Endereço de Cobrança</option>
+                                                    <option value="entrega">Endereço de Entrega</option>
+                                                </select>
+                                            </c:otherwise>
+                                        </c:choose>                                      
                                     </c:when>
                                     <c:otherwise>
-                                        <select class="custom-select inputForm error" id="tipoEndereco" name="tipoEndereco">
-                                            <option selected = "" disabled="" hidden="">${tipoErro}</option>
-                                            <option value="cobranca">Endereço de Cobrança</option>
-                                            <option value="entrega">Endereço de Entrega</option>
-                                        </select>
+                                        <c:choose>
+                                            <c:when test="${empty tipoErro}">
+                                                <select class="custom-select inputForm" id="tipoEndereco" name="tipoEndereco">
+                                                    <option selected = "" disabled="" hidden="">Tipo de Endereço</option>
+                                                    <option value="cobranca">Endereço de Cobrança</option>
+                                                    <option value="entrega">Endereço de Entrega</option>
+                                                </select>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <select class="custom-select inputForm error" id="tipoEndereco" name="tipoEndereco">
+                                                    <option selected = "" disabled="" hidden="">${tipoErro}</option>
+                                                    <option value="cobranca">Endereço de Cobrança</option>
+                                                    <option value="entrega">Endereço de Entrega</option>
+                                                </select>
+                                            </c:otherwise>
+                                        </c:choose>                                    
                                     </c:otherwise>
                                 </c:choose>
-
                             </div>
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="far fa-save"></i>

@@ -17,22 +17,20 @@
     </head>
     <body>
         <%@include file="../WEB-INF/header.jsp"%>
-        <h2 class="h2 text-center subtitulo">Olá, ${nome}</h2>
+        <h2 class="h2 text-center subtitulo">Olá, ${sessionScope.nomeUsuario}</h2>
         <h4 class="h4 text-center subtitulo">Esse são seus dados:</h4>
 
         <div class="container">
             <div class="row">
                 <div class="col-md-3 text-center">
                     <nav class="nav nav-pills nav-fill flex-column">
-                        <c:choose>
-                            <c:when test="${perfil == 'endereco'}">
-                                <form action="get_endereco" method="POST">
-                                    <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn nav-link subtitulo">
-                                        Ver endereços cadastrados
-                                    </button>
-                                </form>
-                            </c:when>
-                        </c:choose>
+                        <c:if test="${perfil == 'pessoal'}">
+                            <form action="get_endereco" method="POST">
+                                <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn nav-link subtitulo">
+                                    Ver endereços cadastrados
+                                </button>
+                            </form>
+                        </c:if>
                         <a class="nav-link subtitulo" href="#">Pedidos em andamento</a>
                         <a class="nav-link subtitulo" href="#">Pedidos finalizados</a>
                     </nav>
@@ -117,7 +115,7 @@
                             <input type="text" class="form-control inputFormPerfil" id="tipoEndereco"
                                    placeholder="Este endereço é de" value="${tipoEndereco}" name="tipoEndereco" disabled="">
 
-                            <form action="" method="POST">
+                            <form action="select_endereco" method="POST">
                                 <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn btn-success btn-block col-12" style="margin-top: 10px;">
                                     <i class="fas fa-pen"></i>
                                     Edite suas informações

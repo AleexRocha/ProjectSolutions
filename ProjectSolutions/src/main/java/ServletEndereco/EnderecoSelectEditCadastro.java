@@ -1,6 +1,9 @@
 package ServletEndereco;
 
+import DAO.UsuarioDAO;
+import Model.Usuario;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +15,30 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "EnderecoSelectEditCadastro", urlPatterns = {"/EnderecoSelectEditCadastro"})
+@WebServlet(name = "EnderecoSelectEditCadastro", urlPatterns = {"/ti/select_endereco"})
 public class EnderecoSelectEditCadastro extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
+        String cCodigo = request.getParameter("idUsuario");
+
+        Usuario usuario = UsuarioDAO.getEnderecoUser(Integer.parseInt(cCodigo));
+
+        request.setAttribute("codigoUsuario", cCodigo);
+        request.setAttribute("codigoEndereco", usuario.getCodigoEndereco());
+        request.setAttribute("cep", usuario.getCep());
+        request.setAttribute("numero", usuario.getNumero());
+        request.setAttribute("logradouro", usuario.getLogradouro());
+        request.setAttribute("bairro", usuario.getBairro());
+        request.setAttribute("cidade", usuario.getCidade());
+        request.setAttribute("estado", usuario.getEstado());
+        request.setAttribute("tipoEndereco", usuario.getTipoEndereco());
+
+        request.setAttribute("acao", "editar");
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override

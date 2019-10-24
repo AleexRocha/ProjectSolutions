@@ -98,7 +98,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuário cadastrado com sucesso! Cadastre agora um endereço.");
 
-                request.setAttribute("codigo", eIdUsuario);
+                request.setAttribute("codigoUsuario", eIdUsuario);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
                 dispatcher.forward(request, response);
             } else {

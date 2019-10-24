@@ -78,7 +78,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
         } else {
             int eIdEndereco;
 
-            Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eLogradouro, Integer.parseInt(eNumero), eBairro, eCep, eEstado, eCep, eTipo);
+            Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo);
             eIdEndereco = UsuarioDAO.salvarEndereco(usuario);
 
             if (eIdEndereco > 0) {
