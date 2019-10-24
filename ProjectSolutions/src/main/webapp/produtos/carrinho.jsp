@@ -3,35 +3,23 @@
     Created on : 21/10/2019, 20:52:56
     Author     : guilherme.rsvieira
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>ProjectSolutions</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- animate CSS -->
-  <link rel="stylesheet" href="css/animate.css">
-  <!-- nice select CSS -->
-  <link rel="stylesheet" href="css/nice-select.css">
-  <!-- font awesome CSS -->
-  <link rel="stylesheet" href="css/all.css">
-  <!-- flaticon CSS -->
-  <link rel="stylesheet" href="css/flaticon.css">
-  <link rel="stylesheet" href="css/themify-icons.css">
-  <!-- font awesome CSS -->
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <!-- swiper CSS -->
-  <link rel="stylesheet" href="css/slick.css">
-  <link rel="stylesheet" href="css/price_rangs.css">
-  <!-- style CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <title>JSP Page</title>
-    </head>
-    <body>
-  <section class="cart_area section_padding">
+  <title>Carrinho</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/themify-icons.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+</head>
+<body >
+  <!--================Cart Area =================-->
+   <%@include file="../WEB-INF/header.jsp"%>
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
@@ -61,16 +49,6 @@
                 </td>
                 <td>
                   <div class="product_count">
-                    <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
-                      class="input-text qty input-number" />
-                    <button
-                      class="increase input-number-increment items-count" type="button">
-                      <i class="ti-angle-up"></i>
-                    </button>
-                    <button
-                      class="reduced input-number-decrement items-count" type="button">
-                      <i class="ti-angle-down"></i>
-                    </button> -->
                     <span class="input-number-decrement"> <i class="ti-minus"></i></span>
                     <input class="input-number" type="text" value="1" min="0" max="10">
                     <span class="input-number-increment"> <i class="ti-plus"></i></span>
@@ -84,7 +62,7 @@
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/arrivel/arrivel_2.png" alt="" />
+                      <img src="../assets/img/girassol.jpg" alt="" />
                     </div>
                     <div class="media-body">
                       <p>Minimalistic shop for multipurpose use</p>
@@ -150,46 +128,22 @@
                       <option value="2">Taboão da Serra</option>
                       <option value="4">Vila das Belezas dddddddddddd</option>
                     </select>
-                    <a class="btn_1" href="#">Atualizar Detalhes</a>
+                    <a class="btn_3" href="#">Atualizar Detalhes</a>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="#">Continue Shopping</a>
-            <a class="btn_1 checkout_btn_1" href="#">Finalizar compra</a>
+            <a class="btn_3" href="#">Continue Shopping</a>
+            <a class="btn_3 checkout_btn_1" href="#">Finalizar compra</a>
           </div>
         </div>
       </div>
-  </section>
+        <%@include file="../WEB-INF/footer.jsp"%>
+    </div>  
+  
+  <!--================End Cart Area =================-->
+</body>
 
-  <!-- jquery plugins here-->
-  <script src="js/jquery-1.12.1.min.js"></script>
-  <!-- popper js -->
-  <script src="js/popper.min.js"></script>
-  <!-- bootstrap js -->
-  <script src="js/bootstrap.min.js"></script>
-  <!-- easing js -->
-  <script src="js/jquery.magnific-popup.js"></script>
-  <!-- swiper js -->
-  <script src="js/swiper.min.js"></script>
-  <!-- swiper js -->
-  <script src="js/mixitup.min.js"></script>
-  <script src="js/price_rangs.js"></script>
-  <!-- particles js -->
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.nice-select.min.js"></script>
-  <!-- slick js -->
-  <script src="js/slick.min.js"></script>
-  <script src="js/jquery.counterup.min.js"></script>
-  <script src="js/waypoints.min.js"></script>
-  <script src="js/contact.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/jquery.form.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <!-- custom js -->
-  <script src="js/custom.js"></script>    
-    </body>
 </html>
