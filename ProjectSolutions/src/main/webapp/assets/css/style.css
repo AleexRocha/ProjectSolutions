@@ -2357,7 +2357,6 @@ ul {
   /* line 205, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_menu.scss */
   .navbar-collapse {
     z-index: 9999 !important;
-    position: absolute;
     left: 0;
     top: 50px;
     width: 100%;
@@ -4464,8 +4463,7 @@ ul {
 
 /* line 1156, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
 .cart_inner .table tbody tr td .product_count input {
-  width: 100px;
-  padding-left: 30px;
+  width: 89px;
   height: 50px;
   outline: none;
   box-shadow: none;
