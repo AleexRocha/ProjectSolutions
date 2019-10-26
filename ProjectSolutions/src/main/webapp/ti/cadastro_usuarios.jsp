@@ -102,7 +102,7 @@ Author     : nicolas.hgyoshioka
                                     <c:when test="${acao == 'editar'}">
                                         <c:choose>
                                             <c:when test="${empty cpfErro}">
-                                                <input <c:if test="${sessionScope.nomeSetor == 'Cliente'}"> disabled=""</c:if> type="text" class="form-control inputForm" id="cpf"
+                                                <input <c:if test="${sessionScope.nomeSetor == 'Cliente'}">disabled="" </c:if> type="text" class="form-control inputForm" id="cpf"
                                                        value="${cpf}" name="cpf" minlength="0" maxlength="11">
                                             </c:when>
                                             <c:otherwise>
@@ -130,7 +130,7 @@ Author     : nicolas.hgyoshioka
                                     <c:when test="${acao == 'editar'}">
                                         <c:choose>
                                             <c:when test="${empty emailErro}">
-                                                <input <c:if test="${sessionScope.nomeSetor == 'Cliente'}"> disabled=""</c:if> type="email" class="form-control inputForm" id="email"
+                                                <input <c:if test="${sessionScope.nomeSetor == 'Cliente'}">disabled="" </c:if> type="email" class="form-control inputForm" id="email"
                                                        value="${email}" name="email" minlength="0" maxlength="50">
                                             </c:when>
                                             <c:otherwise>
@@ -244,7 +244,7 @@ Author     : nicolas.hgyoshioka
                                 Salvar
                             </button>
                         </form>
-                        <form action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
+                                <form <c:if test="${sessionScope.nomeSetor == 'Cliente'}"> action="perfil"</c:if> action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="fas fa-ban"></i>
                                 Cancelar

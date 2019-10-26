@@ -1,6 +1,7 @@
 package ServletUsuario;
 
 import DAO.UsuarioDAO;
+import Model.Produto;
 import Model.Usuario;
 import Utils.CpfValidator;
 import static Utils.Criptografia.criptografar;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,27 +31,22 @@ public class UsuarioEditarServlet extends HttpServlet {
 
         String cCodigo = request.getParameter("codigoUsuario");
         String cNome = request.getParameter("nome");
-        String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
-        String cCpf = request.getParameter("cpf");
 
         boolean error = false;
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
         }
-        if (cEmail.length() == 0) {
+        if (cSenha.length() == 0) {
             error = true;
-            request.setAttribute("emailErro", "Email não informado");
+            request.setAttribute("senhaErro", "Senha não informada");
         }
-        if (cCpf.length() == 0 || cCpf.length() < 11) {
+        if (cConfirmacaoSenha.length() == 0) {
             error = true;
-            request.setAttribute("cpfErro", "O CPF deve conter 11 dígitos!");
-        } else if (!CpfValidator.validaCpf(cCpf)) {
-            error = true;
-            request.setAttribute("cpfErro", "CPF inválido!");
+            request.setAttribute("cSenhaError", "Por Favor, Confirme a Senha digitada acima");
         }
         if (cSetor == null) {
             error = true;
@@ -95,18 +92,19 @@ public class UsuarioEditarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
+            HttpSession userLogado = request.getSession();
             Usuario usuario = new Usuario();
 
             usuario.setCodigo(Integer.parseInt(cCodigo));
             usuario.setNome(cNome);
-            usuario.setEmail(cEmail);
+            usuario.setEmail(String.valueOf(userLogado.getAttribute("emailUsuario")));
 
             if (cSenha.length() != 0) {
                 String senhaCriptografada = criptografar(cSenha);
                 usuario.setSenha(senhaCriptografada);
             }
 
-            usuario.setCpf(cCpf);
+            usuario.setCpf(String.valueOf(userLogado.getAttribute("cpfUser")));
             usuario.setSetor(Integer.parseInt(cSetor));
 
             boolean httpOK = UsuarioDAO.alterarUsuario(usuario);
@@ -118,11 +116,20 @@ public class UsuarioEditarServlet extends HttpServlet {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuario editado com sucesso.");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
-                dispatcher.forward(request, response);
+                if (userLogado.getAttribute("nomeSetor").equals("Cliente")) {
+                    ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
+                    request.setAttribute("listaProdutos", produtos);
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("../produtos/cliente_listagem_produtos.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+                    dispatcher.forward(request, response);
+                }
+
             } else {
-                request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Erro ao salvar editação no banco de dados, verifique os campos e tente novamente.");
+                request.setAttribute("varMsgError", true);
+                request.setAttribute("msg", "Erro ao salvar edição no banco de dados, verifique os campos e tente novamente.");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
                 dispatcher.forward(request, response);
