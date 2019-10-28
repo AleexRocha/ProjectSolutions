@@ -78,6 +78,23 @@
                 </div>
             </nav>
         </c:when>
+        <c:when test="${sessionScope.nomeSetor == null}">
+            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul id="itensMenu" class="nav">              
+                    </ul>
+                    <form action="../login/index.jsp">
+                        <button type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            Entrar 
+                        </button>
+                    </form>
+                </div>
+            </nav>
+        </c:when>
         <c:otherwise>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
