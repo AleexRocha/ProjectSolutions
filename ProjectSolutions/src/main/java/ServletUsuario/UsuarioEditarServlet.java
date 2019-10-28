@@ -30,28 +30,28 @@ public class UsuarioEditarServlet extends HttpServlet {
 
         String cCodigo = request.getParameter("codigoUsuario");
         String cNome = request.getParameter("nome");
-        //String cEmail = request.getParameter("email");
+        String cEmail = request.getParameter("email");
         String cSenha = request.getParameter("senha");
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
         String cSetor = request.getParameter("codigoSetor");
-        //String cCpf = request.getParameter("cpf");
+        String cCpf = request.getParameter("cpf");
 
         boolean error = false;
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
         }
-//        if (cEmail.length() == 0) {
-//            error = true;
-//            request.setAttribute("emailErro", "Email não informado");
-//        }
-//        if (cCpf.length() == 0 || cCpf.length() < 11) {
-//            error = true;
-//            request.setAttribute("cpfErro", "O CPF deve conter 11 dígitos!");
-//        } else if (!CpfValidator.validaCpf(cCpf)) {
-//            error = true;
-//            request.setAttribute("cpfErro", "CPF inválido!");
-//        }
+        if (cEmail.length() == 0) {
+            error = true;
+            request.setAttribute("emailErro", "Email não informado");
+        }
+        if (cCpf.length() == 0 || cCpf.length() < 11) {
+            error = true;
+            request.setAttribute("cpfErro", "O CPF deve conter 11 dígitos!");
+        } else if (!CpfValidator.validaCpf(cCpf)) {
+            error = true;
+            request.setAttribute("cpfErro", "CPF inválido!");
+        }
         if (cSenha.length() == 0) {
             error = true;
             request.setAttribute("senhaErro", "Senha não informada");
@@ -72,21 +72,6 @@ public class UsuarioEditarServlet extends HttpServlet {
                 request.setAttribute("msg", "Senha e Confirmação de Senha são diferentes");
             }
 
-//            HttpSession userLogado = request.getSession();
-//            ArrayList<Usuario> infoBd = UsuarioDAO.getUsuarios();
-//            for (Usuario u : infoBd) {
-//                if (!userLogado.getAttribute("emailUsuario").equals(cEmail)) {
-//                    if (u.getEmail().equalsIgnoreCase(cEmail)) {
-//                        error = true;
-//                        request.setAttribute("emailErro", "O Email já foi cadastrado");
-//                        break;
-//                    } else if (u.getCpf().equalsIgnoreCase(cCpf)) {
-//                        error = true;
-//                        request.setAttribute("cpfErro", "O CPF já foi cadastrado");
-//                        break;
-//                    }    
-//                }
-//            }
         }
 
         if (error) {
@@ -111,7 +96,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             HttpSession userLogado = request.getSession();
-            Usuario usuario = new Usuario(cNome, String.valueOf(userLogado.getAttribute("emailUsuario")), cSenha, String.valueOf(userLogado.getAttribute("cpfUser")), Integer.parseInt(cSetor));
+            Usuario usuario = new Usuario(cNome, cEmail, cSenha, cCpf, Integer.parseInt(cSetor));
             usuario.setCodigo(Integer.parseInt(cCodigo));
             boolean httpOK = UsuarioDAO.alterarUsuario(usuario);
 
