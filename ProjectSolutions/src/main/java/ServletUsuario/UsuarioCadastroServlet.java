@@ -35,6 +35,19 @@ public class UsuarioCadastroServlet extends HttpServlet {
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
+        } else {
+            String validaNome[] = cNome.split(" ");
+            if (validaNome.length >= 2) {
+                for (int i = 0; i < validaNome.length; i++) {
+                    if (validaNome[i].length() < 3) {
+                        error = true;
+                        request.setAttribute("nomeErro", "O Nome e o Sobrenome devem possuir mais de 3 letras cada");
+                    }
+                }
+            } else {
+                error = true;
+                request.setAttribute("nomeErro", "O campo Nome deve conter nome e sobrenome");
+            }
         }
         if (cCpf.length() == 0 || !(cCpf.length() == 11)) {
             error = true;
