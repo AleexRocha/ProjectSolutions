@@ -244,7 +244,7 @@ Author     : nicolas.hgyoshioka
                                 Salvar
                             </button>
                         </form>
-                        <form <c:if test="${sessionScope.nomeSetor == null}"> action="../login/index.jsp" </c:if> <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> action="perfil" method="POST" </c:if> action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
+                        <form <c:if test="${sessionScope.nomeSetor == null}"> action="../login/login.jsp" </c:if> <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> action="perfil" method="POST" </c:if> action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
                             <button name="perfil" type="submit" class="btn btn-light btn-block" value="${sessionScope.cdFuncionario}">
                                 <i class="fas fa-ban"></i>
                                 Cancelar

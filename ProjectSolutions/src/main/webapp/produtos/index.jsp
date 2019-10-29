@@ -23,7 +23,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xl-12">
+                <div class="col-lg-12">
                     <div id="carouselExampleIndicators" class="carousel slide my-4"
                          data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -58,8 +58,9 @@
                         </a>
                     </div>
                 </div>
+
                 <c:forEach var="produtos" items="#{listaProdutos}">
-                    <div class="col-lg-4 col-md-12 col-sm-3">
+                    <div class="col-lg-4 col-md-6 col-sm-3">
                         <div class="card h-100">
                             <a href="#">
                             <%--  <img class="card-img-top" src="${produtos.srcImagem}" alt="Arranjo de Girassol"> --%>
@@ -89,6 +90,7 @@
                     </div>
                 </c:forEach>
             </div>
+
             <%@include file="../WEB-INF/footer.jsp"%>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>

@@ -46,9 +46,7 @@
                             <c:out value="${nomeUsuario}" />
                         </button>
                     </form>
-                    <form action="../venda/logout" method="POST">
-                        <button type="submit" class="btn nav-link nav-text">Sair</button>
-                    </form>
+                    <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
                 </div>
             </nav>
         </c:when>
@@ -72,9 +70,7 @@
                             <c:out value="${nomeUsuario}" />
                         </button>
                     </form>
-                    <form action="../venda/logout" method="POST">
-                        <button type="submit" class="btn nav-link nav-text">Sair</button>
-                    </form>
+                    <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
                 </div>
             </nav>
         </c:when>
@@ -86,7 +82,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul id="itensMenu" class="nav">              
                     </ul>
-                    <form action="../login/index.jsp">
+                    <form action="../login/login.jsp">
                         <button type="submit" class="btn">
                             <i class="fas fa-user-tie"></i>
                             Entrar 
@@ -115,11 +111,33 @@
                             <c:out value="${nomeUsuario}" />
                         </button>
                     </form>
-                    <form action="../venda/logout" method="POST">
-                        <button type="submit" class="btn nav-link nav-text">Sair</button>
-                    </form>
+                    <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
                 </div>
             </nav>
         </c:otherwise>
     </c:choose>
+    
+       <div class="modal fade" id="logout" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ATENÇÃO!!</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja fazer Logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <form action="../venda/logout" method="POST">
+                        <button name="logout" type="submit" class="btn btn-success"> <i class="fas fa-sign-out-alt"></i> Sim </button>
+                    </form>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-ban"></i> Não </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>

@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
             }
             request.setAttribute("varMsgError", true);
             request.setAttribute("msg", "Campo de E-mail ou Senha inválidos");
-            dispatcher = request.getRequestDispatcher("/login/index.jsp");
+            dispatcher = request.getRequestDispatcher("/login/login.jsp");
         } else {
             boolean httpOK = UsuarioDAO.getLogin(uEmail, uSenha);
 
@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                 if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
-                    dispatcher = request.getRequestDispatcher("../produtos/cliente_listagem_produtos.jsp");
+                    dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
                 } else {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 
                 request.setAttribute("loginError", uEmail);
 
-                dispatcher = request.getRequestDispatcher("/login/index.jsp");
+                dispatcher = request.getRequestDispatcher("/login/login.jsp");
             }
         }
 
