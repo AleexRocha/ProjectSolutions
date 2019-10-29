@@ -17,8 +17,7 @@
   <link rel="stylesheet" href="../assets/css/style.css"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
-<body >
-  <!--================Cart Area =================-->
+<body>
    <%@include file="../WEB-INF/header.jsp"%>
     <div class="container">
       <div class="cart_inner">
@@ -49,13 +48,13 @@
                 </td>
                 <td>
                   <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                    <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
                     <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                    <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                   </div>
                 </td>
                 <td>
-                  <h5>$720.00</h5>
+                  <h5>R$720.00</h5>
                 </td>
               </tr>
               <tr>
@@ -70,17 +69,17 @@
                   </div>
                 </td>
                 <td>
-                  <h5>$360.00</h5>
+                  <h5>R$360.00</h5>
                 </td>
                 <td>
                   <div class="product_count">
-                      <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                      <span class="input-number-decrement"> <i class="fas fa-minus"></i></i></span>
                       <input class="input-number" type="text" value="1" min="0" max="10">
-                      <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                      <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                   </div>
                 </td>
                 <td>
-                  <h5>$720.00</h5>
+                  <h5>R$720.00</h5>
                 </td>
               </tr>
               <tr>
@@ -142,8 +141,5 @@
       </div>
         <%@include file="../WEB-INF/footer.jsp"%>
     </div>  
-  
-  <!--================End Cart Area =================-->
 </body>
-
 </html>

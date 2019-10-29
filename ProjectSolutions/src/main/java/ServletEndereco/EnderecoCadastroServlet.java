@@ -1,6 +1,8 @@
 package ServletEndereco;
 
+import DAO.ProdutoDAO;
 import DAO.UsuarioDAO;
+import Model.Produto;
 import Model.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -89,7 +91,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
                 boolean httpOk = UsuarioDAO.salvarRelacaoEnderecoUsuario(relacao);
                 if (httpOk) {
                     HttpSession sessao = request.getSession();
-                    if (sessao.getAttribute("email") != null) {
+                    if ((sessao.getAttribute("nomeSetor") == null) || (!sessao.getAttribute("nomeSetor").equals("Cliente"))) {
                         ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
                         request.setAttribute("listaUsuarios", usuarios);
 
@@ -99,10 +101,12 @@ public class EnderecoCadastroServlet extends HttpServlet {
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                         dispatcher.forward(request, response);
                     } else {
+                        ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+                        request.setAttribute("listaProdutos", produtos);
                         request.setAttribute("varMsg", true);
                         request.setAttribute("msg", "Cadastro realizado com sucesso!");
 
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("../login/index.jsp");
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
                         dispatcher.forward(request, response);
                     }
                 } else {
@@ -117,7 +121,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
             } else {
                 request.setAttribute("codigo", eUsuario);
 
-                request.setAttribute("varMsgErro", true);
+                request.setAttribute("varMsgError", true);
                 request.setAttribute("msg", "Erro ao salvar os dados de endereço");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");

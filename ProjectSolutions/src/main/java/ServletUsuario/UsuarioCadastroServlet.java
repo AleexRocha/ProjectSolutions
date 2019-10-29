@@ -98,12 +98,19 @@ public class UsuarioCadastroServlet extends HttpServlet {
             Usuario usuario = new Usuario(cNome, cEmail, senhaCriptografada, cCpf, Integer.parseInt(cSetor));
             eIdUsuario = UsuarioDAO.salvarUsuario(usuario);
 
-            if (eIdUsuario > 0) {
+            if (eIdUsuario > 0 && !cSetor.equals("3")) {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuário cadastrado com sucesso! Cadastre agora um endereço.");
 
                 request.setAttribute("codigoUsuario", eIdUsuario);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
+                dispatcher.forward(request, response);
+            } else if (cSetor.equals("3")) {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Usuário cadastrado com sucesso!");
+                ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+                request.setAttribute("listaUsuarios", usuarios);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                 dispatcher.forward(request, response);
             } else {
                 if ((cCliente == null) || (cCliente.length() == 0)) {
