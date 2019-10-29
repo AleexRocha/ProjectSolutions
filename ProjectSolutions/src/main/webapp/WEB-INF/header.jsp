@@ -86,7 +86,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul id="itensMenu" class="nav">              
                     </ul>
-                    <form action="../login/index.jsp">
+                    <form action="../login/login.jsp">
                         <button type="submit" class="btn">
                             <i class="fas fa-user-tie"></i>
                             Entrar 

@@ -110,7 +110,7 @@ public class UsuarioEditarServlet extends HttpServlet {
                 if (userLogado.getAttribute("nomeSetor").equals("Cliente")) {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("../produtos/cliente_listagem_produtos.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
                     dispatcher.forward(request, response);
                 } else {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
