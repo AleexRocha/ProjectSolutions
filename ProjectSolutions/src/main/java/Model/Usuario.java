@@ -11,25 +11,48 @@ public class Usuario {
     private String email;
     private String senha;
     private int setor;
+    private String cpf;
     private String nomeSetor;
+
+    private int codigoEndereco;
+    private String tipoEndereco;
+    private String logradouro;
+    private int numero;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String cep;
 
     public Usuario() {
 
     }
 
-    public Usuario(String nome, String email, String senha, int setor) {
+    public Usuario(String nome, String email, String senha, String cpf, int setor) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.cpf = cpf;
         this.setor = setor;
     }
 
-    public Usuario(int codigo, String nome, String email, String senha, int setor) {
+    public Usuario(int codigo, String nome, String email, String senha, String cpf, int setor) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.cpf = cpf;
         this.setor = setor;
+    }
+
+    public Usuario(int codigo, String logradouro, int numero, String bairro, String cidade, String estado, String cep, String tipoEndereco) {
+        this.codigo = codigo;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+        this.tipoEndereco = tipoEndereco;
     }
 
     public int getCodigo() {
@@ -79,4 +102,77 @@ public class Usuario {
     public void setNomeSetor(String nomeSetor) {
         this.nomeSetor = nomeSetor;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public int getCodigoEndereco() {
+        return codigoEndereco;
+    }
+
+    public void setCodigoEndereco(int codigoEndereco) {
+        this.codigoEndereco = codigoEndereco;
+    }
+
+    public String getTipoEndereco() {
+        return tipoEndereco;
+    }
+
+    public void setTipoEndereco(String tipoEndereco) {
+        this.tipoEndereco = tipoEndereco;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
 }

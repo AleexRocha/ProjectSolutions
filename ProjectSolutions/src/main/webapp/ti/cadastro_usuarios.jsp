@@ -97,13 +97,41 @@ Author     : nicolas.hgyoshioka
                                     </c:otherwise>
                                 </c:choose>
 
+                                <label for="cpf">CPF:</label>
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
+                                        <c:choose>
+                                            <c:when test="${empty cpfErro}">
+                                                <input <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> readonly</c:if> type="text" class="form-control inputForm" id="cpf"
+                                                                                                           value="${cpf}" name="cpf" minlength="0" maxlength="11">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="text" class="form-control inputForm error" id="cpf"
+                                                       placeholder="${cpfErro}" name="nome" minlength="0" maxlength="11">
+                                            </c:otherwise>
+                                        </c:choose>                                      
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:choose>
+                                            <c:when test="${empty cpfErro}">
+                                                <input type="text" class="form-control inputForm" id="cpf"
+                                                       placeholder="CPF" name="cpf" minlength="0" maxlength="11">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="text" class="form-control inputForm error" id="cpf"
+                                                       placeholder="${cpfErro}" name="cpf" minlength="0" maxlength="11">
+                                            </c:otherwise>
+                                        </c:choose>                                    
+                                    </c:otherwise>
+                                </c:choose>
+
                                 <label for="email">E-mail:</label>        
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
                                         <c:choose>
                                             <c:when test="${empty emailErro}">
-                                                <input type="email" class="form-control inputForm" id="email"
-                                                       value="${email}" name="email" minlength="0" maxlength="50">
+                                                <input <c:if test="${sessionScope.nomeSetor != 'Diretor'}">readonly </c:if> type="email" class="form-control inputForm" id="email"
+                                                                                                           value="${email}" name="email" minlength="0" maxlength="50">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="email" class="form-control inputForm error" id="email"
@@ -206,7 +234,7 @@ Author     : nicolas.hgyoshioka
                                     <label for="setor" class="sr-only">Setor:</label>
                                     <input type="hidden" class="form-control inputForm"
                                            placeholder="Este campo serve para informar o setor do cliente sem cadastro" name="codigoSetor" value="4">
-                                    
+
                                     <input type="hidden" class="form-control inputForm"
                                            placeholder="Este campo serve para confirmar que o usuario é um cliente ao  salvar" name="cliente" value="cliente">
                                 </c:if>
@@ -216,13 +244,13 @@ Author     : nicolas.hgyoshioka
                                 Salvar
                             </button>
                         </form>
-                        <form action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
-                            <button type="submit" class="btn btn-light btn-block">
+                        <form <c:if test="${sessionScope.nomeSetor == null}"> action="../login/index.jsp" </c:if> <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> action="perfil" method="POST" </c:if> action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
+                            <button name="perfil" type="submit" class="btn btn-light btn-block" value="${sessionScope.cdFuncionario}">
                                 <i class="fas fa-ban"></i>
                                 Cancelar
                             </button>
-                        </form>
-                </div>
+                        </form> 
+                </div>              
                 <div class="col-md-3"></div>
             </div>
             <%@include file="../WEB-INF/footer.jsp" %>

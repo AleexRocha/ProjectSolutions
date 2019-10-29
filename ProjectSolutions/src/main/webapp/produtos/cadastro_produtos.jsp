@@ -51,24 +51,24 @@ Author     : nicolas.hgyoshioka
                         <div class="row">
                             <div class="col-md-8">
                                 <label for="inputImagemProduto">Imagem do produto:</label>
-                                <input type="file" class="form-control-file inputForm" id="inputImagemProduto" name="imagemProduto" onchange="preview();"/>
+                                <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="file" class="form-control-file inputForm" id="inputImagemProduto" name="imagemProduto" onchange="preview();"/>
+                                </div>
+                                <div class="col-md-4 btn-upload">
+                                    <button <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="submit" class="btn btn-block btn-success" id="upload-button" onclick="salvarImagem();">
+                                        <i class="far fa-save"></i>
+                                        Salvar Imagem
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-md-4 btn-upload">
-                                <button type="submit" class="btn btn-block btn-success" id="upload-button" onclick="salvarImagem();">
-                                    <i class="far fa-save"></i>
-                                    Salvar Imagem
-                                </button>
-                            </div>
-                        </div>
-                        <p class="text-center subtitulo">
-                            <span class="h4">Preview da Imagem</span>
-                        <p class="text-center">
-                            <img src="" id="preview-image" class="sr-only" alt="Imagem do Produto" width="380">                        
-                        </p>
-                        </p>
-                    </form>
-                </div>
-                <div class="col-md-6">
+                            <p class="text-center subtitulo">
+                                <span class="h4">Preview da Imagem</span>
+                            <p class="text-center">
+                                <img src="" id="preview-image" class="sr-only" alt="Imagem do Produto" width="380">                        
+                            </p>
+                            </p>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
                     <c:choose>
                         <c:when test="${acao == 'editar'}">
                             <form action="editar_produto" method="POST">
@@ -100,8 +100,8 @@ Author     : nicolas.hgyoshioka
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
                                         <c:if test="${empty nomeErro}">
-                                            <input type="text" class="form-control inputForm" id="nome"
-                                                   value="${nome}" name="nome" minlength="0" maxlength="50">                                            
+                                            <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly </c:if> type="text" class="form-control inputForm" id="nome"
+                                                                                                           value="${nome}" name="nome" minlength="0" maxlength="50">                                            
                                         </c:if>
                                         <c:if test="${not empty nomeErro}">         
                                             <input type="text" class="form-control inputForm error" id="nome"
@@ -123,8 +123,8 @@ Author     : nicolas.hgyoshioka
                                 <label for="descricaoProduto">Descrição:</label>
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
-                                        <input type="text" class="form-control inputForm" id="descricao"
-                                               value="${descricao}" name="descricao" minlength="0" maxlength="100">
+                                        <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if> type="text" class="form-control inputForm" id="descricao"
+                                                                                                       value="${descricao}" name="descricao" minlength="0" maxlength="100">
                                     </c:when>
                                     <c:otherwise>
                                         <input type="text" class="form-control inputForm" id="descricao"
@@ -160,8 +160,8 @@ Author     : nicolas.hgyoshioka
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
                                         <c:if test="${empty valorUnitarioErro}">
-                                            <input type="text" class="form-control inputForm" id="valor"
-                                                   value="${valor_unidade}" name="valorUnitario" minlength="0" maxlength="9">
+                                            <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly </c:if> type="text" class="form-control inputForm" id="valor"
+                                                                                                           value="${valor_unidade}" name="valorUnitario" minlength="0" maxlength="9">
                                         </c:if>
                                         <c:if test="${not empty valorUnitarioErro}">         
                                             <input type="text" class="form-control inputForm error" id="valor"
@@ -180,10 +180,10 @@ Author     : nicolas.hgyoshioka
                                     </c:otherwise>
                                 </c:choose>                               
 
-                                <label for="tipo" >Tipo:</label>
+                                <label <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> hidden="" </c:if> for="tipo" >Tipo:</label>
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
-                                        <select class="custom-select inputForm" id="tipo" name="tipo">
+                                        <select <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> hidden="" </c:if> class="custom-select inputForm" id="tipo" name="tipo">
                                             <option hidden="" value="${tipoCadastrado}">${tipoCadastrado}</option>
                                             <option value="Produto">Produto</option>
                                             <option value="Serviço">Serviço</option>

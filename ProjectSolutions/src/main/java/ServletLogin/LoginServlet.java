@@ -47,12 +47,14 @@ public class LoginServlet extends HttpServlet {
             if (httpOK) {
                 HttpSession sessao = setSessao(request.getParameter("email"), request);
 
-                if (!sessao.getAttribute("nomeSetor").equals("Cliente")) {
-                    dispatcher = request.getRequestDispatcher("../venda/cadastro_vendas.jsp");
-                } else {
+                if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
                     dispatcher = request.getRequestDispatcher("../produtos/cliente_listagem_produtos.jsp");
+                } else {
+                    ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
+                    request.setAttribute("listaProdutos", produtos);
+                    dispatcher = request.getRequestDispatcher("../produtos/listagem_produtos.jsp");
                 }
             } else {
                 request.setAttribute("varMsgError", true);

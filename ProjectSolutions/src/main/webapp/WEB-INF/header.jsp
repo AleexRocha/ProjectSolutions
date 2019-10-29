@@ -13,8 +13,11 @@
     <c:choose>
         <c:when test="${sessionScope.nomeSetor == 'Diretor'}">
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <c:if test="${sessionScope.nomeSetor != null}">
-                    <ul id="itensMenu" class="nav justify-content-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul id="itensMenu" class="nav">
                         <li class="nav-item">
                             <form action="../venda/cadastro_vendas">
                                 <button type="submit" class="btn nav-link nav-text">Vendas</button>
@@ -36,50 +39,85 @@
                             </form>
                         </li>
                     </ul>
-                    <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
-                    &nbsp;&nbsp; Olá,
-                    <c:out value="${nomeUsuario}" />
+                    <form action="../ti/perfil" method="POST">
+                        <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            &nbsp;&nbsp; Olá,
+                            <c:out value="${nomeUsuario}" />
+                        </button>
+                    </form>
                     <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
-                </c:if>
+                </div>
             </nav>
         </c:when>
         <c:when test="${sessionScope.nomeSetor == 'Estoquista'}">
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <c:if test="${sessionScope.nomeSetor != null}">
-                    <ul id="itensMenu" class="nav justify-content-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul id="itensMenu" class="nav">
                         <li class="nav-item">
                             <form action="../produtos/listagem_produtos" method="GET">
                                 <button type="submit" class="btn nav-link nav-text" >Produtos</button>
                             </form>
                         </li>
                     </ul>
-                    <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
-                    &nbsp;&nbsp; Olá,
-                    <c:out value="${nomeUsuario}" />
+                    <form action="../ti/perfil" method="POST">
+                        <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            &nbsp;&nbsp; Olá,
+                            <c:out value="${nomeUsuario}" />
+                        </button>
+                    </form>
                     <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
-                </c:if>
+                </div>
+            </nav>
+        </c:when>
+        <c:when test="${sessionScope.nomeSetor == null}">
+            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul id="itensMenu" class="nav">              
+                    </ul>
+                    <form action="../login/index.jsp">
+                        <button type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            Entrar 
+                        </button>
+                    </form>
+                </div>
             </nav>
         </c:when>
         <c:otherwise>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
-                <c:if test="${sessionScope.nomeSetor != null}">
-                    <ul id="itensMenu" class="nav justify-content-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul id="itensMenu" class="nav">
                         <li class="nav-item">
                             <form action="../produtos/listagem_produtos" method="GET">
                                 <button type="submit" class="btn nav-link nav-text" >Produtos</button>
                             </form>
                         </li>
                     </ul>
-                    <i class="fas fa-user-tie" style="margin-left: -189px;"></i>
-                    &nbsp;&nbsp; Olá,
-                    <c:out value="${nomeUsuario}" />
+                    <form action="../ti/perfil" method="POST">
+                        <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            &nbsp;&nbsp; Olá,
+                            <c:out value="${nomeUsuario}" />
+                        </button>
+                    </form>
                     <button type="submit" data-toggle="modal" data-target="#logout" class="btn"> <i class="fas fa-sign-out-alt"></i> Sair</button>
-                </c:if>
-            </nav> 
+                </div>
+            </nav>
         </c:otherwise>
     </c:choose>
-
-    <div class="modal fade" id="logout" tabindex="-1" role="dialog"
+    
+       <div class="modal fade" id="logout" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

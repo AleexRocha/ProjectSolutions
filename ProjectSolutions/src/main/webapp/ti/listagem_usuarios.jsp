@@ -43,7 +43,7 @@ Author     : nicolas.hgyoshioka
                     Cadastrar Usuário
                 </button>
             </form>
-            
+
             <br>
             <br>
 
@@ -53,6 +53,7 @@ Author     : nicolas.hgyoshioka
                         <th class="coluna" scope="col">Codigo</th>
                         <th class="coluna" scope="col">Nome</th>
                         <th class="coluna" scope="col">Email</th>
+                        <th class="coluna" scope="col">CPF</th>
                         <th class="coluna" scope="col">Setor</th>
                         <th class="coluna" scope="col">Ações</th>
                     </tr>
@@ -63,6 +64,7 @@ Author     : nicolas.hgyoshioka
                             <td class="coluna" name="codigo" ><c:out value="${usuarios.codigo}" /></td>
                             <td class="coluna" name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.email}" /></td>
+                            <td class="coluna" name="email" ><c:out value="${usuarios.cpf}" /></td>
                             <td class="coluna" name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
                             <td class="btn-group">
                                 <form action="dados_usuario" method="POST">
@@ -71,9 +73,9 @@ Author     : nicolas.hgyoshioka
                                     </button>
                                 </form>
                                 <!-- Button que chama a modal -->
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario"
+                                        value="${usuarios.codigo}" onclick="defineCodigo(this.value)">
                                     <i class="far fa-trash-alt"></i>
-                                    <c:set var="codigoUsuario" value="${usuarios.codigo}"/>
                                 </button>
                             </td>
                         </tr>
@@ -95,7 +97,7 @@ Author     : nicolas.hgyoshioka
                         </div>
                         <div class="modal-footer">
                             <form action="excluir_usuario" method="POST" name ="deletarUsuario">
-                                <button name="excluirID" value="${codigoUsuario}" type="submit" class="btn btn-danger">
+                                <button name="excluirID" id="destino" type="submit" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i> Sim
                                 </button>
                             </form>
