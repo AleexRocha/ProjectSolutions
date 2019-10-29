@@ -40,7 +40,7 @@
                 </div>
             </c:if>
 
-            <form id="btn_cadastro" action="cadastro_produtos.jsp" method="GET">
+            <form id="btn_cadastro" action="../produtos/cadastro_produtos.jsp" method="GET">
                 <Button <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> disabled=""</c:if> type="submit" class="btn btn-light">
                         <i class="fas fa-box"></i> Cadastrar Produto
                     </Button>
