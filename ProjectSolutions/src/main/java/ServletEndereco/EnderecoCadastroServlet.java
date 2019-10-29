@@ -91,7 +91,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
                 boolean httpOk = UsuarioDAO.salvarRelacaoEnderecoUsuario(relacao);
                 if (httpOk) {
                     HttpSession sessao = request.getSession();
-                    if (!sessao.getAttribute("nomeSetor").equals("Cliente")) {
+                    if ((sessao.getAttribute("nomeSetor") == null) || (!sessao.getAttribute("nomeSetor").equals("Cliente"))) {
                         ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
                         request.setAttribute("listaUsuarios", usuarios);
 
