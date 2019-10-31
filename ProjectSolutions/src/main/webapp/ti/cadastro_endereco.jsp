@@ -70,24 +70,24 @@
                                     <c:when test="${acao == 'editar'}">
                                         <c:choose>
                                             <c:when test="${empty cepErro}">
-                                                <input type="text" class="form-control inputForm" id="cep"
-                                                       value="${cep}" name="cep" minlength="0" maxlength="75">
+                                                <input type="number" class="form-control inputForm" id="cep"
+                                                       value="${cep}" name="cep" minlength="0" maxlength="8" onchange="buscaCep();">
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="text" class="form-control inputForm error" id="cep"
-                                                       placeholder="${cepErro}" name="cep" minlength="0" maxlength="75">
+                                                <input type="number" class="form-control inputForm error" id="cep"
+                                                       placeholder="${cepErro}" name="cep" minlength="0" maxlength="8" onchange="buscaCep();">
                                             </c:otherwise>
                                         </c:choose>                                      
                                     </c:when>
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty cepErro}">
-                                                <input type="text" class="form-control inputForm" id="cep"
-                                                       placeholder="CEP" name="cep" minlength="0" maxlength="75">
+                                                <input type="number" class="form-control inputForm" id="cep"
+                                                       placeholder="CEP" name="cep" minlength="0" maxlength="8" onchange="buscaCep();">
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="text" class="form-control inputForm error" id="cep"
-                                                       placeholder="${cepErro}" name="cep" minlength="0" maxlength="75">
+                                                <input type="number" class="form-control inputForm error" id="cep"
+                                                       placeholder="${cepErro}" name="cep" minlength="0" maxlength="8" onchange="buscaCep();">
                                             </c:otherwise>
                                         </c:choose>                                    
                                     </c:otherwise>
@@ -99,11 +99,11 @@
                                         <c:choose>
                                             <c:when test="${empty numeroErro}">
                                                 <input type="number" class="form-control inputForm" id="numero"
-                                                       value="${numero}" name="numero" minlength="0" maxlength="75">
+                                                       value="${numero}" name="numero" minlength="0" maxlength="11">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="number" class="form-control inputForm error" id="numero"
-                                                       placeholder="${numeroErro}" name="numero" minlength="0" maxlength="75">
+                                                       placeholder="${numeroErro}" name="numero" minlength="0" maxlength="11">
                                             </c:otherwise>
                                         </c:choose>                                      
                                     </c:when>
@@ -111,11 +111,11 @@
                                         <c:choose>
                                             <c:when test="${empty numeroErro}">
                                                 <input type="number" class="form-control inputForm" id="numero"
-                                                       placeholder="Numero" name="numero" minlength="0" maxlength="75">
+                                                       placeholder="Numero" name="numero" minlength="0" maxlength="11">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="number" class="form-control inputForm error" id="numero"
-                                                       placeholder="${numeroErro}" name="numero" minlength="0" maxlength="75">
+                                                       placeholder="${numeroErro}" name="numero" minlength="0" maxlength="11">
                                             </c:otherwise>
                                         </c:choose>                                    
                                     </c:otherwise>
@@ -127,11 +127,11 @@
                                         <c:choose>
                                             <c:when test="${empty logradouroErro}">
                                                 <input type="text" class="form-control inputForm" id="logradouro"
-                                                       value="${logradouro}" name="logradouro" minlength="0" maxlength="75">
+                                                       value="${logradouro}" name="logradouro" minlength="0" maxlength="250">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="logradouro"
-                                                       placeholder="${logradouroErro}" name="logradouro" minlength="0" maxlength="75">
+                                                       placeholder="${logradouroErro}" name="logradouro" minlength="0" maxlength="250">
                                             </c:otherwise>
                                         </c:choose>                                      
                                     </c:when>
@@ -139,11 +139,11 @@
                                         <c:choose>
                                             <c:when test="${empty logradouroErro}">
                                                 <input type="text" class="form-control inputForm" id="logradouro"
-                                                       placeholder="Logradouro" name="logradouro" minlength="0" maxlength="75">
+                                                       placeholder="Logradouro" name="logradouro" minlength="0" maxlength="250">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="logradouro"
-                                                       placeholder="${logradouroErro}" name="logradouro" minlength="0" maxlength="75">
+                                                       placeholder="${logradouroErro}" name="logradouro" minlength="0" maxlength="250">
                                             </c:otherwise>
                                         </c:choose>                                    
                                     </c:otherwise>
@@ -155,11 +155,11 @@
                                         <c:choose>
                                             <c:when test="${empty bairroErro}">
                                                 <input type="text" class="form-control inputForm" id="bairro"
-                                                       value="${bairro}" name="bairro" minlength="0" maxlength="75">
+                                                       value="${bairro}" name="bairro" minlength="0" maxlength="50">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="bairro"
-                                                       placeholder="${bairroErro}" name="bairro" minlength="0" maxlength="75">
+                                                       placeholder="${bairroErro}" name="bairro" minlength="0" maxlength="50">
                                             </c:otherwise>
                                         </c:choose>                                      
                                     </c:when>
@@ -167,11 +167,11 @@
                                         <c:choose>
                                             <c:when test="${empty bairroErro}">
                                                 <input type="text" class="form-control inputForm" id="bairro"
-                                                       placeholder="Bairro" name="bairro" minlength="0" maxlength="75">
+                                                       placeholder="Bairro" name="bairro" minlength="0" maxlength="50">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="bairro"
-                                                       placeholder="${bairroErro}" name="bairro" minlength="0" maxlength="75">
+                                                       placeholder="${bairroErro}" name="bairro" minlength="0" maxlength="50">
                                             </c:otherwise>
                                         </c:choose>                                    
                                     </c:otherwise>
@@ -183,11 +183,11 @@
                                         <c:choose>
                                             <c:when test="${empty cidadeErro}">
                                                 <input type="text" class="form-control inputForm" id="cidade"
-                                                       value="${cidade}" name="cidade" minlength="0" maxlength="75">
+                                                       value="${cidade}" name="cidade" minlength="0" maxlength="50">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="cidade"
-                                                       placeholder="${cidadeErro}" name="cidade" minlength="0" maxlength="75">
+                                                       placeholder="${cidadeErro}" name="cidade" minlength="0" maxlength="50">
                                             </c:otherwise>
                                         </c:choose>                                      
                                     </c:when>
@@ -195,11 +195,11 @@
                                         <c:choose>
                                             <c:when test="${empty cidadeErro}">
                                                 <input type="text" class="form-control inputForm" id="cidade"
-                                                       placeholder="Cidade" name="cidade" minlength="0" maxlength="75">
+                                                       placeholder="Cidade" name="cidade" minlength="0" maxlength="50">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="cidade"
-                                                       placeholder="${cidadeErro}" name="cidade" minlength="0" maxlength="75">
+                                                       placeholder="${cidadeErro}" name="cidade" minlength="0" maxlength="50">
                                             </c:otherwise>
                                         </c:choose>                                    
                                     </c:otherwise>
@@ -211,23 +211,23 @@
                                         <c:choose>
                                             <c:when test="${empty estadoErro}">
                                                 <input type="text" class="form-control inputForm" id="estado"
-                                                       value="${estado}" name="estado" minlength="0" maxlength="75">
+                                                       value="${estado}" name="estado" minlength="0" maxlength="5">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="estado"
-                                                       placeholder="${estadoErro}" name="estado" minlength="0" maxlength="75">
+                                                       placeholder="${estadoErro}" name="estado" minlength="0" maxlength="5">
                                             </c:otherwise>
                                         </c:choose>                                      
                                     </c:when>
                                     <c:otherwise>
                                         <c:choose>
-                                            <c:when test="${empty cidadeErro}">
+                                            <c:when test="${empty estadoErro}">
                                                 <input type="text" class="form-control inputForm" id="estado"
-                                                       placeholder="Estado" name="estado" minlength="0" maxlength="75">
+                                                       placeholder="Estado" name="estado" minlength="0" maxlength="5">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="estado"
-                                                       placeholder="${estadoErro}" name="estado" minlength="0" maxlength="75">
+                                                       placeholder="${estadoErro}" name="estado" minlength="0" maxlength="5">
                                             </c:otherwise>
                                         </c:choose>                                    
                                     </c:otherwise>
@@ -292,5 +292,26 @@
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
+        <!--AJAX que busca o CEP-->
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $("#cep").change(function () {
+                    var cep_code = $(this).val();
+                    if (cep_code.length <= 0)
+                        return;
+                    $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", {code: cep_code},
+                            function (result) {
+                                if (result.status != 1) {
+                                    alert(result.message || "Houve um erro desconhecido");
+                                    return;
+                                }
+                                $("input#estado").val(result.state);
+                                $("input#cidade").val(result.city);
+                                $("input#bairro").val(result.district);
+                                $("input#logradouro").val(result.address);
+                            });
+                });
+            });
+        </script>
     </body>
 </html>

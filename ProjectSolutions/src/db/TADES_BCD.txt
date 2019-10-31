@@ -68,7 +68,7 @@ INSERT INTO tbl_setor(nome_setor) VALUES ('Estoquista');
 INSERT INTO tbl_setor(nome_setor) VALUES ('Cliente');
 
 INSERT INTO tbl_usuario(nome, email, senha, cpf, fk_setor, status)
-    VALUES ('Milena Flores', 'diretoria@email.com','123','12345678900', 1, 0);
+    VALUES ('Milena Flores', 'diretoria@email.com','202cb962ac59075b964b07152d234b70','12345678900', 1, 0);
     
 INSERT INTO tbl_endereco(logradouro, numero, bairro, cidade, estado, cep, tipo, fk_usuario)
     VALUES ('Av. Eng. Eusébio Stevaux',823,'Santo Amaro','São Paulo','SP','04696000','cobranca', 1);

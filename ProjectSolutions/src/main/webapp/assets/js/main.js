@@ -21,10 +21,10 @@ $(function () {
 });
 
 // Metodo para corrigir a exclusão de produtos/usuarios
-function defineCodigo(valor){
+function defineCodigo(valor) {
     let origem = valor;
     let destino = document.getElementById('destino');
-    
+
     destino.value = origem;
 }
 
@@ -61,5 +61,4 @@ function salvarImagem() {
         console.log("end");
     };
     xhr.send();
-//    });
 }
