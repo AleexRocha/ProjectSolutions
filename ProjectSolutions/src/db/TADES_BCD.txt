@@ -24,7 +24,7 @@ CREATE TABLE tbl_endereco(
     numero int not null,
     bairro varchar(50),
     cidade varchar(50),
-    estado varchar(50),
+    estado varchar(5),
     cep varchar(8),
     tipo varchar(50) not null,
     fk_usuario int not null,
