@@ -44,7 +44,7 @@ public class Usuario {
         this.setor = setor;
     }
 
-    public Usuario(int codigo, String logradouro, int numero, String bairro, String cidade, String estado, String cep, String tipoEndereco) {
+    public Usuario(int codigo, String logradouro, int numero, String bairro, String cidade, String estado, String cep, String tipoEndereco, int codigoUsuario) {
         this.codigo = codigo;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -53,6 +53,7 @@ public class Usuario {
         this.estado = estado;
         this.cep = cep;
         this.tipoEndereco = tipoEndereco;
+        this.codigo = codigoUsuario;
     }
 
     public int getCodigo() {
