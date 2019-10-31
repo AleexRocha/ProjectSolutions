@@ -1,5 +1,6 @@
 package ServletEndereco;
 
+import DAO.EnderecoDAO;
 import DAO.ProdutoDAO;
 import DAO.UsuarioDAO;
 
@@ -82,7 +83,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(eUsuario));
-            boolean httpOk = UsuarioDAO.salvarEndereco(usuario);
+            boolean httpOk = EnderecoDAO.salvarEndereco(usuario);
 
             if (httpOk) {
                 HttpSession sessao = request.getSession();

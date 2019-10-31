@@ -1,7 +1,9 @@
 package ServletEndereco;
 
-import DAO.UsuarioDAO;
+import DAO.EnderecoDAO;
+
 import Model.Usuario;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 
@@ -23,7 +25,7 @@ public class EnderecoSelectEditCadastro extends HttpServlet {
 
         String cCodigo = request.getParameter("idUsuario");
 
-        Usuario usuario = UsuarioDAO.getEnderecoUser(Integer.parseInt(cCodigo));
+        Usuario usuario = EnderecoDAO.getEnderecoUser(Integer.parseInt(cCodigo));
 
         request.setAttribute("codigoUsuario", cCodigo);
         request.setAttribute("codigoEndereco", usuario.getCodigoEndereco());

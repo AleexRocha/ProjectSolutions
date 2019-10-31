@@ -1,6 +1,7 @@
 package ServletEndereco;
 
-import DAO.UsuarioDAO;
+import DAO.EnderecoDAO;
+
 import Model.Usuario;
 
 import java.io.IOException;
@@ -69,7 +70,7 @@ public class EnderecoEditarCadastro extends HttpServlet {
         }
 
         if (error) {
-            Usuario usuario = UsuarioDAO.getEnderecoUser(Integer.parseInt(eUsuario));
+            Usuario usuario = EnderecoDAO.getEnderecoUser(Integer.parseInt(eUsuario));
 
             request.setAttribute("codigoUsuario", usuario.getCodigo());
             request.setAttribute("codigoEndereco", usuario.getCodigoEndereco());
@@ -92,10 +93,10 @@ public class EnderecoEditarCadastro extends HttpServlet {
             Usuario usuario = new Usuario(Integer.parseInt(eEndereco), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(eUsuario));
             usuario.setCodigo(Integer.parseInt(eUsuario));
             
-            boolean httpOk = UsuarioDAO.alterarEndereco(usuario);
+            boolean httpOk = EnderecoDAO.alterarEndereco(usuario);
 
             if (httpOk) {
-                Usuario endereco = UsuarioDAO.getEnderecoUser(Integer.parseInt(eUsuario));
+                Usuario endereco = EnderecoDAO.getEnderecoUser(Integer.parseInt(eUsuario));
 
                 request.setAttribute("codigoEndereco", endereco.getCodigoEndereco());
                 request.setAttribute("cep", endereco.getCep());
