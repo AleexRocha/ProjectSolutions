@@ -2,10 +2,13 @@ package ServletEndereco;
 
 import DAO.ProdutoDAO;
 import DAO.UsuarioDAO;
+
 import Model.Produto;
 import Model.Usuario;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -78,44 +81,27 @@ public class EnderecoCadastroServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
             dispatcher.forward(request, response);
         } else {
-            int eIdEndereco;
+            Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(eUsuario));
+            boolean httpOk = UsuarioDAO.salvarEndereco(usuario);
 
-            Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo);
-            eIdEndereco = UsuarioDAO.salvarEndereco(usuario);
+            if (httpOk) {
+                HttpSession sessao = request.getSession();
+                if ((sessao.getAttribute("nomeSetor") == null) || (!sessao.getAttribute("nomeSetor").equals("Cliente"))) {
+                    ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+                    request.setAttribute("listaUsuarios", usuarios);
 
-            if (eIdEndereco > 0) {
-                Usuario relacao = new Usuario();
-                relacao.setCodigo(Integer.parseInt(eUsuario));
-                relacao.setCodigoEndereco(eIdEndereco);
+                    request.setAttribute("varMsg", true);
+                    request.setAttribute("msg", "Cadastro de usuário realizado com sucesso!");
 
-                boolean httpOk = UsuarioDAO.salvarRelacaoEnderecoUsuario(relacao);
-                if (httpOk) {
-                    HttpSession sessao = request.getSession();
-                    if ((sessao.getAttribute("nomeSetor") == null) || (!sessao.getAttribute("nomeSetor").equals("Cliente"))) {
-                        ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
-                        request.setAttribute("listaUsuarios", usuarios);
-
-                        request.setAttribute("varMsg", true);
-                        request.setAttribute("msg", "Cadastro de usuário realizado com sucesso!");
-
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
-                        dispatcher.forward(request, response);
-                    } else {
-                        ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-                        request.setAttribute("listaProdutos", produtos);
-                        request.setAttribute("varMsg", true);
-                        request.setAttribute("msg", "Cadastro realizado com sucesso!");
-
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
-                        dispatcher.forward(request, response);
-                    }
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+                    dispatcher.forward(request, response);
                 } else {
-                    request.setAttribute("codigo", eUsuario);
+                    ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+                    request.setAttribute("listaProdutos", produtos);
+                    request.setAttribute("varMsg", true);
+                    request.setAttribute("msg", "Cadastro realizado com sucesso!");
 
-                    request.setAttribute("varMsgErro", true);
-                    request.setAttribute("msg", "Erro ao salvar a relação entre usuario e endereço!");
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
                     dispatcher.forward(request, response);
                 }
             } else {

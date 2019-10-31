@@ -89,8 +89,9 @@ public class EnderecoEditarCadastro extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(Integer.parseInt(eEndereco), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo);
+            Usuario usuario = new Usuario(Integer.parseInt(eEndereco), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(eUsuario));
             usuario.setCodigo(Integer.parseInt(eUsuario));
+            
             boolean httpOk = UsuarioDAO.alterarEndereco(usuario);
 
             if (httpOk) {
@@ -116,7 +117,6 @@ public class EnderecoEditarCadastro extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         }
-
     }
 
     @Override
