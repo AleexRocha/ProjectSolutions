@@ -5,7 +5,10 @@ import Model.Imagem;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -40,6 +43,7 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         boolean error = false;
         ArrayList caminhos = new ArrayList();
         ArrayList nomesArquivos = new ArrayList();
@@ -60,18 +64,27 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
                 while (iterator.hasNext()) {
                     FileItem item = (FileItem) iterator.next();
                     if (!item.isFormField()) {
-                        String fileName = item.getName();
+                        DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss_SSS");
+                        Date date = new Date();
+
+                        String extensao = null;
+                        String nameImg = item.getName();
+                        if (nameImg.contains(".")) {
+                            extensao = nameImg.substring(nameImg.lastIndexOf(".") + 1);
+                        }
+                        String fileName = dateFormat.format(date) + "." + extensao;
+                        String caminho = getServletContext().getContextPath() + "/src/main/webapp/assets/uploads/images";
+
                         String root = getServletContext().getRealPath("/");
-                        String caminho = getServletContext().getContextPath();
                         File path = new File(root + "../../src/main/webapp/assets/uploads/images");
 
                         if (!path.exists()) {
-                            boolean status = path.mkdirs();
+                            path.mkdirs();
                         }
 
                         File uploadedFile = new File(path + "/" + fileName);
                         item.write(uploadedFile);
-                        caminhos.add(caminho + "/src/main/webapp/assets/uploads/images");
+                        caminhos.add(caminho);
                         nomesArquivos.add(fileName);
                     }
                 }
