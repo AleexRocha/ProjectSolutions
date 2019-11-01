@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
     <body>
-       <%@include file="../WEB-INF/header.jsp"%>
+        <%@include file="../WEB-INF/header.jsp"%>
         <div class="container">
             <br>
             <h2 class="text-center subtitulo titulo-produto-descricao"><c:out value="${produto.nome}"/></h2>        
@@ -33,10 +33,7 @@
                             <div class="product_slider_img">
                                 <div id="vertical">
                                     <div data-thumb="img/product_details/prodect_details_1.png">
-                                        <%--  <img src="${produto.srcImagem}" /> --%>
-                                        <!-- Web Server for Chrome --> 
-                                        <!-- Adicionar extensão ao chrome que simula um servidor na pasta de imagens / caminho está sendo bloqueado -->
-                                        <img src="http://127.0.0.1:8887/${produto.srcImagem}" />
+                                        <img src="../assets/uploads/images/<c:out value="${produto.nomeImagem}"/>"/>
                                     </div>
                                 </div>
                             </div>

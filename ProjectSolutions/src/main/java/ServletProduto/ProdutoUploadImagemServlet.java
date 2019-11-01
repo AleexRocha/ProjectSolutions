@@ -62,7 +62,8 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
                     if (!item.isFormField()) {
                         String fileName = item.getName();
                         String root = getServletContext().getRealPath("/");
-                        File path = new File(root + "../../src/main/uploads/images");
+                        String caminho = getServletContext().getContextPath();
+                        File path = new File(root + "../../src/main/webapp/assets/uploads/images");
 
                         if (!path.exists()) {
                             boolean status = path.mkdirs();
@@ -70,7 +71,7 @@ public class ProdutoUploadImagemServlet extends HttpServlet {
 
                         File uploadedFile = new File(path + "/" + fileName);
                         item.write(uploadedFile);
-                        caminhos.add(uploadedFile.getCanonicalPath());
+                        caminhos.add(caminho + "/src/main/webapp/assets/uploads/images");
                         nomesArquivos.add(fileName);
                     }
                 }

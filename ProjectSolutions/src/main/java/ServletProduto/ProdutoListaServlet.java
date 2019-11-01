@@ -32,6 +32,7 @@ public class ProdutoListaServlet extends HttpServlet {
 
         Usuario userTeste = new Usuario();
         userTeste.setNomeSetor(String.valueOf(sessao.getAttribute("nomeSetor")));
+        
         if (userTeste.getNomeSetor().equalsIgnoreCase("Cliente") || sessao.getAttribute("nomeSetor") == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/index.jsp");
             dispatcher.forward(request, response);
