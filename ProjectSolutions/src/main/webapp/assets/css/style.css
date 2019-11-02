@@ -15,7 +15,7 @@
 /**************** common css start ****************/
 /* line 4, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_common.scss */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   padding: 0;
   margin: 0;
   font-size: 14px;
@@ -4593,7 +4593,6 @@ ul {
 
 /* line 1259, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
 .cart_inner .table tbody tr.shipping_area .shipping_box {
-  margin-left: -250px;
   text-align: right;
 }
 

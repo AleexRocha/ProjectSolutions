@@ -22,9 +22,9 @@
     </head>
     <body>
         <%@include file="../WEB-INF/header.jsp"%>
-        <div class="container">
-            <br>
-            <h2 class="text-center subtitulo titulo-produto-descricao"><c:out value="${produto.nome}"/></h2>        
+        <h2 class="h2 text-center subtitulo">Descrição</h2>
+        <br>
+        <div class="container" 
             <!--================Single Product Area =================-->
             <div class="product_image_area">
                 <div class="container">
@@ -57,10 +57,10 @@
                                         <span class="number-increment"> <i class="fas fa-minus"></i></span>
                                     </div>
                                 </c:if>
-                                <div class="card_area">
-                                    <div class="add_to_cart">
-                                        <a href="#" class="btn_3">Adicionar ao Carrinho</a>
-                                    </div>
+                               <button type="submit" class="btn btn-light btn-block">
+                                   <i class="fas fa-cart-arrow-down"></i>
+                                  Adicionar ao Carrinho
+                                 </button>
                                 </div>
                             </div>
                         </div>

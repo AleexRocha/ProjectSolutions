@@ -19,6 +19,8 @@
 </head>
 <body>
    <%@include file="../WEB-INF/header.jsp"%>
+   <h2 class="h2 text-center subtitulo">Carrinho</h2>
+   <br>
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
@@ -127,15 +129,15 @@
                       <option value="2">Taboão da Serra</option>
                       <option value="4">Vila das Belezas dddddddddddd</option>
                     </select>
-                    <a class="btn_3" href="#">Atualizar Detalhes</a>
+                   <button type="submit" class="btn btn-light btn-block">Atualizar Detalhes</button>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
-            <a class="btn_3" href="#">Continue Shopping</a>
-            <a class="btn_3 checkout_btn_1" href="#">Finalizar compra</a>
+            <button  type="submit" class="btn btn-light btn-block">Continue Shopping</button>
+            <button  type="submit" class="btn btn-light btn-block">Finalizar compra</button>
           </div>
         </div>
       </div>
