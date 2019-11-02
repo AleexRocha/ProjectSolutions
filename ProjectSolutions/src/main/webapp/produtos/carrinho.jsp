@@ -13,7 +13,6 @@
         <title>Carrinho</title>
         <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
-        <link rel="stylesheet" href="../assets/css/themify-icons.css"/>
         <link rel="stylesheet" href="../assets/css/style.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     </head>
@@ -51,7 +50,7 @@
                                 <td>
                                     <div class="product_count">
                                         <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input class="input-number" type="text" value="1" min="0" max="10">
+                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
                                         <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -76,7 +75,7 @@
                                 <td>
                                     <div class="product_count">
                                         <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input class="input-number" type="text" value="1" min="0" max="10">
+                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
                                         <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -101,7 +100,7 @@
                                 <td>
                                     <div class="product_count">
                                         <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input class="input-number" type="text" value="1" min="0" max="10">
+                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
                                         <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -126,7 +125,7 @@
                                 <td>
                                     <div class="product_count">
                                         <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input class="input-number" type="text" value="1" min="0" max="10">
+                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
                                         <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -151,7 +150,7 @@
                                 <td>
                                     <div class="product_count">
                                         <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input class="input-number" type="text" value="1" min="0" max="10">
+                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
                                         <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -176,7 +175,7 @@
                                 <td>
                                     <div class="product_count">
                                         <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input class="input-number" type="text" value="1" min="0" max="10">
+                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
                                         <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -201,7 +200,7 @@
                                 <td>
                                     <div class="product_count">
                                         <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input class="input-number" type="text" value="1" min="0" max="10">
+                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
                                         <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>

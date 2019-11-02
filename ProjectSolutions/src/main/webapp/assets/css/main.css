@@ -189,6 +189,15 @@ footer {
     text-align: justify;
     margin: 0px 15px;
 }
-.estiloFrete{
-    
+/*input de valores do carrinho*/
+.input-carrinho{
+    width: 40px !important;
+    height: 35px !important;
+    border: solid 1px #cccccc;
+    border-radius: 5px;
+}
+.input-number-decrement, .input-number-increment{
+    font-size: 17px;
+    cursor: pointer;
+    padding: 5px;
 }
