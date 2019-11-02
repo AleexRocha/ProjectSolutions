@@ -57,9 +57,16 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label for="codigoUsuario" class="sr-only">Código do usuario:</label>
-                                <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
-                                       value="${codigoUsuario}" name="codigoUsuario">
+                                <c:choose>
+                                    <c:when test="${acao == 'editar'}">
+                                        <label class="sr-only">Info usuarios:</label>
+                                        <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
+                                               value="${codigoUsuario}" name="codigoUsuario">
+                                        <input type="text" class="form-control inputForm sr-only" id="valorSetor"
+                                               value="${valorSetor}" name="valorSetor">
+                                    </c:when>
+
+                                </c:choose>
 
                                 <label for="codigoEndereco" class="sr-only">Código do endereco:</label>
                                 <input type="number" class="form-control inputForm sr-only" id="codigoEndereco"
@@ -239,16 +246,16 @@
                                         <c:choose>
                                             <c:when test="${empty tipoErro}">
                                                 <select class="custom-select inputForm" id="tipoEndereco" name="tipoEndereco">
-                                                    <option selected = "" disabled="" hidden="" value="${tipoEndereco}">${tipoEndereco}</option>
-                                                    <option value="cobranca">Endereço de Cobrança</option>
-                                                    <option value="entrega">Endereço de Entrega</option>
+                                                    <option selected = "" hidden="" value="${tipoEndereco}">${tipoEndereco}</option>
+                                                    <option value="Cobranca">Endereço de Cobrança</option>
+                                                    <option value="Entrega">Endereço de Entrega</option>
                                                 </select>
                                             </c:when>
                                             <c:otherwise>
                                                 <select class="custom-select inputForm" id="tipoEndereco" name="tipoEndereco">
-                                                    <option selected = "" disabled="" hidden="" value="${tipoEndereco}">${tipoErro}</option>
-                                                    <option value="cobranca">Endereço de Cobrança</option>
-                                                    <option value="entrega">Endereço de Entrega</option>
+                                                    <option selected = "" hidden="" value="${tipoEndereco}">${tipoErro}</option>
+                                                    <option value="Cobranca">Endereço de Cobrança</option>
+                                                    <option value="Entrega">Endereço de Entrega</option>
                                                 </select>
                                             </c:otherwise>
                                         </c:choose>                                      
@@ -257,16 +264,16 @@
                                         <c:choose>
                                             <c:when test="${empty tipoErro}">
                                                 <select class="custom-select inputForm" id="tipoEndereco" name="tipoEndereco">
-                                                    <option selected = "" disabled="" hidden="">Tipo de Endereço</option>
-                                                    <option value="cobranca">Endereço de Cobrança</option>
-                                                    <option value="entrega">Endereço de Entrega</option>
+                                                    <option selected = "" hidden="">Tipo de Endereço</option>
+                                                    <option value="Cobranca">Endereço de Cobrança</option>
+                                                    <option value="Entrega">Endereço de Entrega</option>
                                                 </select>
                                             </c:when>
                                             <c:otherwise>
                                                 <select class="custom-select inputForm error" id="tipoEndereco" name="tipoEndereco">
-                                                    <option selected = "" disabled="" hidden="">${tipoErro}</option>
-                                                    <option value="cobranca">Endereço de Cobrança</option>
-                                                    <option value="entrega">Endereço de Entrega</option>
+                                                    <option selected = "" hidden="">${tipoErro}</option>
+                                                    <option value="Cobranca">Endereço de Cobrança</option>
+                                                    <option value="Entrega">Endereço de Entrega</option>
                                                 </select>
                                             </c:otherwise>
                                         </c:choose>                                    
@@ -294,24 +301,24 @@
         <script src="../assets/js/main.js"></script>
         <!--AJAX que busca o CEP-->
         <script type="text/javascript">
-            jQuery(function ($) {
-                $("#cep").change(function () {
-                    var cep_code = $(this).val();
-                    if (cep_code.length <= 0)
-                        return;
-                    $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", {code: cep_code},
-                            function (result) {
-                                if (result.status != 1) {
-                                    alert(result.message || "Houve um erro desconhecido");
-                                    return;
-                                }
-                                $("input#estado").val(result.state);
-                                $("input#cidade").val(result.city);
-                                $("input#bairro").val(result.district);
-                                $("input#logradouro").val(result.address);
-                            });
-                });
-            });
+                                                           jQuery(function ($) {
+                                                               $("#cep").change(function () {
+                                                                   var cep_code = $(this).val();
+                                                                   if (cep_code.length <= 0)
+                                                                       return;
+                                                                   $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", {code: cep_code},
+                                                                           function (result) {
+                                                                               if (result.status != 1) {
+                                                                                   alert(result.message || "Houve um erro desconhecido");
+                                                                                   return;
+                                                                               }
+                                                                               $("input#estado").val(result.state);
+                                                                               $("input#cidade").val(result.city);
+                                                                               $("input#bairro").val(result.district);
+                                                                               $("input#logradouro").val(result.address);
+                                                                           });
+                                                               });
+                                                           });
         </script>
     </body>
 </html>

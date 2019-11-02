@@ -123,12 +123,13 @@ Author     : nicolas.hgyoshioka
                                 <label for="descricaoProduto">Descrição:</label>
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
-                                        <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if> type="text" class="form-control inputForm" id="descricao"
-                                                                                                       value="${descricao}" name="descricao" minlength="0" maxlength="100">
+                                        <input type="text" class="form-control inputForm" id="descricao"
+                                               value="${descricao}" name="descricao" minlength="0" maxlength="500"
+                                               <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if>>
                                     </c:when>
                                     <c:otherwise>
                                         <input type="text" class="form-control inputForm" id="descricao"
-                                               placeholder="Descrição do produto" name="descricao" minlength="0" maxlength="100">
+                                               placeholder="Descrição do produto" name="descricao" minlength="0" maxlength="500">
                                     </c:otherwise>
                                 </c:choose>
 

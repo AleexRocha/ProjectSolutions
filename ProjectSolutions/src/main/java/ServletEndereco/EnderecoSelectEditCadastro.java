@@ -27,7 +27,8 @@ public class EnderecoSelectEditCadastro extends HttpServlet {
 
         Usuario usuario = EnderecoDAO.getEnderecoUser(Integer.parseInt(cCodigo));
 
-        request.setAttribute("codigoUsuario", cCodigo);
+        request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
+        request.setAttribute("valorSetor", usuario.getSetor());
         request.setAttribute("codigoEndereco", usuario.getCodigoEndereco());
         request.setAttribute("cep", usuario.getCep());
         request.setAttribute("numero", usuario.getNumero());

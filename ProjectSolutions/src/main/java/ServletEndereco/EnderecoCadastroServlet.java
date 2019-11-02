@@ -16,7 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,7 +29,8 @@ public class EnderecoCadastroServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String eUsuario = request.getParameter("codigoUsuario");
+        String uCodigoUsuario = request.getParameter("codigoUsuario");
+        String uSetorUsuario = request.getParameter("valorSetor");
         String eCep = request.getParameter("cep");
         String eLogradouro = request.getParameter("logradouro");
         String eNumero = request.getParameter("numero");
@@ -40,7 +40,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
         String eTipo = request.getParameter("tipoEndereco");
 
         boolean error = false;
-        if (eUsuario.length() == 0) {
+        if (uCodigoUsuario.length() == 0) {
             error = true;
             request.setAttribute("codigoErro", "Codigo do usuario não informado!");
         }
@@ -77,17 +77,17 @@ public class EnderecoCadastroServlet extends HttpServlet {
             request.setAttribute("varMsgError", true);
             request.setAttribute("msg", "Erro ao recuperar os dados, verifique os campos e tente novamente");
 
-            request.setAttribute("codigo", eUsuario);
+            request.setAttribute("codigoUsuario", uCodigoUsuario);
+            request.setAttribute("valorSetor", uSetorUsuario);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(Integer.parseInt(eUsuario), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(eUsuario));
+            Usuario usuario = new Usuario(Integer.parseInt(uCodigoUsuario), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(uCodigoUsuario));
             boolean httpOk = EnderecoDAO.salvarEndereco(usuario);
 
             if (httpOk) {
-                HttpSession sessao = request.getSession();
-                if ((sessao.getAttribute("nomeSetor") == null) || (!sessao.getAttribute("nomeSetor").equals("Cliente"))) {
+                if (!uSetorUsuario.equals("3")) {
                     ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
                     request.setAttribute("listaUsuarios", usuarios);
 
@@ -99,6 +99,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
                 } else {
                     ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
+                    
                     request.setAttribute("varMsg", true);
                     request.setAttribute("msg", "Cadastro realizado com sucesso!");
 
@@ -106,7 +107,8 @@ public class EnderecoCadastroServlet extends HttpServlet {
                     dispatcher.forward(request, response);
                 }
             } else {
-                request.setAttribute("codigo", eUsuario);
+                request.setAttribute("codigoUsuario", uCodigoUsuario);
+                request.setAttribute("valorSetor", uSetorUsuario);
 
                 request.setAttribute("varMsgError", true);
                 request.setAttribute("msg", "Erro ao salvar os dados de endereço");

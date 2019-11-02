@@ -3,7 +3,7 @@ package ServletUsuario;
 import DAO.UsuarioDAO;
 import Model.Produto;
 import Model.Usuario;
-import Utils.CpfValidator;
+
 import static Utils.Criptografia.criptografar;
 
 import java.io.IOException;
@@ -73,7 +73,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             ArrayList<Usuario> setores = UsuarioDAO.getSetoresCadastro();
 
             request.setAttribute("acao", "editar");
-            request.setAttribute("codigo", usuario.getCodigo());
+            request.setAttribute("codigo", usuario.getCodigoUsuario());
             request.setAttribute("nome", usuario.getNome());
             request.setAttribute("email", usuario.getEmail());
             request.setAttribute("senha", usuario.getSenha());
@@ -95,7 +95,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             HttpSession userLogado = request.getSession();
             Usuario usuario = new Usuario();
 
-            usuario.setCodigo(Integer.parseInt(cCodigo));
+            usuario.setCodigoUsuario(Integer.parseInt(cCodigo));
             usuario.setNome(cNome);
             usuario.setEmail(String.valueOf(userLogado.getAttribute("emailUsuario")));
 

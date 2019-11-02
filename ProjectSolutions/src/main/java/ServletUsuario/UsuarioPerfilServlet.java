@@ -26,7 +26,7 @@ public class UsuarioPerfilServlet extends HttpServlet {
 
         Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
 
-        request.setAttribute("codigoUsuario", usuario.getCodigo());
+        request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
         request.setAttribute("nome", usuario.getNome());
         request.setAttribute("cpf", usuario.getCpf());
         request.setAttribute("email", usuario.getEmail());

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,7 +30,7 @@ public class EnderecoDAO {
             query.setString(5, u.getEstado());
             query.setString(6, u.getCep());
             query.setString(7, u.getTipoEndereco());
-            query.setInt(8, u.getCodigo());
+            query.setInt(8, u.getCodigoUsuario());
 
             query.executeUpdate();
 
@@ -40,46 +41,6 @@ public class EnderecoDAO {
             return false;
         }
         return true;
-    }
-
-    public static Usuario getEnderecoUser(int codigoUsuario) {
-        Usuario endereco = null;
-        Connection conn = db.obterConexao();
-        try {
-            PreparedStatement query = conn.prepareStatement("SELECT *"
-                    + " FROM tbl_usuario AS u"
-                    + " INNER JOIN tbl_endereco AS e"
-                    + " ON u.id_usuario = e.id_endereco"
-                    + " WHERE u.id_usuario = ?;");
-
-            query.setInt(1, codigoUsuario);
-            ResultSet rs = query.executeQuery();
-
-            if (rs != null) {
-                while (rs.next()) {
-                    Usuario e = new Usuario(
-                            rs.getInt(1),
-                            rs.getString(9),
-                            rs.getInt(10),
-                            rs.getString(11),
-                            rs.getString(12),
-                            rs.getString(13),
-                            rs.getString(14),
-                            rs.getString(15),
-                            rs.getInt(16)
-                    );
-
-                    endereco = e;
-                    endereco.setCodigoEndereco(e.getCodigo());
-                }
-            }
-
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-        return endereco;
     }
 
     public static boolean alterarEndereco(Usuario u) {
@@ -96,7 +57,7 @@ public class EnderecoDAO {
             query.setString(5, u.getEstado());
             query.setString(6, u.getCep());
             query.setString(7, u.getTipoEndereco());
-            query.setInt(8, u.getCodigo());
+            query.setInt(8, u.getCodigoEndereco());
 
             query.executeUpdate();
             conn.close();
@@ -106,5 +67,87 @@ public class EnderecoDAO {
         }
 
         return true;
+    }
+
+    public static Usuario getEnderecoUser(int codigoEndereco) {
+        Usuario endereco = null;
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT *"
+                    + " FROM tbl_usuario AS u"
+                    + " INNER JOIN tbl_endereco AS e"
+                    + " ON u.id_usuario = e.fk_usuario"
+                    + " WHERE e.id_endereco = ?;");
+
+            query.setInt(1, codigoEndereco);
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Usuario e = new Usuario(
+                            rs.getInt(8),
+                            rs.getString(9),
+                            rs.getInt(10),
+                            rs.getString(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            rs.getString(14),
+                            rs.getString(15),
+                            rs.getInt(16)
+                    );
+                    e.setCodigoUsuario(rs.getInt(1));
+                    e.setSetor(rs.getInt(6));
+                    
+                    endereco = e;
+                }
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return endereco;
+    }
+
+    public static ArrayList<Usuario> getEnderecosUser(int codigoUsuario) {
+        ArrayList<Usuario> enderecos = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT *"
+                    + " FROM tbl_usuario AS u"
+                    + " INNER JOIN tbl_endereco AS e"
+                    + " ON u.id_usuario = e.fk_usuario"
+                    + " WHERE u.id_usuario = ?;");
+
+            query.setInt(1, codigoUsuario);
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Usuario endereco = new Usuario(
+                            rs.getInt(8),
+                            rs.getString(9),
+                            rs.getInt(10),
+                            rs.getString(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            rs.getString(14),
+                            rs.getString(15),
+                            rs.getInt(16)
+                    );
+                    endereco.setCodigoUsuario(rs.getInt(1));
+                    endereco.setSetor(rs.getInt(6));
+                    
+                    enderecos.add(endereco);
+                }
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return enderecos;
     }
 }

@@ -36,11 +36,18 @@
                                 </button>
                             </form>
                         </c:if>
+                        <c:if test="${perfil == 'endereco'}">
+                            <form action="cadastro_endereco.jsp" method="POST">
+                                <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn nav-link subtitulo">
+                                    Cadastrar novo endereço
+                                </button>
+                            </form>
+                        </c:if>
                         <a class="nav-link subtitulo" href="#">Pedidos em andamento</a>
                         <a class="nav-link subtitulo" href="#">Pedidos finalizados</a>
                     </nav>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-9 col-sm-12">
                     <c:if test="${varMsg == true}">
                         <div class="alert alert-success" role="alert">
                             <c:out value="${msg}"/>
@@ -60,26 +67,33 @@
 
                     <c:choose>
                         <c:when test="${perfil == 'pessoal'}">
-                            <label for="codigoUsuario">Seu código de usuário:</label>
-                            <input type="number" class="form-control inputFormPerfil" id="codigoUsuario"
-                                   placeholder="Código do usuário" value="${codigoUsuario}" name="codigoUsuario" disabled="">
-
-                            <label for="nome">Seu nome:</label>
-                            <input type="text" class="form-control inputFormPerfil" id="nome"
-                                   placeholder="Seu Nome" value="${nome}" name="nome" disabled="">
-
-                            <label for="cpf">Seu CPF:</label>
-                            <input type="text" class="form-control inputFormPerfil" id="cpf"
-                                   placeholder="Seu CPF" value="${cpf}" name="cpf" disabled="">
-
-                            <label for="email">Seu E-mail:</label>        
-                            <input type="email" class="form-control inputFormPerfil" id="email"
-                                   placeholder="Seu E-mail" value="${email}" name="email" disabled="">
-
-                            <label for="setor" >Você é um:</label>
-                            <input type="text" class="form-control inputFormPerfil" id="setor"
-                                   placeholder="Setor" value="${nomeSetor}" name="senha" disabled="">
-
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="nome">Seu nome completo:</label>
+                                    <input type="text" class="form-control inputFormPerfil" id="nome"
+                                           placeholder="Seu Nome" value="${nome}" name="nome" disabled="">
+                                </div>
+                                <div class="col-6">
+                                    <label for="codigoUsuario">Seu código de usuário:</label>
+                                    <input type="number" class="form-control inputFormPerfil" id="codigoUsuario"
+                                           placeholder="Código do usuário" value="${codigoUsuario}" name="codigoUsuario" disabled="">
+                                </div>
+                                <div class="col-6">
+                                    <label for="cpf">Seu CPF:</label>
+                                    <input type="text" class="form-control inputFormPerfil" id="cpf"
+                                           placeholder="Seu CPF" value="${cpf}" name="cpf" disabled="">
+                                </div>
+                                <div class="col-6">
+                                    <label for="email">Seu E-mail:</label>        
+                                    <input type="email" class="form-control inputFormPerfil" id="email"
+                                           placeholder="Seu E-mail" value="${email}" name="email" disabled="">
+                                </div>
+                                <div class="col-6">
+                                    <label for="setor" >Você é um:</label>
+                                    <input type="text" class="form-control inputFormPerfil" id="setor"
+                                           placeholder="Setor" value="${nomeSetor}" name="senha" disabled="">
+                                </div>
+                            </div>
                             <form action="dados_usuario" method="POST">
                                 <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn btn-success btn-block col-12" style="margin-top: 10px;">
                                     <i class="fas fa-pen"></i>
@@ -88,48 +102,71 @@
                             </form>
                         </c:when>
                         <c:otherwise>
-                            <label for="codigoEndereco">Código do endereço:</label>
-                            <input type="number" class="form-control inputFormPerfil" id="codigoEndereco"
-                                   placeholder="Código do endereço" value="${codigoEndereco}" name="codigoEndereco" disabled="">
-
-                            <label for="cep" >Seu CEP:</label>
-                            <input type="text" class="form-control inputFormPerfil" id="cep"
-                                   placeholder="Seu CEP" value="${cep}" name="cep" disabled="">
-
-                            <label for="numero">Seu Número:</label>
-                            <input type="number" class="form-control inputFormPerfil" id="numero"
-                                   placeholder="Seu Número" value="${numero}" name="numero" disabled="">
-
-                            <label for="logradouro">Seu Logradouro:</label>
-                            <input type="text" class="form-control inputFormPerfil" id="logradouro"
-                                   placeholder="Seu Logradouro" value="${logradouro}" name="logradouro" disabled="">
-
-                            <label for="email">Seu Bairro:</label>        
-                            <input type="bairro" class="form-control inputFormPerfil" id="bairro"
-                                   placeholder="Seu Bairro" value="${bairro}" name="bairro" disabled="">
-
-                            <label for="cidade" >Sua Cidade:</label>
-                            <input type="text" class="form-control inputFormPerfil" id="cidade"
-                                   placeholder="Sua Cidade" value="${cidade}" name="cidade" disabled="">
-
-                            <label for="estado" >Seu Estado:</label>
-                            <input type="text" class="form-control inputFormPerfil" id="estado"
-                                   placeholder="Seu Estado" value="${estado}" name="estado" disabled="">
-
-                            <label for="tipoEndereco" >Este endereço é de</label>
-                            <input type="text" class="form-control inputFormPerfil" id="tipoEndereco"
-                                   placeholder="Este endereço é de" value="${tipoEndereco}" name="tipoEndereco" disabled="">
-
-                            <form action="select_endereco" method="POST">
-                                <button type="submit" name="idUsuario" value="${codigoUsuario}" class="btn btn-success btn-block col-12" style="margin-top: 10px;">
-                                    <i class="fas fa-pen"></i>
-                                    Edite suas informações
-                                </button>
-                            </form>
+                            <div class="row">
+                                <c:forEach var="enderecos" items="#{listaEnderecos}">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="card" style="background-color: #f3f3f3 !important;">
+                                            <div class="card-body">
+                                                <span class="card-title">
+                                                    <b> Logradouro / Número:</b>
+                                                    <p><c:out value="${enderecos.logradouro}"/>, <c:out value="${enderecos.numero}"/></p>
+                                                </span>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="card-title">
+                                                            <b> Complemento </b>
+                                                            <p><c:out value="${enderecos.numero}"/></p>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="card-title">
+                                                            <b> CEP: </b>
+                                                            <p><c:out value="${enderecos.cep}"/></p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="card-title">
+                                                            <b> Bairro: </b>
+                                                            <p><c:out value="${enderecos.bairro}"/></p>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="card-title">
+                                                            <b> Cidade: </b>
+                                                            <p><c:out value="${enderecos.cidade}"/></p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="card-title">
+                                                            <b> Estado: </b>
+                                                            <p><c:out value="${enderecos.estado}"/></p>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="card-title">
+                                                            <b> Endereço de: </b>
+                                                            <p><c:out value="${enderecos.tipoEndereco}"/></p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <form action="select_endereco" method="POST">
+                                                <button type="submit" name="idUsuario" value="${enderecos.codigoEndereco}" class="btn btn-success btn-block col-12" style="margin-top: 10px;">
+                                                    <i class="fas fa-pen"></i>
+                                                    Edite suas informações
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </c:otherwise>
                     </c:choose>
                 </div>
-                <div class="col-md-3"></div>
             </div>
             <%@include file="../WEB-INF/footer.jsp" %>
         </div>

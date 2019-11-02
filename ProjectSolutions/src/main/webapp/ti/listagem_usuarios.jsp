@@ -61,20 +61,20 @@ Author     : nicolas.hgyoshioka
                 <tbody id="teste">  
                     <c:forEach var="usuarios" items="${listaUsuarios}">                
                         <tr>
-                            <td class="coluna" name="codigo" ><c:out value="${usuarios.codigo}" /></td>
+                            <td class="coluna" name="codigo" ><c:out value="${usuarios.codigoUsuario}" /></td>
                             <td class="coluna" name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.email}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.cpf}" /></td>
                             <td class="coluna" name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
                             <td class="btn-group">
                                 <form action="dados_usuario" method="POST">
-                                    <button name="idUsuario" value="${usuarios.codigo}" type="submit" class="btn btn-success">
+                                    <button name="idUsuario" value="${usuarios.codigoUsuario}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </form>
                                 <!-- Button que chama a modal -->
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario"
-                                        value="${usuarios.codigo}" onclick="defineCodigo(this.value)">
+                                        value="${usuarios.codigoUsuario}" onclick="defineCodigo(this.value)">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </td>

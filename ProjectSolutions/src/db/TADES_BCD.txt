@@ -34,7 +34,7 @@ CREATE TABLE tbl_endereco(
 CREATE TABLE tbl_produtos(
     id_produto int not null primary key auto_increment,
     nome varchar(50) not null,
-    descricao varchar(100),
+    descricao varchar(500),
     tipo varchar(10) not null,
     qtd_estoque int not null,
     valor_unidade double not null,

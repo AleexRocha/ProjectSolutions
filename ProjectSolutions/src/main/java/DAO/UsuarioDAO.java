@@ -66,11 +66,11 @@ public class UsuarioDAO {
                 query.setString(3, u.getSenha());
                 query.setString(4, u.getCpf());
                 query.setInt(5, u.getSetor());
-                query.setInt(6, u.getCodigo());
+                query.setInt(6, u.getCodigoUsuario());
             } else {
                 query.setString(3, u.getCpf());
                 query.setInt(4, u.getSetor());
-                query.setInt(5, u.getCodigo());
+                query.setInt(5, u.getCodigoUsuario());
             }
 
             query.executeUpdate();
@@ -214,7 +214,7 @@ public class UsuarioDAO {
         Usuario sessao = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, s.nome_setor"
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.fk_setor, s.nome_setor"
                     + " FROM tbl_usuario AS u"
                     + " INNER JOIN tbl_setor AS s ON u.fk_setor = s.id_setor"
                     + " WHERE email = ?;");
@@ -224,9 +224,10 @@ public class UsuarioDAO {
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
                 sessao = new Usuario();
-                sessao.setCodigo(rs.getInt(1));
+                sessao.setCodigoUsuario(rs.getInt(1));
                 sessao.setNome(rs.getString(2));
-                sessao.setNomeSetor(rs.getString(3));
+                sessao.setSetor(rs.getInt(3));
+                sessao.setNomeSetor(rs.getString(4));
             }
             conn.close();
         } catch (SQLException e) {

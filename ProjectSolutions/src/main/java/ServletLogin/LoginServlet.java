@@ -110,9 +110,10 @@ public class LoginServlet extends HttpServlet {
     private HttpSession setSessao(String emailUser, HttpServletRequest request) {
         Usuario infoSessao = UsuarioDAO.getInfoSessao(emailUser);
         HttpSession sessao = request.getSession();
-        sessao.setAttribute("cdFuncionario", infoSessao.getCodigo());
+        sessao.setAttribute("cdFuncionario", infoSessao.getCodigoUsuario());
         sessao.setAttribute("nomeUsuario", infoSessao.getNome());
         sessao.setAttribute("nomeSetor", infoSessao.getNomeSetor());
+        sessao.setAttribute("cdSetor", infoSessao.getSetor());
 
         return sessao;
     }
