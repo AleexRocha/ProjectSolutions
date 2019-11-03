@@ -120,11 +120,11 @@
                         </div>
                         <div class="modal-footer">
                             <form action="../produtos/excluir_produto" method="POST" name="deletarProduto">
-                                <button name="excluirID" id="destino" type="submit" class="btn btn-danger">
+                                <button name="excluirID" id="destino" type="submit" class="btn btn-success">
                                     <i class="far fa-trash-alt"></i> Sim
                                 </button>
                             </form>
-                            <button type="button" class="btn btn-success" data-dismiss="modal">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">
                                 <i class="fas fa-ban"></i> Não
                             </button>
                         </div>
@@ -134,6 +134,7 @@
             <%@include file="../WEB-INF/footer.jsp"%>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
     </body>

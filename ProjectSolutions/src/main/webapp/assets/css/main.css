@@ -190,7 +190,7 @@ footer {
     margin: 0px 15px;
 }
 /*input de valores do carrinho*/
-.input-carrinho{
+.input-quantidade{
     width: 40px !important;
     height: 35px !important;
     border: solid 1px #cccccc;

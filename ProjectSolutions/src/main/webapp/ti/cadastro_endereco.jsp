@@ -297,28 +297,8 @@
             <%@include file="../WEB-INF/footer.jsp" %>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
-        <script src="../assets/js/main.js"></script>
-        <!--AJAX que busca o CEP-->
-        <script type="text/javascript">
-                                                           jQuery(function ($) {
-                                                               $("#cep").change(function () {
-                                                                   var cep_code = $(this).val();
-                                                                   if (cep_code.length <= 0)
-                                                                       return;
-                                                                   $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", {code: cep_code},
-                                                                           function (result) {
-                                                                               if (result.status != 1) {
-                                                                                   alert(result.message || "Houve um erro desconhecido");
-                                                                                   return;
-                                                                               }
-                                                                               $("input#estado").val(result.state);
-                                                                               $("input#cidade").val(result.city);
-                                                                               $("input#bairro").val(result.district);
-                                                                               $("input#logradouro").val(result.address);
-                                                                           });
-                                                               });
-                                                           });
-        </script>
+        <script src="../assets/js/main.js"></script>    
     </body>
 </html>

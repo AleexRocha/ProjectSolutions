@@ -23,17 +23,17 @@
         <div class="container">
             <div class="cart_inner">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" onload="onDocumnetLoad();">
                         <thead>
                             <tr>
                                 <th scope="col">Produto</th>
-                                <th scope="col">Preço</th>
+                                <th scope="col">Valor Unitário</th>
                                 <th scope="col">Quantidade</th>
                                 <th scope="col">Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr class="produto">
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
@@ -45,17 +45,17 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>R$77.00</h5>
+                                    <h5 class="preco">R$77.00</h5>
                                 </td>
-                                <td>
+                                <td class="quantidade">
                                     <div class="product_count">
-                                        <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
-                                        <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" min="1" max="5">
+                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>R$77.00</h5>
+                                    <h5 class="precoTotal"></h5>
                                 </td>
                             </tr>
                             <tr>
@@ -70,13 +70,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>R$178.37</h5>
+                                    <h5 class="unitario">R$178.37</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
-                                        <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" min="1" max="5">
+                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td>
@@ -95,13 +95,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>R$138.90</h5>
+                                    <h5 class="unitario">R$138.90</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
-                                        <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" min="1" max="5">
+                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td>
@@ -120,13 +120,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>R$89.00</h5>
+                                    <h5 class="unitario">R$89.00</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
-                                        <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" min="1" max="5">
+                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td>
@@ -145,13 +145,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>R$95.00</h5>
+                                    <h5 class="unitario">R$95.00</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
-                                        <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" min="1" max="5">
+                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td>
@@ -170,13 +170,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>R$192.90</h5>
+                                    <h5 class="unitario">R$192.90</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
-                                        <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" min="1" max="5">
+                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td>
@@ -195,13 +195,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>R$213.57</h5>
+                                    <h5 class="unitario">R$213.57</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <span class="input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-carrinho" value="1" min="0" max="10">
-                                        <span class="input-number-increment"> <i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" min="1" max="5">
+                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td>
@@ -276,6 +276,10 @@
                 </div>
             </div>
             <%@include file="../WEB-INF/footer.jsp"%>
-        </div>  
+        </div>
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/main.js"></script>
     </body>
 </html>
