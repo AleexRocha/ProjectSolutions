@@ -23,7 +23,7 @@
         <div class="container">
             <div class="cart_inner">
                 <div class="table-responsive">
-                    <table class="table" onload="onDocumnetLoad();">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Produto</th>
@@ -33,19 +33,72 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="produto">
-                                <td>
+                            <tr class="carrinho">
+                                <td class="produto">
                                     <div class="media">
                                         <div class="d-flex">
                                             <img src="../assets/img/produtos_teste/encanto_de_rosas_vermelhas.jpg" alt="Encanto de Rosas Vermelhas" />
                                         </div>
                                         <div class="media-body">
-                                            <p>Encanto de Rosas Vermelhas</p>
+                                            <p class="sr-only idProduto">1</p>
+                                            <p class="nomeProduto">Encanto de Rosas Vermelhas</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5 class="preco">R$77.00</h5>
+                                <td class="precoUnitario">
+                                    <h5 class="unitario">R$ 77.00</h5>
+                                </td>
+                                <td class="quantidade">
+                                    <div class="product_count">
+                                        <span class="altera input-number-decrement" data-id="1"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" data-id="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-id="1"><i class="fas fa-plus"></i></span>
+                                    </div>
+                                </td>
+                                <td class="precoTotal">
+                                    <h5 class="total">R$  77.00</h5>
+                                </td>
+                            </tr>
+                            <tr class="carrinho">
+                                <td class="produto">
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="../assets/img/produtos_teste/buquê_nobile.jpg" alt="Buque Nobile" />
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="sr-only idProduto">2</p>
+                                            <p>Buque Nobile</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="precoUnitario">
+                                    <h5 class="unitario">R$ 178.37</h5>
+                                </td>
+                                <td class="quantidade">
+                                    <div class="product_count">
+                                        <span class="altera input-number-decrement" data-id="2"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" data-id="2" min="1" max="5">
+                                        <span class="altera input-number-increment" data-id="2"><i class="fas fa-plus"></i></span>
+                                    </div>
+                                </td>
+                                <td class="precoTotal">
+                                    <h5 class="total">R$ 178.37</h5>
+                                </td>
+                            </tr>
+                            <tr class="carrinho">
+                                <td class="produto">
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="../assets/img/produtos_teste/buquê_flores_charme_rosas.jpg" alt="Buque de Flores Charme em Rosas" />
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="sr-only idProduto">3</p>
+                                            <p>Buque de Flores Charme em Rosas</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="precoUnitario">
+                                    <h5 class="unitario">R$ 138.90</h5>
                                 </td>
                                 <td class="quantidade">
                                     <div class="product_count">
@@ -54,158 +107,112 @@
                                         <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5 class="precoTotal"></h5>
+                                <td class="precoTotal">
+                                    <h5 class="total">R$ 138.90</h5>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="../assets/img/produtos_teste/buquê_nobile.jpg" alt="Buque Nobile" />
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Buque Nobile</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5 class="unitario">R$178.37</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" min="1" max="5">
-                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>R$178.37</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="../assets/img/produtos_teste/buquê_flores_charme_rosas.jpg" alt="Buque de Flores Charme em Rosas" />
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Buque de Flores Charme em Rosas</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5 class="unitario">R$138.90</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" min="1" max="5">
-                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>R$138.90</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
+                            <tr class="carrinho">
+                                <td class="produto">
                                     <div class="media">
                                         <div class="d-flex">
                                             <img src="../assets/img/produtos_teste/arranjo_flores_luz_amor.jpg" alt="Arranjo de Flores Luz e Amor" />
                                         </div>
                                         <div class="media-body">
+                                            <p class="sr-only idProduto">4</p>
                                             <p>Arranjo de Flores Luz e Amor</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5 class="unitario">R$89.00</h5>
+                                <td class="precoUnitario">
+                                    <h5 class="unitario">R$ 89.00</h5>
                                 </td>
-                                <td>
+                                <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
                                         <input type="number" class="input-quantidade" min="1" max="5">
                                         <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5>R$89.00</h5>
+                                <td class="precoTotal">
+                                    <h5 class="total">R$ 89.00</h5>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
+                            <tr class="carrinho">
+                                <td class="produto">
                                     <div class="media">
                                         <div class="d-flex">
                                             <img src="../assets/img/produtos_teste/buquê_garden_flores_campo.jpg" alt="Buque Garden Flores do Campo" />
                                         </div>
                                         <div class="media-body">
+                                            <p class="sr-only idProduto">5</p>
                                             <p>Buque Garden Flores do Campo</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5 class="unitario">R$95.00</h5>
+                                <td class="precoUnitario">
+                                    <h5 class="unitario">R$ 95.00</h5>
                                 </td>
-                                <td>
+                                <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
                                         <input type="number" class="input-quantidade" min="1" max="5">
                                         <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5>R$95.00</h5>
+                                <td class="precoTotal">
+                                    <h5 class="total">R$ 95.00</h5>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
+                            <tr class="carrinho">
+                                <td class="produto">
                                     <div class="media">
                                         <div class="d-flex">
                                             <img src="../assets/img/produtos_teste/buquê_flores_tradition_com_18_rosas.jpg" alt="Buque de Flores Tradition com 18 Rosas" />
                                         </div>
                                         <div class="media-body">
+                                            <p class="sr-only idProduto">6</p>
                                             <p>Buque de Flores Tradition com 18 Rosas</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5 class="unitario">R$192.90</h5>
+                                <td class="precoUnitario">
+                                    <h5 class="unitario">R$ 192.90</h5>
                                 </td>
-                                <td>
+                                <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
                                         <input type="number" class="input-quantidade" min="1" max="5">
                                         <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5>R$192.90</h5>
+                                <td class="precoTotal">
+                                    <h5 class="total">R$ 192.90</h5>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
+                            <tr class="carrinho">
+                                <td class="produto">
                                     <div class="media">
                                         <div class="d-flex">
                                             <img src="../assets/img/produtos_teste/cesta_café_com_flores_bom_dia_para_você!.jpg" alt="Cesta de Café com Flores Bom Dia para Você!" />
                                         </div>
                                         <div class="media-body">
+                                            <p class="sr-only idProduto">7</p>
                                             <p>Cesta de Café com Flores Bom Dia para Você!</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5 class="unitario">R$213.57</h5>
+                                <td class="precoUnitario">
+                                    <h5 class="unitario">R$ 213.57</h5>
                                 </td>
-                                <td>
+                                <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
                                         <input type="number" class="input-quantidade" min="1" max="5">
                                         <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5>R$213.57</h5>
+                                <td class="precoTotal">
+                                    <h5 class="total">R$ 213.57</h5>
                                 </td>
                             </tr>
 
@@ -216,7 +223,7 @@
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td>
-                                    <h5>R$984.74</h5>
+                                    <h5>R$ 984.74</h5>
                                 </td>
                             </tr>
                             <tr>
@@ -249,11 +256,11 @@
                                             </li>
                                             <li>
                                                 <input type="radio" id="instantaneo" name="frete" value="">
-                                                <label for="instantaneo">Instantanea R$20.00</label>
+                                                <label for="instantaneo">Instantanea R$ 20.00</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="agendado" name="frete" value="">
-                                                <label for="agendado">Agendada: R$15.00</label>
+                                                <label for="agendado">Agendada: R$ 15.00</label>
                                             </li>
                                         </ul>
                                     </div>
@@ -268,7 +275,7 @@
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                        <button  type="submit" class="btn btn-success btn-block">
+                        <button  type="submit" class="btn btn-success btn-block" onclick="salvarProdutos();">
                             <i class="fas fa-shopping-cart"></i>
                             Finalizar compra
                         </button>
@@ -281,5 +288,6 @@
         <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/carrinho.js"></script>
     </body>
 </html>

@@ -1,18 +1,21 @@
 package ServletVenda;
 
-import DAO.VendaDAO;
 import Model.Venda;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.google.gson.Gson;
+import java.io.BufferedReader;
 
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,104 +24,36 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "VendaCadastroServlet", urlPatterns = {"/venda/create_venda"})
 public class VendaCadastroServlet extends HttpServlet {
 
-    private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
+    private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String vCodProduto[] = (String[]) request.getParameterValues("codigoProduto");
-        String vIdFuncionario = request.getParameter("idFuncionario");
-        String vCpfCliente = request.getParameter("cpfCliente");
-        String vQuantidade[] = (String[]) request.getParameterValues("quantidade");
+        Venda venda = new Venda();
+        Gson gson = new Gson();
+        BufferedReader reader = request.getReader();
 
-        boolean error = false;
-        if (vCodProduto == null) {
-            error = true;
-            request.setAttribute("codProdutoErro", "Produto invalido!");
-        } else if (vCodProduto.equals("")) {
-            error = true;
-            request.setAttribute("codProdutoErro", "Produto invalido!");
-        }
-        if (vIdFuncionario == null) {
-            error = true;
-            request.setAttribute("idFuncErro", "Usuario invalido");
-        } else if (vIdFuncionario.equalsIgnoreCase("0")) {
-            error = true;
-            request.setAttribute("idFuncErro", "Usuario invalido");
-        }
-        if (vQuantidade == null) {
-            error = true;
-            request.setAttribute("quantidadeErro", "Quantidade invalida");
-        } else if (vQuantidade.equals("")) {
-            error = true;
-            request.setAttribute("quantidadeErro", "Quantidade invalida");
-        }
+        DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+        Date date = new Date();
+        String horarioVenda = dateFormat.format(date);
 
-        if (error) {
-            ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-            ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
+        HttpSession userLogado = request.getSession();
+        int codigoUsuario = (int) userLogado.getAttribute("cdFuncionario");
+        String cpfUsuario = (String) userLogado.getAttribute("cpfUsuario");
 
-            if (produtosVenda.isEmpty()) {
-                Venda uv = new Venda();
-
-                uv.setNomeProduto("Não há produtos cadastrados");
-                produtosVenda.add(uv);
-
-                request.setAttribute("listaProdutos", produtosVenda);
-            } else {
-                request.setAttribute("listaProdutos", produtosVenda);
-            }
-
-            if (usuariosVenda.isEmpty()) {
-                Venda uv = new Venda();
-
-                uv.setNomeFuncionario("Não há usuarios cadastrados");
-                usuariosVenda.add(uv);
-
-                request.setAttribute("listaUsuarios", usuariosVenda);
-            } else {
-                request.setAttribute("listaUsuarios", usuariosVenda);
-            }
-
-            request.setAttribute("varMsgE", true);
-            request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            int[] cdProd = Arrays.stream(vCodProduto).mapToInt(Integer::parseInt).toArray();
-            int[] qtdVenda = Arrays.stream(vQuantidade).mapToInt(Integer::parseInt).toArray();
-            Venda venda = new Venda(cdProd, Integer.parseInt(vIdFuncionario), qtdVenda);
-            if (vCpfCliente.length() != 0) {
-                venda.setCpfCliente(vCpfCliente);
-            }
-
-            boolean httpOK = VendaDAO.salvarVenda(venda);
-            if (httpOK) {
-                request.setAttribute("varMsgS", true);
-                request.setAttribute("msg", "Venda realizada com sucesso.");
-
-                ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-                request.setAttribute("listaProdutos", produtosVenda);
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-                dispatcher.forward(request, response);
-            } else {
-                request.setAttribute("varMsgE", true);
-                request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-                dispatcher.forward(request, response);
-            }
-        }
+//        String json = gson.toJson(reader.readLine());
+        venda = gson.fromJson(reader.readLine(), Venda.class);
+        venda.setCodigoVenda(Long.parseLong(horarioVenda + codigoUsuario));
+        venda.setCodigoUsuario(codigoUsuario);
+        venda.setCpfUsuario(cpfUsuario);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp);
+        processaRequisicao(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp);
+        processaRequisicao(req, resp);
     }
 
 }

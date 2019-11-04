@@ -214,7 +214,7 @@ public class UsuarioDAO {
         Usuario sessao = null;
         Connection conn = db.obterConexao();
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.fk_setor, s.nome_setor"
+            PreparedStatement query = conn.prepareStatement("SELECT u.id_usuario, u.nome, u.cpf, u.fk_setor, s.nome_setor"
                     + " FROM tbl_usuario AS u"
                     + " INNER JOIN tbl_setor AS s ON u.fk_setor = s.id_setor"
                     + " WHERE email = ?;");
@@ -226,8 +226,9 @@ public class UsuarioDAO {
                 sessao = new Usuario();
                 sessao.setCodigoUsuario(rs.getInt(1));
                 sessao.setNome(rs.getString(2));
-                sessao.setSetor(rs.getInt(3));
-                sessao.setNomeSetor(rs.getString(4));
+                sessao.setCpf(rs.getString(3));
+                sessao.setSetor(rs.getInt(4));
+                sessao.setNomeSetor(rs.getString(5));
             }
             conn.close();
         } catch (SQLException e) {

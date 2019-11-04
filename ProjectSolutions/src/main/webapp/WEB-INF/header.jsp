@@ -38,6 +38,11 @@
                                 <button type="submit" class="btn nav-link nav-text">Relatorio</button>
                             </form>
                         </li>
+                        <li class="nav-item">
+                            <form action="../produtos/carrinho.jsp" method="POST">
+                                <button type="submit" class="btn nav-link nav-text">Carrinho</button>
+                            </form>
+                        </li>
                     </ul>
                     <form action="../ti/perfil" method="POST">
                         <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
@@ -80,7 +85,12 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul id="itensMenu" class="nav">              
+                    <ul id="itensMenu" class="nav">
+                        <li class="nav-item">
+                            <form action="../produtos/carrinho.jsp" method="POST">
+                                <button type="submit" class="btn nav-link nav-text">Carrinho</button>
+                            </form>
+                        </li>
                     </ul>
                     <form action="../login/login.jsp">
                         <button type="submit" class="btn">
@@ -103,6 +113,11 @@
                                 <button type="submit" class="btn nav-link nav-text" >Produtos</button>
                             </form>
                         </li>
+                        <li class="nav-item">
+                            <form action="../produtos/carrinho.jsp" method="POST">
+                                <button type="submit" class="btn nav-link nav-text">Carrinho</button>
+                            </form>
+                        </li>
                     </ul>
                     <form action="../ti/perfil" method="POST">
                         <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
@@ -116,8 +131,8 @@
             </nav>
         </c:otherwise>
     </c:choose>
-    
-       <div class="modal fade" id="logout" tabindex="-1" role="dialog"
+
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
