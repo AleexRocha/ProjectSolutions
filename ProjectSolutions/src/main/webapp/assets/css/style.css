@@ -10,15 +10,11 @@
 .form-contact .form-group .btn_1 {
   background-image: linear-gradient(to left, #fff 0%, #fff 51%, #fff 100%);
 }
-
-/**************** extend css start ****************/
-/**************** common css start ****************/
-/* line 4, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_common.scss */
 body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   padding: 0;
   margin: 0;
-  font-size: 14px;
+  font-size: 1em;
   background-color: #f4f4f4;
 }
 
