@@ -47,26 +47,26 @@ Author     : nicolas.hgyoshioka
             <br>
             <br>
 
-            <table class="table table-striped">
+            <table class="table table-striped" data-show-toggle="false">
                 <thead>
                     <tr>
-                        <th class="coluna" scope="col">Codigo</th>
-                        <th class="coluna" scope="col">Nome</th>
-                        <th class="coluna" scope="col">Email</th>
-                        <th class="coluna" scope="col">CPF</th>
-                        <th class="coluna" scope="col">Setor</th>
-                        <th class="coluna" scope="col">Ações</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Codigo</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Nome</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Email</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">CPF</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Setor</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="teste">  
                     <c:forEach var="usuarios" items="${listaUsuarios}">                
-                        <tr>
+                        <tr data-expanded="true">
                             <td class="coluna" name="codigo" ><c:out value="${usuarios.codigoUsuario}" /></td>
                             <td class="coluna" name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.email}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.cpf}" /></td>
                             <td class="coluna" name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
-                            <td class="btn-group">
+                            <td class="btn-group" style="display: inline-flex;">
                                 <form action="dados_usuario" method="POST">
                                     <button name="idUsuario" value="${usuarios.codigoUsuario}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
@@ -113,6 +113,7 @@ Author     : nicolas.hgyoshioka
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/footable.min.js"></script>
         <script src="../assets/js/main.js"></script>    
     </body>
 </html>

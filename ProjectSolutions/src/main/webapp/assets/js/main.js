@@ -1,15 +1,20 @@
 // Mascara de CPF
-$('#cpfCliente').mask('000.000.000-00');
+//$('#cpfCliente').mask('000.000.000-00');
 
 // Mascara de Valor
-$('#valor').mask('R$000,00');
-$('#valorTotal').mask('R$000,00');
+//$('#valor').mask('R$000,00');
+//$('#valorTotal').mask('R$000,00');
 
 // Mascara de CEP
-$('#cep').mask('00.000-000');
+//$('#cep').mask('00000-000');
 
 // Mascara de Telefone
-$('#telefone').mask('(00) 0000-0000');
+//$('#telefone').mask('(00) 0000-0000');
+
+//Tabela responsiva
+jQuery(function($){
+	$('.table').footable();
+});
 
 // Fecha os alerts de sucesso e erro 
 $(function () {
