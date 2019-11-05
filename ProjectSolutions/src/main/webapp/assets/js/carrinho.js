@@ -73,7 +73,7 @@ function salvarProdutos() {
 
 let TableParser = function () {
     let trs = document.getElementsByClassName('carrinho');
-    let _trsInJSON = {};
+    let _trsInJSON = [];
 
     this.toJSON = function () {
         for (let idx in trs) {

@@ -6,58 +6,40 @@ package Model;
  */
 public class Venda {
 
-    private long codigoVenda;
-    private int codigoProduto;
-    private int nomeProduto;
+//    private long codigoVenda;
+    private String codigoProduto;
+    private String nomeProduto;
     private double valorUnitario;
     private int quantidadeVendida;
     private double totalVenda;
-    private int codigoUsuario;
-    private String cpfUsuario;
+//    private int codigoUsuario;
+//    private String cpfUsuario;
+
+    public Venda(String codigoProduto, String nomeProduto, double valorUnitario, int quantidadeVendida, double totalVenda) {
+        this.codigoProduto = codigoProduto;
+        this.nomeProduto = nomeProduto;
+        this.valorUnitario = valorUnitario;
+        this.quantidadeVendida = quantidadeVendida;
+        this.totalVenda = totalVenda;
+    }
 
     public Venda() {
+        
     }
 
-    public Venda(int codigoProduto, int nomeProduto, double valorUnitario, int quantidadeVendida, double totalVenda) {
-        this.codigoProduto = codigoProduto;
-        this.nomeProduto = nomeProduto;
-        this.valorUnitario = valorUnitario;
-        this.quantidadeVendida = quantidadeVendida;
-        this.totalVenda = totalVenda;
-    }
-
-    public Venda(long codigoVenda, int codigoProduto, int nomeProduto, double valorUnitario, int quantidadeVendida, double totalVenda, int codigoUsuario, String cpfUsuario) {
-        this.codigoVenda = codigoVenda;
-        this.codigoProduto = codigoProduto;
-        this.nomeProduto = nomeProduto;
-        this.valorUnitario = valorUnitario;
-        this.quantidadeVendida = quantidadeVendida;
-        this.totalVenda = totalVenda;
-        this.codigoUsuario = codigoUsuario;
-        this.cpfUsuario = cpfUsuario;
-    }
-
-    public long getCodigoVenda() {
-        return codigoVenda;
-    }
-
-    public void setCodigoVenda(long codigoVenda) {
-        this.codigoVenda = codigoVenda;
-    }
-
-    public int getCodigoProduto() {
+    public String getCodigoProduto() {
         return codigoProduto;
     }
 
-    public void setCodigoProduto(int codigoProduto) {
+    public void setCodigoProduto(String codigoProduto) {
         this.codigoProduto = codigoProduto;
     }
 
-    public int getNomeProduto() {
+    public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public void setNomeProduto(int nomeProduto) {
+    public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
     }
 
@@ -85,24 +67,8 @@ public class Venda {
         this.totalVenda = totalVenda;
     }
 
-    public int getCodigoUsuario() {
-        return codigoUsuario;
-    }
-
-    public void setCodigoUsuario(int codigoUsuario) {
-        this.codigoUsuario = codigoUsuario;
-    }
-
-    public String getCpfUsuario() {
-        return cpfUsuario;
-    }
-
-    public void setCpfUsuario(String cpfUsuario) {
-        this.cpfUsuario = cpfUsuario;
-    }
-
     @Override
     public String toString() {
-        return "Venda{" + "codigoVenda=" + codigoVenda + ", codigoProduto=" + codigoProduto + ", quantidadeVendida=" + quantidadeVendida + ", totalVenda=" + totalVenda + ", codigoUsuario=" + codigoUsuario + ", cpfUsuario=" + cpfUsuario + '}';
+        return "Venda{" + "codigoProduto=" + codigoProduto + ", nomeProduto=" + nomeProduto + ", valorUnitario=" + valorUnitario + ", quantidadeVendida=" + quantidadeVendida + ", totalVenda=" + totalVenda + '}';
     }
 }

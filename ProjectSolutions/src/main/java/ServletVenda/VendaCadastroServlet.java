@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,23 +28,25 @@ public class VendaCadastroServlet extends HttpServlet {
     private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Venda venda = new Venda();
         Gson gson = new Gson();
+        Venda venda = new Venda();
+
+        StringBuilder ajax = new StringBuilder();
         BufferedReader reader = request.getReader();
 
-        DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-        Date date = new Date();
-        String horarioVenda = dateFormat.format(date);
+        String linha;
+        while ((linha = reader.readLine()) != null) {
+            ajax.append(linha);
+        }
 
-        HttpSession userLogado = request.getSession();
-        int codigoUsuario = (int) userLogado.getAttribute("cdFuncionario");
-        String cpfUsuario = (String) userLogado.getAttribute("cpfUsuario");
+        System.out.println("AJAX: " + ajax);
+        String json = ajax.toString();
+        System.out.println("JSON: " + json);
 
-//        String json = gson.toJson(reader.readLine());
-        venda = gson.fromJson(reader.readLine(), Venda.class);
-        venda.setCodigoVenda(Long.parseLong(horarioVenda + codigoUsuario));
-        venda.setCodigoUsuario(codigoUsuario);
-        venda.setCpfUsuario(cpfUsuario);
+        venda = gson.fromJson(json, Venda.class);
+
+        System.out.println(venda.toString());
+
     }
 
     @Override
