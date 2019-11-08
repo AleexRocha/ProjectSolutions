@@ -202,3 +202,11 @@ footer {
     cursor: pointer;
     padding: 5px;
 }
+#btn-descricao{
+   margin-top: 20px;
+}
+
+#text-descricao{
+    font-weight: bold;
+    font-size: 18px;
+}
