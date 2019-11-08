@@ -34,7 +34,7 @@ public class ProdutoCadastroServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         String fIdImagem = request.getParameter("codigoImagem");
-
+        
         String fNome = request.getParameter("nome");
         String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");
@@ -62,6 +62,9 @@ public class ProdutoCadastroServlet extends HttpServlet {
                 HashMap<String, String> camposInvalidos = informaCamposIncorretos(request);
                 if (camposInvalidos.get("nomeErro") != null) {
                     request.setAttribute("nomeErro", camposInvalidos.get("nomeErro"));
+                }
+                if (camposInvalidos.get("descricaoErro") != null) {
+                    request.setAttribute("descricaoErro", camposInvalidos.get("descricaoErro"));
                 }
                 if (camposInvalidos.get("tipoErro") != null) {
                     request.setAttribute("tipoErro", camposInvalidos.get("tipoErro"));
@@ -133,11 +136,15 @@ public class ProdutoCadastroServlet extends HttpServlet {
 
     private boolean validaCamposForm(HttpServletRequest request) {
         String fNome = request.getParameter("nome");
+        String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
 
         if (fNome.length() == 0) {
+            return false;
+        }
+        if (fDescricao.length() == 0) {
             return false;
         }
         if (fTipo == null) {
@@ -156,12 +163,16 @@ public class ProdutoCadastroServlet extends HttpServlet {
     private HashMap<String, String> informaCamposIncorretos(HttpServletRequest request) {
         HashMap<String, String> camposInvalidos = new HashMap();
         String fNome = request.getParameter("nome");
+        String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
 
         if (fNome.length() == 0) {
             camposInvalidos.put("nomeErro", "Nome não informado");
+        }
+        if (fDescricao.length() == 0) {
+            camposInvalidos.put("descricaoErro", "Descrição não informada");
         }
         if (fTipo == null) {
             camposInvalidos.put("tipoErro", "Tipo não informado");
