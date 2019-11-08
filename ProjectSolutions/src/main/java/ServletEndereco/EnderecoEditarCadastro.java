@@ -29,6 +29,7 @@ public class EnderecoEditarCadastro extends HttpServlet {
         String uCodigoUsuario = request.getParameter("codigoUsuario");
         String uSetorUsuario = request.getParameter("valorSetor");
         String eEndereco = request.getParameter("codigoEndereco");
+        String eComplemento = request.getParameter("complemento");
         String eCep = request.getParameter("cep");
         String eLogradouro = request.getParameter("logradouro");
         String eNumero = request.getParameter("numero");
@@ -93,7 +94,7 @@ public class EnderecoEditarCadastro extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(Integer.parseInt(eEndereco), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(uCodigoUsuario));
+            Usuario usuario = new Usuario(Integer.parseInt(eEndereco), eLogradouro, eComplemento, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(uCodigoUsuario));
             usuario.setCodigoUsuario(Integer.parseInt(uCodigoUsuario));
 
             boolean httpOk = EnderecoDAO.alterarEndereco(usuario);

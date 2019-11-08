@@ -17,6 +17,7 @@ public class Usuario {
     private int codigoEndereco;
     private String tipoEndereco;
     private String logradouro;
+    private String complemento;
     private int numero;
     private String bairro;
     private String cidade;
@@ -53,6 +54,19 @@ public class Usuario {
         this.estado = estado;
         this.cep = cep;
         this.tipoEndereco = tipoEndereco;
+        this.codigoUsuario = fkUsuario;
+    }
+
+    public Usuario(int codigoEndereco, String logradouro, String complemento, int numero, String bairro, String cidade, String estado, String cep, String tipoEndereco, int fkUsuario) {
+        this.codigoEndereco = codigoEndereco;
+        this.tipoEndereco = tipoEndereco;
+        this.logradouro = logradouro;
+        this.complemento = complemento;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
         this.codigoUsuario = fkUsuario;
     }
 
@@ -176,4 +190,11 @@ public class Usuario {
         this.cep = cep;
     }
 
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
 }

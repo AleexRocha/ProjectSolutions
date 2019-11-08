@@ -20,17 +20,18 @@ public class EnderecoDAO {
 
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO tbl_endereco"
-                    + " (logradouro, numero, bairro, cidade, estado, cep, tipo, fk_usuario)"
-                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+                    + " (logradouro, complemento, numero, bairro, cidade, estado, cep, tipo, fk_usuario)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
             query.setString(1, u.getLogradouro());
-            query.setInt(2, u.getNumero());
-            query.setString(3, u.getBairro());
-            query.setString(4, u.getCidade());
-            query.setString(5, u.getEstado());
-            query.setString(6, u.getCep());
-            query.setString(7, u.getTipoEndereco());
-            query.setInt(8, u.getCodigoUsuario());
+            query.setString(2, u.getComplemento());
+            query.setInt(3, u.getNumero());
+            query.setString(4, u.getBairro());
+            query.setString(5, u.getCidade());
+            query.setString(6, u.getEstado());
+            query.setString(7, u.getCep());
+            query.setString(8, u.getTipoEndereco());
+            query.setInt(9, u.getCodigoUsuario());
 
             query.executeUpdate();
 
@@ -47,17 +48,18 @@ public class EnderecoDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("UPDATE tbl_endereco"
-                    + " SET logradouro = ? , numero = ?, bairro = ?, cidade = ?, estado = ?, cep = ?, tipo = ?"
+                    + " SET logradouro = ?, complemento = ?,  numero = ?, bairro = ?, cidade = ?, estado = ?, cep = ?, tipo = ?"
                     + " WHERE id_endereco = ?;");
 
             query.setString(1, u.getLogradouro());
-            query.setInt(2, u.getNumero());
-            query.setString(3, u.getBairro());
-            query.setString(4, u.getCidade());
-            query.setString(5, u.getEstado());
-            query.setString(6, u.getCep());
-            query.setString(7, u.getTipoEndereco());
-            query.setInt(8, u.getCodigoEndereco());
+            query.setString(2, u.getComplemento());
+            query.setInt(3, u.getNumero());
+            query.setString(4, u.getBairro());
+            query.setString(5, u.getCidade());
+            query.setString(6, u.getEstado());
+            query.setString(7, u.getCep());
+            query.setString(8, u.getTipoEndereco());
+            query.setInt(9, u.getCodigoEndereco());
 
             query.executeUpdate();
             conn.close();
@@ -87,13 +89,14 @@ public class EnderecoDAO {
                     Usuario e = new Usuario(
                             rs.getInt(8),
                             rs.getString(9),
-                            rs.getInt(10),
-                            rs.getString(11),
+                            rs.getString(10),
+                            rs.getInt(11),
                             rs.getString(12),
                             rs.getString(13),
                             rs.getString(14),
                             rs.getString(15),
-                            rs.getInt(16)
+                            rs.getString(16),
+                            rs.getInt(17)
                     );
                     e.setCodigoUsuario(rs.getInt(1));
                     e.setSetor(rs.getInt(6));
@@ -128,13 +131,14 @@ public class EnderecoDAO {
                     Usuario endereco = new Usuario(
                             rs.getInt(8),
                             rs.getString(9),
-                            rs.getInt(10),
-                            rs.getString(11),
+                            rs.getString(10),
+                            rs.getInt(11),
                             rs.getString(12),
                             rs.getString(13),
                             rs.getString(14),
                             rs.getString(15),
-                            rs.getInt(16)
+                            rs.getString(16),
+                            rs.getInt(17)
                     );
                     endereco.setCodigoUsuario(rs.getInt(1));
                     endereco.setSetor(rs.getInt(6));

@@ -115,7 +115,7 @@
                                                     <div class="col">
                                                         <span class="card-title">
                                                             <b> Complemento </b>
-                                                            <p><c:out value="${enderecos.numero}"/></p>
+                                                            <p><c:out value="${enderecos.complemento}"/></p>
                                                         </span>
                                                     </div>
                                                     <div class="col">

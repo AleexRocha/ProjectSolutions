@@ -30,6 +30,7 @@ public class EnderecoSelectEditCadastro extends HttpServlet {
         request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
         request.setAttribute("valorSetor", usuario.getSetor());
         request.setAttribute("codigoEndereco", usuario.getCodigoEndereco());
+        request.setAttribute("complemento", usuario.getComplemento());
         request.setAttribute("cep", usuario.getCep());
         request.setAttribute("numero", usuario.getNumero());
         request.setAttribute("logradouro", usuario.getLogradouro());
