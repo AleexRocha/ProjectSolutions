@@ -86,7 +86,7 @@ Author     : nicolas.hgyoshioka
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty nomeErro}">
-                                                <input type="text" class="form-control inputForm" id="nome"
+                                                <input type="text" class="form-control inputForm" id="nome" value="${nome}"
                                                        placeholder="Nome" name="nome" minlength="0" maxlength="75">
                                             </c:when>
                                             <c:otherwise>
@@ -114,7 +114,7 @@ Author     : nicolas.hgyoshioka
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty cpfErro}">
-                                                <input type="text" class="form-control inputForm" id="cpf"
+                                                <input type="text" class="form-control inputForm" id="cpf" value="${cpf}"
                                                        placeholder="CPF" name="cpf" minlength="0" maxlength="11">
                                             </c:when>
                                             <c:otherwise>
@@ -142,7 +142,7 @@ Author     : nicolas.hgyoshioka
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty emailErro}">
-                                                <input type="email" class="form-control inputForm" id="email"
+                                                <input type="email" class="form-control inputForm" id="email" value="${email}"
                                                        placeholder="E-mail" name="email" minlength="0" maxlength="50">
                                             </c:when>
                                             <c:otherwise>
