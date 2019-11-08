@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "UsuarioCadastroServlet", urlPatterns = {"/ti/create_usuario"})
 public class UsuarioCadastroServlet extends HttpServlet {
@@ -101,6 +102,15 @@ public class UsuarioCadastroServlet extends HttpServlet {
             request.setAttribute("listaSetores", setores);
 
             request.setAttribute("cliente", false);
+            HttpSession sessao = request.getSession();
+            if (sessao.getAttribute("nomeSetor") == null) {
+                request.setAttribute("cliente", true);
+            }
+
+            request.setAttribute("nome", cNome);
+            request.setAttribute("cpf", cCpf);
+            request.setAttribute("email", cEmail);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -111,7 +121,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
             Usuario usuario = new Usuario(cNome, cEmail, senhaCriptografada, cCpf, Integer.parseInt(cSetor));
             eIdUsuario = UsuarioDAO.salvarUsuario(usuario);
 
-            if (eIdUsuario > 0 && !cSetor.equals("3")) {
+            if (eIdUsuario > 0 && cSetor.equals("4")) {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuário cadastrado com sucesso! Cadastre agora um endereço.");
 
@@ -120,13 +130,13 @@ public class UsuarioCadastroServlet extends HttpServlet {
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
                 dispatcher.forward(request, response);
-            } else if (cSetor.equals("3")) {
+            } else if (!cSetor.equals("4")) {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuário cadastrado com sucesso!");
-                
+
                 ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
                 request.setAttribute("listaUsuarios", usuarios);
-                
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                 dispatcher.forward(request, response);
             } else {

@@ -33,6 +33,8 @@ public class UsuarioEditarServlet extends HttpServlet {
         String cNome = request.getParameter("nome");
         String cSenha = request.getParameter("senha");
         String cConfirmacaoSenha = request.getParameter("confirmarSenha");
+        String cEmail = request.getParameter("email");
+        String cCpf = request.getParameter("cpf");
         String cSetor = request.getParameter("codigoSetor");
 
         boolean error = false;
@@ -82,7 +84,10 @@ public class UsuarioEditarServlet extends HttpServlet {
             request.setAttribute("nomeSetor", usuario.getNomeSetor());
             request.setAttribute("listaSetores", setores);
 
-            if (!cSetor.equalsIgnoreCase("cliente")) {
+            HttpSession sessao = request.getSession();
+            if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
+                request.setAttribute("cliente", true);
+            } else {
                 request.setAttribute("cliente", false);
             }
 
@@ -104,7 +109,7 @@ public class UsuarioEditarServlet extends HttpServlet {
                 usuario.setSenha(senhaCriptografada);
             }
 
-            usuario.setCpf(String.valueOf(userLogado.getAttribute("cpfUser")));
+            usuario.setCpf(String.valueOf(userLogado.getAttribute("cpfUsuario")));
             usuario.setSetor(Integer.parseInt(cSetor));
 
             boolean httpOK = UsuarioDAO.alterarUsuario(usuario);
@@ -119,11 +124,19 @@ public class UsuarioEditarServlet extends HttpServlet {
                 if (userLogado.getAttribute("nomeSetor").equals("Cliente")) {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
+                    request.setAttribute("varMsg", true);
+                    request.setAttribute("msg", "Perfil editado com sucesso.");
                     RequestDispatcher dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
                     dispatcher.forward(request, response);
                 } else {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
-                    dispatcher.forward(request, response);
+                    if (userLogado.getAttribute("nomeSetor") == null) {
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/valida_usuarios");
+                        dispatcher.forward(request, response);
+                    } else {
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
+                        dispatcher.forward(request, response);
+                    }
+
                 }
 
             } else {

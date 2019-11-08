@@ -114,6 +114,7 @@ public class LoginServlet extends HttpServlet {
         sessao.setAttribute("nomeUsuario", infoSessao.getNome());
         sessao.setAttribute("nomeSetor", infoSessao.getNomeSetor());
         sessao.setAttribute("cdSetor", infoSessao.getSetor());
+        sessao.setAttribute("emailUsuario", emailUser);
         sessao.setAttribute("cpfUsuario", infoSessao.getCpf());
 
         return sessao;
