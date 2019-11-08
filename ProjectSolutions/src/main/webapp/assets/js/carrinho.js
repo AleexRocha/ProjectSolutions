@@ -1,15 +1,78 @@
 //Função de alterar a quantidade de produtos
-var input = $(".input-quantidade");
-input.val(1);
-$(".altera").click(function (e) {
-    var idBotao = $("span.altera[data-id]");
-    var id = idBotao.attr("data-id");
-    if (($(this).hasClass('input-number-increment')) && (input.val() < 5)) {
-        input.val(parseInt(input.val()) + 1);
-    } else if (($(this).hasClass('input-number-decrement')) && (input.val() > 1)) {
-        input.val(parseInt(input.val()) - 1);
+function atualizarCarrinho(e) {
+    let data = e.getAttribute('data-posicao');
+    let input = document.getElementsByClassName('input-quantidade')[data - 1];
+
+    if ((e.classList.contains('input-number-increment')) && (parseInt(input.value) < 5)) {
+        input.value = parseInt(input.value) + 1;
+    } else if ((e.classList.contains('input-number-decrement')) && (parseInt(input.value) > 1)) {
+        input.value = parseInt(input.value) - 1;
     }
-});
+}
+
+//Cria ajax que salva os produtos
+function salvarProdutos() {
+    let tableParser = new TableParser();
+    console.log(tableParser.toJSON());
+    $.ajax({
+        method: "POST",
+        url: "../venda/create_venda",
+        dataType: "json",
+        data: JSON.stringify(tableParser.toJSON())
+    });
+}
+
+let TableParser = function () {
+    let trs = document.getElementsByClassName('carrinho');
+    let _trsInJSON = [];
+    this.toJSON = function () {
+        for (let idx in trs) {
+            if (trs.hasOwnProperty(idx)) {
+                _trsInJSON[idx] = _trToJSON(trs[idx]);
+            }
+        }
+        return _trsInJSON;
+    };
+    function _trToJSON(tr) {
+        let codigoProduto = getIdProduct(tr.children[0]);
+        let nomeProduto = getProductName(tr.children[0]);
+        let valorUnitario = getUnityValue(tr.children[1]);
+        let quantidadeVendida = getQuantity(tr.children[2]);
+        let totalVenda = valorUnitario * quantidadeVendida;
+        return {
+            codigoProduto,
+            nomeProduto,
+            valorUnitario,
+            quantidadeVendida,
+            totalVenda
+        }
+    }
+
+    function getIdProduct(td) {
+        let id = td
+                .getElementsByClassName('media-body')[0]
+                .getElementsByTagName('p')[0].innerHTML;
+        return id;
+    }
+
+    function getProductName(td) {
+        return td
+                .getElementsByClassName('media-body')[0]
+                .getElementsByTagName('p')[1].innerHTML;
+    }
+
+    function getUnityValue(td) {
+        let value = td.getElementsByClassName('unitario')[0].innerHTML;
+        return Number(value.replace('R$', ''));
+    }
+
+    function getQuantity(td) {
+        return Number(td.getElementsByClassName('input-quantidade')[0].value);
+    }
+
+    return this;
+}
+
 //Funções para calcular o total do carrinho
 //function moneyTextToFloat(text) {
 //    var cleanText = text.replace("R& ", "").replace(",", ".");
@@ -58,68 +121,3 @@ $(".altera").click(function (e) {
 //        textEdit[i].onchange = quantidadeMudou();
 //    }
 //}
-
-//Cria ajax que salva os produtos
-function salvarProdutos() {
-    let tableParser = new TableParser();
-    console.log(tableParser.toJSON());
-    $.ajax({
-        method: "POST",
-        url: "../venda/create_venda",
-        dataType: "json",
-        data: JSON.stringify(tableParser.toJSON())
-    });
-}
-
-let TableParser = function () {
-    let trs = document.getElementsByClassName('carrinho');
-    let _trsInJSON = [];
-
-    this.toJSON = function () {
-        for (let idx in trs) {
-            if (trs.hasOwnProperty(idx)) {
-                _trsInJSON[idx] = _trToJSON(trs[idx]);
-            }
-        }
-        return _trsInJSON;
-    };
-
-    function _trToJSON(tr) {
-        let codigoProduto = getIdProduct(tr.children[0]);
-        let nomeProduto = getProductName(tr.children[0]);
-        let valorUnitario = getUnityValue(tr.children[1]);
-        let quantidadeVendida = getQuantity(tr.children[2]);
-        let totalVenda = valorUnitario * quantidadeVendida;
-        return {
-            codigoProduto,
-            nomeProduto,
-            valorUnitario,
-            quantidadeVendida,
-            totalVenda
-        }
-    }
-
-    function getIdProduct(td) {
-        let id = td
-                .getElementsByClassName('media-body')[0]
-                .getElementsByTagName('p')[0].innerHTML;
-        return id;
-    }
-
-    function getProductName(td) {
-        return td
-                .getElementsByClassName('media-body')[0]
-                .getElementsByTagName('p')[1].innerHTML;
-    }
-
-    function getUnityValue(td) {
-        let value = td.getElementsByClassName('unitario')[0].innerHTML;
-        return Number(value.replace('R$', ''));
-    }
-
-    function getQuantity(td) {
-        return Number(td.getElementsByClassName('input-quantidade')[0].value);
-    }
-
-    return this;
-}

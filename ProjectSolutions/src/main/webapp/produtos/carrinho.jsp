@@ -50,9 +50,9 @@
                                 </td>
                                 <td class="quantidade">
                                     <div class="product_count">
-                                        <span class="altera input-number-decrement" data-id="1"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" data-id="1" min="1" max="5">
-                                        <span class="altera input-number-increment" data-id="1"><i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td class="precoTotal">
@@ -75,10 +75,10 @@
                                     <h5 class="unitario">R$ 178.37</h5>
                                 </td>
                                 <td class="quantidade">
-                                    <div class="product_count">
-                                        <span class="altera input-number-decrement" data-id="2"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" data-id="2" min="1" max="5">
-                                        <span class="altera input-number-increment" data-id="2"><i class="fas fa-plus"></i></span>
+                                    <div id="product_count">
+                                        <span class="altera input-number-decrement" data-posicao="2" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-posicao="2" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td class="precoTotal">
@@ -102,9 +102,9 @@
                                 </td>
                                 <td class="quantidade">
                                     <div class="product_count">
-                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" min="1" max="5">
-                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement" data-posicao="3" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-posicao="3" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td class="precoTotal">
@@ -128,9 +128,9 @@
                                 </td>
                                 <td class="quantidade">
                                     <div class="product_count">
-                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" min="1" max="5">
-                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement" data-posicao="4" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-posicao="4" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td class="precoTotal">
@@ -154,9 +154,9 @@
                                 </td>
                                 <td class="quantidade">
                                     <div class="product_count">
-                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" min="1" max="5">
-                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement" data-posicao="5" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-posicao="5" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td class="precoTotal">
@@ -180,9 +180,9 @@
                                 </td>
                                 <td class="quantidade">
                                     <div class="product_count">
-                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" min="1" max="5">
-                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement" data-posicao="6" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-posicao="6" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td class="precoTotal">
@@ -206,9 +206,9 @@
                                 </td>
                                 <td class="quantidade">
                                     <div class="product_count">
-                                        <span class="altera input-number-decrement"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" min="1" max="5">
-                                        <span class="altera input-number-increment"><i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-decrement" data-posicao="7" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-posicao="7" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
                                 <td class="precoTotal">
@@ -287,7 +287,7 @@
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
-        <script src="../assets/js/main.js"></script>
         <script src="../assets/js/carrinho.js"></script>
+        <script src="../assets/js/main.js"></script>
     </body>
 </html>
