@@ -22,7 +22,7 @@
     </head>
     <body>
         <%@include file="../WEB-INF/header.jsp"%>
-        <h2 class="h2 text-center subtitulo">Descrição</h2>
+        <h2 class="h2 text-center subtitulo">Detalhes do produto <c:out value="${produto.nome}"/></h2>
         <br>
         <div class="container" 
              <!--================Single Product Area =================-->
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-lg-5 offset-lg-1">
                             <div class="s_product_text">
-                                <h3><c:out value="${produto.nome}"/></h3>
+                                <h2><c:out value="${produto.nome}"/></h2>
                                 <h2>R$<c:out value="${produto.valorUnitario}"/></h2>
                                 <ul class="list">
                                     <li>
@@ -48,7 +48,8 @@
                                     </li>
                                 </ul>
                                 <p>
-                                    <c:out value="${produto.descricao}"/>
+                                    <label id="text-descricao">Descrição:</label></br>
+                                   <c:out value="${produto.descricao}"/>
                                 </p>
                                 <c:if test="${produto.tipo == 'Produto'}">
                                     <div class="product_count d-inline-block">
@@ -57,10 +58,12 @@
                                         <span class="number-increment"> <i class="fas fa-minus"></i></span>
                                     </div>
                                 </c:if>
-                                <button type="submit" class="btn btn-light btn-block">
+                                 <form action="../produtos/carrinho.jsp" method="GET">
+                                <button type="submit" id="btn-descricao" class="btn btn-success btn-block">
                                     <i class="fas fa-cart-arrow-down"></i>
                                     Adicionar ao Carrinho
                                 </button>
+                                 </form>     
                             </div>
                         </div>
                     </div>
