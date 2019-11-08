@@ -6,57 +6,79 @@ package Model;
  */
 public class Venda {
 
-//    private long codigoVenda;
-    private String codigoProduto;
-    private String nomeProduto;
-    private double valorUnitario;
-    private int quantidadeVendida;
+    private int idVenda;
+    private String codigoVenda;
+    private int codigoUsuario;
+    private int statusVenda;
+    private int quantidadeTotal;
     private double totalVenda;
-//    private int codigoUsuario;
-//    private String cpfUsuario;
+    private String dataVenda;
 
-    public Venda(String codigoProduto, String nomeProduto, double valorUnitario, int quantidadeVendida, double totalVenda) {
-        this.codigoProduto = codigoProduto;
-        this.nomeProduto = nomeProduto;
-        this.valorUnitario = valorUnitario;
-        this.quantidadeVendida = quantidadeVendida;
-        this.totalVenda = totalVenda;
-    }
+    private int codigoProduto;
+    private int quantidadeItemProduto;
 
     public Venda() {
-        
     }
 
-    public String getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(String codigoProduto) {
+    public Venda(String codigoVenda, int codigoUsuario, int quantidadeTotal, double totalVenda, int codigoProduto, int quantidadeItemProduto) {
+        this.codigoVenda = codigoVenda;
+        this.codigoUsuario = codigoUsuario;
+        this.quantidadeTotal = quantidadeTotal;
+        this.totalVenda = totalVenda;
         this.codigoProduto = codigoProduto;
+        this.quantidadeItemProduto = quantidadeItemProduto;
     }
 
-    public String getNomeProduto() {
-        return nomeProduto;
+    public Venda(int idVenda, String codigoVenda, int codigoUsuario, int statusVenda, int quantidadeTotal, double totalVenda, String dataVenda, int codigoProduto, int quantidadeItemProduto) {
+        this.idVenda = idVenda;
+        this.codigoVenda = codigoVenda;
+        this.codigoUsuario = codigoUsuario;
+        this.statusVenda = statusVenda;
+        this.quantidadeTotal = quantidadeTotal;
+        this.totalVenda = totalVenda;
+        this.dataVenda = dataVenda;
+        this.codigoProduto = codigoProduto;
+        this.quantidadeItemProduto = quantidadeItemProduto;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public int getIdVenda() {
+        return idVenda;
     }
 
-    public double getValorUnitario() {
-        return valorUnitario;
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
     }
 
-    public void setValorUnitario(double valorUnitario) {
-        this.valorUnitario = valorUnitario;
+    public String getCodigoVenda() {
+        return codigoVenda;
     }
 
-    public int getQuantidadeVendida() {
-        return quantidadeVendida;
+    public void setCodigoVenda(String codigoVenda) {
+        this.codigoVenda = codigoVenda;
     }
 
-    public void setQuantidadeVendida(int quantidadeVendida) {
-        this.quantidadeVendida = quantidadeVendida;
+    public int getCodigoUsuario() {
+        return codigoUsuario;
+    }
+
+    public void setCodigoUsuario(int codigoUsuario) {
+        this.codigoUsuario = codigoUsuario;
+    }
+
+    public int getStatusVenda() {
+        return statusVenda;
+    }
+
+    public void setStatusVenda(int statusVenda) {
+        this.statusVenda = statusVenda;
+    }
+
+    public int getQuantidadeTotal() {
+        return quantidadeTotal;
+    }
+
+    public void setQuantidadeTotal(int quantidadeTotal) {
+        this.quantidadeTotal = quantidadeTotal;
     }
 
     public double getTotalVenda() {
@@ -67,8 +89,27 @@ public class Venda {
         this.totalVenda = totalVenda;
     }
 
-    @Override
-    public String toString() {
-        return "Venda{" + "codigoProduto=" + codigoProduto + ", nomeProduto=" + nomeProduto + ", valorUnitario=" + valorUnitario + ", quantidadeVendida=" + quantidadeVendida + ", totalVenda=" + totalVenda + '}';
+    public String getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(String dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+
+    public int getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(int codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
+
+    public int getQuantidadeItemProduto() {
+        return quantidadeItemProduto;
+    }
+
+    public void setQuantidadeItemProduto(int quantidadeItemProduto) {
+        this.quantidadeItemProduto = quantidadeItemProduto;
     }
 }
