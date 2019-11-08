@@ -81,6 +81,13 @@ public class EnderecoCadastroServlet extends HttpServlet {
             request.setAttribute("codigoUsuario", uCodigoUsuario);
             request.setAttribute("valorSetor", uSetorUsuario);
 
+            request.setAttribute("cep", eCep);
+            request.setAttribute("logradouro", eLogradouro);
+            request.setAttribute("numero", eNumero);
+            request.setAttribute("bairro", eBairro);
+            request.setAttribute("cidade", eCidade);
+            request.setAttribute("estado", eEstado);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -88,7 +95,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
             boolean httpOk = EnderecoDAO.salvarEndereco(usuario);
 
             if (httpOk) {
-                if (!uSetorUsuario.equals("3")) {
+                if (uSetorUsuario.equals("1") || uSetorUsuario.equals("2")) {
                     ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
                     request.setAttribute("listaUsuarios", usuarios);
 
@@ -100,7 +107,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
                 } else {
                     ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
-                    
+
                     request.setAttribute("varMsg", true);
                     request.setAttribute("msg", "Cadastro realizado com sucesso!");
 
