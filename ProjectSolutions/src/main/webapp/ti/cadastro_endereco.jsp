@@ -112,7 +112,7 @@
                                     <c:when test="${acao == 'editar'}">
                                         <c:choose>
                                             <c:when test="${empty logradouroErro}">
-                                                <input type="text" class="form-control inputForm" id="logradouro"
+                                                <input type="text" class="form-control inputForm" id="logradouro" 
                                                        value="${logradouro}" name="logradouro" minlength="0" maxlength="250">
                                             </c:when>
                                             <c:otherwise>
@@ -124,7 +124,7 @@
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty logradouroErro}">
-                                                <input type="text" class="form-control inputForm" id="logradouro"
+                                                <input type="text" class="form-control inputForm" id="logradouro" value="${logradouro}" 
                                                        placeholder="Logradouro" name="logradouro" minlength="0" maxlength="250">
                                             </c:when>
                                             <c:otherwise>
