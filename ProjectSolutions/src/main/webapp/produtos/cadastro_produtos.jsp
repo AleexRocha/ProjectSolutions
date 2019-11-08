@@ -110,7 +110,7 @@ Author     : nicolas.hgyoshioka
                                     </c:when>
                                     <c:otherwise>
                                         <c:if test="${empty nomeErro}">
-                                            <input type="text" class="form-control inputForm" id="nome"
+                                            <input type="text" class="form-control inputForm" id="nome" value="${nome}"
                                                    placeholder="Nome do produto" name="nome" minlength="0" maxlength="50">
                                         </c:if>
                                         <c:if test="${not empty nomeErro}">         
@@ -128,7 +128,7 @@ Author     : nicolas.hgyoshioka
                                                <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if>>
                                     </c:when>
                                     <c:otherwise>
-                                        <input type="text" class="form-control inputForm" id="descricao"
+                                        <input type="text" class="form-control inputForm" id="descricao" value="${descricao}" 
                                                placeholder="Descrição do produto" name="descricao" minlength="0" maxlength="500">
                                     </c:otherwise>
                                 </c:choose>
@@ -147,7 +147,7 @@ Author     : nicolas.hgyoshioka
                                     </c:when>
                                     <c:otherwise>
                                         <c:if test="${empty quantidadeEstoqueErro}">
-                                            <input type="number" class="form-control inputForm" id="quantidadeEstoque"
+                                            <input type="number" class="form-control inputForm" id="quantidadeEstoque" value="${qtd_estoque}"
                                                    placeholder="Quantidade em estoque" name="quantidadeEstoque" min="0" minlength="0" maxlength="11">
                                         </c:if>
                                         <c:if test="${not empty quantidadeEstoqueErro}">        
@@ -171,7 +171,7 @@ Author     : nicolas.hgyoshioka
                                     </c:when>
                                     <c:otherwise>
                                         <c:if test="${empty valorUnitarioErro}">
-                                            <input type="text" class="form-control inputForm" id="valor"
+                                            <input type="text" class="form-control inputForm" id="valor" value="${valor_unidade}"
                                                    placeholder="Valor Unitário" name="valorUnitario" minlength="0" maxlength="9">
                                         </c:if>
                                         <c:if test="${not empty valorUnitarioErro}">         

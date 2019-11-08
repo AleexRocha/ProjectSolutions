@@ -22,7 +22,15 @@
         <h2 class="h2 text-center subtitulo">Produtos</h2>
 
         <div class="container">
-            <div class="row">
+            <c:if test="${varMsg == true}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${msg}"/>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
+            <div class="row">  
                 <div class="col-lg-12">
                     <div id="carouselExampleIndicators" class="carousel slide my-4"
                          data-ride="carousel">
