@@ -34,17 +34,15 @@ let TableParser = function () {
         return _trsInJSON;
     };
     function _trToJSON(tr) {
-        let codigoProduto = getIdProduct(tr.children[0]);
-        let nomeProduto = getProductName(tr.children[0]);
+        let idproduto = getIdProduct(tr.children[0]);
         let valorUnitario = getUnityValue(tr.children[1]);
-        let quantidadeVendida = getQuantity(tr.children[2]);
-        let totalVenda = valorUnitario * quantidadeVendida;
+        let quantidadeProduto = getQuantity(tr.children[2]);
+        let valorTotalProduto = valorUnitario * quantidadeProduto;
         return {
-            codigoProduto,
-            nomeProduto,
+            idproduto,
             valorUnitario,
-            quantidadeVendida,
-            totalVenda
+            quantidadeProduto,
+            valorTotalProduto
         }
     }
 

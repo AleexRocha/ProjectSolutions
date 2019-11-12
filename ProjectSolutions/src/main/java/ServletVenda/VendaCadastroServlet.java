@@ -39,6 +39,7 @@ public class VendaCadastroServlet extends HttpServlet {
         }
 
         String json = ajax.toString();
+        System.out.println("JSON: " + json);
         venda = gson.fromJson(json, Venda[].class);
 
         for (int i = 0; i < venda.length; i++) {
@@ -57,7 +58,7 @@ public class VendaCadastroServlet extends HttpServlet {
 
         for (int i = 0; i < venda.length; i++) {
             venda[i].setCodigoVenda(horarioVenda+codigoUsuario);
-            venda[i].setCodigoUsuario(codigoUsuario);
+            venda[i].setIdUsuario(codigoUsuario);
             System.out.println(venda[i].toString());
         }
     }
