@@ -57,7 +57,7 @@ CREATE TABLE tbl_status_venda(
  
 CREATE TABLE tbl_venda(
     id_venda int not null primary key auto_increment,
-    codigo_venda int not null,    
+    codigo_venda varchar(25) not null,    
     qtd_itens int not null,
     valor_frete double not null,
     valor_total double not null,
