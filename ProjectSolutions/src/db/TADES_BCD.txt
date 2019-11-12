@@ -1,7 +1,8 @@
-﻿drop database tades_bcd;
 CREATE DATABASE tades_bcd;
 
 USE tades_bcd;
+
+SET @@GLOBAL.TIME_ZONE = '+03:00';
 
 CREATE TABLE tbl_setor(
     id_setor int not null primary key auto_increment,
@@ -56,163 +57,50 @@ CREATE TABLE tbl_status_venda(
     nome_status varchar(50)
 );
  
-CREATE TABLE tbl_venda(
+CREATE TABLE tbl_info_pagamentos (
+    id_info_pagamento int not null primary key auto_increment,
+    nome varchar(50)
+);
+
+CREATE TABLE tbl_pagamento_usuario(
+    id_pagamento int not null primary key auto_increment,
+    numero_pagamento varchar(100) not null,
+    nome_titular varchar(75),
+    data_vencimento varchar(10),
+    codigo_segurança varchar(3),
+    fk_pagamento int,
+    fk_usuario int not null,
+    foreign key(fk_pagamento) references tbl_info_pagamentos(id_info_pagamento),
+    foreign key(fk_usuario) references tbl_usuario(id_usuario)
+);
+
+ CREATE TABLE tbl_venda(
     id_venda int not null primary key auto_increment,
     codigo_venda varchar(25) not null,    
     qtd_itens int not null,
     valor_frete double not null,
     valor_total double not null,
     data_venda datetime not null,
-    status int not null,
-    foreign key(id_usuario) references tbl_usuario(id_usuario)
-);
-
-SET @@GLOBAL.TIME_ZONE = '+03:00';
-
-INSERT INTO tbl_setor(nome_setor) VALUES ('Diretor');
-INSERT INTO tbl_setor(nome_setor) VALUES ('Administrador');
-INSERT INTO tbl_setor(nome_setor) VALUES ('Estoquista');
-INSERT INTO tbl_setor(nome_setor) VALUES ('Cliente');
-
-INSERT INTO tbl_usuario(nome, email, senha, cpf, fk_setor, status)
-    VALUES ('Milena Flores', 'diretoria@email.com','202cb962ac59075b964b07152d234b70','12345678900', 1, 0);
-    
-INSERT INTO tbl_endereco(logradouro, complemento, numero, bairro, cidade, estado, cep, tipo, fk_usuario)
-    VALUES ('Av. Eng. Eusébio Stevaux', "Academico 1", 823,'Santo Amaro','São Paulo','SP','04696000','cobranca', 1);drop database tades_bcd;
-CREATE DATABASE tades_bcd;
-
-USE tades_bcd;
-
-CREATE TABLE tbl_setor(
-    id_setor int not null primary key auto_increment,
-    nome_setor varchar(50) not null
-);
-
-CREATE TABLE tbl_usuario(
-    id_usuario int not null primary key auto_increment,
-    nome varchar(75) not null,
-    email varchar(50) not null,
-    senha varchar(250) not null,
-    cpf varchar(11) not null,
-    fk_setor int not null,
-    status int not null,
-    foreign key (fk_setor) references tbl_setor(id_setor)
-);
-
-CREATE TABLE tbl_endereco(
-    id_endereco int not null primary key auto_increment,
-    logradouro varchar(250) not null,
-    complemento varchar(250),
-    numero int not null,
-    bairro varchar(50),
-    cidade varchar(50),
-    estado varchar(5),
-    cep varchar(8),
-    tipo varchar(50) not null,
-drop database tades_bcd;
-
-CREATE DATABASE tades_bcd;
-USE tades_bcd;
-SET @@GLOBAL.TIME_ZONE = '+03:00';
-
-CREATE TABLE tbl_setor(
-    id_setor int not null primary key auto_increment,
-    nome_setor varchar(50) not null
-);
-
-CREATE TABLE tbl_usuario(
-    id_usuario int not null primary key auto_increment,
-    nome varchar(75) not null,
-    email varchar(50) not null,
-    senha varchar(250) not null,
-    cpf varchar(11) not null,
-    fk_setor int not null,
-    status int not null,
-    foreign key (fk_setor) references tbl_setor(id_setor)
-);
-
-CREATE TABLE tbl_endereco(
-    id_endereco int not null primary key auto_increment,
-    logradouro varchar(250) not null,
-    complemento varchar(250),
-    numero int not null,
-    bairro varchar(50),
-    cidade varchar(50),
-    estado varchar(5),
-    cep varchar(8),
-    tipo varchar(50) not null,
+    fk_endereco int not null,
     fk_usuario int not null,
     fk_status int not null,
+    fk_pagamento int not null,
     foreign key(fk_usuario) references tbl_usuario(id_usuario),
-    foreign key(fk_status) references tbl_status_venda(id_status)
+    foreign key(fk_status) references tbl_status_venda(id_status),
+    foreign key(fk_pagamento) references tbl_pagamento_usuario(id_pagamento)
 );
-
-CREATE TABLE tbl_produtos(
-    id_produto int not null primary key auto_increment,
-    nome varchar(50) not null,
-    descricao varchar(100),
-    tipo varchar(10) not null,
-    qtd_estoque int not null,
-    valor_unidade double not null,
-    status int not null
-);
-
-CREATE TABLE tbl_imagem(
-    id_imagem int not null primary key auto_increment,
-    caminho varchar(250),
-    nome_arquivo varchar(100),
-    fk_produto int,
-    foreign key (fk_produto) references tbl_produtos(id_produto)
-);
-
-create table tbl_status_venda(
-	id_status int not null primary key auto_increment,
-	nome_status varchar(50)
- );
  
-CREATE TABLE tbl_venda(
-    id_venda int not null primary key auto_increment,
-    fk_usuario int not null,
-    fk_status int not null,
-    qtd_itens int not null,
-    valor_total double not null,
-    data_venda datetime not null,
-    foreign key(fk_usuario) references tbl_usuario(id_usuario),
-    foreign key(fk_status) references tbl_status_venda(id_status)
-);
-
-create table tbl_produtos_venda(
-	fk_venda int not null,
+CREATE TABLE tbl_produtos_venda(
+    fk_venda int not null,
     fk_produto int not null,
     qtd_produto int,
     foreign key(fk_venda) references tbl_venda(id_venda),
     foreign key(fk_produto) references tbl_produtos(id_produto)
 );
 
-create table tbl_info_pagamentos (
-	id_pagamento int not null primary key auto_increment,
-	nome varchar(50)
-);
-
-create table tbl_pagamento_usuario(
-	id int not null primary key auto_increment,
-	numero_pagamento varchar(100) not null,
-	nome_titular varchar(75),
-	data_vencimento varchar(10),
-	codigo_segurança varchar(3),
-    fk_pagamento int,
-    fk_usuario int,
-    foreign key(fk_pagamento) references tbl_info_pagamentos(id_pagamento),
-    foreign key(fk_usuario) references tbl_usuario(id_usuario)
-);
-
-insert into tbl_info_pagamentos (nome) values ('Cartão de Crédito');
-insert into tbl_info_pagamentos (nome) values ('Cartão de Débito');
-insert into tbl_info_pagamentos (nome) values ('Boleto Báncario');
-
-insert into tbl_status_venda (nome_status) values ('Aguardando Aprovação');
-insert into tbl_status_venda (nome_status) values ('Pedido em entrega');
-insert into tbl_status_venda (nome_status) values ('Pedido Entregue');
+INSERT INTO tbl_info_pagamentos (nome) values ('Cartão de Crédito');
+INSERT INTO tbl_info_pagamentos (nome) values ('Cartão de Débito');
+INSERT INTO tbl_info_pagamentos (nome) values ('Boleto Báncario');
 
 INSERT INTO tbl_setor(nome_setor) VALUES ('Diretor');
 INSERT INTO tbl_setor(nome_setor) VALUES ('Administrador');
@@ -227,10 +115,10 @@ INSERT INTO tbl_usuario(nome, email, senha, cpf, fk_setor, status)
     VALUES ('Milena Flores', 'diretoria@email.com', '202cb962ac59075b964b07152d234b70', '12345678900', 1, 0);
     
 INSERT INTO tbl_endereco(logradouro, complemento, numero, bairro, cidade, estado, cep, tipo, fk_usuario)
-    VALUES ('Av. Eng. Eusébio Stevaux', "Academico 1", 823,'Santo Amaro','São Paulo','SP','04696000','cobranca', 1);
+    VALUES ('Av. Eng. Eusébio Stevaux', 'Academico 1', 823, 'Santo Amaro', 'São Paulo', 'SP', '04696000', 'cobranca', 1);
     
 INSERT INTO tbl_usuario(nome, email, senha, cpf, fk_setor, status)
-    VALUES ('Guilherme Pereira', 'guilherme@email.com', md5('1234'),'48921993894', 4, 0);
+    VALUES ('Guilherme Pereira', 'guilherme@email.com', '81dc9bdb52d04dc20036dbd8313ed055','48921993894', 4, 0);
     
 INSERT INTO tbl_endereco(logradouro, complemento, numero, bairro, cidade, estado, cep, tipo, fk_usuario)
-	VALUES ('Rua Vicente Decara Neto', "Bloco i AP 154", 823,'Jd Santo Antonio','São Paulo','SP','05819000','entrega', 2);
+    VALUES ('Rua Vicente Decara Neto', "Bloco i AP 154", 823,'Jd Santo Antonio','São Paulo','SP','05819000','entrega', 2);
