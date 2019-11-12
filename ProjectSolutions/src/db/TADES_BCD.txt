@@ -83,6 +83,10 @@ INSERT INTO tbl_setor(nome_setor) VALUES ('Administrador');
 INSERT INTO tbl_setor(nome_setor) VALUES ('Estoquista');
 INSERT INTO tbl_setor(nome_setor) VALUES ('Cliente');
 
+INSERT INTO tbl_status_venda(nome_status) VALUES ('Aguardando aprovação');
+INSERT INTO tbl_status_venda(nome_status) VALUES ('Pedido enviado');
+INSERT INTO tbl_status_venda(nome_status) VALUES ('Pedido entregue');
+
 INSERT INTO tbl_usuario(nome, email, senha, cpf, fk_setor, status)
     VALUES ('Milena Flores', 'diretoria@email.com', '202cb962ac59075b964b07152d234b70', '12345678900', 1, 0);
     
