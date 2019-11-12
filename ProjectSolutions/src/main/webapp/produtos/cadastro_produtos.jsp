@@ -123,13 +123,26 @@ Author     : nicolas.hgyoshioka
                                 <label for="descricaoProduto">Descrição:</label>
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
-                                        <input type="text" class="form-control inputForm" id="descricao"
-                                               value="${descricao}" name="descricao" minlength="0" maxlength="500"
-                                               <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if>>
+                                        <c:if test="${empty descricaoErro}">
+                                            <input type="text" class="form-control inputForm" id="descricao"
+                                                   value="${descricao}" name="descricao" minlength="0" maxlength="500"
+                                                   <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if>    
+                                        </c:if>
+                                            <c:if test="${not empty descricaoErro}">
+                                                <input type="text" class="form-control inputForm error" id="descricao"
+                                                name="descricao" minlength="0" maxlength="500" placeholder="${descricaoErro}"
+                                                <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if>    
+                                        </c:if>
                                     </c:when>
                                     <c:otherwise>
-                                        <input type="text" class="form-control inputForm" id="descricao" value="${descricao}" 
-                                               placeholder="Descrição do produto" name="descricao" minlength="0" maxlength="500">
+                                        <c:if test="${empty descricaoErro}"> 
+                                            <input type="text" class="form-control inputForm" id="descricao" value="${descricao}" 
+                                            placeholder="Descrição do produto" name="descricao" minlength="0" maxlength="500">
+                                        </c:if>
+                                        <c:if test="${not empty descricaoErro}">
+                                            <input type="text" class="form-control inputForm error" id="descricao"
+                                                   placeholder="${descricaoErro}" name="descricao" minlength="0" maxlength="500">
+                                        </c:if>
                                     </c:otherwise>
                                 </c:choose>
 
