@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.Pagamento;
 import Model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -236,5 +237,56 @@ public class UsuarioDAO {
         }
 
         return sessao;
+    }
+
+    public static ArrayList<Pagamento> getPagamentosDisponiveis() {
+        Connection conn = db.obterConexao();
+        ArrayList<Pagamento> pagamentos = new ArrayList();
+
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_info_pagamentos limit 2");
+
+            ResultSet rs = query.executeQuery();
+           
+            if (rs != null) {
+                while (rs.next()) {
+                    Pagamento pag = new Pagamento(
+                            rs.getInt(1),
+                            rs.getString(2)
+                    );
+                    pagamentos.add(pag);
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return pagamentos;
+    }
+    
+    public static boolean salvarMetodoPagamento(Pagamento pag, int codUsuario){
+        Connection conn = db.obterConexao();
+        
+        try {
+            PreparedStatement query = conn.prepareStatement("INSERT INTO tbl_pagamento_usuario"
+                    + " (numero_pagamento, nome_titular, data_vencimento, codigo_segurança, fk_pagamento, fk_usuario)"
+                    + " values"
+                    + " (?, ?, ?, ?, ?, ?);");
+        
+            query.setString(1, pag.getNumeroPAgamento());
+            query.setString(2, pag.getNomeTitular());
+            query.setString(3, pag.getDataVencimento());
+            query.setString(4, pag.getCodigoSegurança());
+            query.setInt(5, pag.getId());
+            query.setInt(6, codUsuario);
+            
+            query.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+        
+        return true;
     }
 }

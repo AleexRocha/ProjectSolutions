@@ -31,7 +31,7 @@ public class EnderecoListaServlet extends HttpServlet {
         request.setAttribute("listaEnderecos", enderecos);
 
         request.setAttribute("perfil", "endereco");
-
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
         dispatcher.forward(request, response);
     }
