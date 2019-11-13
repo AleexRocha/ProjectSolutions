@@ -14,12 +14,30 @@ function atualizarCarrinho(e) {
 function salvarProdutos() {
     let tableParser = new TableParser();
     console.log(tableParser.toJSON());
-    $.ajax({
-        method: "POST",
-        url: "../venda/create_venda",
-        dataType: "json",
-        data: JSON.stringify(tableParser.toJSON())
-    });
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST',"../venda/create_venda",true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    xhr.send(JSON.stringify(tableParser.toJSON()));
+    xhr.onreadystatechange = function () {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            let data = xhr.responseText;
+            console.log(data);
+        }else{
+            console.log("Deu ruim");
+        }
+    };
+//    $.ajax({
+//        method: "POST",
+//        url: 
+//        dataType: "json",
+//        data: JSON.stringify(tableParser.toJSON())
+//    }).done(function (dataJson) {
+//        alert("Deu bom");
+//        alert(dataJson);
+//    }).fail(function (data) {
+//        alert("Deu ruim");
+//        alert(data);
+//    });
 }
 
 let TableParser = function () {

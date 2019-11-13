@@ -275,10 +275,10 @@
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                        <button  type="submit" class="btn btn-success btn-block" onclick="salvarProdutos();">
-                            <i class="fas fa-shopping-cart"></i>
-                            Finalizar compra
-                        </button>
+                            <button  type="submit" class="btn btn-success btn-block" onclick="salvarProdutos();">
+                                <i class="fas fa-shopping-cart"></i>
+                                Finalizar compra
+                            </button>
                     </div>
                 </div>
             </div>

@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
@@ -83,22 +85,25 @@ public class VendaCadastroServlet extends HttpServlet {
             boolean httpOk = VendaDAO.salvarProdutoVenda(produtosCarrinho);
 
             if (httpOk) {
-                Usuario usuario = UsuarioDAO.getUsuario(codigoUsuario);
-
-                request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
-                request.setAttribute("nome", usuario.getNome());
-                request.setAttribute("cpf", usuario.getCpf());
-                request.setAttribute("email", usuario.getEmail());
-                request.setAttribute("nomeSetor", usuario.getNomeSetor());
-
-                request.setAttribute("varMsg", "Produto salvo com sucesso, o codigo da venda é: " + hashVenda.concat(String.valueOf(codigoUsuario)));
-
-                System.out.println("Oi");
-                
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
-                dispatcher.forward(request, response);
+                dispachar(request, response, hashVenda.concat(String.valueOf(codigoUsuario)), codigoUsuario);
             }
         }
+    }
+
+    public void dispachar(HttpServletRequest request, HttpServletResponse response, String codigoVenda, int codigoUsuario)
+            throws ServletException, IOException {
+        Usuario usuario = UsuarioDAO.getUsuario(codigoUsuario);
+
+        request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
+        request.setAttribute("nome", usuario.getNome());
+        request.setAttribute("cpf", usuario.getCpf());
+        request.setAttribute("email", usuario.getEmail());
+        request.setAttribute("nomeSetor", usuario.getNomeSetor());
+
+        request.setAttribute("varMsg", "Produto salvo com sucesso, o codigo da venda é: " + codigoVenda);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
