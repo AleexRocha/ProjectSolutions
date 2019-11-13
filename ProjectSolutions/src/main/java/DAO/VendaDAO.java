@@ -20,16 +20,18 @@ public class VendaDAO {
         Connection conn = db.obterConexao();
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO"
-                    + " tbl_venda(codigo_venda, qtd_total, valor_total, data_venda, fk_usuario, fk_status, fk_pagamento)"
-                    + " VALUES (?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+                    + " tbl_venda(codigo_venda, qtd_total, valor_frete, valor_total, data_venda, fk_endereco, fk_usuario, fk_status, fk_pagamento)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
 
             query.setString(1, v.getCodigoVenda());
             query.setInt(2, v.getQuantidadeTotalVenda());
-            query.setDouble(3, v.getValorTotalVenda());
-            query.setString(4, v.getDataVenda());
-            query.setInt(5, v.getIdUsuario());
-            query.setInt(6, v.getIdStatus());
-            query.setInt(7, v.getIdPagamento());
+            query.setDouble(3, v.getValorFrete());
+            query.setDouble(4, v.getValorTotalVenda());
+            query.setString(5, v.getDataVenda());
+            query.setInt(6, v.getIdEndereco());
+            query.setInt(7, v.getIdUsuario());
+            query.setInt(8, v.getIdStatus());
+            query.setInt(9, v.getIdPagamento());
 
             query.executeUpdate();
 
@@ -56,7 +58,7 @@ public class VendaDAO {
                         + " tbl_produtos_venda(fk_venda, fk_produto, qtd_produto)"
                         + " VALUES (?, ?, ?);");
                 query.setInt(1, v[i].getIdVenda());
-                query.setInt(2, v[i].getQuantidadeTotalVenda());
+                query.setInt(2, v[i].getIdProduto());
                 query.setInt(3, v[i].getQuantidadeUnitarioProduto());
 
                 query.executeUpdate();

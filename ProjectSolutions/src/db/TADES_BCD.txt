@@ -85,6 +85,7 @@ CREATE TABLE tbl_pagamento_usuario(
     fk_usuario int not null,
     fk_status int not null,
     fk_pagamento int not null,
+    foreign key(fk_endereco) references tbl_endereco(id_endereco),
     foreign key(fk_usuario) references tbl_usuario(id_usuario),
     foreign key(fk_status) references tbl_status_venda(id_status),
     foreign key(fk_pagamento) references tbl_pagamento_usuario(id_pagamento)
