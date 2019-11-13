@@ -192,10 +192,12 @@ footer {
 
 /*input de valores do carrinho*/
 .input-quantidade{
+    background-color: #f4f4f4;
     width: 40px !important;
     height: 35px !important;
     border: solid 1px #cccccc;
     border-radius: 5px;
+    text-align: right;
 }
 .input-number-decrement, .input-number-increment{
     font-size: 17px;
@@ -209,4 +211,8 @@ footer {
 #text-descricao{
     font-weight: bold;
     font-size: 18px;
+}
+
+.precoUnitario, .precoTotal{
+    white-space: nowrap;
 }

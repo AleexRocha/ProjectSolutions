@@ -51,7 +51,7 @@
                                 <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <input type="number" readonly="" class="input-quantidade" value="1" min="1" max="5">
                                         <span class="altera input-number-increment" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -77,7 +77,7 @@
                                 <td class="quantidade">
                                     <div id="product_count">
                                         <span class="altera input-number-decrement" data-posicao="2" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <input type="number" readonly="" class="input-quantidade" value="1" min="1" max="5">
                                         <span class="altera input-number-increment" data-posicao="2" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -103,7 +103,7 @@
                                 <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement" data-posicao="3" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <input type="number" readonly="" class="input-quantidade" value="1" min="1" max="5">
                                         <span class="altera input-number-increment" data-posicao="3" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -129,7 +129,7 @@
                                 <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement" data-posicao="4" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <input type="number" readonly="" class="input-quantidade" value="1" min="1" max="5">
                                         <span class="altera input-number-increment" data-posicao="4" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -155,7 +155,7 @@
                                 <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement" data-posicao="5" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <input type="number" readonly="" class="input-quantidade" value="1" min="1" max="5">
                                         <span class="altera input-number-increment" data-posicao="5" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -181,7 +181,7 @@
                                 <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement" data-posicao="6" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <input type="number" readonly="" class="input-quantidade" value="1" min="1" max="5">
                                         <span class="altera input-number-increment" data-posicao="6" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -207,7 +207,7 @@
                                 <td class="quantidade">
                                     <div class="product_count">
                                         <span class="altera input-number-decrement" data-posicao="7" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <input type="number" readonly="" class="input-quantidade" value="1" min="1" max="5">
                                         <span class="altera input-number-increment" data-posicao="7" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </td>
@@ -275,10 +275,11 @@
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                            <button  type="submit" class="btn btn-success btn-block" onclick="salvarProdutos();">
-                                <i class="fas fa-shopping-cart"></i>
-                                Finalizar compra
-                            </button>
+                        <button  type="submit" class="btn btn-success btn-block" onclick="salvarProdutos();">
+                            <i class="fas fa-shopping-cart"></i>
+                            Finalizar compra
+                        </button>
+                        <a href="checkout.jsp">CHECKOUT</a>
                     </div>
                 </div>
             </div>
