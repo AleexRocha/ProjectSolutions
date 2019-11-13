@@ -23,7 +23,6 @@ public class UsuarioPerfilServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String cCodigo = request.getParameter("perfil");
-        String venda = request.getParameter("venda");
 
         Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
 
@@ -32,10 +31,6 @@ public class UsuarioPerfilServlet extends HttpServlet {
         request.setAttribute("cpf", usuario.getCpf());
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("nomeSetor", usuario.getNomeSetor());
-
-        if (venda != null) {
-            request.setAttribute("varMsg", venda);
-        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
         dispatcher.forward(request, response);

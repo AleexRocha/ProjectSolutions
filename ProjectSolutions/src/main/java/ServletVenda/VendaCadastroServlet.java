@@ -1,6 +1,8 @@
 package ServletVenda;
 
+import DAO.UsuarioDAO;
 import DAO.VendaDAO;
+import Model.Usuario;
 import Model.Venda;
 
 import com.google.gson.Gson;
@@ -61,12 +63,12 @@ public class VendaCadastroServlet extends HttpServlet {
         HttpSession userLogado = request.getSession();
         int codigoUsuario = (int) userLogado.getAttribute("cdFuncionario");
 
-        String codigo = hashVenda.concat(String.valueOf(codigoUsuario));
-        
-        venda.setCodigoVenda(codigo);
+        venda.setCodigoVenda(hashVenda.concat(String.valueOf(codigoUsuario)));
         venda.setQuantidadeTotalVenda(quantidadeTotalVenda);
         venda.setValorTotalVenda(valorTotalVenda);
+        venda.setValorFrete(valorTotalVenda);
         venda.setDataVenda(dataVenda);
+        venda.setIdEndereco(3);
         venda.setIdUsuario(codigoUsuario);
         venda.setIdStatus(1);
         venda.setIdPagamento(1);
@@ -75,18 +77,28 @@ public class VendaCadastroServlet extends HttpServlet {
 
         if (codigoVenda != 0) {
             for (int i = 0; i < produtosCarrinho.length; i++) {
-                produtosCarrinho[i].setIdVenda(1);
+                produtosCarrinho[i].setIdVenda(codigoVenda);
             }
 
             boolean httpOk = VendaDAO.salvarProdutoVenda(produtosCarrinho);
 
             if (httpOk) {
-                request.setAttribute("venda", "Produto salvo com sucesso, o codigo da venda é: " + hashVenda + String.valueOf(codigoUsuario));
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil");
+                Usuario usuario = UsuarioDAO.getUsuario(codigoUsuario);
+
+                request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
+                request.setAttribute("nome", usuario.getNome());
+                request.setAttribute("cpf", usuario.getCpf());
+                request.setAttribute("email", usuario.getEmail());
+                request.setAttribute("nomeSetor", usuario.getNomeSetor());
+
+                request.setAttribute("varMsg", "Produto salvo com sucesso, o codigo da venda é: " + hashVenda.concat(String.valueOf(codigoUsuario)));
+
+                System.out.println("Oi");
+                
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
                 dispatcher.forward(request, response);
             }
         }
-
     }
 
     @Override
