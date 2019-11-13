@@ -265,6 +265,47 @@ public class UsuarioDAO {
         return pagamentos;
     }
     
+    public static ArrayList<Pagamento> getPagamentosCadastrados(int codigoCliente) {
+        Connection conn = db.obterConexao();
+        ArrayList<Pagamento> pagamentos = new ArrayList();
+
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT id_pagamento, numero_pagamento, nome_titular, data_vencimento, nome"
+                    + " FROM tbl_pagamento_usuario AS pu"
+                    + " INNER JOIN tbl_info_pagamentos AS ip ON pu.fk_pagamento = ip.id_info_pagamento WHERE fk_usuario = ?");
+            query.setInt(1, codigoCliente);
+            
+            ResultSet rs = query.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Pagamento pag = new Pagamento();
+                    pag.setId(rs.getInt(1));
+                    int i = 0;
+                    String numCartaoAux = "";
+                    while (i < rs.getString(2).length()) {
+                        if (i > 11) {
+                            char c = rs.getString(2).charAt(i);
+                            numCartaoAux += String.valueOf(c);
+                        }
+                        i++;
+                    }
+                    pag.setNumeroPAgamento(numCartaoAux);
+                    pag.setNomeTitular(rs.getString(3));
+                    pag.setDataVencimento(rs.getString(4));
+                    pag.setTipoPagamento(rs.getString(5));
+                    
+                    pagamentos.add(pag);
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return pagamentos;
+    }
+    
     public static boolean salvarMetodoPagamento(Pagamento pag, int codUsuario){
         Connection conn = db.obterConexao();
         
@@ -281,7 +322,7 @@ public class UsuarioDAO {
             query.setInt(5, pag.getId());
             query.setInt(6, codUsuario);
             
-            query.executeQuery();
+            query.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
             return false;

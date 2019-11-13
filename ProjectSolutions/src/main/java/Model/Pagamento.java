@@ -17,6 +17,8 @@ public class Pagamento {
     String dataVencimento;
     String codigoSegurança;
 
+    public Pagamento(){}
+    
     public Pagamento(int id, String tipoPagamento) {
         this.id = id;
         this.tipoPagamento = tipoPagamento;

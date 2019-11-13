@@ -111,7 +111,7 @@ public class LoginServlet extends HttpServlet {
         Usuario infoSessao = UsuarioDAO.getInfoSessao(emailUser);
         HttpSession sessao = request.getSession();
         ArrayList<Produto> produtosAux = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
-        if (produtosAux.isEmpty()) {
+        if (produtosAux == null || produtosAux.isEmpty()) {
             ArrayList<Produto> produtos = new ArrayList<>();
             sessao.setAttribute("produtosCarrinho", produtos);            
         }

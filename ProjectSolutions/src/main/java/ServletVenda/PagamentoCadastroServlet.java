@@ -8,7 +8,6 @@ package ServletVenda;
 import DAO.UsuarioDAO;
 import Model.Pagamento;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,22 +26,59 @@ public class PagamentoCadastroServlet extends HttpServlet {
 
     private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         int codigoUsuario = (int) session.getAttribute("cdFuncionario");
-        int codPagamento = Integer.parseInt(request.getParameter("codigoPagamento"));
+        String codPagamento = request.getParameter("codigoPagamento");
         String numeroPag = request.getParameter("numeroCartao");
         String nomeTitular = request.getParameter("nomeTitular");
         String dataVencimento = request.getParameter("dataVencimento");
         String ccv = request.getParameter("codigoSeguranca");
-        
-        Pagamento pagamento = new Pagamento(codPagamento, null, numeroPag, nomeTitular, dataVencimento, ccv);
-        
-        
-        
-        boolean result = UsuarioDAO.salvarMetodoPagamento(pagamento, codigoUsuario);
+        boolean httpOK = true;
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/pagamento_cadastro.jsp");
+        if (codPagamento == null) {
+            httpOK = false;
+            request.setAttribute("pagamentoErro", "Selecione o tipo do pagamento");
+        }
+        if (numeroPag.equals("")) {
+            httpOK = false;
+            request.setAttribute("numPagErro", "Por favor, preencha o campo");
+        }
+        if (nomeTitular.equals("")) {
+            httpOK = false;
+            request.setAttribute("titularErro", "Por favor, preencha o campo");
+        }
+        if (dataVencimento.equals("")) {
+            httpOK = false;
+            request.setAttribute("dtVencimemntoErro", "Por favor, preencha o campo");
+        }
+        if (ccv.equals("")) {
+            httpOK = false;
+            request.setAttribute("ccvErro", "Por favor, preencha o campo");
+        }
+
+        if (httpOK) {
+            Pagamento pagamento = new Pagamento(Integer.parseInt(codPagamento), null, numeroPag, nomeTitular, dataVencimento, ccv);
+            boolean result = UsuarioDAO.salvarMetodoPagamento(pagamento, codigoUsuario);
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Pagamento cadastrado com sucesso");
+            if (!result) {
+                request.setAttribute("varMsgError", true);
+                request.setAttribute("msg", "Não foi possivel cadastrar o método de pagamento");
+            }
+        } else {
+            request.setAttribute("varMsgError", true);
+            request.setAttribute("msg", "Falha ao cadastrar, verifique os campos e tente novamente");
+        }
+
+        ArrayList<Pagamento> pagamentosDisponiveis = UsuarioDAO.getPagamentosDisponiveis();
+        ArrayList<Pagamento> pagamentosCadastrados = UsuarioDAO.getPagamentosCadastrados(codigoUsuario);
+
+        request.setAttribute("pagamentosList", pagamentosDisponiveis);
+        request.setAttribute("pagamentosCadastrados", pagamentosCadastrados);
+        request.setAttribute("perfil", "pagamento");
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
         dispatcher.forward(request, response);
     }
 

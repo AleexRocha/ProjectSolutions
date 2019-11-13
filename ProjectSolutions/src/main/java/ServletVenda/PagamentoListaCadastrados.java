@@ -5,8 +5,10 @@
  */
 package ServletVenda;
 
+import DAO.UsuarioDAO;
+import Model.Pagamento;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,9 +27,13 @@ public class PagamentoListaCadastrados extends HttpServlet {
             throws ServletException, IOException {
         
         String idUsuario = request.getParameter("idUsuario");
+        ArrayList<Pagamento> pagamentosCadastrados = UsuarioDAO.getPagamentosCadastrados(Integer.parseInt(idUsuario));
+        request.setAttribute("pagamentosCadastrados", pagamentosCadastrados);
+        
+        ArrayList<Pagamento> pagamentosDisponiveis = UsuarioDAO.getPagamentosDisponiveis();
+        request.setAttribute("pagamentosList", pagamentosDisponiveis);
         
         request.setAttribute("perfil", "pagamento");
-        request.setAttribute("metodo", "listagem");
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
         dispatcher.forward(request, response);

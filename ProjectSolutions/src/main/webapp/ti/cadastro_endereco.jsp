@@ -61,16 +61,16 @@
                                     <c:when test="${acao == 'editar'}">
                                         <label class="sr-only">Info usuarios:</label>
                                         <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
-                                               value="${codigoUsuario}" name="codigoUsuario">
+                                               value="${sessionScope.cdFuncionario}" name="codigoUsuario">
                                         <input type="text" class="form-control inputForm sr-only" id="valorSetor"
-                                               value="${valorSetor}" name="valorSetor">
+                                               value="${sessionScope.cdSetor}" name="valorSetor">
                                     </c:when>
                                     <c:otherwise>
                                         <label class="sr-only">Info usuarios:</label>
                                         <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
-                                               value="${codigoUsuario}" name="codigoUsuario">
+                                               value="${sessionScope.cdFuncionario}" name="codigoUsuario">
                                         <input type="text" class="form-control inputForm sr-only" id="valorSetor"
-                                               value="${valorSetor}" name="valorSetor">
+                                               value="${sessionScope.cdSetor}" name="valorSetor">
                                     </c:otherwise>
 
                                 </c:choose>

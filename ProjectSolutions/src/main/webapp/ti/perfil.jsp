@@ -27,7 +27,7 @@
         <c:if test="${perfil == 'pagamento'}">
             <h4 class="h4 text-center subtitulo">Esse são seus métodos de pagamento registrados:</h4>
         </c:if>
-            
+
         <div class="container">
             <div class="row">
                 <div class="col-md-3 text-center">
@@ -62,24 +62,13 @@
                                     Ver endereços cadastrados
                                 </button>
                             </form>
-                            <c:choose>
-                                <c:when test="${metodo == 'listagem'}">
-                                    <form action="pagamento_formulario" method="POST">
-                                        <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
-                                            Cadastrar pagamento
-                                        </button>
-                                    </form>
-                                </c:when>
-                                <c:otherwise>
-                                    <form action="pagamento_listagem" method="POST">
-                                        <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
-                                            Métodos de Pagamento
-                                        </button>
-                                    </form>
-                                </c:otherwise>
-                            </c:choose>
+                            <form action="pagamento_listagem" method="POST">
+                                <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                    Métodos de Pagamento
+                                </button>
+                            </form>
                         </c:if>
-                        
+
                         <a class="nav-link subtitulo" href="#">Pedidos em andamento</a>
                         <a class="nav-link subtitulo" href="#">Pedidos finalizados</a>
                     </nav>
@@ -202,7 +191,149 @@
                         </div>
                     </c:if>
                     <c:if test="${perfil == 'pagamento'}">
-                        <h2>Teste Listagem Pagamentos</h2>
+                        <div class="row">
+                            <c:forEach var="pagamento" items="#{pagamentosCadastrados}">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="card" style="background-color: #f3f3f3 !important;">
+                                        <div class="card-body">
+                                            <span class="card-title">
+                                                <b> Método Pagamento:</b>
+                                                <p><c:out value="${pagamento.tipoPagamento}"/></p>
+                                            </span>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <span class="card-title">
+                                                        <b> Número de Identificação: </b>
+                                                        <p>****.*****.****.<c:out value="${pagamento.numeroPAgamento}"/></p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <span class="card-title">
+                                                        <b> Nome do Titular: </b>
+                                                        <p><c:out value="${pagamento.nomeTitular}"/></p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <span class="card-title">
+                                                        <b> Vencimento: </b>
+                                                        <p><c:out value="${pagamento.dataVencimento}"/></p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form action="select_endereco" method="POST">
+                                            <button type="submit" name="idUsuario" value="${enderecos.codigoEndereco}" class="btn btn-success btn-block col-12" style="margin-top: 10px;">
+                                                <i class="fas fa-pen"></i>
+                                                Edite suas informações
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                            <div class="col-md-6 col-sm-12">
+                                <div class="card" style="background-color: #f3f3f3 !important;">
+                                    <div class="card-body">
+                                        <h2 class="h2 text-center subtitulo">Cadastrar Pagamento</h2>
+
+                                        <form action="pagamento_cadastro" method="POST">
+                                            <label for="codigoUsuario" class="sr-only">Código Usuário:</label>
+                                            <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
+                                                   placeholder="${codigoUsuario}" name="codigoUsuario">
+
+                                            <label>Método de Pagamento</label>
+                                            <c:choose>
+                                                <c:when test="${not empty pagamentoErro}">
+                                                    <select class="custom-select inputForm error" id="codigoSetor" name="codigoPagamento">
+                                                        <option selected = "" disabled="" hidden=""><c:out value="${pagamentoErro}"/></option>                             
+                                                        <c:forEach var="pagamentos" items="${pagamentosList}">  
+                                                            <option value="<c:out value="${pagamentos.id}"/>">
+                                                                <c:out value="${pagamentos.tipoPagamento}"/> 
+                                                            </option>  
+                                                        </c:forEach>       
+                                                    </select>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <select class="custom-select inputForm" id="codigoSetor" name="codigoPagamento">
+                                                        <option selected = "" disabled="" hidden="">Selecionar</option>                             
+                                                        <c:forEach var="pagamentos" items="${pagamentosList}">  
+                                                            <option value="<c:out value="${pagamentos.id}"/>">
+                                                                <c:out value="${pagamentos.tipoPagamento}"/> 
+                                                            </option>  
+                                                        </c:forEach>       
+                                                    </select>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                            <label for="numeroCartao">Número do Cartão</label>
+                                            <c:choose>
+                                                <c:when test="${not empty numPagErro}">
+                                                    <input type="text" class="form-control inputForm error" id="nome"
+                                                           placeholder="${numPagErro}" name="numeroCartao" minlength="0" maxlength="75">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input type="text" class="form-control inputForm" id="nome"
+                                                           placeholder="Número" name="numeroCartao" minlength="0" maxlength="75">
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                            <label for="numeroCartao">Nome Do Titular</label>
+                                            <c:choose>
+                                                <c:when test="${not empty titularErro}">
+                                                    <input type="text" class="form-control inputForm error" id="nome"
+                                                           placeholder="${titularErro}" name="nomeTitular" minlength="0" maxlength="75">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input type="text" class="form-control inputForm" id="nome"
+                                                           placeholder="Nome do Titular" name="nomeTitular" minlength="0" maxlength="75">
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="numeroCartao">Data de Vencimento</label>
+                                                    <c:choose>
+                                                        <c:when test="${not empty dtVencimemntoErro}">
+                                                            <input type="text" class="form-control inputForm error" id="nome"
+                                                                   placeholder="${dtVencimemntoErro}" name="dataVencimento" minlength="0" maxlength="75">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <input type="text" class="form-control inputForm" id="nome"
+                                                                   placeholder="Vencimento" name="dataVencimento" minlength="0" maxlength="75">
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="numeroCartao">Código de Segurança</label>
+                                                    <c:choose>
+                                                        <c:when test="${not empty dtVencimemntoErro}">
+                                                            <input type="text" class="form-control inputForm error" id="nome"
+                                                                   placeholder="${dtVencimemntoErro}" name="codigoSeguranca" minlength="0" maxlength="75">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <input type="text" class="form-control inputForm" id="nome"
+                                                                   placeholder="CCV" name="codigoSeguranca" minlength="0" maxlength="75">
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-light btn-block">
+                                                <i class="far fa-save"></i>
+                                                Salvar
+                                            </button>
+                                        </form>
+                                        <button name="perfil" type="button" class="btn btn-light btn-block" value="${sessionScope.cdFuncionario}">
+                                            <i class="fas fa-ban"></i>
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </c:if>
                 </div>
             </div>
