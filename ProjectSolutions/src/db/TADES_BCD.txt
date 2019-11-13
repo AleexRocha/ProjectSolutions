@@ -77,10 +77,10 @@ CREATE TABLE tbl_pagamento_usuario(
  CREATE TABLE tbl_venda(
     id_venda int not null primary key auto_increment,
     codigo_venda varchar(25) not null,    
-    qtd_itens int not null,
+    qtd_total int not null,
     valor_frete double not null,
     valor_total double not null,
-    data_venda datetime not null,
+    data_venda varchar(20) not null,
     fk_endereco int not null,
     fk_usuario int not null,
     fk_status int not null,

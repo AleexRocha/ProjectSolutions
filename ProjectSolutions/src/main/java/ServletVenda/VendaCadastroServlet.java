@@ -1,5 +1,6 @@
 package ServletVenda;
 
+import DAO.VendaDAO;
 import Model.Venda;
 
 import com.google.gson.Gson;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +30,8 @@ public class VendaCadastroServlet extends HttpServlet {
             throws ServletException, IOException {
 
         Gson gson = new Gson();
-        Venda venda[];
+        Venda venda = new Venda();
+        Venda produtosCarrinho[];
 
         StringBuilder ajax = new StringBuilder();
         BufferedReader reader = request.getReader();
@@ -39,28 +42,51 @@ public class VendaCadastroServlet extends HttpServlet {
         }
 
         String json = ajax.toString();
-        System.out.println("JSON: " + json);
-        venda = gson.fromJson(json, Venda[].class);
+        produtosCarrinho = gson.fromJson(json, Venda[].class);
 
-        for (int i = 0; i < venda.length; i++) {
-            System.out.println(venda[i].toString());
+        int quantidadeTotalVenda = 0;
+        int valorTotalVenda = 0;
+
+        for (Venda pc : produtosCarrinho) {
+            quantidadeTotalVenda += pc.getQuantidadeUnitarioProduto();
+            valorTotalVenda += pc.getValorTotalProduto();
         }
 
-        DateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy_HH:mm:ss");
+        DateFormat dateFormatCodigoVenda = new SimpleDateFormat("ddMMyyyyHHmmss");
+        DateFormat dateFormatDataVenda = new SimpleDateFormat("dd:MM:yyyy HH:mm:ss");
         Date date = new Date();
-        String horarioVenda = dateFormat.format(date);
+        String hashVenda = dateFormatCodigoVenda.format(date);
+        String dataVenda = dateFormatDataVenda.format(date);
 
         HttpSession userLogado = request.getSession();
         int codigoUsuario = (int) userLogado.getAttribute("cdFuncionario");
-        String cpfUsuario = (String) userLogado.getAttribute("cpfUsuario");
 
-        System.out.println("\n NOVOS PRODUTOS");
+        String codigo = hashVenda.concat(String.valueOf(codigoUsuario));
+        
+        venda.setCodigoVenda(codigo);
+        venda.setQuantidadeTotalVenda(quantidadeTotalVenda);
+        venda.setValorTotalVenda(valorTotalVenda);
+        venda.setDataVenda(dataVenda);
+        venda.setIdUsuario(codigoUsuario);
+        venda.setIdStatus(1);
+        venda.setIdPagamento(1);
 
-        for (int i = 0; i < venda.length; i++) {
-            venda[i].setCodigoVenda(horarioVenda+codigoUsuario);
-            venda[i].setIdUsuario(codigoUsuario);
-            System.out.println(venda[i].toString());
+        int codigoVenda = VendaDAO.salvarVenda(venda);
+
+        if (codigoVenda != 0) {
+            for (int i = 0; i < produtosCarrinho.length; i++) {
+                produtosCarrinho[i].setIdVenda(1);
+            }
+
+            boolean httpOk = VendaDAO.salvarProdutoVenda(produtosCarrinho);
+
+            if (httpOk) {
+                request.setAttribute("venda", "Produto salvo com sucesso, o codigo da venda é: " + hashVenda + String.valueOf(codigoUsuario));
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil");
+                dispatcher.forward(request, response);
+            }
         }
+
     }
 
     @Override

@@ -34,14 +34,14 @@ let TableParser = function () {
         return _trsInJSON;
     };
     function _trToJSON(tr) {
-        let idproduto = getIdProduct(tr.children[0]);
-        let valorUnitario = getUnityValue(tr.children[1]);
-        let quantidadeProduto = getQuantity(tr.children[2]);
-        let valorTotalProduto = valorUnitario * quantidadeProduto;
+        let idProduto = getIdProduct(tr.children[0]);
+        let valorUnitarioProduto = getUnityValue(tr.children[1]);
+        let quantidadeUnitarioProduto = getQuantity(tr.children[2]);
+        let valorTotalProduto = valorUnitarioProduto * quantidadeUnitarioProduto;
         return {
-            idproduto,
-            valorUnitario,
-            quantidadeProduto,
+            idProduto,
+            valorUnitarioProduto,
+            quantidadeUnitarioProduto,
             valorTotalProduto
         }
     }

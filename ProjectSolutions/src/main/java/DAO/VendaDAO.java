@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.Statement;
 
 /**
  *
@@ -15,35 +15,62 @@ public class VendaDAO {
 
     private static final Database db = new Database();
 
-//    public static boolean salvarVenda(Venda v) {
-//        Connection conn = db.obterConexao();
-//        try {
-//            PreparedStatement query = conn.prepareStatement("INSERT INTO"
-//                    + " tbl_venda(id_produto, id_usuario, qtd_itens, cpf_cliente, status, data_venda)"
-//                    + "VALUES (?, ?, ?, ?, ?, NOW());");
-//
-//            int rs;
-//            for (int i = 0; i < v.getProdutoArray().length; i++) {
-//                query.setInt(1, v.getProdutoArrayPosition(i));
-//                query.setInt(2, v.getIdFuncionario());
-//                query.setInt(3, v.getProdutoQtdArrayPosition(i));
-//                query.setString(4, v.getCpfCliente());
-//                query.setInt(5, 0);
-//                rs = query.executeUpdate();
-//                if (rs != 0) {
-//                    atualizaEstoque(v.getProdutoQtdArrayPosition(i), v.getProdutoArrayPosition(i), "-");
-//                }
-//            }
-//
-//            conn.close();
-//        } catch (SQLException e) {
-//            System.out.println("SQL Exception" + e);
-//            return false;
-//        }
-//
-//        return true;
-//    }
-//
+    public static int salvarVenda(Venda v) {
+        int idVenda = 0;
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("INSERT INTO"
+                    + " tbl_venda(codigo_venda, qtd_total, valor_total, data_venda, fk_usuario, fk_status, fk_pagamento)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+
+            query.setString(1, v.getCodigoVenda());
+            query.setInt(2, v.getQuantidadeTotalVenda());
+            query.setDouble(3, v.getValorTotalVenda());
+            query.setString(4, v.getDataVenda());
+            query.setInt(5, v.getIdUsuario());
+            query.setInt(6, v.getIdStatus());
+            query.setInt(7, v.getIdPagamento());
+
+            query.executeUpdate();
+
+            ResultSet rs = query.getGeneratedKeys();
+            if (rs.next()) {
+                idVenda = rs.getInt(1);
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("SQL Exception" + e);
+            return idVenda;
+        }
+
+        return idVenda;
+    }
+
+    public static boolean salvarProdutoVenda(Venda v[]) {
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query;
+            for (int i = 0; i < v.length; i++) {
+                query = conn.prepareStatement("INSERT INTO"
+                        + " tbl_produtos_venda(fk_venda, fk_produto, qtd_produto)"
+                        + " VALUES (?, ?, ?);");
+                query.setInt(1, v[i].getIdVenda());
+                query.setInt(2, v[i].getQuantidadeTotalVenda());
+                query.setInt(3, v[i].getQuantidadeUnitarioProduto());
+
+                query.executeUpdate();
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("SQL Exception" + e);
+            return false;
+        }
+
+        return true;
+    }
+
 //    public static boolean excluirVenda(int vCodigo) {
 //        Venda v = new Venda();
 //        Connection conn = db.obterConexao();
@@ -141,5 +168,4 @@ public class VendaDAO {
 //            System.out.println("SQL Exception" + e);
 //        }
 //    }
-
 }
