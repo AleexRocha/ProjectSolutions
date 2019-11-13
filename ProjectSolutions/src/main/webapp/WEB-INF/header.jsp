@@ -19,11 +19,6 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul id="itensMenu" class="nav">
                         <li class="nav-item">
-                            <form action="../venda/cadastro_vendas">
-                                <button type="submit" class="btn nav-link nav-text">Vendas</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
                             <form action="../produtos/listagem_produtos" method="GET">
                                 <button type="submit" class="btn nav-link nav-text" >Produtos</button>
                             </form>
@@ -31,11 +26,6 @@
                         <li class="nav-item">
                             <form action="../ti/listagem_usuarios" method="GET">
                                 <button type="submit" class="btn nav-link nav-text">Usuarios</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <form action="../venda/carrega_relatorio" method="GET">
-                                <button type="submit" class="btn nav-link nav-text">Relatorio</button>
                             </form>
                         </li>
                     </ul>
