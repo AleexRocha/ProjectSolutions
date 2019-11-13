@@ -110,6 +110,11 @@ public class LoginServlet extends HttpServlet {
     private HttpSession setSessao(String emailUser, HttpServletRequest request) {
         Usuario infoSessao = UsuarioDAO.getInfoSessao(emailUser);
         HttpSession sessao = request.getSession();
+        ArrayList<Produto> produtosAux = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
+        if (produtosAux.isEmpty()) {
+            ArrayList<Produto> produtos = new ArrayList<>();
+            sessao.setAttribute("produtosCarrinho", produtos);            
+        }
         sessao.setAttribute("cdFuncionario", infoSessao.getCodigoUsuario());
         sessao.setAttribute("nomeUsuario", infoSessao.getNome());
         sessao.setAttribute("nomeSetor", infoSessao.getNomeSetor());

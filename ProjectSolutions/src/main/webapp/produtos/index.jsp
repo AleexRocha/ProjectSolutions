@@ -79,7 +79,9 @@
                                 <p class="card-text descricaoProdutoCliente"> <c:out value="${produtos.descricao}"/>  </p>
                                 <div class="row">
                                     <div class="col-lg-6"> 
-                                        <button type="button" class="btn btn-outline-success btn-block">Comprar</button> 
+                                        <form action="../produtos/carrinho_produtos" method="GET">
+                                            <button type="submit" value="${produtos.codigo}" name="addCarrinho" class="btn btn-outline-success btn-block">Comprar</button> 
+                                        </form> 
                                     </div>
                                     <div class="col-lg-6"> 
                                         <form action="../produtos/visualizar_descricao" method="GET">

@@ -22,7 +22,7 @@
     </head>
     <body>
         <%@include file="../WEB-INF/header.jsp"%>
-        <h2 class="h2 text-center subtitulo">Detalhes do produto <c:out value="${produto.nome}"/></h2>
+        <h2 class="h2 text-center subtitulo">Detalhes do produto </h2>
         <br>
         <div class="container" 
              <!--================Single Product Area =================-->
@@ -49,21 +49,21 @@
                                 </ul>
                                 <p>
                                     <label id="text-descricao">Descrição:</label></br>
-                                   <c:out value="${produto.descricao}"/>
+                                    <c:out value="${produto.descricao}"/>
                                 </p>
                                 <c:if test="${produto.tipo == 'Produto'}">
                                     <div class="product_count d-inline-block">
-                                        <span class="inumber-decrement"> <i class="fas fa-plus"></i></span>
-                                        <input readonly class="input-number" type="text" value="1" min="0" max="10">
-                                        <span class="number-increment"> <i class="fas fa-minus"></i></span>
+                                        <span class="altera input-number-decrement" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <input type="number" class="input-quantidade" value="1" min="1" max="5">
+                                        <span class="altera input-number-increment" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </c:if>
-                                 <form action="../produtos/carrinho.jsp" method="GET">
-                                <button type="submit" id="btn-descricao" class="btn btn-success btn-block">
-                                    <i class="fas fa-cart-arrow-down"></i>
-                                    Adicionar ao Carrinho
-                                </button>
-                                 </form>     
+                                <form action="../produtos/carrinho.jsp" method="GET">
+                                    <button type="submit" id="btn-descricao" class="btn btn-success btn-block">
+                                        <i class="fas fa-cart-arrow-down"></i>
+                                        Adicionar ao Carrinho
+                                    </button>
+                                </form>     
                             </div>
                         </div>
                     </div>
@@ -133,5 +133,6 @@
         <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
         <script src="../assets/js/main.js"></script>    
+        <script src="../assets/js/carrinho.js"></script>    
     </body>
 </html>
