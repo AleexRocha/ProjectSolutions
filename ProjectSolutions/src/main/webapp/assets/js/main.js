@@ -11,18 +11,11 @@
 // Mascara de Telefone
 //$('#telefone').mask('(00) 0000-0000');
 
-//Tabela responsiva
-jQuery(function($){
-	$('.table').footable();
-});
-
 // Fecha os alerts de sucesso e erro 
-$(function () {
-    $(".close").click(function (e) {
-        e.preventDefault();
-        el = $('.alert');
-        $(el).hide();
-    });
+$(".close").click(function (e) {
+    e.preventDefault();
+    el = $('.alert');
+    $(el).hide();
 });
 
 // Metodo para corrigir a exclusão de produtos/usuarios
