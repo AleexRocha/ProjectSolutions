@@ -31,12 +31,24 @@ public class GetProdutosCarrinho extends HttpServlet {
         ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
         ArrayList<Produto> produtosInfo = new ArrayList<>();
 
-        for (Produto produto : produtosCarrinho) {
-            produtosInfo.add(ProdutoDAO.getProduto(produto.getCodigo()));
+        int i = 0;
+        for (Produto prod : produtosCarrinho) {
+            Produto produto = ProdutoDAO.getProduto(prod.getCodigo());
+            produto.setQuantidadeEstoque(produtosCarrinho.get(i).getQuantidadeEstoque());
+            
+            String valorTotal = String.format("%.2f", produto.getValorUnitario() * produtosCarrinho.get(i).getQuantidadeEstoque());
+            String newValorUnitario = String.format("%.2f", produto.getValorUnitario());
+            produto.setValorCarrinho(newValorUnitario);
+            produto.setValorTotal(valorTotal);
+            
+            produtosInfo.add(produto);
+            
             System.out.println("Log-prtint: " + produto.getNome());
             System.out.println("Log-prtint: " + produto.getQuantidadeEstoque());
+            i++;
         }
         
+        request.setAttribute("produtosCarrinho", produtosInfo);
         RequestDispatcher dipatcher = request.getRequestDispatcher("/venda/carrinho.jsp");
         dipatcher.forward(request, response);
     }

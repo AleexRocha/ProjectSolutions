@@ -39,45 +39,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="coluna" name="codigo">0001</td>
-                                        <td class="coluna" name="produto">Girasol amarelo</td>
-                                        <td class="coluna" name="preco">R$ 50,00</td>
-                                        <td class="coluna" name="quantidade">2</td>
-                                        <td class="coluna" name="valorTotal">R$ 100,00</td>
-                                        <td class="btn-group">
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
-                                                <i class="far fa-trash-alt"></i>
-                                                <c:set var="codigoProduto" value="${produtos.codigo}"/>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="coluna" name="codigo">0002</td>
-                                        <td class="coluna" name="produto">Rosas vermelhas</td>
-                                        <td class="coluna" name="preco">R$ 25,00</td>
-                                        <td class="coluna" name="quantidade">5</td>
-                                        <td class="coluna" name="valorTotal">R$ 125,00</td>
-                                        <td class="btn-group">
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
-                                                <i class="far fa-trash-alt"></i>
-                                                <c:set var="codigoProduto" value="${produtos.codigo}"/>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="coluna" name="codigo">0003</td>
-                                        <td class="coluna" name="produto">Ypê Roxo</td>
-                                        <td class="coluna" name="preco">R$ 75,00</td>
-                                        <td class="coluna" name="quantidade">6</td>
-                                        <td class="coluna" name="valorTotal">R$ 450.00</td>
-                                        <td class="btn-group">
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
-                                                <i class="far fa-trash-alt"></i>
-                                                <c:set var="codigoProduto" value="${produtos.codigo}"/>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="produto" items="${produtosCarrinho}">
+                                        <tr>
+                                            <td class="coluna" name="codigo"><c:out value="${produto.codigo}"/></td>
+                                            <td class="coluna" name="produto"><c:out value="${produto.nome}"/></td>
+                                            <td class="coluna" name="preco">R$ <c:out value="${produto.valorCarrinho}"/></td>
+                                            <td class="coluna" name="quantidade"><c:out value="${produto.quantidadeEstoque}"/></td>                                            
+                                            <td class="coluna" name="valorTotal">R$ <c:out value="${produto.valorTotal}"/></td>
+                                            <td class="btn-group">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProduto">
+                                                    <i class="far fa-trash-alt"></i>
+                                                    <c:set var="codigoProduto" value="${produto.codigo}"/>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
