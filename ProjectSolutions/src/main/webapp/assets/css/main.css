@@ -214,3 +214,8 @@ footer {
 .precoUnitario, .precoTotal{
     white-space: nowrap;
 }
+
+.imgCardView{
+    width: 100%;
+    height: 350px;
+}
