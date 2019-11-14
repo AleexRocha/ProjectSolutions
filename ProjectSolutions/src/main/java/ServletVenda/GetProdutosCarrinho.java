@@ -37,23 +37,7 @@ public class GetProdutosCarrinho extends HttpServlet {
 
         if (produtosCarrinho != null) {
             String teste = request.getParameter("botao");
-            if (teste.equalsIgnoreCase("1")) {
-                ArrayList<Produto> checkoutInfo = new ArrayList<>();
-                for (int i = 0; i < produtosCarrinho.size(); i++) {
-                    Produto p = ProdutoDAO.getProduto(i);
-                    checkoutInfo.add(p);
-                }
-                int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
-                ArrayList<Pagamento> pagamentos = UsuarioDAO.getPagamentosCadastrados(codigoUsuario);
-                ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
-
-                request.setAttribute("produtosCarringo", checkoutInfo);
-                request.setAttribute("metodosPagamento", pagamentos);
-                request.setAttribute("enderecosEntrega", enderecos);
-
-                RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/checkout.jsp");
-                dipatcher.forward(request, response);
-            } else {
+            if (teste == null) {
                 int i = 0;
                 for (Produto prod : produtosCarrinho) {
                     Produto produto = ProdutoDAO.getProduto(prod.getCodigo());
@@ -70,10 +54,32 @@ public class GetProdutosCarrinho extends HttpServlet {
                     i++;
                 }
 
+                request.setAttribute("varMsgTabela", false);
                 request.setAttribute("produtosCarrinho", produtosInfo);
                 RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
                 dipatcher.forward(request, response);
+            } else {
+                ArrayList<Produto> checkoutInfo = new ArrayList<>();
+                for (int i = 0; i < produtosCarrinho.size(); i++) {
+                    Produto p = ProdutoDAO.getProduto(i);
+                    checkoutInfo.add(p);
+                }
+                int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
+                ArrayList<Pagamento> pagamentos = UsuarioDAO.getPagamentosCadastrados(codigoUsuario);
+                ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
+
+                request.setAttribute("produtosCarringo", checkoutInfo);
+                request.setAttribute("metodosPagamento", pagamentos);
+                request.setAttribute("enderecosEntrega", enderecos);
+
+                RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/checkout.jsp");
+                dipatcher.forward(request, response);
             }
+        } else {
+            request.setAttribute("varMsgTabela", true);
+            request.setAttribute("msg", "Adicione produtos ao carrinho para ve-los aqui.");
+            RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
+            dipatcher.forward(request, response);
         }
     }
 

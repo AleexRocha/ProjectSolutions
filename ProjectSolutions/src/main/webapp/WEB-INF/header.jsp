@@ -90,6 +90,33 @@
                 </div>
             </nav>
         </c:when>
+         <c:when test="${sessionScope.nomeSetor == ''}">
+            <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul id="itensMenu" class="nav">
+                        <li class="nav-item">
+                            <form action="../produtos/listagem_produtos" method="GET">
+                                <button type="submit" class="btn nav-link nav-text" >Produtos</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form action="../venda/carrinho" method="POST">
+                                <button type="submit" class="btn nav-link nav-text">Carrinho</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <form action="../login/login.jsp">
+                        <button type="submit" class="btn">
+                            <i class="fas fa-user-tie"></i>
+                            Entrar 
+                        </button>
+                    </form>
+                </div>
+            </nav>
+        </c:when>
         <c:otherwise>
             <nav class="navbar navbar-expand-md navbar-light bg-warning mb-4">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,6 +128,7 @@
                             <form action="../produtos/listagem_produtos" method="GET">
                                 <button type="submit" class="btn nav-link nav-text" >Produtos</button>
                             </form>
+                        </li>
                         <li class="nav-item">
                             <form action="../venda/carrinho" method="POST">
                                 <button type="submit" class="btn nav-link nav-text">Carrinho</button>

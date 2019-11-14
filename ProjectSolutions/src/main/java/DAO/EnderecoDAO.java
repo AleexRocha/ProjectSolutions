@@ -100,7 +100,7 @@ public class EnderecoDAO {
                     );
                     e.setCodigoUsuario(rs.getInt(1));
                     e.setSetor(rs.getInt(6));
-                    
+
                     endereco = e;
                 }
             }
@@ -142,7 +142,50 @@ public class EnderecoDAO {
                     );
                     endereco.setCodigoUsuario(rs.getInt(1));
                     endereco.setSetor(rs.getInt(6));
-                    
+
+                    enderecos.add(endereco);
+                }
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return enderecos;
+    }
+
+    public static ArrayList<Usuario> getEnderecosEntregaUser(int codigoUsuario) {
+        ArrayList<Usuario> enderecos = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT *"
+                    + " FROM tbl_usuario AS u"
+                    + " INNER JOIN tbl_endereco AS e"
+                    + " ON u.id_usuario = e.fk_usuario"
+                    + " WHERE u.id_usuario = ?"
+                    + " AND e.tipo = \"entrega\";");
+
+            query.setInt(1, codigoUsuario);
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Usuario endereco = new Usuario(
+                            rs.getInt(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getInt(11),
+                            rs.getString(12),
+                            rs.getString(13),
+                            rs.getString(14),
+                            rs.getString(15),
+                            rs.getString(16),
+                            rs.getInt(17)
+                    );
+                    endereco.setCodigoUsuario(rs.getInt(1));
+                    endereco.setSetor(rs.getInt(6));
+
                     enderecos.add(endereco);
                 }
             }
