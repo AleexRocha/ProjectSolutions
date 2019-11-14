@@ -49,7 +49,7 @@ public class GetProdutosCarrinho extends HttpServlet {
         }
         
         request.setAttribute("produtosCarrinho", produtosInfo);
-        RequestDispatcher dipatcher = request.getRequestDispatcher("/venda/carrinho.jsp");
+        RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
         dipatcher.forward(request, response);
     }
 
