@@ -81,7 +81,7 @@
                             </form>
                         </li>
                     </ul>
-                    <form action="../login/index.jsp">
+                    <form action="../login/login.jsp">
                         <button type="submit" class="btn">
                             <i class="fas fa-user-tie"></i>
                             Entrar 
