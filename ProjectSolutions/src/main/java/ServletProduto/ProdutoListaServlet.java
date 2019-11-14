@@ -32,7 +32,6 @@ public class ProdutoListaServlet extends HttpServlet {
 
         Usuario userTeste = new Usuario();
         userTeste.setNomeSetor(String.valueOf(sessao.getAttribute("nomeSetor")));
-
         if (userTeste.getNomeSetor().equalsIgnoreCase("Cliente")
                 || sessao.getAttribute("nomeSetor") == null
                 || sessao.getAttribute("nomeSetor").equals("")) {
