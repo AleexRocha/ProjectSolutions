@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServletVenda;
 
 import DAO.EnderecoDAO;
@@ -59,8 +54,15 @@ public class GetProdutosCarrinho extends HttpServlet {
                 request.setAttribute("produtosCarrinho", produtosInfo);
                 RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
                 dipatcher.forward(request, response);
+            } else if ((sessao.getAttribute("cdFuncionario") == null) || (sessao.getAttribute("cdFuncionario").equals(""))) {
+                request.setAttribute("varMsgError", true);
+                request.setAttribute("msg", "Faça login para continuar");
+                RequestDispatcher dipatcher = request.getRequestDispatcher("/login/login.jsp");
+                dipatcher.forward(request, response);
             } else {
                 ArrayList<Produto> checkoutInfo = new ArrayList<>();
+                int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
+                
                 int i = 0;
                 for (Produto prod : produtosCarrinho) {
                     Produto p = ProdutoDAO.getProduto(prod.getCodigo());
@@ -76,7 +78,7 @@ public class GetProdutosCarrinho extends HttpServlet {
 
                     i++;
                 }
-                int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
+
                 ArrayList<Pagamento> pagamentos = UsuarioDAO.getPagamentosCadastrados(codigoUsuario);
                 ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
 
