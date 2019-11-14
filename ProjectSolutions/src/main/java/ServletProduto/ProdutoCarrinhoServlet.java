@@ -27,8 +27,19 @@ public class ProdutoCarrinhoServlet extends HttpServlet {
 
         HttpSession sessao = request.getSession();
         String id = (String) request.getParameter("addCarrinho");
+        String metodo = request.getParameter("metodo");
+        String codigoProduto = request.getParameter("codigoProduto");
+        String quantidadeAddDescricao = request.getParameter("quantidadeAdd");
+        
         Produto produto = new Produto();
-        produto.setCodigo(Integer.parseInt(id));
+
+        if (metodo.equals("index")) {
+            produto.setCodigo(Integer.parseInt(id));
+            produto.setQuantidadeEstoque(1);
+        } else {
+            produto.setCodigo(Integer.parseInt(codigoProduto));
+            produto.setQuantidadeEstoque(Integer.parseInt(quantidadeAddDescricao));
+        }
 
         if (sessao.getAttribute("nomeSetor") == null) {
             sessao = setSessao(request);
@@ -46,13 +57,22 @@ public class ProdutoCarrinhoServlet extends HttpServlet {
             sessao.removeAttribute("produtosCarrinho");
             sessao.setAttribute("produtosCarrinho", produtosCarrinho);
         }
-        
-        ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-        request.setAttribute("listaProdutos", produtos);
-        request.setAttribute("varMsg", true);
-        request.setAttribute("msg", "Adicionado no carrinho com sucesso");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
+
+        if (metodo.equals("index")) {
+            ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+            request.setAttribute("listaProdutos", produtos);
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            Produto prod = ProdutoDAO.getProduto(Integer.parseInt(codigoProduto));
+            request.setAttribute("produto", prod);
+            request.setAttribute("varMsg", true);
+            request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/descricao_produto.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     @Override

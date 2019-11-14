@@ -2,11 +2,14 @@
 function atualizarCarrinho(e) {
     let data = e.getAttribute('data-posicao');
     let input = document.getElementsByClassName('input-quantidade')[data - 1];
+    let inputQuantidadeCarrinho = document.getElementById('quantidadeProdCarrinho');
 
     if ((e.classList.contains('input-number-increment')) && (parseInt(input.value) < 5)) {
         input.value = parseInt(input.value) + 1;
+        inputQuantidadeCarrinho.value = input.value;
     } else if ((e.classList.contains('input-number-decrement')) && (parseInt(input.value) > 1)) {
         input.value = parseInt(input.value) - 1;
+        inputQuantidadeCarrinho.value = input.value;
     }
 }
 

@@ -23,7 +23,17 @@
     <body>
         <%@include file="../WEB-INF/header.jsp"%>
         <h2 class="h2 text-center subtitulo">Detalhes do produto </h2>
-        <br>
+        <!--<br>-->
+        <div class="container">
+            <c:if test="${varMsg == true}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${msg}"/>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
+        </div>
         <div class="container" 
              <!--================Single Product Area =================-->
              <div class="product_image_area">
@@ -37,7 +47,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         <div class="col-lg-5 offset-lg-1">
                             <div class="s_product_text">
                                 <h2><c:out value="${produto.nome}"/></h2>
@@ -58,7 +68,11 @@
                                         <span class="altera input-number-increment" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </c:if>
-                                <form action="../produtos/carrinho.jsp" method="GET">
+                                <form action="../produtos/carrinho_produtos" method="GET">
+                                    <input class="sr-only" name="metodo" value="descricao"/>
+                                    <input class="sr-only" name="codigoProduto" value="${produto.codigo}"/>
+                                    <input id="quantidadeProdCarrinho" class="sr-only" name="quantidadeAdd" value="1"/>
+
                                     <button type="submit" id="btn-descricao" class="btn btn-success btn-block">
                                         <i class="fas fa-cart-arrow-down"></i>
                                         Adicionar ao Carrinho

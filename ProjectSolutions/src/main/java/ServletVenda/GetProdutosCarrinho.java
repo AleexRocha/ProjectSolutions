@@ -8,8 +8,8 @@ package ServletVenda;
 import DAO.ProdutoDAO;
 import Model.Produto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,12 +30,15 @@ public class GetProdutosCarrinho extends HttpServlet {
         HttpSession sessao = request.getSession();
         ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
         ArrayList<Produto> produtosInfo = new ArrayList<>();
-        
-        for (int i = 0; i < produtosCarrinho.size(); i++) {
-            produtosInfo.add(ProdutoDAO.getProduto(produtosCarrinho.get(i).getCodigo()));
-            System.out.println(produtosInfo.get(i).getNome());
+
+        for (Produto produto : produtosCarrinho) {
+            produtosInfo.add(ProdutoDAO.getProduto(produto.getCodigo()));
+            System.out.println("Log-prtint: " + produto.getNome());
+            System.out.println("Log-prtint: " + produto.getQuantidadeEstoque());
         }
-       
+        
+        RequestDispatcher dipatcher = request.getRequestDispatcher("/venda/carrinho.jsp");
+        dipatcher.forward(request, response);
     }
 
     @Override
