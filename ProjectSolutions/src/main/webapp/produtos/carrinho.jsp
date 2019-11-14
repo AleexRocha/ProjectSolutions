@@ -222,7 +222,7 @@
                                 <td>
                                     <h5>Subtotal</h5>
                                 </td>
-                                <td>
+                                <td class="precoTotal">
                                     <h5>R$ 984.74</h5>
                                 </td>
                             </tr>

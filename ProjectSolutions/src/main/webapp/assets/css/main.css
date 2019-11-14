@@ -3,8 +3,6 @@ body{
 }
 table *{
     text-align: center;
-}
-table td.coluna {
     vertical-align: middle !important;
 }
 
