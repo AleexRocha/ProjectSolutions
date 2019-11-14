@@ -70,7 +70,7 @@ public class VendaCadastroServlet extends HttpServlet {
         venda.setValorTotalVenda(valorTotalVenda);
         venda.setValorFrete(valorTotalVenda);
         venda.setDataVenda(dataVenda);
-        venda.setIdEndereco(3);
+        venda.setIdEndereco(1);
         venda.setIdUsuario(codigoUsuario);
         venda.setIdStatus(1);
         venda.setIdPagamento(1);

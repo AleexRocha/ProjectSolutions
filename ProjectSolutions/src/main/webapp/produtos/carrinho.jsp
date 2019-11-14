@@ -108,7 +108,7 @@
                         <br>
                         <c:if test="${varMsgTabela == false}">
                             <form action="../venda/carrinho">
-                                <button type="submit" class="btn btn-success btn-block" value="checkout" name="checkout">
+                                <button type="submit" class="btn btn-success btn-block" value="checkout" name="checkout" onclick="salvarProdutos()">
                                     <i class="fas fa-shopping-cart"></i>
                                     Finalizar compra
                                 </button>
