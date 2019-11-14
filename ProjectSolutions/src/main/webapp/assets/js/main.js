@@ -1,15 +1,20 @@
 // Mascara de CPF
-$('#cpfCliente').mask('000.000.000-00');
+//$('#cpfCliente').mask('000.000.000-00');
 
 // Mascara de Valor
-$('#valor').mask('R$000,00');
-$('#valorTotal').mask('R$000,00');
+//$('#valor').mask('R$000,00');
+//$('#valorTotal').mask('R$000,00');
 
 // Mascara de CEP
-$('#cep').mask('00.000-000');
+//$('#cep').mask('00000-000');
 
 // Mascara de Telefone
-$('#telefone').mask('(00) 0000-0000');
+//$('#telefone').mask('(00) 0000-0000');
+
+//Tabela responsiva
+jQuery(function($){
+	$('.table').footable();
+});
 
 // Fecha os alerts de sucesso e erro 
 $(function () {
@@ -21,10 +26,10 @@ $(function () {
 });
 
 // Metodo para corrigir a exclusão de produtos/usuarios
-function defineCodigo(valor){
+function defineCodigo(valor) {
     let origem = valor;
     let destino = document.getElementById('destino');
-    
+
     destino.value = origem;
 }
 
@@ -61,5 +66,24 @@ function salvarImagem() {
         console.log("end");
     };
     xhr.send();
-//    });
 }
+
+//AJAX que busca o CEP
+jQuery(function ($) {
+    $("#cep").change(function () {
+        var cep_code = $(this).val();
+        if (cep_code.length <= 0)
+            return;
+        $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", {code: cep_code},
+                function (result) {
+                    if (result.status != 1) {
+                        alert(result.message || "Houve um erro desconhecido");
+                        return;
+                    }
+                    $("input#estado").val(result.state);
+                    $("input#cidade").val(result.city);
+                    $("input#bairro").val(result.district);
+                    $("input#logradouro").val(result.address);
+                });
+    });
+});

@@ -3,6 +3,7 @@ package ServletLogin;
 import DAO.UsuarioDAO;
 import Model.Produto;
 import Model.Usuario;
+import static Utils.Criptografia.criptografar;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,9 +41,11 @@ public class LoginServlet extends HttpServlet {
             }
             request.setAttribute("varMsgError", true);
             request.setAttribute("msg", "Campo de E-mail ou Senha inválidos");
-            dispatcher = request.getRequestDispatcher("/login/index.jsp");
+            dispatcher = request.getRequestDispatcher("/login/login.jsp");
         } else {
-            boolean httpOK = UsuarioDAO.getLogin(uEmail, uSenha);
+            String senhaCriptografada = criptografar(uSenha);
+
+            boolean httpOK = UsuarioDAO.getLogin(uEmail, senhaCriptografada);
 
             if (httpOK) {
                 HttpSession sessao = setSessao(request.getParameter("email"), request);
@@ -50,7 +53,7 @@ public class LoginServlet extends HttpServlet {
                 if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
-                    dispatcher = request.getRequestDispatcher("../produtos/cliente_listagem_produtos.jsp");
+                    dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
                 } else {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
@@ -62,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 
                 request.setAttribute("loginError", uEmail);
 
-                dispatcher = request.getRequestDispatcher("/login/index.jsp");
+                dispatcher = request.getRequestDispatcher("/login/login.jsp");
             }
         }
 
@@ -107,9 +110,17 @@ public class LoginServlet extends HttpServlet {
     private HttpSession setSessao(String emailUser, HttpServletRequest request) {
         Usuario infoSessao = UsuarioDAO.getInfoSessao(emailUser);
         HttpSession sessao = request.getSession();
-        sessao.setAttribute("cdFuncionario", infoSessao.getCodigo());
+        ArrayList<Produto> produtosAux = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
+        if (produtosAux == null || produtosAux.isEmpty()) {
+            ArrayList<Produto> produtos = new ArrayList<>();
+            sessao.setAttribute("produtosCarrinho", produtos);            
+        }
+        sessao.setAttribute("cdFuncionario", infoSessao.getCodigoUsuario());
         sessao.setAttribute("nomeUsuario", infoSessao.getNome());
         sessao.setAttribute("nomeSetor", infoSessao.getNomeSetor());
+        sessao.setAttribute("cdSetor", infoSessao.getSetor());
+        sessao.setAttribute("emailUsuario", emailUser);
+        sessao.setAttribute("cpfUsuario", infoSessao.getCpf());
 
         return sessao;
     }

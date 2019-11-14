@@ -1,18 +1,27 @@
 package ServletVenda;
 
+import DAO.UsuarioDAO;
 import DAO.VendaDAO;
+import Model.Usuario;
 import Model.Venda;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.google.gson.Gson;
+import java.io.BufferedReader;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,104 +30,90 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "VendaCadastroServlet", urlPatterns = {"/venda/create_venda"})
 public class VendaCadastroServlet extends HttpServlet {
 
-    private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
+    private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String vCodProduto[] = (String[]) request.getParameterValues("codigoProduto");
-        String vIdFuncionario = request.getParameter("idFuncionario");
-        String vCpfCliente = request.getParameter("cpfCliente");
-        String vQuantidade[] = (String[]) request.getParameterValues("quantidade");
+        Gson gson = new Gson();
+        Venda venda = new Venda();
+        Venda produtosCarrinho[];
 
-        boolean error = false;
-        if (vCodProduto == null) {
-            error = true;
-            request.setAttribute("codProdutoErro", "Produto invalido!");
-        } else if (vCodProduto.equals("")) {
-            error = true;
-            request.setAttribute("codProdutoErro", "Produto invalido!");
-        }
-        if (vIdFuncionario == null) {
-            error = true;
-            request.setAttribute("idFuncErro", "Usuario invalido");
-        } else if (vIdFuncionario.equalsIgnoreCase("0")) {
-            error = true;
-            request.setAttribute("idFuncErro", "Usuario invalido");
-        }
-        if (vQuantidade == null) {
-            error = true;
-            request.setAttribute("quantidadeErro", "Quantidade invalida");
-        } else if (vQuantidade.equals("")) {
-            error = true;
-            request.setAttribute("quantidadeErro", "Quantidade invalida");
+        StringBuilder ajax = new StringBuilder();
+        BufferedReader reader = request.getReader();
+
+        String linha;
+        while ((linha = reader.readLine()) != null) {
+            ajax.append(linha);
         }
 
-        if (error) {
-            ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-            ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
+        String json = ajax.toString();
+        produtosCarrinho = gson.fromJson(json, Venda[].class);
 
-            if (produtosVenda.isEmpty()) {
-                Venda uv = new Venda();
+        int quantidadeTotalVenda = 0;
+        int valorTotalVenda = 0;
 
-                uv.setNomeProduto("Não há produtos cadastrados");
-                produtosVenda.add(uv);
+        for (Venda pc : produtosCarrinho) {
+            quantidadeTotalVenda += pc.getQuantidadeUnitarioProduto();
+            valorTotalVenda += pc.getValorTotalProduto();
+        }
 
-                request.setAttribute("listaProdutos", produtosVenda);
-            } else {
-                request.setAttribute("listaProdutos", produtosVenda);
+        DateFormat dateFormatCodigoVenda = new SimpleDateFormat("ddMMyyyyHHmmss");
+        DateFormat dateFormatDataVenda = new SimpleDateFormat("dd:MM:yyyy HH:mm:ss");
+        Date date = new Date();
+        String hashVenda = dateFormatCodigoVenda.format(date);
+        String dataVenda = dateFormatDataVenda.format(date);
+
+        HttpSession userLogado = request.getSession();
+        int codigoUsuario = (int) userLogado.getAttribute("cdFuncionario");
+
+        venda.setCodigoVenda(hashVenda.concat(String.valueOf(codigoUsuario)));
+        venda.setQuantidadeTotalVenda(quantidadeTotalVenda);
+        venda.setValorTotalVenda(valorTotalVenda);
+        venda.setValorFrete(valorTotalVenda);
+        venda.setDataVenda(dataVenda);
+        venda.setIdEndereco(3);
+        venda.setIdUsuario(codigoUsuario);
+        venda.setIdStatus(1);
+        venda.setIdPagamento(1);
+
+        int codigoVenda = VendaDAO.salvarVenda(venda);
+
+        if (codigoVenda != 0) {
+            for (int i = 0; i < produtosCarrinho.length; i++) {
+                produtosCarrinho[i].setIdVenda(codigoVenda);
             }
 
-            if (usuariosVenda.isEmpty()) {
-                Venda uv = new Venda();
+            boolean httpOk = VendaDAO.salvarProdutoVenda(produtosCarrinho);
 
-                uv.setNomeFuncionario("Não há usuarios cadastrados");
-                usuariosVenda.add(uv);
-
-                request.setAttribute("listaUsuarios", usuariosVenda);
-            } else {
-                request.setAttribute("listaUsuarios", usuariosVenda);
-            }
-
-            request.setAttribute("varMsgE", true);
-            request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            int[] cdProd = Arrays.stream(vCodProduto).mapToInt(Integer::parseInt).toArray();
-            int[] qtdVenda = Arrays.stream(vQuantidade).mapToInt(Integer::parseInt).toArray();
-            Venda venda = new Venda(cdProd, Integer.parseInt(vIdFuncionario), qtdVenda);
-            if (vCpfCliente.length() != 0) {
-                venda.setCpfCliente(vCpfCliente);
-            }
-
-            boolean httpOK = VendaDAO.salvarVenda(venda);
-            if (httpOK) {
-                request.setAttribute("varMsgS", true);
-                request.setAttribute("msg", "Venda realizada com sucesso.");
-
-                ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-                request.setAttribute("listaProdutos", produtosVenda);
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-                dispatcher.forward(request, response);
-            } else {
-                request.setAttribute("varMsgE", true);
-                request.setAttribute("msg", "Erro ao realizar o cadastro no banco de dados, verifique os campos e tente novamente.");
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-                dispatcher.forward(request, response);
+            if (httpOk) {
+                dispachar(request, response, hashVenda.concat(String.valueOf(codigoUsuario)), codigoUsuario);
             }
         }
+    }
+
+    public void dispachar(HttpServletRequest request, HttpServletResponse response, String codigoVenda, int codigoUsuario)
+            throws ServletException, IOException {
+        Usuario usuario = UsuarioDAO.getUsuario(codigoUsuario);
+
+        request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
+        request.setAttribute("nome", usuario.getNome());
+        request.setAttribute("cpf", usuario.getCpf());
+        request.setAttribute("email", usuario.getEmail());
+        request.setAttribute("nomeSetor", usuario.getNomeSetor());
+
+        request.setAttribute("varMsg", "Produto salvo com sucesso, o codigo da venda é: " + codigoVenda);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp);
+        processaRequisicao(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp);
+        processaRequisicao(req, resp);
     }
 
 }

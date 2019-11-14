@@ -26,12 +26,11 @@ public class UsuarioPerfilServlet extends HttpServlet {
 
         Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(cCodigo));
 
-        request.setAttribute("codigoUsuario", usuario.getCodigo());
+        request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
         request.setAttribute("nome", usuario.getNome());
         request.setAttribute("cpf", usuario.getCpf());
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("nomeSetor", usuario.getNomeSetor());
-        request.setAttribute("perfil", "pessoal");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
         dispatcher.forward(request, response);

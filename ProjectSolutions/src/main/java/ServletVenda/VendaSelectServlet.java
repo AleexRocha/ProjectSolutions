@@ -22,34 +22,34 @@ public class VendaSelectServlet extends HttpServlet {
 
     private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-        ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
-
-        if (produtosVenda.isEmpty()) {
-            Venda uv = new Venda();
-
-            uv.setNomeProduto("Não há produtos cadastrados");
-            produtosVenda.add(uv);
-
-            request.setAttribute("listaProdutos", produtosVenda);
-        } else {
-            request.setAttribute("listaProdutos", produtosVenda);
-        }
-
-        if (usuariosVenda.isEmpty()) {
-            Venda uv = new Venda();
-
-            uv.setNomeFuncionario("Não há usuarios cadastrados");
-            usuariosVenda.add(uv);
-
-            request.setAttribute("listaUsuarios", usuariosVenda);
-        } else {
-            request.setAttribute("listaUsuarios", usuariosVenda);
-        }
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-        dispatcher.forward(request, response);
+//
+//        ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
+//        ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
+//
+//        if (produtosVenda.isEmpty()) {
+//            Venda uv = new Venda();
+//
+//            uv.setNomeProduto("Não há produtos cadastrados");
+//            produtosVenda.add(uv);
+//
+//            request.setAttribute("listaProdutos", produtosVenda);
+//        } else {
+//            request.setAttribute("listaProdutos", produtosVenda);
+//        }
+//
+//        if (usuariosVenda.isEmpty()) {
+//            Venda uv = new Venda();
+//
+//            uv.setNomeFuncionario("Não há usuarios cadastrados");
+//            usuariosVenda.add(uv);
+//
+//            request.setAttribute("listaUsuarios", usuariosVenda);
+//        } else {
+//            request.setAttribute("listaUsuarios", usuariosVenda);
+//        }
+//
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
+//        dispatcher.forward(request, response);
 
     }
 

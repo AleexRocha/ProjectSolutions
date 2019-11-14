@@ -3,8 +3,6 @@ body{
 }
 table *{
     text-align: center;
-}
-table td.coluna {
     vertical-align: middle !important;
 }
 
@@ -190,3 +188,29 @@ footer {
     margin: 0px 15px;
 }
 
+/*input de valores do carrinho*/
+.input-quantidade{
+    background-color: #f4f4f4;
+    width: 40px !important;
+    height: 35px !important;
+    border: solid 1px #cccccc;
+    border-radius: 5px;
+    text-align: right;
+}
+.input-number-decrement, .input-number-increment{
+    font-size: 17px;
+    cursor: pointer;
+    padding: 5px;
+}
+#btn-descricao{
+   margin-top: 20px;
+}
+
+#text-descricao{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.precoUnitario, .precoTotal{
+    white-space: nowrap;
+}

@@ -35,7 +35,7 @@ public class UsuarioSelectEditServlet extends HttpServlet {
         else{
             request.setAttribute("cliente", false);
         }
-        request.setAttribute("codigo", usuario.getCodigo());
+        request.setAttribute("codigo", usuario.getCodigoUsuario());
         request.setAttribute("nome", usuario.getNome());
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("senha", usuario.getSenha());

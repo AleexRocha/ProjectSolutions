@@ -1,8 +1,12 @@
 package ServletEndereco;
 
-import DAO.UsuarioDAO;
+import DAO.EnderecoDAO;
+
 import Model.Usuario;
+
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,20 +26,12 @@ public class EnderecoListaServlet extends HttpServlet {
 
         String cCodigo = request.getParameter("idUsuario");
 
-        Usuario usuario = UsuarioDAO.getEnderecoUser(Integer.parseInt(cCodigo));
+        ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosUser(Integer.parseInt(cCodigo));
 
-        request.setAttribute("codigoUsuario", cCodigo);
-        request.setAttribute("codigoEndereco", usuario.getCodigoEndereco());
-        request.setAttribute("cep", usuario.getCep());
-        request.setAttribute("numero", usuario.getNumero());
-        request.setAttribute("logradouro", usuario.getLogradouro());
-        request.setAttribute("bairro", usuario.getBairro());
-        request.setAttribute("cidade", usuario.getCidade());
-        request.setAttribute("estado", usuario.getEstado());
-        request.setAttribute("tipoEndereco", usuario.getTipoEndereco());
+        request.setAttribute("listaEnderecos", enderecos);
 
         request.setAttribute("perfil", "endereco");
-
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
         dispatcher.forward(request, response);
     }

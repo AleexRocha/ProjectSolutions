@@ -40,6 +40,10 @@ public class ProdutoEditarServlet extends HttpServlet {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
         }
+        if (fDescricao.length() == 0) {
+            error = true;
+            request.setAttribute("descricaoErro", "Descrição não informada");
+        }
         if (fTipo.length() == 0) {
             error = true;
             request.setAttribute("TipoErro", "Tipo não informado");

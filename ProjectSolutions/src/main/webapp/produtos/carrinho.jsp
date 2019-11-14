@@ -7,143 +7,77 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Carrinho</title>
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
-  <link rel="stylesheet" href="../assets/css/themify-icons.css"/>
-  <link rel="stylesheet" href="../assets/css/style.css"/>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-</head>
-<body >
-  <!--================Cart Area =================-->
-   <%@include file="../WEB-INF/header.jsp"%>
-    <div class="container">
-      <div class="cart_inner">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Produto</th>
-                <th scope="col">Preço</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="img/arrivel/arrivel_1.png" alt="" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Carrinho</title>
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../assets/css/style.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    </head>
+    <body>
+        <%@include file="../WEB-INF/header.jsp"%>
+        <h2 class="h2 text-center subtitulo">Carrinho</h2>
+        <br>
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Produto</th>
+                                <th scope="col">Valor Unitário</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="produto" items="${produtosCarrinho}">
+                                <tr class="carrinho">
+                                    <td class="produto">
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img src="../assets/img/produtos_teste/encanto_de_rosas_vermelhas.jpg" alt="Encanto de Rosas Vermelhas" />
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="sr-only idProduto">1</p>
+                                                <p class="nomeProduto"><c:out value="${produto.nome}"/></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="precoUnitario">
+                                        <h5 class="unitario">R$ <c:out value="${produto.valorCarrinho}"/></h5>
+                                    </td>
+                                    <td class="quantidade">
+                                        <div class="product_count">
+                                            <span class="altera input-number-decrement" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                            <input type="number" readonly="" class="input-quantidade" value="${produto.quantidadeEstoque}" min="1" max="5">
+                                            <span class="altera input-number-increment" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
+                                        </div>
+                                    </td>
+                                    <td class="precoTotal">
+                                        <h5 class="total">R$  <c:out value="${produto.valorTotal}"/></h5>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                    <div class="checkout_btn_inner float-right">
+                        <button  type="submit" class="btn btn-success btn-block" onclick="salvarProdutos();">
+                            <i class="fas fa-shopping-cart"></i>
+                            Finalizar compra
+                        </button>
+                        <a href="checkout.jsp">CHECKOUT</a>
                     </div>
-                    <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="../assets/img/girassol.jpg" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                      <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                      <input class="input-number" type="text" value="1" min="0" max="10">
-                      <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td>
-                  <h5>Subtotal</h5>
-                </td>
-                <td>
-                  <h5>R$2160.00</h5>
-                </td>
-              </tr>
-              <tr class="shipping_area">
-                <td></td>
-                <td></td>
-                <td>
-                  <h5>Frete</h5>
-                </td>
-                <td>
-                  <div class="shipping_box">
-                    <ul class="list">
-                      <li>
-                        Taxa fixa: R$5.00
-                        <input type="radio" aria-label="Radio button for following text input">
-                      </li>
-                      <li>
-                        Frete Grátis
-                        <input type="radio" aria-label="Radio button for following text input">
-                      </li>
-                      <li>
-                        Taxa fixa: R$10.00
-                        <input type="radio" aria-label="Radio button for following text input">
-                      </li>
-                      <li class="active">
-                        Entrega local: R$2.00
-                        <input type="radio" aria-label="Radio button for following text input">
-                      </li>
-                    </ul>
-                    <h6>
-                      Calcular Frete
-                      <i class="fa fa-caret-down" aria-hidden="true"></i>
-                    </h6>
-                    <select class="shipping_select">
-                      <option value="1">Interlagos</option>
-                      <option value="2">Taboão da Serra</option>
-                      <option value="4">Vila das Belezas dddddddddddd</option>
-                    </select>
-                    <a class="btn_3" href="#">Atualizar Detalhes</a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="checkout_btn_inner float-right">
-            <a class="btn_3" href="#">Continue Shopping</a>
-            <a class="btn_3 checkout_btn_1" href="#">Finalizar compra</a>
-          </div>
+                </div>
+            </div>
+            <%@include file="../WEB-INF/footer.jsp"%>
         </div>
-      </div>
-        <%@include file="../WEB-INF/footer.jsp"%>
-    </div>  
-  
-  <!--================End Cart Area =================-->
-</body>
-
+        <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/carrinho.js"></script>
+        <script src="../assets/js/main.js"></script>
+    </body>
 </html>

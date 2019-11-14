@@ -6,99 +6,198 @@ package Model;
  */
 public class Venda {
 
-    private int[] ProdutoArray;
-    private int[] qtdProdutoArray;
-    private int codigoProduto;
-    private String nomeProduto;
-    private double valorUnidade;
-    private int idFuncionario;
-    private String nomeFuncionario;
-    private int quantidadeVenda;
-    private String cpfCliente;
+    private int idVenda;
+    private String codigoVenda;
+    private int quantidadeTotalVenda;
+    private double valorFrete;
+    private double valorTotalVenda;
+    private String dataVenda;
+    private int idEndereco;
+    private int idUsuario;
+    private int idStatus;
+    private int idProduto;
+    private int idPagamento;
+    private double valorUnitarioProduto;
+    private int quantidadeUnitarioProduto;
+    private double valorTotalProduto;
 
-    public Venda(){
+    public Venda() {
+    }
+
+    //    Objeto que vem do JSON
+    public Venda(int idProduto, double valorUnitarioProduto, int quantidadeUnitarioProduto, double valorTotalProduto) {
+        this.idProduto = idProduto;
+        this.valorUnitarioProduto = valorUnitarioProduto;
+        this.quantidadeUnitarioProduto = quantidadeUnitarioProduto;
+        this.valorTotalProduto = valorTotalProduto;
+    }
+
+    //    Objeto que vem do JSON
+    public Venda(int idProduto, double valorUnitarioProduto, int quantidadeUnitarioProduto, double valorTotalProduto, int idEndereco, double valorFrete) {
+        this.idProduto = idProduto;
+        this.valorUnitarioProduto = valorUnitarioProduto;
+        this.quantidadeUnitarioProduto = quantidadeUnitarioProduto;
+        this.valorTotalProduto = valorTotalProduto;
+        this.idEndereco = idEndereco;
+        this.valorFrete = valorFrete;
+    }
+
+    //    Objeto salvo na tbl_produtos_venda
+    public Venda(int idVenda, int idProduto, int quantidadeUnitarioProduto) {
+        this.idVenda = idVenda;
+        this.idProduto = idProduto;
+        this.quantidadeUnitarioProduto = quantidadeUnitarioProduto;
     }
     
-    public Venda(int codigoProduto, int idFuncionario) {
-        this.codigoProduto = codigoProduto;
-        this.idFuncionario = idFuncionario;
-    }
-    
-    public Venda(int[] ProdutoArray, int idFuncionario, int[] qtdProdutoArray) {
-        this.ProdutoArray = ProdutoArray;
-        this.idFuncionario = idFuncionario;
-        this.qtdProdutoArray = qtdProdutoArray;
-    }
-
-    public int getProdutoArrayPosition(int position) {
-        return ProdutoArray[position];
-    }
-    
-    public int getProdutoQtdArrayPosition(int position) {
-        return qtdProdutoArray[position];
-    }
-    
-    public int[] getProdutoArray() {
-        return ProdutoArray;
+        //    Objeto salvo na tbl_venda
+    public Venda(String codigoVenda, int quantidadeTotalVenda, double valorTotalVenda, String dataVenda, int idUsuario, int idStatus, int idPagamento) {
+        this.codigoVenda = codigoVenda;
+        this.quantidadeTotalVenda = quantidadeTotalVenda;
+        this.valorTotalVenda = valorTotalVenda;
+        this.dataVenda = dataVenda;
+        this.idUsuario = idUsuario;
+        this.idStatus = idStatus;
+        this.idPagamento = idPagamento;
     }
 
-    public void setProdutoArray(int[] codigoProdutoArray) {
-        this.ProdutoArray = codigoProdutoArray;
+
+    //    Objeto salvo na tbl_venda
+    public Venda(String codigoVenda, int quantidadeTotalVenda, int valorFrete, double valorTotalVenda, String dataVenda, int idEndereco, int idUsuario, int idStatus, int idPagamento) {
+        this.codigoVenda = codigoVenda;
+        this.quantidadeTotalVenda = quantidadeTotalVenda;
+        this.valorFrete = valorFrete;
+        this.valorTotalVenda = valorTotalVenda;
+        this.dataVenda = dataVenda;
+        this.idEndereco = idEndereco;
+        this.idUsuario = idUsuario;
+        this.idStatus = idStatus;
+        this.idPagamento = idPagamento;
     }
 
-    public int getQuantidadeVenda() {
-        return quantidadeVenda;
+    //    Objeto geral tbl_venda
+    public Venda(int idVenda, String codigoVenda, int quantidadeTotalVenda, double valorFrete, double valorTotalVenda, String dataVenda, int idEndereco, int idUsuario, int idStatus, int idPagamento) {
+        this.idVenda = idVenda;
+        this.codigoVenda = codigoVenda;
+        this.quantidadeTotalVenda = quantidadeTotalVenda;
+        this.valorFrete = valorFrete;
+        this.valorTotalVenda = valorTotalVenda;
+        this.dataVenda = dataVenda;
+        this.idEndereco = idEndereco;
+        this.idUsuario = idUsuario;
+        this.idStatus = idStatus;
+        this.idPagamento = idPagamento;
     }
 
-    public void setQuantidadeVenda(int quantidadeVenda) {
-        this.quantidadeVenda = quantidadeVenda;
+    public int getIdVenda() {
+        return idVenda;
     }
 
-    public int getIdFuncionario() {
-        return idFuncionario;
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
     }
 
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
+    public String getCodigoVenda() {
+        return codigoVenda;
     }
 
-    public String getCpfCliente() {
-        return cpfCliente;
+    public void setCodigoVenda(String codigoVenda) {
+        this.codigoVenda = codigoVenda;
     }
 
-    public void setCpfCliente(String cpfCliente) {
-        this.cpfCliente = cpfCliente;
+    public int getQuantidadeTotalVenda() {
+        return quantidadeTotalVenda;
     }
 
-    public String getNomeProduto() {
-        return nomeProduto;
+    public void setQuantidadeTotalVenda(int quantidadeTotalVenda) {
+        this.quantidadeTotalVenda = quantidadeTotalVenda;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public double getValorFrete() {
+        return valorFrete;
     }
 
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
+    public void setValorFrete(double valorFrete) {
+        this.valorFrete = valorFrete;
     }
 
-    public void setNomeFuncionario(String nomeFuncionario) {
-        this.nomeFuncionario = nomeFuncionario;
+    public double getValorTotalVenda() {
+        return valorTotalVenda;
     }
 
-    public double getValorUnidade() {
-        return valorUnidade;
+    public void setValorTotalVenda(double valorTotalVenda) {
+        this.valorTotalVenda = valorTotalVenda;
     }
 
-    public void setValorUnidade(double valorUnidade) {
-        this.valorUnidade = valorUnidade;
+    public String getDataVenda() {
+        return dataVenda;
     }
 
-    public int getCodigoProduto() {
-        return codigoProduto;
+    public void setDataVenda(String dataVenda) {
+        this.dataVenda = dataVenda;
     }
 
-    public void setCodigoProduto(int codigoProduto) {
-        this.codigoProduto = codigoProduto;
+    public int getIdEndereco() {
+        return idEndereco;
     }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdStatus() {
+        return idStatus;
+    }
+
+    public void setIdStatus(int idStatus) {
+        this.idStatus = idStatus;
+    }
+
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public int getIdPagamento() {
+        return idPagamento;
+    }
+
+    public void setIdPagamento(int idPagamento) {
+        this.idPagamento = idPagamento;
+    }
+
+    public double getValorUnitarioProduto() {
+        return valorUnitarioProduto;
+    }
+
+    public void setValorUnitarioProduto(double valorUnitarioProduto) {
+        this.valorUnitarioProduto = valorUnitarioProduto;
+    }
+
+    public int getQuantidadeUnitarioProduto() {
+        return quantidadeUnitarioProduto;
+    }
+
+    public void setQuantidadeUnitarioProduto(int quantidadeUnitarioProduto) {
+        this.quantidadeUnitarioProduto = quantidadeUnitarioProduto;
+    }
+
+    public double getValorTotalProduto() {
+        return valorTotalProduto;
+    }
+
+    public void setValorTotalProduto(double valorTotalProduto) {
+        this.valorTotalProduto = valorTotalProduto;
+    }
+   
 }

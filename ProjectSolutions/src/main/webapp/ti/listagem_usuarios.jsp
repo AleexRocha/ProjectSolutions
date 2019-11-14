@@ -47,34 +47,34 @@ Author     : nicolas.hgyoshioka
             <br>
             <br>
 
-            <table class="table table-striped">
+            <table class="table table-striped" data-show-toggle="false">
                 <thead>
                     <tr>
-                        <th class="coluna" scope="col">Codigo</th>
-                        <th class="coluna" scope="col">Nome</th>
-                        <th class="coluna" scope="col">Email</th>
-                        <th class="coluna" scope="col">CPF</th>
-                        <th class="coluna" scope="col">Setor</th>
-                        <th class="coluna" scope="col">Ações</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Codigo</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Nome</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Email</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">CPF</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Setor</th>
+                        <th data-breakpoints="xs sm" class="coluna" scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="teste">  
                     <c:forEach var="usuarios" items="${listaUsuarios}">                
-                        <tr>
-                            <td class="coluna" name="codigo" ><c:out value="${usuarios.codigo}" /></td>
+                        <tr data-expanded="true">
+                            <td class="coluna" name="codigo" ><c:out value="${usuarios.codigoUsuario}" /></td>
                             <td class="coluna" name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.email}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.cpf}" /></td>
                             <td class="coluna" name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
-                            <td class="btn-group">
+                            <td class="btn-group" style="display: inline-flex;">
                                 <form action="dados_usuario" method="POST">
-                                    <button name="idUsuario" value="${usuarios.codigo}" type="submit" class="btn btn-success">
+                                    <button name="idUsuario" value="${usuarios.codigoUsuario}" type="submit" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </button>
                                 </form>
                                 <!-- Button que chama a modal -->
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUsuario"
-                                        value="${usuarios.codigo}" onclick="defineCodigo(this.value)">
+                                        value="${usuarios.codigoUsuario}" onclick="defineCodigo(this.value)">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </td>
@@ -97,11 +97,11 @@ Author     : nicolas.hgyoshioka
                         </div>
                         <div class="modal-footer">
                             <form action="excluir_usuario" method="POST" name ="deletarUsuario">
-                                <button name="excluirID" id="destino" type="submit" class="btn btn-danger">
+                                <button name="excluirID" id="destino" type="submit" class="btn btn-success">
                                     <i class="far fa-trash-alt"></i> Sim
                                 </button>
                             </form>
-                            <button type="button" class="btn btn-success" data-dismiss="modal">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">
                                 <i class="fas fa-ban"></i> Não
                             </button>
                         </div>
@@ -111,7 +111,9 @@ Author     : nicolas.hgyoshioka
             <%@include file="../WEB-INF/footer.jsp" %>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
-        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/footable.min.js"></script>
+        <script src="../assets/js/main.js"></script>    
     </body>
 </html>

@@ -29,17 +29,18 @@ public class ProdutoListaServlet extends HttpServlet {
         request.setAttribute("listaProdutos", produtos);
 
         HttpSession sessao = request.getSession();
-        
+
         Usuario userTeste = new Usuario();
         userTeste.setNomeSetor(String.valueOf(sessao.getAttribute("nomeSetor")));
-        if (userTeste.getNomeSetor().equalsIgnoreCase("Cliente")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cliente_listagem_produtos.jsp");
-        dispatcher.forward(request, response);
-        }else{
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
-        dispatcher.forward(request, response);
-        }
         
+        if (userTeste.getNomeSetor().equalsIgnoreCase("Cliente") || sessao.getAttribute("nomeSetor") == null) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/index.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/listagem_produtos.jsp");
+            dispatcher.forward(request, response);
+        }
+
     }
 
     @Override

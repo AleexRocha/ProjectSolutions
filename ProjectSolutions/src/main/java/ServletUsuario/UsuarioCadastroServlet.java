@@ -3,6 +3,7 @@ package ServletUsuario;
 import DAO.UsuarioDAO;
 import Model.Usuario;
 import Utils.CpfValidator;
+import static Utils.Criptografia.criptografar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "UsuarioCadastroServlet", urlPatterns = {"/ti/create_usuario"})
 public class UsuarioCadastroServlet extends HttpServlet {
@@ -34,6 +36,19 @@ public class UsuarioCadastroServlet extends HttpServlet {
         if (cNome.length() == 0) {
             error = true;
             request.setAttribute("nomeErro", "Nome não informado");
+        } else {
+            String validaNome[] = cNome.split(" ");
+            if (validaNome.length >= 2) {
+                for (int i = 0; i < validaNome.length; i++) {
+                    if (validaNome[i].length() < 3) {
+                        error = true;
+                        request.setAttribute("nomeErro", "O Nome e o Sobrenome devem possuir mais de 3 letras cada");
+                    }
+                }
+            } else {
+                error = true;
+                request.setAttribute("nomeErro", "O campo Nome deve conter nome e sobrenome");
+            }
         }
         if (cCpf.length() == 0 || !(cCpf.length() == 11)) {
             error = true;
@@ -87,19 +102,42 @@ public class UsuarioCadastroServlet extends HttpServlet {
             request.setAttribute("listaSetores", setores);
 
             request.setAttribute("cliente", false);
+            HttpSession sessao = request.getSession();
+            if (sessao.getAttribute("nomeSetor") == null) {
+                request.setAttribute("cliente", true);
+            }
+
+            request.setAttribute("nome", cNome);
+            request.setAttribute("cpf", cCpf);
+            request.setAttribute("email", cEmail);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
             int eIdUsuario;
-            Usuario usuario = new Usuario(cNome, cEmail, cSenha, cCpf, Integer.parseInt(cSetor));
+
+            String senhaCriptografada = criptografar(cSenha);
+
+            Usuario usuario = new Usuario(cNome, cEmail, senhaCriptografada, cCpf, Integer.parseInt(cSetor));
             eIdUsuario = UsuarioDAO.salvarUsuario(usuario);
 
-            if (eIdUsuario > 0) {
+            if (eIdUsuario > 0 && cSetor.equals("4")) {
                 request.setAttribute("varMsg", true);
                 request.setAttribute("msg", "Usuário cadastrado com sucesso! Cadastre agora um endereço.");
 
                 request.setAttribute("codigoUsuario", eIdUsuario);
+                request.setAttribute("valorSetor", cSetor);
+
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
+                dispatcher.forward(request, response);
+            } else if (!cSetor.equals("4")) {
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Usuário cadastrado com sucesso!");
+
+                ArrayList<Usuario> usuarios = UsuarioDAO.getUsuarios();
+                request.setAttribute("listaUsuarios", usuarios);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                 dispatcher.forward(request, response);
             } else {
                 if ((cCliente == null) || (cCliente.length() == 0)) {

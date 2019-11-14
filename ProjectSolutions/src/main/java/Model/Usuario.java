@@ -6,7 +6,7 @@ package Model;
  */
 public class Usuario {
 
-    private int codigo;
+    private int codigoUsuario;
     private String nome;
     private String email;
     private String senha;
@@ -17,6 +17,7 @@ public class Usuario {
     private int codigoEndereco;
     private String tipoEndereco;
     private String logradouro;
+    private String complemento;
     private int numero;
     private String bairro;
     private String cidade;
@@ -35,8 +36,8 @@ public class Usuario {
         this.setor = setor;
     }
 
-    public Usuario(int codigo, String nome, String email, String senha, String cpf, int setor) {
-        this.codigo = codigo;
+    public Usuario(int codigoUsuario, String nome, String email, String senha, String cpf, int setor) {
+        this.codigoUsuario = codigoUsuario;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -44,8 +45,8 @@ public class Usuario {
         this.setor = setor;
     }
 
-    public Usuario(int codigo, String logradouro, int numero, String bairro, String cidade, String estado, String cep, String tipoEndereco) {
-        this.codigo = codigo;
+    public Usuario(int codigoEndereco, String logradouro, int numero, String bairro, String cidade, String estado, String cep, String tipoEndereco, int fkUsuario) {
+        this.codigoEndereco = codigoEndereco;
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;
@@ -53,14 +54,28 @@ public class Usuario {
         this.estado = estado;
         this.cep = cep;
         this.tipoEndereco = tipoEndereco;
+        this.codigoUsuario = fkUsuario;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public Usuario(int codigoEndereco, String logradouro, String complemento, int numero, String bairro, String cidade, String estado, String cep, String tipoEndereco, int fkUsuario) {
+        this.codigoEndereco = codigoEndereco;
+        this.tipoEndereco = tipoEndereco;
+        this.logradouro = logradouro;
+        this.complemento = complemento;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+        this.codigoUsuario = fkUsuario;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public int getCodigoUsuario() {
+        return codigoUsuario;
+    }
+
+    public void setCodigoUsuario(int codigo) {
+        this.codigoUsuario = codigo;
     }
 
     public String getNome() {
@@ -175,4 +190,11 @@ public class Usuario {
         this.cep = cep;
     }
 
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
 }

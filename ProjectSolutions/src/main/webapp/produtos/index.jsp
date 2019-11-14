@@ -18,11 +18,19 @@
     </head>
     <body>
         <%@include file="../WEB-INF/header.jsp"%>
-        
+
         <h2 class="h2 text-center subtitulo">Produtos</h2>
 
         <div class="container">
-            <div class="row">
+            <c:if test="${varMsg == true}">
+                <div class="alert alert-success" role="alert">
+                    <c:out value="${msg}"/>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
+            <div class="row">  
                 <div class="col-lg-12">
                     <div id="carouselExampleIndicators" class="carousel slide my-4"
                          data-ride="carousel">
@@ -62,12 +70,7 @@
                 <c:forEach var="produtos" items="#{listaProdutos}">
                     <div class="col-lg-4 col-md-6 col-sm-3">
                         <div class="card h-100">
-                            <a href="#">
-                            <%--  <img class="card-img-top" src="${produtos.srcImagem}" alt="Arranjo de Girassol"> --%>
-							<!-- Web Server for Chrome --> 
-							<!-- Adicionar extensão ao chrome que simula um servidor na pasta de imagens / caminho está sendo bloqueado -->
-			              	<img class="card-img-top" src="http://127.0.0.1:8887/${produtos.srcImagem}" alt="Arranjo de Girassol"/>
-                            </a>
+                            <img class="card-img-top" src="../assets/uploads/images/<c:out value="${produtos.nomeImagem}"/>" alt="Arranjo de Girassol"/>
                             <div class="card-body">
                                 <p class="card-title">
                                     <span class="tituloProdutoCliente h4"> <c:out value="${produtos.nome}"/> </span>
@@ -76,7 +79,10 @@
                                 <p class="card-text descricaoProdutoCliente"> <c:out value="${produtos.descricao}"/>  </p>
                                 <div class="row">
                                     <div class="col-lg-6"> 
-                                        <button type="button" class="btn btn-outline-success btn-block">Comprar</button> 
+                                        <form action="../produtos/carrinho_produtos" method="GET">
+                                            <input class='sr-only' name="metodo" value="index"/> 
+                                            <button type="submit" value="${produtos.codigo}" name="addCarrinho" class="btn btn-outline-success btn-block">Add Carrinho</button> 
+                                        </form> 
                                     </div>
                                     <div class="col-lg-6"> 
                                         <form action="../produtos/visualizar_descricao" method="GET">

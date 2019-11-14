@@ -34,20 +34,26 @@ public class ProdutoCadastroServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         String fIdImagem = request.getParameter("codigoImagem");
+        
+        String fNome = request.getParameter("nome");
+        String fDescricao = request.getParameter("descricao");
+        String fTipo = request.getParameter("tipo");
+        String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
+        String fValorUnitario = request.getParameter("valorUnitario");
+        String valorReplace;
 
         if (fIdImagem == null) {
             request.setAttribute("varMsgError", true);
             request.setAttribute("msg", "Salve uma imagem para cadastrar um produto");
 
+            request.setAttribute("nome", fNome);
+            request.setAttribute("descricao", fDescricao);
+            request.setAttribute("qtd_estoque", fQuantidadeEstoque);
+            request.setAttribute("valor_unidade", fValorUnitario);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
             dispatcher.forward(request, response);
         } else {
-            String fNome = request.getParameter("nome");
-            String fDescricao = request.getParameter("descricao");
-            String fTipo = request.getParameter("tipo");
-            String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
-            String fValorUnitario = request.getParameter("valorUnitario");
-            String valorReplace;
             valorReplace = fValorUnitario.replace("R$", "");
             valorReplace = valorReplace.replace(",", ".");
             fValorUnitario = valorReplace;
@@ -56,6 +62,9 @@ public class ProdutoCadastroServlet extends HttpServlet {
                 HashMap<String, String> camposInvalidos = informaCamposIncorretos(request);
                 if (camposInvalidos.get("nomeErro") != null) {
                     request.setAttribute("nomeErro", camposInvalidos.get("nomeErro"));
+                }
+                if (camposInvalidos.get("descricaoErro") != null) {
+                    request.setAttribute("descricaoErro", camposInvalidos.get("descricaoErro"));
                 }
                 if (camposInvalidos.get("tipoErro") != null) {
                     request.setAttribute("tipoErro", camposInvalidos.get("tipoErro"));
@@ -72,6 +81,11 @@ public class ProdutoCadastroServlet extends HttpServlet {
 
                 request.setAttribute("varMsgError", true);
                 request.setAttribute("msg", "Erro ao realizar o cadastro, verifique os campos e tente novamente.");
+
+                request.setAttribute("nome", fNome);
+                request.setAttribute("descricao", fDescricao);
+                request.setAttribute("qtd_estoque", fQuantidadeEstoque);
+                request.setAttribute("valor_unidade", fValorUnitario);
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                 dispatcher.forward(request, response);
@@ -108,6 +122,11 @@ public class ProdutoCadastroServlet extends HttpServlet {
                     request.setAttribute("listaImagens", fIdImagem);
                     request.setAttribute("id", fIdImagem);
 
+                    request.setAttribute("nome", fNome);
+                    request.setAttribute("descricao", fDescricao);
+                    request.setAttribute("qtd_estoque", fQuantidadeEstoque);
+                    request.setAttribute("valor_unidade", fValorUnitario);
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/cadastro_produtos.jsp");
                     dispatcher.forward(request, response);
                 }
@@ -117,11 +136,15 @@ public class ProdutoCadastroServlet extends HttpServlet {
 
     private boolean validaCamposForm(HttpServletRequest request) {
         String fNome = request.getParameter("nome");
+        String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
 
         if (fNome.length() == 0) {
+            return false;
+        }
+        if (fDescricao.length() == 0) {
             return false;
         }
         if (fTipo == null) {
@@ -140,12 +163,16 @@ public class ProdutoCadastroServlet extends HttpServlet {
     private HashMap<String, String> informaCamposIncorretos(HttpServletRequest request) {
         HashMap<String, String> camposInvalidos = new HashMap();
         String fNome = request.getParameter("nome");
+        String fDescricao = request.getParameter("descricao");
         String fTipo = request.getParameter("tipo");
         String fQuantidadeEstoque = request.getParameter("quantidadeEstoque");
         String fValorUnitario = request.getParameter("valorUnitario");
 
         if (fNome.length() == 0) {
             camposInvalidos.put("nomeErro", "Nome não informado");
+        }
+        if (fDescricao.length() == 0) {
+            camposInvalidos.put("descricaoErro", "Descrição não informada");
         }
         if (fTipo == null) {
             camposInvalidos.put("tipoErro", "Tipo não informado");

@@ -1,9 +1,11 @@
 package ServletEndereco;
 
-import DAO.UsuarioDAO;
+import DAO.EnderecoDAO;
+
 import Model.Usuario;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,8 +26,10 @@ public class EnderecoEditarCadastro extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String eUsuario = request.getParameter("codigoUsuario");
+        String uCodigoUsuario = request.getParameter("codigoUsuario");
+        String uSetorUsuario = request.getParameter("valorSetor");
         String eEndereco = request.getParameter("codigoEndereco");
+        String eComplemento = request.getParameter("complemento");
         String eCep = request.getParameter("cep");
         String eLogradouro = request.getParameter("logradouro");
         String eNumero = request.getParameter("numero");
@@ -69,9 +73,10 @@ public class EnderecoEditarCadastro extends HttpServlet {
         }
 
         if (error) {
-            Usuario usuario = UsuarioDAO.getEnderecoUser(Integer.parseInt(eUsuario));
+            Usuario usuario = EnderecoDAO.getEnderecoUser(Integer.parseInt(uCodigoUsuario));
 
-            request.setAttribute("codigoUsuario", usuario.getCodigo());
+            request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
+            request.setAttribute("valorSetor", uSetorUsuario);
             request.setAttribute("codigoEndereco", usuario.getCodigoEndereco());
             request.setAttribute("cep", usuario.getCep());
             request.setAttribute("logradouro", usuario.getLogradouro());
@@ -89,23 +94,15 @@ public class EnderecoEditarCadastro extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_endereco.jsp");
             dispatcher.forward(request, response);
         } else {
-            Usuario usuario = new Usuario(Integer.parseInt(eEndereco), eLogradouro, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo);
-            usuario.setCodigo(Integer.parseInt(eUsuario));
-            boolean httpOk = UsuarioDAO.alterarEndereco(usuario);
+            Usuario usuario = new Usuario(Integer.parseInt(eEndereco), eLogradouro, eComplemento, Integer.parseInt(eNumero), eBairro, eCidade, eEstado, eCep, eTipo, Integer.parseInt(uCodigoUsuario));
+            usuario.setCodigoUsuario(Integer.parseInt(uCodigoUsuario));
+
+            boolean httpOk = EnderecoDAO.alterarEndereco(usuario);
 
             if (httpOk) {
-                Usuario endereco = UsuarioDAO.getEnderecoUser(Integer.parseInt(eUsuario));
+                ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosUser(Integer.parseInt(uCodigoUsuario));
 
-                request.setAttribute("codigoEndereco", endereco.getCodigoEndereco());
-                request.setAttribute("cep", endereco.getCep());
-                request.setAttribute("numero", endereco.getNumero());
-                request.setAttribute("logradouro", endereco.getLogradouro());
-                request.setAttribute("bairro", endereco.getBairro());
-                request.setAttribute("cidade", endereco.getCidade());
-                request.setAttribute("estado", endereco.getEstado());
-                request.setAttribute("estado", endereco.getEstado());
-                request.setAttribute("tipoEndereco", endereco.getTipoEndereco());
-                request.setAttribute("codigoUsuario", eUsuario);
+                request.setAttribute("listaEnderecos", enderecos);
 
                 request.setAttribute("perfil", "endereco");
 
@@ -116,7 +113,6 @@ public class EnderecoEditarCadastro extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         }
-
     }
 
     @Override

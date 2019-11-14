@@ -86,7 +86,7 @@ Author     : nicolas.hgyoshioka
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty nomeErro}">
-                                                <input type="text" class="form-control inputForm" id="nome"
+                                                <input type="text" class="form-control inputForm" id="nome" value="${nome}"
                                                        placeholder="Nome" name="nome" minlength="0" maxlength="75">
                                             </c:when>
                                             <c:otherwise>
@@ -114,7 +114,7 @@ Author     : nicolas.hgyoshioka
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty cpfErro}">
-                                                <input type="text" class="form-control inputForm" id="cpf"
+                                                <input type="text" class="form-control inputForm" id="cpf" value="${cpf}"
                                                        placeholder="CPF" name="cpf" minlength="0" maxlength="11">
                                             </c:when>
                                             <c:otherwise>
@@ -142,7 +142,7 @@ Author     : nicolas.hgyoshioka
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty emailErro}">
-                                                <input type="email" class="form-control inputForm" id="email"
+                                                <input type="email" class="form-control inputForm" id="email" value="${email}"
                                                        placeholder="E-mail" name="email" minlength="0" maxlength="50">
                                             </c:when>
                                             <c:otherwise>
@@ -159,7 +159,7 @@ Author     : nicolas.hgyoshioka
                                         <c:choose>
                                             <c:when test="${empty senhaErro}">
                                                 <input type="password" class="form-control inputForm" id="senha"
-                                                       value="${senha}" name="senha" minlength="0" maxlength="25">
+                                                       placeholder="Senha" name="senha" minlength="0" maxlength="25">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="password" class="form-control inputForm error" id="senha"
@@ -244,7 +244,7 @@ Author     : nicolas.hgyoshioka
                                 Salvar
                             </button>
                         </form>
-                        <form <c:if test="${sessionScope.nomeSetor == null}"> action="../login/index.jsp" </c:if> <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> action="perfil" method="POST" </c:if> action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
+                        <form <c:if test="${sessionScope.nomeSetor == null}"> action="../login/login.jsp" </c:if> <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> action="perfil" method="POST" </c:if> action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
                             <button name="perfil" type="submit" class="btn btn-light btn-block" value="${sessionScope.cdFuncionario}">
                                 <i class="fas fa-ban"></i>
                                 Cancelar
@@ -256,7 +256,8 @@ Author     : nicolas.hgyoshioka
             <%@include file="../WEB-INF/footer.jsp" %>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
+        <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
-        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>    
     </body>
 </html>
