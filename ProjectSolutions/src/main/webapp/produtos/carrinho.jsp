@@ -21,54 +21,100 @@
         <h2 class="h2 text-center subtitulo">Carrinho</h2>
         <br>
         <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <c:if test="${varMsg == true}">
+                        <div class="alert alert-success" role="alert">
+                            <c:out value="${msg}"/>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </c:if>
+                    <c:if test="${varMsgError == true}">
+                        <div class="alert alert-danger" role="alert">
+                            <c:out value="${msg}"/>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </c:if>
+                </div>
+            </div>
             <div class="cart_inner">
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Produto</th>
-                                <th scope="col">Valor Unitário</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="produto" items="${produtosCarrinho}">
-                                <tr class="carrinho">
-                                    <td class="produto">
-                                        <div class="media">
-                                            <div class="d-flex">
-                                                <img src="../assets/img/produtos_teste/encanto_de_rosas_vermelhas.jpg" alt="Encanto de Rosas Vermelhas" />
+                        <c:choose>
+                            <c:when test="${varMsgTabela == true}">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="alert" role="alert">
+                                                <c:out value="${msg}"/>
                                             </div>
-                                            <div class="media-body">
-                                                <p class="sr-only idProduto">${produto.codigo}</p>
-                                                <p class="nomeProduto"><c:out value="${produto.nome}"/></p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="precoUnitario">
-                                        <h5 class="unitario">R$ <c:out value="${produto.valorCarrinho}"/></h5>
-                                    </td>
-                                    <td class="quantidade">
-                                        <div class="product_count">
-                                            <span class="altera input-number-decrement" data-posicao="${produto.idCarrinho}" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                            <input type="number" readonly="" class="input-quantidade" data-posicao="${produto.codigo}" value="${produto.quantidadeEstoque}" min="1" max="5">
-                                            <span class="altera input-number-increment" data-posicao="${produto.idCarrinho}" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
-                                        </div>
-                                    </td>
-                                    <td class="precoTotal">
-                                        <h5 class="total">R$  <c:out value="${produto.valorTotal}"/></h5>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </c:when>
+                            <c:otherwise>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Valor Unitário</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="produto" items="${produtosCarrinho}">
+                                        <tr class="carrinho">
+                                            <td class="produto">
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img src="../assets/img/produtos_teste/encanto_de_rosas_vermelhas.jpg" alt="Encanto de Rosas Vermelhas" />
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <p class="sr-only idProduto">${produto.codigo}</p>
+                                                        <p class="nomeProduto"><c:out value="${produto.nome}"/></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="precoUnitario">
+                                                <h5 class="unitario">R$ <c:out value="${produto.valorCarrinho}"/></h5>
+                                            </td>
+                                            <td class="quantidade">
+                                                <div class="product_count">
+                                                    <span class="altera input-number-decrement" data-posicao="${produto.idCarrinho}" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                                    <input type="number" readonly="" class="input-quantidade" data-posicao="${produto.codigo}" value="${produto.quantidadeEstoque}" min="1" max="5">
+                                                    <span class="altera input-number-increment" data-posicao="${produto.idCarrinho}" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
+                                                </div>
+                                            </td>
+                                            <td class="precoTotal">
+                                                <h5 class="total">R$  <c:out value="${produto.valorTotal}"/></h5>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </c:otherwise>
+                        </c:choose>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                        <button  type="submit" class="btn btn-success btn-block" onclick="salvarProdutos();">
-                            <i class="fas fa-shopping-cart"></i>
-                            Finalizar compra
-                        </button>
-                        <a href="checkout.jsp">CHECKOUT</a>
+                        <form action="../produtos/listagem_produtos">
+                            <button type="submit" class="btn btn-light btn-block">
+                                <i class="fas fa-shopping-cart"></i>
+                                Continuar a compra
+                            </button>
+                        </form>
+                        <br>
+                        <c:if test="${varMsgTabela == false}">
+                            <form action="../venda/carrinho">
+                                <button type="submit" class="btn btn-success btn-block" value="checkout" name="checkout">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Finalizar compra
+                                </button>
+                            </form>
+                            <br>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -77,6 +123,7 @@
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/footable.min.js"></script>
         <script src="../assets/js/carrinho.js"></script>
         <script src="../assets/js/main.js"></script>
     </body>

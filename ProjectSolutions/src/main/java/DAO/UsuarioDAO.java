@@ -244,7 +244,7 @@ public class UsuarioDAO {
         ArrayList<Pagamento> pagamentos = new ArrayList();
 
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_info_pagamentos limit 2");
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_info_pagamentos");
 
             ResultSet rs = query.executeQuery();
            
@@ -272,7 +272,7 @@ public class UsuarioDAO {
         try {
             PreparedStatement query = conn.prepareStatement("SELECT id_pagamento, numero_pagamento, nome_titular, data_vencimento, nome"
                     + " FROM tbl_pagamento_usuario AS pu"
-                    + " INNER JOIN tbl_info_pagamentos AS ip ON pu.fk_pagamento = ip.id_info_pagamento WHERE fk_usuario = ?");
+                    + " INNER JOIN tbl_info_pagamentos AS ip ON pu.fk_info_pagamento = ip.id_info_pagamento WHERE fk_usuario = ?");
             query.setInt(1, codigoCliente);
             
             ResultSet rs = query.executeQuery();
@@ -290,7 +290,7 @@ public class UsuarioDAO {
                         }
                         i++;
                     }
-                    pag.setNumeroPAgamento(numCartaoAux);
+                    pag.setNumeroPagamento(numCartaoAux);
                     pag.setNomeTitular(rs.getString(3));
                     pag.setDataVencimento(rs.getString(4));
                     pag.setTipoPagamento(rs.getString(5));
@@ -311,11 +311,11 @@ public class UsuarioDAO {
         
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO tbl_pagamento_usuario"
-                    + " (numero_pagamento, nome_titular, data_vencimento, codigo_segurança, fk_pagamento, fk_usuario)"
+                    + " (numero_pagamento, nome_titular, data_vencimento, codigo_segurança, fk_info_pagamento, fk_usuario)"
                     + " values"
                     + " (?, ?, ?, ?, ?, ?);");
         
-            query.setString(1, pag.getNumeroPAgamento());
+            query.setString(1, pag.getNumeroPagamento());
             query.setString(2, pag.getNomeTitular());
             query.setString(3, pag.getDataVencimento());
             query.setString(4, pag.getCodigoSegurança());
