@@ -80,7 +80,7 @@
                                 <div class="row">
                                     <div class="col-lg-6"> 
                                         <form action="../produtos/carrinho_produtos" method="GET">
-                                            <button type="submit" value="${produtos.codigo}" name="addCarrinho" class="btn btn-outline-success btn-block">Comprar</button> 
+                                            <button type="submit" value="${produtos.codigo}" name="addCarrinho" class="btn btn-outline-success btn-block">Add Carrinho</button> 
                                         </form> 
                                     </div>
                                     <div class="col-lg-6"> 

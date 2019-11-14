@@ -136,7 +136,7 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <form action="../produtos/carrinho.jsp" method="POST">
+                            <form action="../venda/carrinho" method="POST">
                                 <button type="submit" class="btn nav-link nav-text">Carrinho</button>
                             </form>
                         </li>

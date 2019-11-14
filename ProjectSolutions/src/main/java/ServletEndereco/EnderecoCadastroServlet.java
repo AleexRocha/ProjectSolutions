@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,6 +40,8 @@ public class EnderecoCadastroServlet extends HttpServlet {
         String eCidade = request.getParameter("cidade");
         String eEstado = request.getParameter("estado");
         String eTipo = request.getParameter("tipoEndereco");
+
+        HttpSession sessao = request.getSession();
 
         boolean error = false;
         if (uCodigoUsuario.length() == 0) {
@@ -104,14 +107,24 @@ public class EnderecoCadastroServlet extends HttpServlet {
 
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                     dispatcher.forward(request, response);
+                } else if (sessao.getAttribute("nomeSetor") == null) {
+                    request.setAttribute("varMsg", true);
+                    request.setAttribute("msg", "Cadastro realizado com sucesso!");
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("../login/login.jsp");
+                    dispatcher.forward(request, response);
                 } else {
                     ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
 
                     request.setAttribute("varMsg", true);
                     request.setAttribute("msg", "Cadastro realizado com sucesso!");
+                    request.setAttribute("perfil", "endereco");
 
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
+                    ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosUser(Integer.parseInt(uCodigoUsuario));
+                    request.setAttribute("listaEnderecos", enderecos);
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("../ti/perfil.jsp");
                     dispatcher.forward(request, response);
                 }
             } else {

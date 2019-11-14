@@ -65,6 +65,13 @@
                                         <input type="text" class="form-control inputForm sr-only" id="valorSetor"
                                                value="${sessionScope.cdSetor}" name="valorSetor">
                                     </c:when>
+                                    <c:when test="${sessionScope.emailUsuario == null}">
+                                        <label class="sr-only">Info usuarios:</label>
+                                        <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
+                                               value="${codigoUsuario}" name="codigoUsuario">
+                                        <input type="text" class="form-control inputForm sr-only" id="valorSetor"
+                                               value="${valorSetor}" name="valorSetor">
+                                    </c:when>
                                     <c:otherwise>
                                         <label class="sr-only">Info usuarios:</label>
                                         <input type="number" class="form-control inputForm sr-only" id="codigoUsuario"
@@ -72,7 +79,6 @@
                                         <input type="text" class="form-control inputForm sr-only" id="valorSetor"
                                                value="${sessionScope.cdSetor}" name="valorSetor">
                                     </c:otherwise>
-
                                 </c:choose>
 
                                 <label for="codigoEndereco" class="sr-only">Código do endereco:</label>
@@ -170,8 +176,8 @@
                                                value="${complemento}" name="complemento" minlength="0" maxlength="250">
                                     </c:when>
                                     <c:otherwise>
-                                            <input type="text" class="form-control inputForm" id="complemento"
-                                                   placeholder="Complemento" name="complemento" minlength="0" maxlength="250">                                 
+                                        <input type="text" class="form-control inputForm" id="complemento"
+                                               placeholder="Complemento" name="complemento" minlength="0" maxlength="250">                                 
                                     </c:otherwise>
                                 </c:choose>
 
@@ -304,15 +310,15 @@
                                 Salvar
                             </button>
                         </form>
-                            <form action="listagem_usuarios" method="GET" style="padding-top: 8px; ">
-                                <button type="submit" class="btn btn-light btn-block">
+                        <form <c:if test="${sessionScope.nomeSetor == null}">action="../login/login.jsp"</c:if> action="get_endereco" method="POST" style="padding-top: 8px; ">
+                                <button type="submit" class="btn btn-light btn-block" value="${sessionScope.cdFuncionario}" name="idUsuario">
                                     <i class="fas fa-ban"></i>
                                     Cancelar
                                 </button>
                             </form>
+                    </div>
+                    <div class="col-md-3"></div>
                 </div>
-                <div class="col-md-3"></div>
-            </div>
             <%@include file="../WEB-INF/footer.jsp" %>
         </div>
         <script src="../assets/js/jquery-2.1.3.min.js"></script>

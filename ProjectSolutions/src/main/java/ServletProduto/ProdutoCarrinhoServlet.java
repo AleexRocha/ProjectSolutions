@@ -35,12 +35,6 @@ public class ProdutoCarrinhoServlet extends HttpServlet {
             ArrayList<Produto> produtosCarrinho = new ArrayList<>();
             produtosCarrinho.add(produto);
             sessao.setAttribute("produtosCarrinho", produtosCarrinho);
-
-            ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-            request.setAttribute("listaProdutos", produtos);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
-
         } else if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
             ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
             produtosCarrinho.add(produto);
@@ -51,12 +45,14 @@ public class ProdutoCarrinhoServlet extends HttpServlet {
             produtosCarrinho.add(produto);
             sessao.removeAttribute("produtosCarrinho");
             sessao.setAttribute("produtosCarrinho", produtosCarrinho);
-
-            ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-            request.setAttribute("listaProdutos", produtos);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
         }
+        
+        ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+        request.setAttribute("listaProdutos", produtos);
+        request.setAttribute("varMsg", true);
+        request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
