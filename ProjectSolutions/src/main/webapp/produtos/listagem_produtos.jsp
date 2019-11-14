@@ -47,19 +47,19 @@
                 </form>
                 <br> <br>
 
-                <table class="table table-striped">
+                <table class="table table-striped" >
                     <thead>
                         <tr>
-                            <th class="coluna" scope="col">Codigo</th>
-                            <th class="coluna" scope="col">Nome</th>
-                            <th class="coluna" scope="col">Descricao</th>
-                            <th class="coluna" scope="col">Tipo</th>
-                            <th class="coluna" scope="col">Estoque</th>
-                            <th class="coluna" scope="col">Valor unidade</th>
-                            <th scope="col">Ações</th>
+                            <th data-breakpoints="xs" class="coluna" scope="col">Codigo</th>
+                            <th data-breakpoints="xs" class="coluna" scope="col">Nome</th>
+                            <th data-breakpoints="xs" class="coluna" scope="col">Descricao</th>
+                            <th data-breakpoints="xs" class="coluna" scope="col">Tipo</th>
+                            <th data-breakpoints="xs" class="coluna" scope="col">Estoque</th>
+                            <th data-breakpoints="xs" class="coluna" scope="col">Valor unidade</th>
+                            <th data-breakpoints="xs" class="coluna" scope="col">Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         <tr>
                         <c:forEach var="produtos" items="${listaProdutos}">
                             <td class="coluna" name="codigo">
@@ -136,6 +136,7 @@
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/footable.min.js"></script>
         <script src="../assets/js/main.js"></script>
     </body>
 </html>

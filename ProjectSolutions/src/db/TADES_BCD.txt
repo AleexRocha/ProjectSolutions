@@ -1,3 +1,5 @@
+DROP DATABASE tades_bcd;
+
 CREATE DATABASE tades_bcd;
 
 USE tades_bcd;
@@ -68,9 +70,9 @@ CREATE TABLE tbl_pagamento_usuario(
     nome_titular varchar(75),
     data_vencimento varchar(10),
     codigo_segurança varchar(3),
-    fk_pagamento int,
+    fk_info_pagamento int,
     fk_usuario int not null,
-    foreign key(fk_pagamento) references tbl_info_pagamentos(id_info_pagamento),
+    foreign key(fk_info_pagamento) references tbl_info_pagamentos(id_info_pagamento),
     foreign key(fk_usuario) references tbl_usuario(id_usuario)
 );
 
