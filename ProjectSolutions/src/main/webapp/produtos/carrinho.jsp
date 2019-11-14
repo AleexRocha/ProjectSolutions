@@ -64,10 +64,18 @@
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                        <button  type="submit" class="btn btn-success btn-block" onclick="salvarProdutos();">
-                            <i class="fas fa-shopping-cart"></i>
-                            Finalizar compra
-                        </button>
+                        <form action="/produtos/listagem_produtos">
+                            <button type="submit" class="btn btn-info btn-block">
+                                <i class="fas fa-shopping-cart"></i>
+                                Continuar a compra
+                            </button>
+                        </form>
+                        <form action="../venda/carrinho">
+                            <button type="submit" class="btn btn-success btn-block" value="1" name="botao" onclick="salvarProdutos();">
+                                <i class="fas fa-shopping-cart"></i>
+                                Finalizar compra
+                            </button>
+                        </form>
                         <a href="checkout.jsp">CHECKOUT</a>
                     </div>
                 </div>
