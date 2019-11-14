@@ -39,6 +39,7 @@ public class GetProdutosCarrinho extends HttpServlet {
                 
                 String valorTotal = String.format("%.2f", produto.getValorUnitario() * produtosCarrinho.get(i).getQuantidadeEstoque());
                 String newValorUnitario = String.format("%.2f", produto.getValorUnitario());
+                produto.setIdCarrinho(i + 1);
                 produto.setCodigo(prod.getCodigo());
                 produto.setValorCarrinho(newValorUnitario);
                 produto.setValorTotal(valorTotal);

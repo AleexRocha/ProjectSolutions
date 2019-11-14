@@ -51,9 +51,9 @@
                                     </td>
                                     <td class="quantidade">
                                         <div class="product_count">
-                                            <span class="altera input-number-decrement" data-posicao="${produto.codigo}" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                            <span class="altera input-number-decrement" data-posicao="${produto.idCarrinho}" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
                                             <input type="number" readonly="" class="input-quantidade" data-posicao="${produto.codigo}" value="${produto.quantidadeEstoque}" min="1" max="5">
-                                            <span class="altera input-number-increment" data-posicao="${produto.codigo}" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
+                                            <span class="altera input-number-increment" data-posicao="${produto.idCarrinho}" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                         </div>
                                     </td>
                                     <td class="precoTotal">

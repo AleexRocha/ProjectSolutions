@@ -15,7 +15,8 @@ public class Produto {
     private String nomeImagem;
     private String valorCarrinho;
     private String valorTotal;
-
+    private int idCarrinho; 
+    
     public Produto() {
     }
 
@@ -123,5 +124,13 @@ public class Produto {
 
     public void setValorTotal(String valotTotal) {
         this.valorTotal = valotTotal;
+    }
+
+    public int getIdCarrinho() {
+        return idCarrinho;
+    }
+
+    public void setIdCarrinho(int idCarrinho) {
+        this.idCarrinho = idCarrinho;
     }
 }
