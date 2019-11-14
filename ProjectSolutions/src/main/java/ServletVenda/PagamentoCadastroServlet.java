@@ -71,7 +71,7 @@ public class PagamentoCadastroServlet extends HttpServlet {
             request.setAttribute("msg", "Falha ao cadastrar, verifique os campos e tente novamente");
         }
 
-        ArrayList<Pagamento> pagamentosDisponiveis = UsuarioDAO.getPagamentosDisponiveis();
+        ArrayList<Pagamento> pagamentosDisponiveis = UsuarioDAO.getPagamentosDisponiveis(true);
         ArrayList<Pagamento> pagamentosCadastrados = UsuarioDAO.getPagamentosCadastrados(codigoUsuario);
 
         request.setAttribute("pagamentosList", pagamentosDisponiveis);

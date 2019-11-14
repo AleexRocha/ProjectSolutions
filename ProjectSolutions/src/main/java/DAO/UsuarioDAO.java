@@ -239,12 +239,13 @@ public class UsuarioDAO {
         return sessao;
     }
 
-    public static ArrayList<Pagamento> getPagamentosDisponiveis() {
+    public static ArrayList<Pagamento> getPagamentosDisponiveis(boolean isCadastroPerfil) {
         Connection conn = db.obterConexao();
         ArrayList<Pagamento> pagamentos = new ArrayList();
 
+        String complemento = isCadastroPerfil ? "Limit 2" : "";
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_info_pagamentos");
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_info_pagamentos " + complemento);
 
             ResultSet rs = query.executeQuery();
            

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "PagamentoListaCadastrados", urlPatterns = {"/ti/pagamento_listagem"})
 public class PagamentoListaCadastrados extends HttpServlet {
-
+ 
     private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -30,7 +30,7 @@ public class PagamentoListaCadastrados extends HttpServlet {
         ArrayList<Pagamento> pagamentosCadastrados = UsuarioDAO.getPagamentosCadastrados(Integer.parseInt(idUsuario));
         request.setAttribute("pagamentosCadastrados", pagamentosCadastrados);
         
-        ArrayList<Pagamento> pagamentosDisponiveis = UsuarioDAO.getPagamentosDisponiveis();
+        ArrayList<Pagamento> pagamentosDisponiveis = UsuarioDAO.getPagamentosDisponiveis(true);
         request.setAttribute("pagamentosList", pagamentosDisponiveis);
         
         request.setAttribute("perfil", "pagamento");
