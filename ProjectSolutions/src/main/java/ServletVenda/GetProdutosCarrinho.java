@@ -36,8 +36,8 @@ public class GetProdutosCarrinho extends HttpServlet {
         ArrayList<Produto> produtosInfo = new ArrayList<>();
 
         if (produtosCarrinho != null) {
-            String teste = request.getParameter("botao");
-            if (teste == null) {
+            String checkout = request.getParameter("checkout");
+            if (checkout == null) {
                 int i = 0;
                 for (Produto prod : produtosCarrinho) {
                     Produto produto = ProdutoDAO.getProduto(prod.getCodigo());
@@ -45,6 +45,7 @@ public class GetProdutosCarrinho extends HttpServlet {
 
                     String valorTotal = String.format("%.2f", produto.getValorUnitario() * produtosCarrinho.get(i).getQuantidadeEstoque());
                     String newValorUnitario = String.format("%.2f", produto.getValorUnitario());
+                    produto.setIdCarrinho(i + 1);
                     produto.setCodigo(prod.getCodigo());
                     produto.setValorCarrinho(newValorUnitario);
                     produto.setValorTotal(valorTotal);
@@ -60,15 +61,26 @@ public class GetProdutosCarrinho extends HttpServlet {
                 dipatcher.forward(request, response);
             } else {
                 ArrayList<Produto> checkoutInfo = new ArrayList<>();
-                for (int i = 0; i < produtosCarrinho.size(); i++) {
-                    Produto p = ProdutoDAO.getProduto(i);
+                int i = 0;
+                for (Produto prod : produtosCarrinho) {
+                    Produto p = ProdutoDAO.getProduto(prod.getCodigo());
+                    p.setQuantidadeEstoque(produtosCarrinho.get(i).getQuantidadeEstoque());
+
+                    String valorTotal = String.format("%.2f", p.getValorUnitario() * produtosCarrinho.get(i).getQuantidadeEstoque());
+                    String newValorUnitario = String.format("%.2f", p.getValorUnitario());
+                    p.setCodigo(prod.getCodigo());
+                    p.setValorUnitario(Double.parseDouble(newValorUnitario.replace(",", ".")));
+                    p.setValorTotal(valorTotal);
+
                     checkoutInfo.add(p);
+
+                    i++;
                 }
                 int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
                 ArrayList<Pagamento> pagamentos = UsuarioDAO.getPagamentosCadastrados(codigoUsuario);
                 ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
 
-                request.setAttribute("produtosCarringo", checkoutInfo);
+                request.setAttribute("produtosCarrinho", checkoutInfo);
                 request.setAttribute("metodosPagamento", pagamentos);
                 request.setAttribute("enderecosEntrega", enderecos);
 

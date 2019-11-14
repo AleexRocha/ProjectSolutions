@@ -34,70 +34,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="carrinho">
-                                <td class="produto">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <p class="sr-only idProduto">1</p>
-                                            <p class="nomeProduto">Encanto de Rosas Vermelhas</p>
+                            <c:forEach var="produto" items="${produtosCarrinho}">
+                                <tr class="carrinho">
+                                    <td class="produto">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="sr-only idProduto">${produto.codigo}</p>
+                                                <p class="nomeProduto"><c:out value="${produto.nome}"/></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="precoUnitario">
-                                    <h5 class="unitario">R$ 77.00</h5>
-                                </td>
-                                <td class="quantidade">
-                                    <div class="product_count">
-                                        <input type="number" readonly="readonly" class="input-quantidade" value="1" min="1" max="5">
-                                    </div>
-                                </td>
-                                <td class="precoTotal">
-                                    <h5 class="total">R$  77.00</h5>
-                                </td>
-                            </tr>
-                            <tr class="carrinho">
-                                <td class="produto">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <p class="sr-only idProduto">2</p>
-                                            <p>Buque Nobile</p>
+                                    </td>
+                                    <td class="precoUnitario">
+                                        <h5 class="unitario">R$ <c:out value="${produto.valorUnitario}"/></h5>
+                                    </td>
+                                    <td class="quantidade">
+                                        <div class="product_count">
+                                            <input type="number" readonly="" class="input-quantidade" data-posicao="${produto.codigo}" value="${produto.quantidadeEstoque}" min="1" max="5">
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="precoUnitario">
-                                    <h5 class="unitario">R$ 178.37</h5>
-                                </td>
-                                <td class="quantidade">
-                                    <div id="product_count">
-                                        <input type="number" readonly="readonly" class="input-quantidade" value="1" min="1" max="5">
-                                    </div>
-                                </td>
-                                <td class="precoTotal">
-                                    <h5 class="total">R$ 178.37</h5>
-                                </td>
-                            </tr>
-                            <tr class="carrinho">
-                                <td class="produto">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <p class="sr-only idProduto">3</p>
-                                            <p>Buque de Flores Charme em Rosas</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="precoUnitario">
-                                    <h5 class="unitario">R$ 138.90</h5>
-                                </td>
-                                <td class="quantidade">
-                                    <div class="product_count">
-                                        <input type="number" readonly="readonly" class="input-quantidade" value="1" min="1" max="5">
-                                    </div>
-                                </td>
-                                <td class="precoTotal">
-                                    <h5 class="total">R$ 138.90</h5>
-                                </td>
-                            </tr>
-
+                                    </td>
+                                    <td class="precoTotal">
+                                        <h5 class="total">R$  <c:out value="${produto.valorTotal}"/></h5>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -113,20 +72,15 @@
                 </div>
                 <div class="col-3">
                     <h4 class="h4 text-center subtitulo">Forma de pagamento</h4>
-                    <select class="custom-select form-control inputForm">
-                        <option selected ="" disabled="" hidden="">Selecione...</option>                               
-                        <option value="1"> Cartão de crédito </option>  
-                        <option value="2"> Cartão de débito </option>  
-                        <option value="2"> Boleto </option>  
+                    <select class="custom-select form-control inputForm" id="pagamento" name="pagamento">
+                        <option selected ="" disabled="" hidden="">Selecione um pagamento</option>                               
+                        <c:forEach var="pagamento" items="${metodosPagamento}">  
+                            <option value="<c:out value="${pagamento.id}"></c:out>">
+                                Titular: <c:out value="${pagamento.nomeTitular}"/>
+                            </option>  
+                        </c:forEach>       
                     </select>
-                    <!--                    <select class="custom-select form-control inputForm error" id="codigoSetor" name="codigoSetor">
-                                            <option selected ="" disabled="" hidden=""><c:out value="${setorErro}"/></option>                               
-                    <c:forEach var="setores" items="${listaSetores}">  
-                        <option value="<c:out value="${setores.setor}"></c:out>">
-                        <c:out value="${setores.nomeSetor}"/> 
-                    </option>  
-                    </c:forEach>       
-                </select>-->
+                    <br>
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="background-color: #f3f3f3 !important;">
@@ -162,20 +116,14 @@
                 </div>
                 <div class="col-3">
                     <h4 class="h4 text-center subtitulo">Endereço de entrega</h4>
-                    <select class="custom-select form-control inputForm">
-                        <option selected ="" disabled="" hidden="">Selecione...</option>                               
-                        <option value="1"> Cartão de crédito </option>  
-                        <option value="2"> Cartão de débito </option>  
-                        <option value="2"> Boleto </option>  
+                    <select class="custom-select form-control inputForm" id="endereco" name="endereco">
+                        <option selected ="" disabled="" hidden="">Selecione um endereço</option>                               
+                        <c:forEach var="enderecos" items="${enderecosEntrega}">  
+                            <option value="<c:out value="${enderecos.codigoEndereco}"></c:out>">
+                                Logradouro: <c:out value="${enderecos.logradouro}"/> 
+                            </option>  
+                        </c:forEach>       
                     </select>
-                    <!--                    <select class="custom-select form-control inputForm error" id="codigoSetor" name="codigoSetor">
-                                            <option selected ="" disabled="" hidden=""><c:out value="${setorErro}"/></option>                               
-                    <c:forEach var="setores" items="${listaSetores}">  
-                        <option value="<c:out value="${setores.setor}"></c:out>">
-                        <c:out value="${setores.nomeSetor}"/> 
-                    </option>  
-                    </c:forEach>       
-                </select>-->
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="background-color: #f3f3f3 !important;">

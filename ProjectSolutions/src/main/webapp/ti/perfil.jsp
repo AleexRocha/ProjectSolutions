@@ -204,7 +204,7 @@
                                                 <div class="col">
                                                     <span class="card-title">
                                                         <b> Número de Identificação: </b>
-                                                        <p>****.*****.****.<c:out value="${pagamento.numeroPAgamento}"/></p>
+                                                        <p>****.*****.****.<c:out value="${pagamento.numeroPagamento}"/></p>
                                                     </span>
                                                 </div>
                                             </div>

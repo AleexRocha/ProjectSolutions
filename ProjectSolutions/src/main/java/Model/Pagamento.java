@@ -12,7 +12,7 @@ package Model;
 public class Pagamento {
     int id;
     String tipoPagamento;
-    String numeroPAgamento;
+    String numeroPagamento;
     String nomeTitular;
     String dataVencimento;
     String codigoSegurança;
@@ -27,7 +27,7 @@ public class Pagamento {
     public Pagamento(int id, String tipoPagamento, String numeroPAgamento, String nomeTitular, String dataVencimento, String codigoSegurança) {
         this.id = id;
         this.tipoPagamento = tipoPagamento;
-        this.numeroPAgamento = numeroPAgamento;
+        this.numeroPagamento = numeroPAgamento;
         this.nomeTitular = nomeTitular;
         this.dataVencimento = dataVencimento;
         this.codigoSegurança = codigoSegurança;
@@ -49,12 +49,12 @@ public class Pagamento {
         this.tipoPagamento = tipoPagamento;
     }
 
-    public String getNumeroPAgamento() {
-        return numeroPAgamento;
+    public String getNumeroPagamento() {
+        return numeroPagamento;
     }
 
-    public void setNumeroPAgamento(String numeroPAgamento) {
-        this.numeroPAgamento = numeroPAgamento;
+    public void setNumeroPagamento(String numeroPagamento) {
+        this.numeroPagamento = numeroPagamento;
     }
 
     public String getNomeTitular() {
