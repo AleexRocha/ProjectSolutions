@@ -41,7 +41,7 @@
                                                 <img src="../assets/img/produtos_teste/encanto_de_rosas_vermelhas.jpg" alt="Encanto de Rosas Vermelhas" />
                                             </div>
                                             <div class="media-body">
-                                                <p class="sr-only idProduto">1</p>
+                                                <p class="sr-only idProduto">${produto.codigo}</p>
                                                 <p class="nomeProduto"><c:out value="${produto.nome}"/></p>
                                             </div>
                                         </div>
@@ -51,9 +51,9 @@
                                     </td>
                                     <td class="quantidade">
                                         <div class="product_count">
-                                            <span class="altera input-number-decrement" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
-                                            <input type="number" readonly="" class="input-quantidade" value="${produto.quantidadeEstoque}" min="1" max="5">
-                                            <span class="altera input-number-increment" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
+                                            <span class="altera input-number-decrement" data-posicao="${produto.codigo}" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                            <input type="number" readonly="" class="input-quantidade" data-posicao="${produto.codigo}" value="${produto.quantidadeEstoque}" min="1" max="5">
+                                            <span class="altera input-number-increment" data-posicao="${produto.codigo}" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
                                         </div>
                                     </td>
                                     <td class="precoTotal">
