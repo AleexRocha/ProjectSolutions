@@ -26,21 +26,9 @@ function salvarProdutos() {
             let data = xhr.responseText;
             console.log(data);
         }else{
-            console.log("Deu ruim");
+            console.log("Erro ao salvar a venda.");
         }
     };
-//    $.ajax({
-//        method: "POST",
-//        url: 
-//        dataType: "json",
-//        data: JSON.stringify(tableParser.toJSON())
-//    }).done(function (dataJson) {
-//        alert("Deu bom");
-//        alert(dataJson);
-//    }).fail(function (data) {
-//        alert("Deu ruim");
-//        alert(data);
-//    });
 }
 
 let TableParser = function () {
