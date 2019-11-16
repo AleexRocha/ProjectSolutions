@@ -39,7 +39,7 @@ CREATE TABLE tbl_endereco(
 CREATE TABLE tbl_produtos(
     id_produto int not null primary key auto_increment,
     nome varchar(50) not null,
-    descricao varchar(100),
+    descricao varchar(500),
     tipo varchar(10) not null,
     qtd_estoque int not null,
     valor_unidade double not null,
@@ -121,7 +121,7 @@ INSERT INTO tbl_endereco(logradouro, complemento, numero, bairro, cidade, estado
     VALUES ('Av. Eng. Eusébio Stevaux', 'Academico 1', 823, 'Santo Amaro', 'São Paulo', 'SP', '04696000', 'cobranca', 1);
     
 INSERT INTO tbl_usuario(nome, email, senha, cpf, fk_setor, status)
-    VALUES ('Guilherme Pereira', 'guilherme@email.com', '81dc9bdb52d04dc20036dbd8313ed055','48921993894', 4, 0);
+    VALUES ('Cliente Sobrenome', 'cliente@email.com', '81dc9bdb52d04dc20036dbd8313ed055','48921993894', 4, 0);
     
 INSERT INTO tbl_endereco(logradouro, complemento, numero, bairro, cidade, estado, cep, tipo, fk_usuario)
     VALUES ('Rua Vicente Decara Neto', "Bloco i AP 154", 823,'Jd Santo Antonio','São Paulo','SP','05819000','entrega', 2);

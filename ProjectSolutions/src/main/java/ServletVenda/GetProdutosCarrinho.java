@@ -33,6 +33,16 @@ public class GetProdutosCarrinho extends HttpServlet {
         if (produtosCarrinho != null) {
             String checkout = request.getParameter("checkout");
             if (checkout == null) {
+                double calcSubtotal = 0;
+                String subtotal;
+                if ((sessao.getAttribute("cdFuncionario") == null) || (sessao.getAttribute("cdFuncionario").equals(""))) {
+                    request.setAttribute("varMsgEndereco", true);
+                    request.setAttribute("msg", "Faça login para calcular o frete.");
+                } else {
+                    int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
+                    ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
+                    request.setAttribute("enderecosEntrega", enderecos);
+                }
                 int i = 0;
                 for (Produto prod : produtosCarrinho) {
                     Produto produto = ProdutoDAO.getProduto(prod.getCodigo());
@@ -45,11 +55,16 @@ public class GetProdutosCarrinho extends HttpServlet {
                     produto.setValorCarrinho(newValorUnitario);
                     produto.setValorTotal(valorTotal);
 
+                    calcSubtotal += Double.parseDouble(valorTotal.replace(",", "."));
+
                     produtosInfo.add(produto);
 
                     i++;
                 }
 
+                subtotal = String.valueOf(calcSubtotal).replace(".", ",");
+
+                request.setAttribute("subtotal", subtotal);
                 request.setAttribute("varMsgTabela", false);
                 request.setAttribute("produtosCarrinho", produtosInfo);
                 RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
@@ -62,7 +77,7 @@ public class GetProdutosCarrinho extends HttpServlet {
             } else {
                 ArrayList<Produto> checkoutInfo = new ArrayList<>();
                 int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
-                
+
                 int i = 0;
                 for (Produto prod : produtosCarrinho) {
                     Produto p = ProdutoDAO.getProduto(prod.getCodigo());

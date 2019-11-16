@@ -85,25 +85,12 @@ public class VendaCadastroServlet extends HttpServlet {
             boolean httpOk = VendaDAO.salvarProdutoVenda(produtosCarrinho);
 
             if (httpOk) {
-                dispachar(request, response, hashVenda.concat(String.valueOf(codigoUsuario)), codigoUsuario);
+                String resposta = gson.toJson(codigoVenda);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                response.getWriter().write(hashVenda.concat(String.valueOf(codigoUsuario)));
             }
         }
-    }
-
-    public void dispachar(HttpServletRequest request, HttpServletResponse response, String codigoVenda, int codigoUsuario)
-            throws ServletException, IOException {
-        Usuario usuario = UsuarioDAO.getUsuario(codigoUsuario);
-
-        request.setAttribute("codigoUsuario", usuario.getCodigoUsuario());
-        request.setAttribute("nome", usuario.getNome());
-        request.setAttribute("cpf", usuario.getCpf());
-        request.setAttribute("email", usuario.getEmail());
-        request.setAttribute("nomeSetor", usuario.getNomeSetor());
-
-        request.setAttribute("varMsg", "Produto salvo com sucesso, o codigo da venda é: " + codigoVenda);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
-        dispatcher.forward(request, response);
     }
 
     @Override

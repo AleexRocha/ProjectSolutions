@@ -71,7 +71,8 @@
                                             <td class="produto">
                                                 <div class="media">
                                                     <div class="d-flex">
-                                                        <img src="../assets/img/produtos_teste/encanto_de_rosas_vermelhas.jpg" alt="Encanto de Rosas Vermelhas" />
+                                                        <img class="card-img-top imgCardView" src="../assets/uploads/images/<c:out value="${produto.nomeImagem}"/>"
+                                                             alt="<c:out value="${produto.nome}"/>" style="width: 150px; height: 150px">
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="sr-only idProduto">${produto.codigo}</p>
@@ -94,7 +95,46 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-                                </tbody>
+                                    <c:choose>
+                                        <c:when test="${varMsgEndereco == true}">
+                                            <tr>
+                                                <th></th>
+                                                <th>
+                                                    <div class="alert" role="alert">
+                                                        <c:out value="${msg}"/>
+                                                    </div>
+                                                </th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <tr>
+                                                <td>
+                                                    <label>Frete:</label>
+                                                    <select class="custom-select form-control inputForm" id="endereco" name="endereco">
+                                                        <option selected ="" disabled="" hidden="">Selecione um endereço</option>                               
+                                                        <c:forEach var="enderecos" items="${enderecosEntrega}">  
+                                                            <option value="<c:out value="${enderecos.codigoEndereco}"></c:out>">
+                                                                CEP:  <c:out value="${enderecos.cep}"/> / Logradouro: <c:out value="${enderecos.logradouro}"/>, <c:out value="${enderecos.numero}"/>
+                                                            </option>  
+                                                        </c:forEach>       
+                                                    </select></td>
+                                                <td class="precoTotal"></td>
+                                                <td id="valores"></td>
+                                                <td></td>
+                                            </tr>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <tr>
+                                        <td id="msgSubTotal"></td>
+                                        <td></td>
+                                        <td>Sub Total:</td>
+                                        <td class="precoTotal">
+                                            <h5 class="subtotal">R$ <c:out value="${subtotal}"></c:out> </h5>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                             </c:otherwise>
                         </c:choose>
                     </table>
@@ -102,13 +142,13 @@
                         <form action="../produtos/listagem_produtos">
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="fas fa-shopping-cart"></i>
-                                Continuar a compra
+                                Continuar comprando
                             </button>
                         </form>
                         <br>
                         <c:if test="${varMsgTabela == false}">
                             <form action="../venda/carrinho">
-                                <button type="submit" class="btn btn-success btn-block" value="checkout" name="checkout" onclick="salvarProdutos()">
+                                <button type="submit" class="btn btn-success btn-block" value="checkout" name="checkout">
                                     <i class="fas fa-shopping-cart"></i>
                                     Finalizar compra
                                 </button>
