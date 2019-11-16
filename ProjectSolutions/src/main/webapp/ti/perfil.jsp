@@ -30,8 +30,8 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-3 text-center">
-                    <nav class="nav nav-pills nav-fill flex-column">
+                <div class="col-md-3">
+                    <nav class="nav nav-pills nav-fill flex-column text-center">
                         <c:if test="${empty perfil}">
                             <form action="get_endereco" method="POST">
                                 <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
@@ -68,9 +68,11 @@
                                 </button>
                             </form>
                         </c:if>
-
-                        <a class="nav-link subtitulo" href="#">Pedidos em andamento</a>
-                        <a class="nav-link subtitulo" href="#">Pedidos finalizados</a>
+                        <form action="#" method="POST">
+                            <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                Meus Pedidos
+                            </button>
+                        </form>
                     </nav>
                 </div>
                 <div class="col-md-9 col-sm-12">
@@ -273,11 +275,11 @@
                                             <c:choose>
                                                 <c:when test="${not empty numPagErro}">
                                                     <input type="text" class="form-control inputForm error" id="nome"
-                                                           placeholder="${numPagErro}" name="numeroCartao" minlength="0" maxlength="75">
+                                                           placeholder="${numPagErro}" name="numeroCartao" minlength="16" maxlength="75">
                                                 </c:when>
                                                 <c:otherwise>
                                                     <input type="text" class="form-control inputForm" id="nome"
-                                                           placeholder="Número" name="numeroCartao" minlength="0" maxlength="75">
+                                                           placeholder="Número" name="numeroCartao" minlength="16" maxlength="75">
                                                 </c:otherwise>
                                             </c:choose>
 
@@ -285,11 +287,11 @@
                                             <c:choose>
                                                 <c:when test="${not empty titularErro}">
                                                     <input type="text" class="form-control inputForm error" id="nome"
-                                                           placeholder="${titularErro}" name="nomeTitular" minlength="0" maxlength="75">
+                                                           placeholder="${titularErro}" name="nomeTitular" minlength="16" maxlength="75">
                                                 </c:when>
                                                 <c:otherwise>
                                                     <input type="text" class="form-control inputForm" id="nome"
-                                                           placeholder="Nome do Titular" name="nomeTitular" minlength="0" maxlength="75">
+                                                           placeholder="Nome do Titular" name="nomeTitular" minlength="16" maxlength="75">
                                                 </c:otherwise>
                                             </c:choose>
 

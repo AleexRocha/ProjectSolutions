@@ -36,12 +36,17 @@ public class GetProdutosCarrinho extends HttpServlet {
                 double calcSubtotal = 0;
                 String subtotal;
                 if ((sessao.getAttribute("cdFuncionario") == null) || (sessao.getAttribute("cdFuncionario").equals(""))) {
+                    request.setAttribute("varMsgTabela", false);
                     request.setAttribute("varMsgEndereco", true);
                     request.setAttribute("msg", "Faça login para calcular o frete.");
+                } else if ((produtosCarrinho.isEmpty())) {
+                    request.setAttribute("varMsgTabela", true);
+                    request.setAttribute("msg", "Adicione produtos ao carrinho para ver aqui");
                 } else {
                     int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
                     ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
                     request.setAttribute("enderecosEntrega", enderecos);
+                    request.setAttribute("varMsgTabela", false);
                 }
                 int i = 0;
                 for (Produto prod : produtosCarrinho) {
@@ -64,8 +69,7 @@ public class GetProdutosCarrinho extends HttpServlet {
 
                 subtotal = String.valueOf(calcSubtotal).replace(".", ",");
 
-                request.setAttribute("subtotal", subtotal);
-                request.setAttribute("varMsgTabela", false);
+                request.setAttribute("subtotal", String.format(subtotal, "%.2f"));
                 request.setAttribute("produtosCarrinho", produtosInfo);
                 RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
                 dipatcher.forward(request, response);
@@ -78,6 +82,8 @@ public class GetProdutosCarrinho extends HttpServlet {
                 ArrayList<Produto> checkoutInfo = new ArrayList<>();
                 int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
 
+                double calcSubtotal = 0;
+                String subtotal;
                 int i = 0;
                 for (Produto prod : produtosCarrinho) {
                     Produto p = ProdutoDAO.getProduto(prod.getCodigo());
@@ -89,14 +95,19 @@ public class GetProdutosCarrinho extends HttpServlet {
                     p.setValorUnitario(Double.parseDouble(newValorUnitario.replace(",", ".")));
                     p.setValorTotal(valorTotal);
 
+                    calcSubtotal += Double.parseDouble(valorTotal.replace(",", "."));
+
                     checkoutInfo.add(p);
 
                     i++;
                 }
 
+                subtotal = String.valueOf(calcSubtotal).replace(".", ",");
+
                 ArrayList<Pagamento> pagamentos = UsuarioDAO.getPagamentosCadastrados(codigoUsuario);
                 ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
 
+                request.setAttribute("subtotal", subtotal);
                 request.setAttribute("produtosCarrinho", checkoutInfo);
                 request.setAttribute("metodosPagamento", pagamentos);
                 request.setAttribute("enderecosEntrega", enderecos);

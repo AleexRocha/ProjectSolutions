@@ -33,13 +33,14 @@ public class Venda {
     }
 
     //    Objeto que vem do JSON
-    public Venda(int idProduto, double valorUnitarioProduto, int quantidadeUnitarioProduto, double valorTotalProduto, int idEndereco, double valorFrete) {
+    public Venda(int idProduto, double valorUnitarioProduto, int quantidadeUnitarioProduto, double valorTotalProduto, int idEndereco, double valorFrete, int idPagamento) {
         this.idProduto = idProduto;
         this.valorUnitarioProduto = valorUnitarioProduto;
         this.quantidadeUnitarioProduto = quantidadeUnitarioProduto;
         this.valorTotalProduto = valorTotalProduto;
         this.idEndereco = idEndereco;
         this.valorFrete = valorFrete;
+        this.idPagamento = idPagamento;
     }
 
     //    Objeto salvo na tbl_produtos_venda

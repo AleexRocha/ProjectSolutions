@@ -41,9 +41,9 @@ function recalcularValores() {
     }
 
     function getValorEntrega() {
-        var radios = document.getElementsByName("entrega");
+        let radios = document.getElementsByName("entrega");
 
-        for (var i = 0; i < radios.length; i++) {
+        for (let i = 0; i < radios.length; i++) {
             if (radios[i].checked) {
                 return radios[i].value;
             }
@@ -73,70 +73,3 @@ $('#endereco').change(function () {
     $('#valores').replaceWith(valores);
     recalcularValores();
 });
-
-//Ajax que salva os produtos
-function salvarProdutos() {
-    let tableParser = new TableParser();
-    console.log(tableParser.toJSON());
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', "../venda/create_venda", true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.send(JSON.stringify(tableParser.toJSON()));
-    xhr.onreadystatechange = function () {
-        if (xhr.status >= 200 && xhr.status < 400) {
-            let data = xhr.responseText;
-            console.log(data);
-        } else {
-            console.log("Erro ao salvar a venda.");
-        }
-    };
-}
-
-let TableParser = function () {
-    let trs = document.getElementsByClassName('carrinho');
-    let _trsInJSON = [];
-    this.toJSON = function () {
-        for (let idx in trs) {
-            if (trs.hasOwnProperty(idx)) {
-                _trsInJSON[idx] = _trToJSON(trs[idx]);
-            }
-        }
-        return _trsInJSON;
-    };
-    function _trToJSON(tr) {
-        let idProduto = getIdProduct(tr.children[0]);
-        let valorUnitarioProduto = getUnityValue(tr.children[1]);
-        let quantidadeUnitarioProduto = getQuantity(tr.children[2]);
-        let valorTotalProduto = valorUnitarioProduto * quantidadeUnitarioProduto;
-        return {
-            idProduto,
-            valorUnitarioProduto,
-            quantidadeUnitarioProduto,
-            valorTotalProduto
-        };
-    }
-
-    function getIdProduct(td) {
-        let id = td
-                .getElementsByClassName('media-body')[0]
-                .getElementsByTagName('p')[0].innerHTML;
-        return id;
-    }
-
-    function getProductName(td) {
-        return td
-                .getElementsByClassName('media-body')[0]
-                .getElementsByTagName('p')[1].innerHTML;
-    }
-
-    function getUnityValue(td) {
-        let value = td.getElementsByClassName('unitario')[0].innerHTML;
-        return Number(value.replace('R$', ''));
-    }
-
-    function getQuantity(td) {
-        return Number(td.getElementsByClassName('input-quantidade')[0].value);
-    }
-
-    return this;
-};

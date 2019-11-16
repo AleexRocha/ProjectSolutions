@@ -72,18 +72,6 @@ public class LoginServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-            IOException {
-        processaRequisicao(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-            IOException {
-        processaRequisicao(req, resp);
-    }
-
     private boolean validaCamposForm(HttpServletRequest request) {
         String uEmail = request.getParameter("email");
         String uSenha = request.getParameter("password");
@@ -113,7 +101,7 @@ public class LoginServlet extends HttpServlet {
         ArrayList<Produto> produtosAux = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
         if (produtosAux == null || produtosAux.isEmpty()) {
             ArrayList<Produto> produtos = new ArrayList<>();
-            sessao.setAttribute("produtosCarrinho", produtos);            
+            sessao.setAttribute("produtosCarrinho", produtos);
         }
         sessao.setAttribute("cdFuncionario", infoSessao.getCodigoUsuario());
         sessao.setAttribute("nomeUsuario", infoSessao.getNome());
@@ -123,5 +111,17 @@ public class LoginServlet extends HttpServlet {
         sessao.setAttribute("cpfUsuario", infoSessao.getCpf());
 
         return sessao;
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+            IOException {
+        processaRequisicao(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+            IOException {
+        processaRequisicao(req, resp);
     }
 }

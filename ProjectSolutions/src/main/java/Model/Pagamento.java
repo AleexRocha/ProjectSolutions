@@ -24,10 +24,10 @@ public class Pagamento {
         this.tipoPagamento = tipoPagamento;
     }
     
-    public Pagamento(int id, String tipoPagamento, String numeroPAgamento, String nomeTitular, String dataVencimento, String codigoSegurança) {
+    public Pagamento(int id, String tipoPagamento, String numeroPagamento, String nomeTitular, String dataVencimento, String codigoSegurança) {
         this.id = id;
         this.tipoPagamento = tipoPagamento;
-        this.numeroPagamento = numeroPAgamento;
+        this.numeroPagamento = numeroPagamento;
         this.nomeTitular = nomeTitular;
         this.dataVencimento = dataVencimento;
         this.codigoSegurança = codigoSegurança;
