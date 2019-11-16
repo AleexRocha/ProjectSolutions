@@ -22,13 +22,13 @@
         <br>
         <div class="container">
             <div class="alert alert-success sr-only" role="alert">
-                <span>TESTE</span>
+                <span id="msg-alert-success">TESTE</span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="alert alert-danger sr-only" role="alert">
-                <span>TESTE</span>
+                <span id="msg-alert-danger">TESTE</span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -213,14 +213,14 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">PARABÉNS!!</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">PARABÉNS!! Seu pedido foi realizado com sucesso.</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Sua venda foi concluida com sucesso, o codigo da sua venda é: <span id="codigoVenda"></span></p>
-                            <p>Você pode acompanhar o status do seu pedido indo ao seu perfil e clicando em "Meus Pedidos".</p>
+                            <p>O codigo da sua venda é: <span id="codigoVenda"></span></p>
+                            <p>Você pode acompanhar o andamento do seu pedido no seu perfil, clicando em "Meus Pedidos".</p>
                         </div>
                         <div class="modal-footer">
                             <form action="../produtos/listagem_produtos" method="POST" name ="deletarUsuario">

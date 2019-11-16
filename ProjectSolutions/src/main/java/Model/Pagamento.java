@@ -10,20 +10,28 @@ package Model;
  * @author guilherme.pereira
  */
 public class Pagamento {
+
     int id;
     String tipoPagamento;
     String numeroPagamento;
     String nomeTitular;
     String dataVencimento;
     String codigoSegurança;
+    int idUsuario;
 
-    public Pagamento(){}
-    
+    public Pagamento() {
+    }
+
     public Pagamento(int id, String tipoPagamento) {
         this.id = id;
         this.tipoPagamento = tipoPagamento;
     }
-    
+
+    public Pagamento(String numeroPagamento, int idUsuario) {
+        this.numeroPagamento = numeroPagamento;
+        this.idUsuario = idUsuario;
+    }
+
     public Pagamento(int id, String tipoPagamento, String numeroPagamento, String nomeTitular, String dataVencimento, String codigoSegurança) {
         this.id = id;
         this.tipoPagamento = tipoPagamento;
@@ -79,5 +87,13 @@ public class Pagamento {
 
     public void setCodigoSegurança(String codigoSegurança) {
         this.codigoSegurança = codigoSegurança;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

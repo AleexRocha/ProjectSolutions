@@ -69,13 +69,18 @@ function salvarProdutos() {
         xhr.onreadystatechange = function () {
             if (xhr.status >= 200 && xhr.status < 400) {
                 let data = xhr.responseText;
-                alert(data);
+                if (data != null) {
+                    $('#codigoVenda').replaceWith("<span id=\"codigoVenda\"><b>" + data + "</b></span>")
+                }
+                $("#vendaRealizada").modal('show');
             } else {
-                alert("Erro ao salvar a venda.");
+                $("#msg-alert-danger").replaceWith("<b>Erro ao salvar a venda!</b>");
+                $(".alert-danger").removeClass("sr-only");
             }
         };
     } else {
-        alert("JSON invalido, verifique os campos.");
+        $("#msg-alert-danger").replaceWith("<b>Verifique os campos e tente novamente!</b>");
+        $(".alert-danger").removeClass("sr-only");
     }
 }
 

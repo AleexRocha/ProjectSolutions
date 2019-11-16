@@ -248,7 +248,7 @@ public class UsuarioDAO {
             PreparedStatement query = conn.prepareStatement("SELECT * FROM tbl_info_pagamentos " + complemento);
 
             ResultSet rs = query.executeQuery();
-           
+
             if (rs != null) {
                 while (rs.next()) {
                     Pagamento pag = new Pagamento(
@@ -265,7 +265,7 @@ public class UsuarioDAO {
 
         return pagamentos;
     }
-    
+
     public static ArrayList<Pagamento> getPagamentosCadastrados(int codigoCliente) {
         Connection conn = db.obterConexao();
         ArrayList<Pagamento> pagamentos = new ArrayList();
@@ -275,9 +275,9 @@ public class UsuarioDAO {
                     + " FROM tbl_pagamento_usuario AS pu"
                     + " INNER JOIN tbl_info_pagamentos AS ip ON pu.fk_info_pagamento = ip.id_info_pagamento WHERE fk_usuario = ?");
             query.setInt(1, codigoCliente);
-            
+
             ResultSet rs = query.executeQuery();
-            
+
             if (rs != null) {
                 while (rs.next()) {
                     Pagamento pag = new Pagamento();
@@ -295,7 +295,7 @@ public class UsuarioDAO {
                     pag.setNomeTitular(rs.getString(3));
                     pag.setDataVencimento(rs.getString(4));
                     pag.setTipoPagamento(rs.getString(5));
-                    
+
                     pagamentos.add(pag);
                 }
             }
@@ -306,29 +306,57 @@ public class UsuarioDAO {
 
         return pagamentos;
     }
-    
-    public static boolean salvarMetodoPagamento(Pagamento pag, int codUsuario){
+
+    public static boolean salvarMetodoPagamento(Pagamento pag, int codUsuario) {
         Connection conn = db.obterConexao();
-        
+
         try {
             PreparedStatement query = conn.prepareStatement("INSERT INTO tbl_pagamento_usuario"
                     + " (numero_pagamento, nome_titular, data_vencimento, codigo_segurança, fk_info_pagamento, fk_usuario)"
                     + " values"
                     + " (?, ?, ?, ?, ?, ?);");
-        
+
             query.setString(1, pag.getNumeroPagamento());
             query.setString(2, pag.getNomeTitular());
             query.setString(3, pag.getDataVencimento());
             query.setString(4, pag.getCodigoSegurança());
             query.setInt(5, pag.getId());
             query.setInt(6, codUsuario);
-            
+
             query.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
             return false;
         }
-        
+
         return true;
+    }
+
+    public static int salvarBoletoPagamento(Pagamento p) {
+        Connection conn = db.obterConexao();
+        int id = 0;
+
+        try {
+            PreparedStatement query = conn.prepareStatement(
+                    "INSERT INTO tbl_pagamento_usuario(numero_pagamento, fk_usuario) VALUES (?,?);",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            query.setString(1, p.getNumeroPagamento());
+            query.setInt(2, p.getIdUsuario());
+
+            query.executeUpdate();
+
+            ResultSet rs = query.getGeneratedKeys();
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return id;
+        }
+
+        return id;
     }
 }

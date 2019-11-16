@@ -2,7 +2,7 @@ package ServletVenda;
 
 import DAO.UsuarioDAO;
 import DAO.VendaDAO;
-import Model.Usuario;
+import Model.Pagamento;
 import Model.Venda;
 
 import com.google.gson.Gson;
@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,10 +48,13 @@ public class VendaCadastroServlet extends HttpServlet {
 
         int quantidadeTotalVenda = 0;
         int valorTotalVenda = 0;
-
+        int idEndereco = 0;
+        int idRecebidoPagamento = 0;
         for (Venda pc : produtosCarrinho) {
             quantidadeTotalVenda += pc.getQuantidadeUnitarioProduto();
             valorTotalVenda += pc.getValorTotalProduto();
+            idEndereco = pc.getIdEndereco();
+            idRecebidoPagamento = pc.getIdPagamento();
         }
 
         DateFormat dateFormatCodigoVenda = new SimpleDateFormat("ddMMyyyyHHmmss");
@@ -64,16 +65,30 @@ public class VendaCadastroServlet extends HttpServlet {
 
         HttpSession userLogado = request.getSession();
         int codigoUsuario = (int) userLogado.getAttribute("cdFuncionario");
+        int idPagamento = 0;
+        if (idRecebidoPagamento == 99) {
+            Random gerador = new Random();
+            String numeroBoleto = "";
+            for (int i = 0; i < 48; i++) {
+                int numero = gerador.nextInt(10);
+                char c = (char) numero;
+                numeroBoleto.concat(String.valueOf(c));
+            }
+            Pagamento pagamento = new Pagamento(numeroBoleto, codigoUsuario);
+            idPagamento = UsuarioDAO.salvarBoletoPagamento(pagamento);
+        } else {
+            idPagamento = idRecebidoPagamento;
+        }
 
         venda.setCodigoVenda(hashVenda.concat(String.valueOf(codigoUsuario)));
         venda.setQuantidadeTotalVenda(quantidadeTotalVenda);
         venda.setValorTotalVenda(valorTotalVenda);
         venda.setValorFrete(valorTotalVenda);
         venda.setDataVenda(dataVenda);
-        venda.setIdEndereco(1);
+        venda.setIdEndereco(idEndereco);
         venda.setIdUsuario(codigoUsuario);
         venda.setIdStatus(1);
-        venda.setIdPagamento(1);
+        venda.setIdPagamento(idPagamento);
 
         int codigoVenda = VendaDAO.salvarVenda(venda);
 
@@ -85,7 +100,6 @@ public class VendaCadastroServlet extends HttpServlet {
             boolean httpOk = VendaDAO.salvarProdutoVenda(produtosCarrinho);
 
             if (httpOk) {
-                String resposta = gson.toJson(codigoVenda);
                 response.setContentType("application/json");
                 response.setCharacterEncoding("utf-8");
                 response.getWriter().write(hashVenda.concat(String.valueOf(codigoUsuario)));
