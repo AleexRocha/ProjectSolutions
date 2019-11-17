@@ -65,7 +65,7 @@
                                         </div>
                                     </td>
                                     <td class="precoTotal">
-                                        <h5 class="total">R$  <c:out value="${produto.valorTotal}"/></h5>
+                                        <h5 class="total">R$ <c:out value="${produto.valorTotal}"/></h5>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -132,6 +132,11 @@
                                 </div>
                             </div>
                         </c:forEach>
+                        <form action="../ti/pagamento_listagem" method="POST" style="margin: 10px auto;">
+                            <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn btn-danger">
+                                Cadastrar forma de pagamento
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-3 text-center" style="border-bottom: 2px solid #aeaeae">
@@ -197,6 +202,11 @@
                         <div class="col-12">
                             <div id="valores" class="text-center"></div>
                         </div>
+                        <form action="../ti/cadastro_endereco.jsp" method="POST" style="margin: 7px auto;">
+                            <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn btn-danger">
+                                Cadastrar novo endereço
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-6"></div>
