@@ -271,9 +271,58 @@ public class UsuarioDAO {
         ArrayList<Pagamento> pagamentos = new ArrayList();
 
         try {
-            PreparedStatement query = conn.prepareStatement("SELECT id_pagamento, numero_pagamento, nome_titular, data_vencimento, nome"
+            PreparedStatement query = conn.prepareStatement("SELECT"
+                    + " pu.id_pagamento, pu.numero_pagamento,"
+                    + " pu.nome_titular, pu.data_vencimento, ip.nome"
                     + " FROM tbl_pagamento_usuario AS pu"
-                    + " INNER JOIN tbl_info_pagamentos AS ip ON pu.fk_info_pagamento = ip.id_info_pagamento WHERE fk_usuario = ?");
+                    + " INNER JOIN tbl_info_pagamentos AS ip"
+                    + " ON pu.fk_info_pagamento = ip.id_info_pagamento"
+                    + " WHERE pu.fk_usuario = ?");
+            query.setInt(1, codigoCliente);
+
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Pagamento pag = new Pagamento();
+                    pag.setId(rs.getInt(1));
+                    int i = 0;
+                    String numCartaoAux = "";
+                    while (i < rs.getString(2).length()) {
+                        if (i > 11) {
+                            char c = rs.getString(2).charAt(i);
+                            numCartaoAux += String.valueOf(c);
+                        }
+                        i++;
+                    }
+                    pag.setNumeroPagamento(numCartaoAux);
+                    pag.setNomeTitular(rs.getString(3));
+                    pag.setDataVencimento(rs.getString(4));
+                    pag.setTipoPagamento(rs.getString(5));
+
+                    pagamentos.add(pag);
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return pagamentos;
+    }
+
+    public static ArrayList<Pagamento> getPagamentosCheckout(int codigoCliente) {
+        Connection conn = db.obterConexao();
+        ArrayList<Pagamento> pagamentos = new ArrayList();
+
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT"
+                    + " pu.id_pagamento, pu.numero_pagamento, pu.nome_titular, pu.data_vencimento, ip.nome"
+                    + " FROM tbl_pagamento_usuario AS pu"
+                    + " INNER JOIN tbl_info_pagamentos AS ip"
+                    + " ON pu.fk_info_pagamento = ip.id_info_pagamento"
+                    + " WHERE pu.fk_info_pagamento != 3"
+                    + " AND pu.fk_usuario = ?;");
             query.setInt(1, codigoCliente);
 
             ResultSet rs = query.executeQuery();
@@ -338,11 +387,12 @@ public class UsuarioDAO {
 
         try {
             PreparedStatement query = conn.prepareStatement(
-                    "INSERT INTO tbl_pagamento_usuario(numero_pagamento, fk_usuario) VALUES (?,?);",
+                    "INSERT INTO tbl_pagamento_usuario(numero_pagamento, fk_info_pagamento, fk_usuario) VALUES (?,?,?);",
                     Statement.RETURN_GENERATED_KEYS);
 
             query.setString(1, p.getNumeroPagamento());
-            query.setInt(2, p.getIdUsuario());
+            query.setInt(2, p.getIdInfoPagamento());
+            query.setInt(3, p.getIdUsuario());
 
             query.executeUpdate();
 
@@ -350,8 +400,6 @@ public class UsuarioDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-
-            query.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
             return id;

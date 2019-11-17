@@ -17,6 +17,7 @@ public class Pagamento {
     String nomeTitular;
     String dataVencimento;
     String codigoSegurança;
+    int idInfoPagamento;
     int idUsuario;
 
     public Pagamento() {
@@ -27,8 +28,9 @@ public class Pagamento {
         this.tipoPagamento = tipoPagamento;
     }
 
-    public Pagamento(String numeroPagamento, int idUsuario) {
+    public Pagamento(String numeroPagamento, int idInfoPagamento, int idUsuario) {
         this.numeroPagamento = numeroPagamento;
+        this.idInfoPagamento = idInfoPagamento;
         this.idUsuario = idUsuario;
     }
 
@@ -89,6 +91,14 @@ public class Pagamento {
         this.codigoSegurança = codigoSegurança;
     }
 
+    public int getIdInfoPagamento() {
+        return idInfoPagamento;
+    }
+
+    public void setIdInfoPagamento(int idInfoPagamento) {
+        this.idInfoPagamento = idInfoPagamento;
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -96,4 +106,5 @@ public class Pagamento {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
+
 }

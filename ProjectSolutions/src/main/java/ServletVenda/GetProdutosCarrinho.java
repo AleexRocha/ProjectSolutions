@@ -100,7 +100,7 @@ public class GetProdutosCarrinho extends HttpServlet {
                     i++;
                 }
 
-                ArrayList<Pagamento> pagamentos = UsuarioDAO.getPagamentosCadastrados(codigoUsuario);
+                ArrayList<Pagamento> pagamentos = UsuarioDAO.getPagamentosCheckout(codigoUsuario);
                 ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
 
                 request.setAttribute("subtotal", df.format(subtotal));

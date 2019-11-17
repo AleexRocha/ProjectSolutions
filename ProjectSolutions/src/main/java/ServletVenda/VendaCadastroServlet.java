@@ -71,10 +71,9 @@ public class VendaCadastroServlet extends HttpServlet {
             String numeroBoleto = "";
             for (int i = 0; i < 48; i++) {
                 int numero = gerador.nextInt(10);
-                char c = (char) numero;
-                numeroBoleto.concat(String.valueOf(c));
+                numeroBoleto += (String.valueOf(numero));
             }
-            Pagamento pagamento = new Pagamento(numeroBoleto, codigoUsuario);
+            Pagamento pagamento = new Pagamento(numeroBoleto, 3, codigoUsuario);
             idPagamento = UsuarioDAO.salvarBoletoPagamento(pagamento);
         } else {
             idPagamento = idRecebidoPagamento;
