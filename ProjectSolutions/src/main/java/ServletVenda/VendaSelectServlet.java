@@ -2,10 +2,8 @@ package ServletVenda;
 
 import DAO.VendaDAO;
 import Model.Venda;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,50 +15,49 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexsander Rocha
  */
-@WebServlet(name = "VendaSelectServlet", urlPatterns = {"/venda/cadastro_vendas"})
+@WebServlet(name = "VendaSelectServlet", urlPatterns = {"/venda/select_vendas"})
 public class VendaSelectServlet extends HttpServlet {
 
-    private void processaRequisicao(String metodoHttp, HttpServletRequest request, HttpServletResponse response)
+    private void processaRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//
-//        ArrayList<Venda> produtosVenda = VendaDAO.getProdutosVenda();
-//        ArrayList<Venda> usuariosVenda = VendaDAO.getUsuariosVenda();
-//
-//        if (produtosVenda.isEmpty()) {
-//            Venda uv = new Venda();
-//
-//            uv.setNomeProduto("Não há produtos cadastrados");
-//            produtosVenda.add(uv);
-//
-//            request.setAttribute("listaProdutos", produtosVenda);
-//        } else {
-//            request.setAttribute("listaProdutos", produtosVenda);
-//        }
-//
-//        if (usuariosVenda.isEmpty()) {
-//            Venda uv = new Venda();
-//
-//            uv.setNomeFuncionario("Não há usuarios cadastrados");
-//            usuariosVenda.add(uv);
-//
-//            request.setAttribute("listaUsuarios", usuariosVenda);
-//        } else {
-//            request.setAttribute("listaUsuarios", usuariosVenda);
-//        }
-//
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/venda/cadastro_vendas.jsp");
-//        dispatcher.forward(request, response);
+
+        String idUsuario = request.getParameter("idUsuario");
+
+        ArrayList<Venda> pedidos = VendaDAO.getPedidosVenda(Integer.parseInt(idUsuario));
+        ArrayList<Venda> produtos = new ArrayList<>();
+
+        for (Venda pedido : pedidos) {
+            ArrayList<Venda> produtosVenda = VendaDAO.getProdutosPedidos(pedido.getIdVenda());
+            for (Venda produto : produtosVenda) {
+                produtos.add(produto);
+            }
+        }
+        
+        for (Venda pedido : pedidos) {
+            System.out.println("Pedido " + pedido.getIdVenda() + " : " + pedido.toString());
+        }
+        
+        for (Venda produto : produtos) {
+            System.out.println("Produto " + produto.getIdVenda() + " : " + produto.toString());
+        }
+
+        request.setAttribute("listaPedidos", pedidos);
+        request.setAttribute("listaProdutos", produtos);
+        request.setAttribute("perfil", "pedidos");
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
+        dispatcher.forward(request, response);
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("GET", req, resp); //To change body of generated methods, choose Tools | Templates.
+        processaRequisicao(req, resp); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processaRequisicao("POST", req, resp); //To change body of generated methods, choose Tools | Templates.
+        processaRequisicao(req, resp); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

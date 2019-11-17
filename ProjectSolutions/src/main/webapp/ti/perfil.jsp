@@ -25,56 +25,92 @@
             <h4 class="h4 text-center subtitulo">Esse são seus endereços:</h4>
         </c:if>
         <c:if test="${perfil == 'pagamento'}">
-            <h4 class="h4 text-center subtitulo">Esse são seus métodos de pagamento registrados:</h4>
+            <h4 class="h4 text-center subtitulo">Esse são seus métodos de pagamento cadastrados:</h4>
+        </c:if>
+        <c:if test="${perfil == 'pedidos'}">
+            <h4 class="h4 text-center subtitulo">Esse são seus pedidos realizados até o momento:</h4>
         </c:if>
 
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <nav class="nav nav-pills nav-fill flex-column text-center">
-                        <c:if test="${empty perfil}">
-                            <form action="get_endereco" method="POST">
+                    <nav class="nav nav-pills nav-fill flex-column">
+                        <c:if test="${perfil == 'pessoal'}">
+                            <form action="get_endereco" method="POST" class="text-center">
                                 <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
                                     Ver endereços cadastrados
                                 </button>
                             </form>
-                            <form action="pagamento_listagem" method="POST">
+                            <form action="pagamento_listagem" method="POST" class="text-center">
                                 <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
                                     Métodos de Pagamento
+                                </button>
+                            </form>
+                            <form action="../venda/select_vendas" method="POST" class="text-center">
+                                <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                    Meus Pedidos
                                 </button>
                             </form>
                         </c:if>
                         <c:if test="${perfil == 'endereco'}">
-                            <form action="cadastro_endereco.jsp" method="POST">
+                            <form action="cadastro_endereco.jsp" method="POST" class="text-center">
                                 <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
                                     Cadastrar novo endereço
                                 </button>
                             </form>
-                            <form action="pagamento_listagem" method="POST">
+                            <form action="perfil" method="POST" class="text-center">
+                                <button type="submit" name="perfil" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                    Ver dados pessoais
+                                </button>
+                            </form>
+                            <form action="pagamento_listagem" method="POST" class="text-center">
                                 <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
                                     Métodos de Pagamento
+                                </button>
+                            </form>
+                            <form action="../venda/select_vendas" method="POST" class="text-center">
+                                <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                    Meus Pedidos
                                 </button>
                             </form>
                         </c:if>
                         <c:if test="${perfil == 'pagamento'}">
-                            <form action="get_endereco" method="POST">
+                            <form action="get_endereco" method="POST" class="text-center">
                                 <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
                                     Ver endereços cadastrados
                                 </button>
                             </form>
-                            <form action="pagamento_listagem" method="POST">
+                            <form action="perfil" method="POST" class="text-center">
+                                <button type="submit" name="perfil" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                    Ver dados pessoais
+                                </button>
+                            </form>
+                            <form action="../venda/select_vendas" method="POST" class="text-center">
+                                <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                    Meus Pedidos
+                                </button>
+                            </form>
+                        </c:if>
+                        <c:if test="${perfil == 'pedidos'}">
+                            <form action="../ti/get_endereco" method="POST" class="text-center">
+                                <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                    Ver endereços cadastrados
+                                </button>
+                            </form>
+                            <form action="../ti/pagamento_listagem" method="POST" class="text-center">
                                 <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
                                     Métodos de Pagamento
                                 </button>
                             </form>
+                            <form action="../ti/perfil" method="POST" class="text-center">
+                                <button type="submit" name="perfil" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
+                                    Ver dados pessoais
+                                </button>
+                            </form>
                         </c:if>
-                        <form action="#" method="POST">
-                            <button type="submit" name="idUsuario" value="${sessionScope.cdFuncionario}" class="btn nav-link subtitulo">
-                                Meus Pedidos
-                            </button>
-                        </form>
                     </nav>
                 </div>
+
                 <div class="col-md-9 col-sm-12">
                     <c:if test="${varMsg == true}">
                         <div class="alert alert-success" role="alert">
@@ -93,7 +129,7 @@
                         </div>
                     </c:if>
 
-                    <c:if test="${empty perfil}">
+                    <c:if test="${perfil == 'pessoal'}">
                         <div class="row">
                             <div class="col-12">
                                 <label for="nome">Seu nome completo:</label>
@@ -337,6 +373,63 @@
                             </div>
                         </div>
                     </c:if>
+                    <c:if test="${perfil == 'pedidos'}">
+                        <div class="row">
+                            <div id="accordion">
+                                <c:forEach var="pedidos" items="#{listaPedidos}">
+                                    <div class="card">
+                                        <div class="card-header" id="heading<c:out value="${pedidos.idVenda}"></c:out>">
+                                                <h5 class="mb-0 text-center">
+                                                    <table class="table table-borderless">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Codigo da Venda</th>
+                                                                <th>Data da Venda</th>
+                                                                <th>Status do Pedido</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><c:out value="${pedidos.codigoVenda}"></c:out></td>
+                                                            <td><c:out value="${pedidos.dataVenda}"></c:out></td>
+                                                            <td><c:out value="${pedidos.nomeStatusVenda}"></c:out></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#<c:out value="collapse${pedidos.idVenda}"></c:out>" aria-expanded="true" aria-controls="collapse<c:out value="${pedidos.idVenda}"></c:out>">
+                                                        <i class="fas fa-angle-down"></i>
+                                                        Ver detalhes do produto
+                                                        <i class="fas fa-angle-down"></i>
+                                                    </button>
+                                                </h5>
+                                            </div>
+
+                                                <div id="collapse<c:out value="${pedidos.idVenda}"></c:out>" class="collapse" aria-labelledby="heading<c:out value="${pedidos.idVenda}"></c:out>" data-parent="#accordion">
+                                                <div class="card-body">
+                                                        <label>Valor Frete: <c:out value="${pedidos.valorFrete}"></c:out></label><br>
+                                                <label>Valor Total da Venda: <c:out value="${pedidos.valorTotalVenda}"></c:out></label><br>
+                                                <label>Quantidade Total de Produtos da Venda: <c:out value="${pedidos.quantidadeTotalVenda}"></c:out></label><br>
+                                                <label>Logradouro: <c:out value="${pedidos.logradouroVenda}"></c:out></label><br>
+                                                <label>CEP: <c:out value="${pedidos.cepVenda}"></c:out></label><br>
+                                                <label>Número: <c:out value="${pedidos.numeroEnderecoVenda}"></c:out></label><br>
+                                                <label>Forma de Pagamento: <c:out value="${pedidos.nomeFormaPagamentoVenda}"></c:out></label><br>
+                                                <label>Número do <c:out value="${pedidos.nomeFormaPagamentoVenda}"></c:out> do Pagamento: <c:out value="${pedidos.numeroPagamentoVenda}"></c:out></label><br>
+
+                                                <c:forEach var="produtosVenda" items="#{listaProdutos}">
+                                                    <c:if test="${pedidos.idVenda == produtosVenda.idVenda}">
+                                                        <label>Nome do Produto: <c:out value="${produtosVenda.nomeProdutoVenda}"></c:out></label><br>
+                                                        <label>Quantidade de produtos: <c:out value="${produtosVenda.quantidadeUnitariaVenda}"></c:out></label><br>
+                                                        <label>Valor Unitario: <c:out value="${produtosVenda.valorUnitarioProdutoVenda}"></c:out></label><br>
+                                                    </c:if>
+                                                </c:forEach>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
                 </div>
             </div>
             <%@include file="../WEB-INF/footer.jsp" %>
@@ -344,6 +437,6 @@
         <script src="../assets/js/jquery-2.1.3.min.js"></script>
         <script src="../assets/js/jquery.mask.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
-        <script src="../assets/js/main.js"></script>    
+        <script src="../assets/js/main.js"></script>
     </body>
 </html>

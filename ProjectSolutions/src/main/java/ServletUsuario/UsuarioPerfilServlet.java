@@ -32,6 +32,8 @@ public class UsuarioPerfilServlet extends HttpServlet {
         request.setAttribute("email", usuario.getEmail());
         request.setAttribute("nomeSetor", usuario.getNomeSetor());
 
+        request.setAttribute("perfil", "pessoal");
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/perfil.jsp");
         dispatcher.forward(request, response);
     }
