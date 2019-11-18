@@ -103,7 +103,7 @@ Author     : nicolas.hgyoshioka
                                         <c:choose>
                                             <c:when test="${empty cpfErro}">
                                                 <input <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> readonly</c:if> type="text" class="form-control inputForm" id="cpf"
-                                                                                                           value="${cpf}" name="cpf" minlength="0" maxlength="11">
+                                                                                                            value="${cpf}" name="cpf" minlength="0" maxlength="11">
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="text" class="form-control inputForm error" id="cpf"
@@ -239,6 +239,9 @@ Author     : nicolas.hgyoshioka
                                            placeholder="Este campo serve para confirmar que o usuario é um cliente ao  salvar" name="cliente" value="cliente">
                                 </c:if>
                             </div>
+                            <c:if test="${sessionScope.nomeSetor != 'Cliente'}">
+                                <input class="sr-only" name="modoEdicao" value="adm-cliente"/>
+                            </c:if>
                             <button type="submit" class="btn btn-light btn-block">
                                 <i class="far fa-save"></i>
                                 Salvar

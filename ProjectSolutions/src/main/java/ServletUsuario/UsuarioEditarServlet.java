@@ -97,21 +97,30 @@ public class UsuarioEditarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/cadastro_usuarios.jsp");
             dispatcher.forward(request, response);
         } else {
+            
+            String modoEdicao = request.getParameter("modoEdicao");
             HttpSession userLogado = request.getSession();
             Usuario usuario = new Usuario();
-
             usuario.setCodigoUsuario(Integer.parseInt(cCodigo));
             usuario.setNome(cNome);
-            usuario.setEmail(String.valueOf(userLogado.getAttribute("emailUsuario")));
+            usuario.setSetor(Integer.parseInt(cSetor));
 
             if (cSenha.length() != 0) {
                 String senhaCriptografada = criptografar(cSenha);
                 usuario.setSenha(senhaCriptografada);
             }
+            if (modoEdicao == null) {
+                modoEdicao = "cliente";
+            }
+            
+            if (modoEdicao.equals("adm-cliente")) {
+                usuario.setEmail(cEmail);
+                usuario.setCpf(cCpf);
 
-            usuario.setCpf(String.valueOf(userLogado.getAttribute("cpfUsuario")));
-            usuario.setSetor(Integer.parseInt(cSetor));
-
+            } else {
+                usuario.setEmail(String.valueOf(userLogado.getAttribute("emailUsuario")));
+                usuario.setCpf(String.valueOf(userLogado.getAttribute("cpfUsuario")));
+            }
             boolean httpOK = UsuarioDAO.alterarUsuario(usuario);
 
             if (httpOK) {
@@ -136,9 +145,7 @@ public class UsuarioEditarServlet extends HttpServlet {
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/ti/listagem_usuarios.jsp");
                         dispatcher.forward(request, response);
                     }
-
                 }
-
             } else {
                 request.setAttribute("varMsgError", true);
                 request.setAttribute("msg", "Erro ao salvar edição no banco de dados, verifique os campos e tente novamente.");
@@ -158,5 +165,4 @@ public class UsuarioEditarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processaRequisicao(req, resp);
     }
-
 }
