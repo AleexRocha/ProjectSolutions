@@ -7,8 +7,18 @@ function atualizarCarrinho(e) {
     } else if ((e.classList.contains('input-number-decrement')) && (parseInt(input.value) > 1)) {
         input.value = parseInt(input.value) - 1;
     }
-
+    
+    atualizarQuantidade(e);
     recalcularValores();
+    
+}
+
+function atualizarQuantidade(e) { 
+    let data = e.getAttribute('data-posicao');
+    let input = document.getElementsByClassName('input-quantidade')[data - 1];
+    let newQuantidade = document.getElementById('quantidadeProdCarrinho');
+    
+    newQuantidade.value = input.value;
 }
 
 //Funções para recalcular o valor total do carrinho
