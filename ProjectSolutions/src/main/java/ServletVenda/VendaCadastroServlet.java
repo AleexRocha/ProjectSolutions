@@ -3,6 +3,7 @@ package ServletVenda;
 import DAO.UsuarioDAO;
 import DAO.VendaDAO;
 import Model.Pagamento;
+import Model.Produto;
 import Model.Venda;
 
 import com.google.gson.Gson;
@@ -11,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -99,6 +101,7 @@ public class VendaCadastroServlet extends HttpServlet {
             boolean httpOk = VendaDAO.salvarProdutoVenda(produtosCarrinho);
 
             if (httpOk) {
+                limparCarrinho(userLogado);
                 response.setContentType("application/json");
                 response.setCharacterEncoding("utf-8");
                 response.getWriter().write(hashVenda.concat(String.valueOf(codigoUsuario)));
@@ -114,6 +117,13 @@ public class VendaCadastroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processaRequisicao(req, resp);
+    }
+    
+    private void limparCarrinho(HttpSession sessao){
+        ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
+        produtosCarrinho.clear();
+        sessao.removeAttribute("produtosCarrinho");
+        sessao.setAttribute("produtosCarrinho", produtosCarrinho);
     }
 
 }

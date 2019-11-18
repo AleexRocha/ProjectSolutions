@@ -88,8 +88,8 @@
                                                     <span class="altera input-number-decrement" data-posicao="${produto.idCarrinho}" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
                                                     <input type="number" readonly="" class="input-quantidade" data-posicao="${produto.codigo}" value="${produto.quantidadeEstoque}" min="1" max="5">
                                                     <span class="altera input-number-increment" data-posicao="${produto.idCarrinho}" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
-                                                    <form action="#" method="POST">
-                                                        <button class="btn btn-remover-carrinho"><i class="fas fa-times"></i> Remover do carrinho</button>
+                                                    <form action="../produtos/carrinho_produtos" method="POST">
+                                                        <button class="btn btn-remover-carrinho" name="idRemover" value="${produto.codigo}"><i class="fas fa-times"></i> Remover do carrinho</button>
                                                     </form>
                                                 </div>
                                             </td>

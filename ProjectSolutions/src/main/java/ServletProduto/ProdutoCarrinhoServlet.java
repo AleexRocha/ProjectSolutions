@@ -1,10 +1,12 @@
 package ServletProduto;
 
+import DAO.EnderecoDAO;
 import DAO.ProdutoDAO;
 import Model.Produto;
 import Model.Usuario;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -30,48 +32,106 @@ public class ProdutoCarrinhoServlet extends HttpServlet {
         String metodo = request.getParameter("metodo");
         String codigoProduto = request.getParameter("codigoProduto");
         String quantidadeAddDescricao = request.getParameter("quantidadeAdd");
-        
+
         Produto produto = new Produto();
 
-        if (metodo.equals("index")) {
-            produto.setCodigo(Integer.parseInt(id));
-            produto.setQuantidadeEstoque(1);
-        } else {
-            produto.setCodigo(Integer.parseInt(codigoProduto));
-            produto.setQuantidadeEstoque(Integer.parseInt(quantidadeAddDescricao));
-        }
-
-        if (sessao.getAttribute("nomeSetor") == null) {
-            sessao = setSessao(request);
-            ArrayList<Produto> produtosCarrinho = new ArrayList<>();
-            produtosCarrinho.add(produto);
-            sessao.setAttribute("produtosCarrinho", produtosCarrinho);
-        } else if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
+        String removerId = request.getParameter("idRemover");
+        if (removerId != null && !removerId.isEmpty()) {
             ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
-            produtosCarrinho.add(produto);
+            ArrayList<Produto> produtosInfo = new ArrayList<>();
+            DecimalFormat df = new DecimalFormat("#,###.00");
+
+            for (Produto prod : produtosCarrinho) {
+                if (removerId.equals(String.valueOf(prod.getCodigo()))) {
+                    produtosCarrinho.remove(prod);
+                    break;
+                }
+            }
+
             sessao.removeAttribute("produtosCarrinho");
             sessao.setAttribute("produtosCarrinho", produtosCarrinho);
-        } else {
-            ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
-            produtosCarrinho.add(produto);
-            sessao.removeAttribute("produtosCarrinho");
-            sessao.setAttribute("produtosCarrinho", produtosCarrinho);
-        }
 
-        if (metodo.equals("index")) {
-            ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
-            request.setAttribute("listaProdutos", produtos);
-            request.setAttribute("varMsg", true);
-            request.setAttribute("msg", "Adicionado no carrinho com sucesso");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
+            int i = 0;
+            double subtotal = 0;
+            for (Produto prod : produtosCarrinho) {
+                Produto pro = ProdutoDAO.getProduto(prod.getCodigo());
+                pro.setQuantidadeEstoque(produtosCarrinho.get(i).getQuantidadeEstoque());
+
+                String valorTotal = String.format("%.2f", pro.getValorUnitario() * produtosCarrinho.get(i).getQuantidadeEstoque());
+                String newValorUnitario = String.format("%.2f", pro.getValorUnitario());
+                pro.setIdCarrinho(i + 1);
+                pro.setCodigo(prod.getCodigo());
+                pro.setValorCarrinho(newValorUnitario);
+                pro.setValorTotal(valorTotal);
+
+                subtotal += Double.parseDouble(valorTotal.replace(",", "."));
+
+                produtosInfo.add(pro);
+
+                i++;
+            }
+            if ((sessao.getAttribute("cdFuncionario") == null) || (sessao.getAttribute("cdFuncionario").equals(""))) {
+                request.setAttribute("varMsgTabela", false);
+                request.setAttribute("varMsgEndereco", true);
+                request.setAttribute("msg", "Faça login para calcular o frete.");
+            } else if ((produtosCarrinho.isEmpty())) {
+                request.setAttribute("varMsgTabela", true);
+                request.setAttribute("msg", "Adicione produtos ao carrinho para ver aqui");
+            } else {
+                int codigoUsuario = (int) sessao.getAttribute("cdFuncionario");
+                ArrayList<Usuario> enderecos = EnderecoDAO.getEnderecosEntregaUser(codigoUsuario);
+                request.setAttribute("enderecosEntrega", enderecos);
+                request.setAttribute("varMsgTabela", false);
+            }
+            request.setAttribute("subtotal", df.format(subtotal));
+            request.setAttribute("produtosCarrinho", produtosInfo);
+            if (produtosInfo.isEmpty()) {
+                request.setAttribute("varMsgTabela", true);
+                request.setAttribute("msg", "Adicione produtos ao carrinho para ve-los aqui.");
+            }
+            RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
+            dipatcher.forward(request, response);
         } else {
-            Produto prod = ProdutoDAO.getProduto(Integer.parseInt(codigoProduto));
-            request.setAttribute("produto", prod);
-            request.setAttribute("varMsg", true);
-            request.setAttribute("msg", "Adicionado no carrinho com sucesso");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/descricao_produto.jsp");
-            dispatcher.forward(request, response);
+            if (metodo.equals("index")) {
+                produto.setCodigo(Integer.parseInt(id));
+                produto.setQuantidadeEstoque(1);
+            } else {
+                produto.setCodigo(Integer.parseInt(codigoProduto));
+                produto.setQuantidadeEstoque(Integer.parseInt(quantidadeAddDescricao));
+            }
+
+            if (sessao.getAttribute("nomeSetor") == null) {
+                sessao = setSessao(request);
+                ArrayList<Produto> produtosCarrinho = new ArrayList<>();
+                produtosCarrinho.add(produto);
+                sessao.setAttribute("produtosCarrinho", produtosCarrinho);
+            } else if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
+                ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
+                produtosCarrinho.add(produto);
+                sessao.removeAttribute("produtosCarrinho");
+                sessao.setAttribute("produtosCarrinho", produtosCarrinho);
+            } else {
+                ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
+                produtosCarrinho.add(produto);
+                sessao.removeAttribute("produtosCarrinho");
+                sessao.setAttribute("produtosCarrinho", produtosCarrinho);
+            }
+
+            if (metodo.equals("index")) {
+                ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+                request.setAttribute("listaProdutos", produtos);
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                Produto prod = ProdutoDAO.getProduto(Integer.parseInt(codigoProduto));
+                request.setAttribute("produto", prod);
+                request.setAttribute("varMsg", true);
+                request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/descricao_produto.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 
