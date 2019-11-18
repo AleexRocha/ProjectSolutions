@@ -277,7 +277,7 @@ public class UsuarioDAO {
                     + " FROM tbl_pagamento_usuario AS pu"
                     + " INNER JOIN tbl_info_pagamentos AS ip"
                     + " ON pu.fk_info_pagamento = ip.id_info_pagamento"
-                    + " WHERE pu.fk_usuario = ?");
+                    + " WHERE pu.fk_usuario = ? and fk_info_pagamento != 3");
             query.setInt(1, codigoCliente);
 
             ResultSet rs = query.executeQuery();
