@@ -386,6 +386,7 @@
                                                                 <th>Codigo da Venda</th>
                                                                 <th>Data da Venda</th>
                                                                 <th>Status do Pedido</th>
+                                                                <th>Valor Total do Pedido:</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -393,6 +394,7 @@
                                                                 <td><c:out value="${pedidos.codigoVenda}"></c:out></td>
                                                             <td><c:out value="${pedidos.dataVenda}"></c:out></td>
                                                             <td><c:out value="${pedidos.nomeStatusVenda}"></c:out></td>
+                                                            <td>R$ <c:out value="${pedidos.valorTotalVenda}"></c:out></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -403,26 +405,76 @@
                                                     </button>
                                                 </h5>
                                             </div>
-
                                                 <div id="collapse<c:out value="${pedidos.idVenda}"></c:out>" class="collapse" aria-labelledby="heading<c:out value="${pedidos.idVenda}"></c:out>" data-parent="#accordion">
                                                 <div class="card-body">
-                                                        <label>Valor Frete: <c:out value="${pedidos.valorFrete}"></c:out></label><br>
-                                                <label>Valor Total da Venda: <c:out value="${pedidos.valorTotalVenda}"></c:out></label><br>
-                                                <label>Quantidade Total de Produtos da Venda: <c:out value="${pedidos.quantidadeTotalVenda}"></c:out></label><br>
-                                                <label>Logradouro: <c:out value="${pedidos.logradouroVenda}"></c:out></label><br>
-                                                <label>CEP: <c:out value="${pedidos.cepVenda}"></c:out></label><br>
-                                                <label>Número: <c:out value="${pedidos.numeroEnderecoVenda}"></c:out></label><br>
-                                                <label>Forma de Pagamento: <c:out value="${pedidos.nomeFormaPagamentoVenda}"></c:out></label><br>
-                                                <label>Número do <c:out value="${pedidos.nomeFormaPagamentoVenda}"></c:out> do Pagamento: <c:out value="${pedidos.numeroPagamentoVenda}"></c:out></label><br>
+                                                    <table class="table table-borderless">
+                                                        <thead>
+                                                            <tr><th colspan="4">Endereço de entrega</th></tr>
+                                                            <tr>
+                                                                <th>Logradouro</th>
+                                                                <th>CEP</th>
+                                                                <th>Número</th>
+                                                                <th>Valor do Frete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                    <td><c:out value="${pedidos.logradouroVenda}"></c:out></td>
+                                                            <td><c:out value="${pedidos.cepVenda}"></c:out></td>
+                                                            <td><c:out value="${pedidos.numeroEnderecoVenda}"></c:out></td>
+                                                            <td>R$ <c:out value="${pedidos.valorFrete}"></c:out></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table class="table table-borderless">
+                                                        <thead>
+                                                            <tr><th colspan="4">Forma de pagamento</th></tr>
+                                                            <tr>
+                                                                <th>Pedido pago usando</th>
+                                                                <th>Número do <c:out value="${pedidos.nomeFormaPagamentoVenda}"></c:out></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><c:out value="${pedidos.nomeFormaPagamentoVenda}"></c:out></td>
+                                                            <td><c:out value="${pedidos.numeroPagamentoVenda}"></c:out></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table class="table table-borderless">
+                                                        <thead>
+                                                            <tr><th colspan="4">Detalhes dos produtos</th></tr>
+                                                            <tr>
+                                                                <th>Quantidade Total de Produtos do Pedido</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><c:out value="${pedidos.quantidadeTotalVenda}"></c:out></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
 
-                                                <c:forEach var="produtosVenda" items="#{listaProdutos}">
-                                                    <c:if test="${pedidos.idVenda == produtosVenda.idVenda}">
-                                                        <label>Nome do Produto: <c:out value="${produtosVenda.nomeProdutoVenda}"></c:out></label><br>
-                                                        <label>Quantidade de produtos: <c:out value="${produtosVenda.quantidadeUnitariaVenda}"></c:out></label><br>
-                                                        <label>Valor Unitario: <c:out value="${produtosVenda.valorUnitarioProdutoVenda}"></c:out></label><br>
-                                                    </c:if>
-                                                </c:forEach>
-
+                                                    <table class="table table-borderless">
+                                                        <thead>
+                                                        <c:forEach var="produtosVenda" items="#{listaProdutos}">
+                                                            <c:if test="${pedidos.idVenda == produtosVenda.idVenda}">
+                                                                <tr>
+                                                                    <th>Nome do Produto</th>
+                                                                    <th>Quantidade adquirida</th>
+                                                                    <th>Valor Unitario</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><c:out value="${produtosVenda.nomeProdutoVenda}"></c:out></td>
+                                                                    <td><c:out value="${produtosVenda.quantidadeUnitariaVenda}"></c:out></td>
+                                                                    <td>R$ <c:out value="${produtosVenda.valorUnitarioProdutoVenda}"></c:out></td>
+                                                                    </tr>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
