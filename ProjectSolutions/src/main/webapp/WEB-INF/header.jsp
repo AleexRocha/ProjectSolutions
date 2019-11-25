@@ -52,6 +52,11 @@
                                 <button type="submit" class="btn nav-link nav-text" >Produtos</button>
                             </form>
                         </li>
+                        <li class="nav-item">
+                            <form action="../venda/status_pedidos" method="POST">
+                                <button type="submit" class="btn nav-link nav-text" >Listagem de pedidos</button>
+                            </form>
+                        </li>
                     </ul>
                     <form action="../ti/perfil" method="POST">
                         <button name="perfil" value="${sessionScope.cdFuncionario}" type="submit" class="btn">
