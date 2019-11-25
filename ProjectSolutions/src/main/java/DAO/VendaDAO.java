@@ -74,6 +74,57 @@ public class VendaDAO {
         return true;
     }
 
+    public static ArrayList<Venda> getTodosPedidos() {
+        ArrayList<Venda> venda = new ArrayList<>();
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("SELECT"
+                    + " v.id_venda, v.codigo_venda, v.valor_frete,"
+                    + " v.valor_total AS valor_total_venda, v.data_venda,"
+                    + " v.qtd_total AS qtd_total_produtos_venda, e.logradouro,"
+                    + " e.cep, e.numero, su.nome_status AS status_da_venda,"
+                    + " ip.nome AS forma_pagamento, pu.numero_pagamento"
+                    + " FROM tbl_venda AS v"
+                    + " INNER JOIN tbl_endereco AS e"
+                    + " ON v.fk_endereco = e.id_endereco"
+                    + " INNER JOIN tbl_status_venda AS su"
+                    + " ON v.fk_status = su.id_status"
+                    + " INNER JOIN tbl_pagamento_usuario AS pu"
+                    + " ON v.fk_pagamento = pu.id_pagamento"
+                    + " INNER JOIN tbl_info_pagamentos AS ip"
+                    + " ON pu.fk_info_pagamento = ip.id_info_pagamento;");
+
+            ResultSet rs = query.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Venda v = new Venda(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getDouble(3),
+                            rs.getDouble(4),
+                            rs.getString(5),
+                            rs.getInt(6),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getInt(9),
+                            rs.getString(10),
+                            rs.getString(11),
+                            rs.getString(12)
+                    );
+
+                    venda.add(v);
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+
+        return venda;
+    }
+
     public static ArrayList<Venda> getPedidosVenda(int codigoUsuario) {
         ArrayList<Venda> venda = new ArrayList<>();
         Connection conn = db.obterConexao();
@@ -162,5 +213,25 @@ public class VendaDAO {
         }
 
         return venda;
+    }
+
+    public static boolean alterarStatusPedido(int idPedido, int idStatus) {
+        Connection conn = db.obterConexao();
+        try {
+            PreparedStatement query = conn.prepareStatement("UPDATE tbl_venda"
+                    + " SET fk_status =  ?"
+                    + " WHERE  id_venda =  ?;");
+            query.setInt(1, idStatus);
+            query.setInt(2, idPedido);
+
+            query.executeUpdate();
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("SQL Exception" + e);
+            return false;
+        }
+
+        return true;
     }
 }

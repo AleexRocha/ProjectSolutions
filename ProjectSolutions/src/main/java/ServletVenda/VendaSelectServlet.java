@@ -32,14 +32,6 @@ public class VendaSelectServlet extends HttpServlet {
                 produtos.add(produto);
             }
         }
-        
-        for (Venda pedido : pedidos) {
-            System.out.println("Pedido " + pedido.getIdVenda() + " : " + pedido.toString());
-        }
-        
-        for (Venda produto : produtos) {
-            System.out.println("Produto " + produto.getIdVenda() + " : " + produto.toString());
-        }
 
         request.setAttribute("listaPedidos", pedidos);
         request.setAttribute("listaProdutos", produtos);
