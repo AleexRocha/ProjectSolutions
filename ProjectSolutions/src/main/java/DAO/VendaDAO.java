@@ -144,7 +144,8 @@ public class VendaDAO {
                     + " ON v.fk_pagamento = pu.id_pagamento"
                     + " INNER JOIN tbl_info_pagamentos AS ip"
                     + " ON pu.fk_info_pagamento = ip.id_info_pagamento"
-                    + " WHERE v.fk_usuario = ?;");
+                    + " WHERE v.fk_usuario = ?"
+                    + " ORDER BY v.data_venda DESC;");
 
             query.setInt(1, codigoUsuario);
 
