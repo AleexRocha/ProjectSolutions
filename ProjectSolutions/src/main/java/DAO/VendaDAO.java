@@ -93,7 +93,7 @@ public class VendaDAO {
                     + " ON v.fk_pagamento = pu.id_pagamento"
                     + " INNER JOIN tbl_info_pagamentos AS ip"
                     + " ON pu.fk_info_pagamento = ip.id_info_pagamento"
-                    + " ORDER BY v.data_venda ASC;");
+                    + " ORDER BY v.data_venda DESC;");
 
             ResultSet rs = query.executeQuery();
 
