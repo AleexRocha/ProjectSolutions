@@ -63,9 +63,9 @@
                                 </p>
                                 <c:if test="${produto.tipo == 'Produto'}">
                                     <div class="product_count d-inline-block">
-                                        <span class="altera input-number-decrement" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-minus"></i></span>
+                                        <span class="altera input-number-decrement" data-posicao="1" onclick="atualizarQuantidade(this)"><i class="fas fa-minus"></i></span>
                                         <input type="number" class="input-quantidade" value="1" min="1" max="5">
-                                        <span class="altera input-number-increment" data-posicao="1" onclick="atualizarCarrinho(this)"><i class="fas fa-plus"></i></span>
+                                        <span class="altera input-number-increment" data-posicao="1" onclick="atualizarQuantidade(this)"><i class="fas fa-plus"></i></span>
                                     </div>
                                 </c:if>
                                 <form action="../produtos/carrinho_produtos" method="GET">

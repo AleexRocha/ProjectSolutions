@@ -7,18 +7,9 @@ function atualizarCarrinho(e) {
     } else if ((e.classList.contains('input-number-decrement')) && (parseInt(input.value) > 1)) {
         input.value = parseInt(input.value) - 1;
     }
-    
-    atualizarQuantidade(e);
-    recalcularValores();
-    
-}
 
-function atualizarQuantidade(e) { 
-    let data = e.getAttribute('data-posicao');
-    let input = document.getElementsByClassName('input-quantidade')[data - 1];
-    let newQuantidade = document.getElementById('quantidadeProdCarrinho');
-    
-    newQuantidade.value = input.value;
+    recalcularValores();
+    atualizaValoresSessao();
 }
 
 //Funções para recalcular o valor total do carrinho
@@ -61,6 +52,61 @@ function recalcularValores() {
 
         return 0;
     }
+}
+
+function atualizaValoresSessao() {
+    let dataJson = new DataJson();
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', "../produto/atualiza_quantidade", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    xhr.send(JSON.stringify(data.toJSON()));
+    xhr.onreadystatechange = function () {
+        let data = xhr.responseText;
+        console.log(data);
+    };
+}
+
+let DataJson = function () {
+    let trs = document.getElementsByClassName("carrinho");
+    let dataJson = [];
+    this.toJSON = function () {
+        for (let i = 0; i < trs.length; i++) {
+            let codigo = getIdProduto(trs[i].children[0]);
+            let quantidadeEstoque = getValorQuantidade(trs[i].children[2]);
+
+            data[i] = {codigo, quantidadeEstoque};
+        }
+    }
+
+    function getIdProduto(td) {
+        return Number(td.getElementsByClassName('idProduto')[0].innerHTML);
+    }
+
+    function getValorQuantidade(td) {
+        return Number(td.getElementsByClassName('input-quantidade')[0].value);
+    }
+}
+
+// Função que altera a quantidade de produtos na descrição do produto
+function atualizarQuantidade(e) {
+    let data = e.getAttribute('data-posicao');
+    let input = document.getElementsByClassName('input-quantidade')[data - 1];
+    if ((e.classList.contains('input-number-increment')) && (parseInt(input.value) < 5)) {
+        input.value = parseInt(input.value) + 1;
+    } else if ((e.classList.contains('input-number-decrement')) && (parseInt(input.value) > 1)) {
+        input.value = parseInt(input.value) - 1;
+    }
+
+    atualizarInputQuantidade(e);
+}
+
+function atualizarInputQuantidade(e) {
+    let data = e.getAttribute('data-posicao');
+    let input = document.getElementsByClassName('input-quantidade')[data - 1];
+    let newQuantidade = document.getElementById('quantidadeProdCarrinho');
+
+    newQuantidade.value = input.value;
 }
 
 // Adiciona os inputs de valores de entrega na tela

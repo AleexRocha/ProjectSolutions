@@ -19,6 +19,11 @@ public class Produto {
     
     public Produto() {
     }
+    
+    public Produto(int codigo, int quantidadeEstoque) {
+        this.codigo = codigo;
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
 
     public Produto(String nome, String tipo, int quantidadeEstoque, double valorUnitario) {
         this.nome = nome;
