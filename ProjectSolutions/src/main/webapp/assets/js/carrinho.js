@@ -60,10 +60,10 @@ function atualizaValoresSessao() {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', "../produto/atualiza_quantidade", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.send(JSON.stringify(data.toJSON()));
+    xhr.send(JSON.stringify(dataJson.toJSON()));
     xhr.onreadystatechange = function () {
-        let data = xhr.responseText;
-        console.log(data);
+        let response = xhr.responseText;
+        console.log(response);
     };
 }
 
@@ -72,11 +72,20 @@ let DataJson = function () {
     let dataJson = [];
     this.toJSON = function () {
         for (let i = 0; i < trs.length; i++) {
-            let codigo = getIdProduto(trs[i].children[0]);
-            let quantidadeEstoque = getValorQuantidade(trs[i].children[2]);
-
-            data[i] = {codigo, quantidadeEstoque};
+            dataJson[i] = valoresToJson(trs[i]);
         }
+
+        return dataJson;
+    };
+
+    function valoresToJson(tr) {
+        let codigo = getIdProduto(tr.children[0]);
+        let quantidadeEstoque = getValorQuantidade(tr.children[2]);
+
+        return {
+            codigo,
+            quantidadeEstoque
+        };
     }
 
     function getIdProduto(td) {
@@ -86,7 +95,7 @@ let DataJson = function () {
     function getValorQuantidade(td) {
         return Number(td.getElementsByClassName('input-quantidade')[0].value);
     }
-}
+};
 
 // Função que altera a quantidade de produtos na descrição do produto
 function atualizarQuantidade(e) {
