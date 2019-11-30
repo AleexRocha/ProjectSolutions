@@ -30,6 +30,14 @@
                     </button>
                 </div>
             </c:if>
+            <c:if test="${varMsgError == true}">
+                <div class="alert alert-danger" role="alert">
+                    <c:out value="${msg}"/>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
             <div class="row">  
                 <div class="col-lg-12">
                     <div id="carouselExampleIndicators" class="carousel slide my-4"

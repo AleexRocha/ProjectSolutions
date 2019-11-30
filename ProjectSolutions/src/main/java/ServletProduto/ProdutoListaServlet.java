@@ -35,6 +35,7 @@ public class ProdutoListaServlet extends HttpServlet {
         if (userTeste.getNomeSetor().equalsIgnoreCase("Cliente")
                 || sessao.getAttribute("nomeSetor") == null
                 || sessao.getAttribute("nomeSetor").equals("")) {
+            request.setAttribute("varMsgError", false);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/index.jsp");
             dispatcher.forward(request, response);
         } else {

@@ -105,14 +105,92 @@ public class ProdutoCarrinhoServlet extends HttpServlet {
                 ArrayList<Produto> produtosCarrinho = new ArrayList<>();
                 produtosCarrinho.add(produto);
                 sessao.setAttribute("produtosCarrinho", produtosCarrinho);
+                request.setAttribute("varMsg", true);
+                sessao.setAttribute("varMsgError", false);
+                request.setAttribute("msg", "Adicionado no carrinho com sucesso");
             } else if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
                 ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
-                produtosCarrinho.add(produto);
+                boolean adicionado = false;
+
+                for (int i = 0; i < produtosCarrinho.size(); i++) {
+                    if (produtosCarrinho.get(i).getCodigo() == produto.getCodigo()) {
+                        if (produtosCarrinho.get(i).getQuantidadeEstoque() < 5) {
+                            if (metodo.equals("index")) {
+                                produtosCarrinho.get(i).setQuantidadeEstoque(produtosCarrinho.get(i).getQuantidadeEstoque() + 1);
+                                request.setAttribute("varMsg", true);
+                                sessao.setAttribute("varMsgError", false);
+                                request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+                            } else {
+                                if ((produtosCarrinho.get(i).getQuantidadeEstoque() + Integer.parseInt(quantidadeAddDescricao)) < 5) {
+                                    produtosCarrinho.get(i).setQuantidadeEstoque(
+                                            produtosCarrinho.get(i).getQuantidadeEstoque() + Integer.parseInt(quantidadeAddDescricao)
+                                    );
+                                    request.setAttribute("varMsg", true);
+                                    sessao.setAttribute("varMsgError", false);
+                                    request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+                                } else {
+                                    sessao.setAttribute("varMsgError", true);
+                                    request.setAttribute("varMsg", false);
+                                    sessao.setAttribute("msg", "Quantidade máxima de produtos são 5 unidades por compra.");
+                                }
+                            }
+                        } else {
+                            sessao.setAttribute("varMsgError", true);
+                            request.setAttribute("varMsg", false);
+                            sessao.setAttribute("msg", "Quantidade máxima de produtos são 5 unidades por compra.");
+                        }
+                        adicionado = true;
+                    }
+                }
+                if (!adicionado) {
+                    produtosCarrinho.add(produto);
+                    request.setAttribute("varMsg", true);
+                    sessao.setAttribute("varMsgError", false);
+                    request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+                }
+
                 sessao.removeAttribute("produtosCarrinho");
                 sessao.setAttribute("produtosCarrinho", produtosCarrinho);
             } else {
                 ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
-                produtosCarrinho.add(produto);
+                boolean adicionado = false;
+
+                for (int i = 0; i < produtosCarrinho.size(); i++) {
+                    if (produtosCarrinho.get(i).getCodigo() == produto.getCodigo()) {
+                        if (produtosCarrinho.get(i).getQuantidadeEstoque() < 5) {
+                            if (metodo.equals("index")) {
+                                produtosCarrinho.get(i).setQuantidadeEstoque(produtosCarrinho.get(i).getQuantidadeEstoque() + 1);
+                                request.setAttribute("varMsg", true);
+                                sessao.setAttribute("varMsgError", false);
+                                request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+                            } else {
+                                if ((produtosCarrinho.get(i).getQuantidadeEstoque() + Integer.parseInt(quantidadeAddDescricao)) < 5) {
+                                    produtosCarrinho.get(i).setQuantidadeEstoque(
+                                            produtosCarrinho.get(i).getQuantidadeEstoque() + Integer.parseInt(quantidadeAddDescricao)
+                                    );
+                                    request.setAttribute("varMsg", true);
+                                    sessao.setAttribute("varMsgError", false);
+                                    request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+                                } else {
+                                    sessao.setAttribute("varMsgError", true);
+                                    request.setAttribute("varMsg", false);
+                                    sessao.setAttribute("msg", "Quantidade máxima de produtos são 5 unidades por compra.");
+                                }
+                            }
+                        } else {
+                            sessao.setAttribute("varMsgError", true);
+                            request.setAttribute("varMsg", false);
+                            sessao.setAttribute("msg", "Quantidade máxima de produtos são 5 unidades por compra.");
+                        }
+                        adicionado = true;
+                    }
+                }
+                if (!adicionado) {
+                    produtosCarrinho.add(produto);
+                    request.setAttribute("varMsg", true);
+                    sessao.setAttribute("varMsgError", false);
+                    request.setAttribute("msg", "Adicionado no carrinho com sucesso");
+                }
                 sessao.removeAttribute("produtosCarrinho");
                 sessao.setAttribute("produtosCarrinho", produtosCarrinho);
             }
@@ -120,15 +198,11 @@ public class ProdutoCarrinhoServlet extends HttpServlet {
             if (metodo.equals("index")) {
                 ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
                 request.setAttribute("listaProdutos", produtos);
-                request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Adicionado no carrinho com sucesso");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);
             } else {
                 Produto prod = ProdutoDAO.getProduto(Integer.parseInt(codigoProduto));
                 request.setAttribute("produto", prod);
-                request.setAttribute("varMsg", true);
-                request.setAttribute("msg", "Adicionado no carrinho com sucesso");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/descricao_produto.jsp");
                 dispatcher.forward(request, response);
             }

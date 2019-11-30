@@ -23,6 +23,7 @@ public class ProdutoGetDescricaoServlet extends HttpServlet {
         Produto produto = DAO.ProdutoDAO.getProduto(codigoProduto);
 
         request.setAttribute("produto", produto);
+        request.setAttribute("varMsgError", false);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/produtos/descricao_produto.jsp");
         dispatcher.forward(request, response);
     }

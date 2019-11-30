@@ -70,11 +70,13 @@ public class GetProdutosCarrinho extends HttpServlet {
 
                 request.setAttribute("subtotal", df.format(subtotal));
                 request.setAttribute("produtosCarrinho", produtosInfo);
+                request.setAttribute("varMsgError", false);
                 RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
                 dipatcher.forward(request, response);
             } else if ((sessao.getAttribute("cdFuncionario") == null) || (sessao.getAttribute("cdFuncionario").equals(""))) {
                 request.setAttribute("varMsgError", true);
                 request.setAttribute("msg", "Faça login para continuar");
+                request.setAttribute("varMsgError", false);
                 RequestDispatcher dipatcher = request.getRequestDispatcher("/login/login.jsp");
                 dipatcher.forward(request, response);
             } else {
@@ -108,10 +110,12 @@ public class GetProdutosCarrinho extends HttpServlet {
                 request.setAttribute("metodosPagamento", pagamentos);
                 request.setAttribute("enderecosEntrega", enderecos);
 
+                request.setAttribute("varMsgError", false);
                 RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/checkout.jsp");
                 dipatcher.forward(request, response);
             }
         } else {
+            request.setAttribute("varMsgError", false);
             request.setAttribute("varMsgTabela", true);
             request.setAttribute("msg", "Adicione produtos ao carrinho para ve-los aqui.");
             RequestDispatcher dipatcher = request.getRequestDispatcher("/produtos/carrinho.jsp");
@@ -130,24 +134,4 @@ public class GetProdutosCarrinho extends HttpServlet {
             throws ServletException, IOException {
         processaRequisicao(request, response);
     }
-
-//    private void atualizaCarrinhoCompra(HttpSession sessao) {
-//        ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
-//        ArrayList<Produto> listaAtualizada = new ArrayList<>();
-//        
-//        int i = 0; 
-//        for (Produto prod : produtosCarrinho) {
-//            Produto p = ProdutoDAO.getProduto(prod.getCodigo());
-//            p.setQuantidadeEstoque(produtosCarrinho.get(i).getQuantidadeEstoque());
-//
-//            String valorTotal = String.format("%.2f", p.getValorUnitario() * produtosCarrinho.get(i).getQuantidadeEstoque());
-//            String newValorUnitario = String.format("%.2f", p.getValorUnitario());
-//            p.setCodigo(prod.getCodigo());
-//            p.setValorUnitario(Double.parseDouble(newValorUnitario.replace(",", ".")));
-//            p.setValorTotal(valorTotal);
-//
-//
-//            i++;
-//        }
-//    }
 }

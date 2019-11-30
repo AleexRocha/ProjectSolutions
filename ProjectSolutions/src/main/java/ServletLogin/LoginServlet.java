@@ -53,10 +53,12 @@ public class LoginServlet extends HttpServlet {
                 if (sessao.getAttribute("nomeSetor").equals("Cliente")) {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
+                    request.setAttribute("varMsgError", false);
                     dispatcher = request.getRequestDispatcher("../produtos/index.jsp");
                 } else {
                     ArrayList<Produto> produtos = DAO.ProdutoDAO.getProdutos();
                     request.setAttribute("listaProdutos", produtos);
+                    request.setAttribute("varMsgError", false);
                     dispatcher = request.getRequestDispatcher("../produtos/listagem_produtos.jsp");
                 }
             } else {

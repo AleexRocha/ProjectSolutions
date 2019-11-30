@@ -23,7 +23,6 @@
     <body>
         <%@include file="../WEB-INF/header.jsp"%>
         <h2 class="h2 text-center subtitulo">Detalhes do produto </h2>
-        <!--<br>-->
         <div class="container">
             <c:if test="${varMsg == true}">
                 <div class="alert alert-success" role="alert">
@@ -33,9 +32,16 @@
                     </button>
                 </div>
             </c:if>
+            <c:if test="${varMsgError == true}">
+                <div class="alert alert-danger" role="alert">
+                    <c:out value="${msg}"/>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </c:if>
         </div>
         <div class="container" 
-             <!--================Single Product Area =================-->
              <div class="product_image_area">
                 <div class="container">
                     <div class="row s_product_inner">
@@ -84,9 +90,7 @@
                 </div>
             </div>
         </div>
-        <!--================End Single Product Area =================-->
         <hr>
-        <!--================Produto Description Area =================-->
         <section class="product_description_area" align="center">
             <div class="container">
                 <div class="tab-content" id="myTabContent">
