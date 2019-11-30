@@ -50,12 +50,16 @@ public class UsuarioCadastroServlet extends HttpServlet {
                 request.setAttribute("nomeErro", "O campo Nome deve conter nome e sobrenome");
             }
         }
-        if (cCpf.length() == 0 || !(cCpf.length() == 11)) {
+        if (cCpf.length() == 0 || !(cCpf.length() == 14)) {
             error = true;
             request.setAttribute("cpfErro", "O CPF deve conter 11 dígitos!");
-        } else if (!CpfValidator.validaCpf(cCpf)) {
-            error = true;
-            request.setAttribute("cpfErro", "CPF contem caracteres inválidos!");
+        } else {
+            cCpf = cCpf.replace(".", "");
+            cCpf = cCpf.replace("-", "");
+            if (!CpfValidator.validaCpf(cCpf)) {
+                error = true;
+                request.setAttribute("cpfErro", "CPF contem caracteres inválidos!");
+            }
         }
         if (cEmail.length() == 0) {
             error = true;

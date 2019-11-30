@@ -102,11 +102,12 @@ Author     : nicolas.hgyoshioka
                                     <c:when test="${acao == 'editar'}">
                                         <c:choose>
                                             <c:when test="${empty cpfErro}">
-                                                <input <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> readonly</c:if> type="text" class="form-control inputForm" id="cpf"
-                                                                                                            value="${cpf}" name="cpf" minlength="0" maxlength="11">
+                                                <input type="text" class="form-control cpf inputForm" id="cpf"
+                                                       value="${cpf}" name="cpf" minlength="0" maxlength="11" cpf-mask="000.000.000-00"
+                                                       <c:if test="${sessionScope.nomeSetor != 'Diretor'}"> readonly</c:if>>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="text" class="form-control inputForm error" id="cpf"
+                                                <input type="text" class="form-control cpf inputForm error" id="cpf"
                                                        placeholder="${cpfErro}" name="nome" minlength="0" maxlength="11">
                                             </c:otherwise>
                                         </c:choose>                                      
@@ -114,11 +115,11 @@ Author     : nicolas.hgyoshioka
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty cpfErro}">
-                                                <input type="text" class="form-control inputForm" id="cpf" value="${cpf}"
+                                                <input type="text" class="form-control cpf inputForm" id="cpf" value="${cpf}"
                                                        placeholder="CPF" name="cpf" minlength="0" maxlength="11">
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="text" class="form-control inputForm error" id="cpf"
+                                                <input type="text" class="form-control cpf inputForm error" id="cpf"
                                                        placeholder="${cpfErro}" name="cpf" minlength="0" maxlength="11">
                                             </c:otherwise>
                                         </c:choose>                                    
@@ -130,8 +131,9 @@ Author     : nicolas.hgyoshioka
                                     <c:when test="${acao == 'editar'}">
                                         <c:choose>
                                             <c:when test="${empty emailErro}">
-                                                <input <c:if test="${sessionScope.nomeSetor != 'Diretor'}">readonly </c:if> type="email" class="form-control inputForm" id="email"
-                                                                                                           value="${email}" name="email" minlength="0" maxlength="50">
+                                                <input type="email" class="form-control inputForm" id="email"
+                                                       value="${email}" name="email" minlength="0" maxlength="50"
+                                                       <c:if test="${sessionScope.nomeSetor != 'Diretor'}">readonly </c:if>>
                                             </c:when>
                                             <c:otherwise>
                                                 <input type="email" class="form-control inputForm error" id="email"

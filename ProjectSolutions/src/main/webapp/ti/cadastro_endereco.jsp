@@ -90,11 +90,11 @@
                                     <c:when test="${acao == 'editar'}">
                                         <c:choose>
                                             <c:when test="${empty cepErro}">
-                                                <input type="number" class="form-control inputForm" id="cep"
+                                                <input type="text" class="form-control cep inputForm" id="cep"
                                                        value="${cep}" name="cep" minlength="0" maxlength="8" onchange="buscaCep();">
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="number" class="form-control inputForm error" id="cep"
+                                                <input type="text" class="form-control cep inputForm error" id="cep"
                                                        placeholder="${cepErro}" name="cep" minlength="0" maxlength="8" onchange="buscaCep();">
                                             </c:otherwise>
                                         </c:choose>                                      
@@ -102,11 +102,11 @@
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${empty cepErro}">
-                                                <input type="number" class="form-control inputForm" id="cep" value="${cep}"
+                                                <input type="text" class="form-control cep inputForm" id="cep" value="${cep}"
                                                        placeholder="CEP" name="cep" minlength="0" maxlength="8" onchange="buscaCep();">
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="number" class="form-control inputForm error" id="cep"
+                                                <input type="text" class="form-control cep inputForm error" id="cep"
                                                        placeholder="${cepErro}" name="cep" minlength="0" maxlength="8" onchange="buscaCep();">
                                             </c:otherwise>
                                         </c:choose>                                    

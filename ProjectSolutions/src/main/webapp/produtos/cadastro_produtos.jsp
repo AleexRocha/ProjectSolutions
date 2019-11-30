@@ -100,8 +100,9 @@ Author     : nicolas.hgyoshioka
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
                                         <c:if test="${empty nomeErro}">
-                                            <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly </c:if> type="text" class="form-control inputForm" id="nome"
-                                                                                                           value="${nome}" name="nome" minlength="0" maxlength="50">                                            
+                                            <input type="text" class="form-control inputForm" id="nome"
+                                                   value="${nome}" name="nome" minlength="0" maxlength="50"
+                                                   <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly </c:if>>
                                         </c:if>
                                         <c:if test="${not empty nomeErro}">         
                                             <input type="text" class="form-control inputForm error" id="nome"
@@ -127,17 +128,17 @@ Author     : nicolas.hgyoshioka
                                             <input type="text" class="form-control inputForm" id="descricao"
                                                    value="${descricao}" name="descricao" minlength="0" maxlength="500"
                                                    <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if>    
-                                        </c:if>
+                                            </c:if>
                                             <c:if test="${not empty descricaoErro}">
                                                 <input type="text" class="form-control inputForm error" id="descricao"
                                                 name="descricao" minlength="0" maxlength="500" placeholder="${descricaoErro}"
                                                 <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly</c:if>    
-                                        </c:if>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:if test="${empty descricaoErro}"> 
-                                            <input type="text" class="form-control inputForm" id="descricao" value="${descricao}" 
-                                            placeholder="Descrição do produto" name="descricao" minlength="0" maxlength="500">
+                                            </c:if>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${empty descricaoErro}"> 
+                                                <input type="text" class="form-control inputForm" id="descricao" value="${descricao}" 
+                                                placeholder="Descrição do produto" name="descricao" minlength="0" maxlength="500">
                                         </c:if>
                                         <c:if test="${not empty descricaoErro}">
                                             <input type="text" class="form-control inputForm error" id="descricao"
@@ -174,22 +175,23 @@ Author     : nicolas.hgyoshioka
                                 <c:choose>
                                     <c:when test="${acao == 'editar'}">
                                         <c:if test="${empty valorUnitarioErro}">
-                                            <input <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly </c:if> type="text" class="form-control inputForm" id="valor"
-                                                                                                           value="${valor_unidade}" name="valorUnitario" minlength="0" maxlength="9">
+                                            <input type="text" class="form-control money inputForm" id="valor"
+                                                   value="${valor_unidade}" name="valorUnitario" minlength="0" maxlength="9"
+                                                   <c:if test="${sessionScope.nomeSetor == 'Estoquista'}"> readonly </c:if>>
                                         </c:if>
                                         <c:if test="${not empty valorUnitarioErro}">         
-                                            <input type="text" class="form-control inputForm error" id="valor"
-                                                   placeholder="${valorUnitarioErro}" name="valorUnitario" min="0" minlength="0" maxlength="9">
+                                            <input type="text" class="form-control money inputForm error" id="valor"
+                                                   placeholder="${valorUnitarioErro}" name="valorUnitario" minlength="0" maxlength="9">
                                         </c:if> 
                                     </c:when>
                                     <c:otherwise>
                                         <c:if test="${empty valorUnitarioErro}">
-                                            <input type="text" class="form-control inputForm" id="valor" value="${valor_unidade}"
+                                            <input type="text" class="form-control money inputForm" id="valor" value="${valor_unidade}"
                                                    placeholder="Valor Unitário" name="valorUnitario" minlength="0" maxlength="9">
                                         </c:if>
                                         <c:if test="${not empty valorUnitarioErro}">         
-                                            <input type="text" class="form-control inputForm error" id="valor"
-                                                   placeholder="${valorUnitarioErro}" name="valorUnitario" min="0" minlength="0" maxlength="9">
+                                            <input type="text" class="form-control money inputForm error" id="valor"
+                                                   placeholder="${valorUnitarioErro}" name="valorUnitario" minlength="0" maxlength="9">
                                         </c:if> 
                                     </c:otherwise>
                                 </c:choose>                               

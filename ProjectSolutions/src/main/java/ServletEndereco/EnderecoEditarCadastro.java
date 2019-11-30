@@ -43,9 +43,12 @@ public class EnderecoEditarCadastro extends HttpServlet {
             error = true;
             request.setAttribute("codigoErro", "Codigo do usuario não informado!");
         }
-        if (eCep.length() == 0 || !(eCep.length() == 8)) {
+        if (eCep.length() == 0 || !(eCep.length() == 9)) {
             error = true;
             request.setAttribute("cepErro", "CEP não informado ou fora do padrão de 8 digitos!");
+        } else {
+            eCep = eCep.replace(".", "");
+            eCep = eCep.replace("-", "");
         }
         if (eLogradouro.length() == 0) {
             error = true;

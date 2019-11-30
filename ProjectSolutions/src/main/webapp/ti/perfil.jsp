@@ -143,7 +143,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="cpf">Seu CPF:</label>
-                                <input type="text" class="form-control inputFormPerfil" id="cpf"
+                                <input type="text" class="form-control cpf inputFormPerfil" id="cpf"
                                        placeholder="Seu CPF" value="${cpf}" name="cpf" disabled="">
                             </div>
                             <div class="col-6">
@@ -184,7 +184,7 @@
                                                 <div class="col">
                                                     <span class="card-title">
                                                         <b> CEP: </b>
-                                                        <p><c:out value="${enderecos.cep}"/></p>
+                                                        <p class="cep"><c:out value="${enderecos.cep}"/></p>
                                                     </span>
                                                 </div>
                                             </div>
@@ -242,7 +242,7 @@
                                                 <div class="col">
                                                     <span class="card-title">
                                                         <b> Número de Identificação: </b>
-                                                        <p>****.*****.****.<c:out value="${pagamento.numeroPagamento}"/></p>
+                                                        <p class="numeroCartaoOculto"><c:out value="${pagamento.numeroPagamento}"/></p>
                                                     </span>
                                                 </div>
                                             </div>
@@ -310,12 +310,12 @@
                                             <label for="numeroCartao">Número do Cartão</label>
                                             <c:choose>
                                                 <c:when test="${not empty numPagErro}">
-                                                    <input type="text" class="form-control inputForm error" id="nome"
-                                                           placeholder="${numPagErro}" name="numeroCartao" minlength="16" maxlength="75">
+                                                    <input type="text" class="form-control numeroCartao inputForm error" id="nome"
+                                                           placeholder="${numPagErro}" name="numeroCartao" minlength="16" maxlength="16">
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <input type="text" class="form-control inputForm" id="nome"
-                                                           placeholder="Número" name="numeroCartao" minlength="16" maxlength="75">
+                                                    <input type="text" class="form-control numeroCartao inputForm" id="nome"
+                                                           placeholder="Número" name="numeroCartao" minlength="16" maxlength="16">
                                                 </c:otherwise>
                                             </c:choose>
 
@@ -333,14 +333,14 @@
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label for="numeroCartao">Data de Vencimento</label>
+                                                    <label for="dataVencimento">Data de Vencimento</label>
                                                     <c:choose>
                                                         <c:when test="${not empty dtVencimemntoErro}">
-                                                            <input type="text" class="form-control inputForm error" id="nome"
+                                                            <input type="text" class="form-control dateCartao inputForm error" id="dataVencimento"
                                                                    placeholder="${dtVencimemntoErro}" name="dataVencimento" minlength="0" maxlength="75">
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <input type="text" class="form-control inputForm" id="nome"
+                                                            <input type="text" class="form-control dateCartao inputForm" id="dataVencimento"
                                                                    placeholder="Vencimento" name="dataVencimento" minlength="0" maxlength="75">
                                                         </c:otherwise>
                                                     </c:choose>
@@ -372,7 +372,7 @@
                                 </div>
                             </div>
                         </div>
-                    </c:if>
+                    </c:if> 
                     <c:if test="${perfil == 'pedidos'}">
                         <div class="row">
                             <div id="accordion">

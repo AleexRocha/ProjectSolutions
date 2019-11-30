@@ -115,7 +115,7 @@ public class UsuarioEditarServlet extends HttpServlet {
             
             if (modoEdicao.equals("adm-cliente")) {
                 usuario.setEmail(cEmail);
-                usuario.setCpf(cCpf);
+                usuario.setCpf(cCpf.replace(".", ""));
 
             } else {
                 usuario.setEmail(String.valueOf(userLogado.getAttribute("emailUsuario")));

@@ -57,7 +57,7 @@
                                         </div>
                                     </td>
                                     <td class="precoUnitario">
-                                        <h5 class="unitario">R$ <c:out value="${produto.valorUnitario}"/></h5>
+                                        <h5 class="unitario money">R$ <c:out value="${produto.valorUnitario}"/></h5>
                                     </td>
                                     <td class="quantidade">
                                         <div class="product_count">
@@ -65,7 +65,7 @@
                                         </div>
                                     </td>
                                     <td class="precoTotal">
-                                        <h5 class="total">R$ <c:out value="${produto.valorTotal}"/></h5>
+                                        <h5 class="total money">R$ <c:out value="${produto.valorTotal}"/></h5>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -76,7 +76,7 @@
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td class="precoTotal">
-                                    <h5 class="subtotal">R$ <c:out value="${subtotal}"></c:out> </h5>
+                                    <h5 class="subtotal money"> <c:out value="${subtotal}"></c:out> </h5>
                                     </td>
                                 </tr>
                             </tbody>

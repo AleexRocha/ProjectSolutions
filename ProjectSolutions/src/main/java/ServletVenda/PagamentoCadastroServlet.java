@@ -43,6 +43,8 @@ public class PagamentoCadastroServlet extends HttpServlet {
         if (numeroPag.equals("")) {
             httpOK = false;
             request.setAttribute("numPagErro", "Por favor, preencha o campo");
+        }else{
+            numeroPag = numeroPag.replace(" ", "");
         }
         if (nomeTitular.equals("")) {
             httpOK = false;

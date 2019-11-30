@@ -77,7 +77,7 @@
                             <td class="coluna" name="quantidadeEstoque">
                                 <c:out value="${produtos.quantidadeEstoque}" />
                             </td>
-                            <td class="coluna" name="valorUnitario">
+                            <td class="coluna money" name="valorUnitario">
                                 <c:out value="${produtos.valorUnitario}" />
                             </td>
                             <td class="btn-group">

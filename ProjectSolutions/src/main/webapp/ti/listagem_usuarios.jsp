@@ -64,7 +64,7 @@ Author     : nicolas.hgyoshioka
                             <td class="coluna" name="codigo" ><c:out value="${usuarios.codigoUsuario}" /></td>
                             <td class="coluna" name="nome" ><c:out value="${usuarios.nome}" /></td>
                             <td class="coluna" name="email" ><c:out value="${usuarios.email}" /></td>
-                            <td class="coluna" name="email" ><c:out value="${usuarios.cpf}" /></td>
+                            <td class="coluna cpf" name="cpf"><c:out value="${usuarios.cpf}" /></td>
                             <td class="coluna" name="setor" ><c:out value="${usuarios.nomeSetor}"/></td>
                             <td class="btn-group" style="display: inline-flex;">
                                 <form action="dados_usuario" method="POST">
