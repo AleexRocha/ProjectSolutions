@@ -50,6 +50,7 @@ public class VendaCadastroServlet extends HttpServlet {
 
         int quantidadeTotalVenda = 0;
         int valorTotalVenda = 0;
+        int valorFrete = 0;
         int idEndereco = 0;
         int idRecebidoPagamento = 0;
         for (Venda pc : produtosCarrinho) {
@@ -57,6 +58,7 @@ public class VendaCadastroServlet extends HttpServlet {
             valorTotalVenda += pc.getValorTotalProduto();
             idEndereco = pc.getIdEndereco();
             idRecebidoPagamento = pc.getIdPagamento();
+            valorFrete = (int) pc.getValorFrete();
         }
 
         DateFormat dateFormatCodigoVenda = new SimpleDateFormat("ddMMyyyyHHmmss");
@@ -84,7 +86,7 @@ public class VendaCadastroServlet extends HttpServlet {
         venda.setCodigoVenda(hashVenda.concat(String.valueOf(codigoUsuario)));
         venda.setQuantidadeTotalVenda(quantidadeTotalVenda);
         venda.setValorTotalVenda(valorTotalVenda);
-        venda.setValorFrete(valorTotalVenda);
+        venda.setValorFrete(valorFrete);
         venda.setDataVenda(dataVenda);
         venda.setIdEndereco(idEndereco);
         venda.setIdUsuario(codigoUsuario);
@@ -118,8 +120,8 @@ public class VendaCadastroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processaRequisicao(req, resp);
     }
-    
-    private void limparCarrinho(HttpSession sessao){
+
+    private void limparCarrinho(HttpSession sessao) {
         ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) sessao.getAttribute("produtosCarrinho");
         produtosCarrinho.clear();
         sessao.removeAttribute("produtosCarrinho");
