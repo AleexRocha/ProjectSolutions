@@ -50,7 +50,7 @@ public class UsuarioCadastroServlet extends HttpServlet {
                 request.setAttribute("nomeErro", "O campo Nome deve conter nome e sobrenome");
             }
         }
-        if (cCpf.length() == 0 || !(cCpf.length() == 14)) {
+        if (cCpf.length() == 0 || (cCpf.length() != 14)) {
             error = true;
             request.setAttribute("cpfErro", "O CPF deve conter 11 dígitos!");
         } else {

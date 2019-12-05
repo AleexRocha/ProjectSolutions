@@ -48,7 +48,7 @@ public class EnderecoCadastroServlet extends HttpServlet {
             error = true;
             request.setAttribute("codigoErro", "Codigo do usuario não informado!");
         }
-        if (eCep.length() == 0 || !(eCep.length() == 9)) {
+        if (eCep.length() == 0 || (eCep.length() != 9)) {
             error = true;
             request.setAttribute("cepErro", "CEP não informado ou fora do padrão de 8 digitos!");
         }else{
